@@ -5,6 +5,7 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './back/layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './back/layouts/auth-layout/auth-layout.component';
+import { CarbrandComponent } from './back/pages/prospecting/vehicle/carbrand/carbrand.component';
 
 
 const routes: Routes =[
@@ -32,7 +33,10 @@ const routes: Routes =[
         loadChildren: './back/layouts/auth-layout/auth-layout.module#AuthLayoutModule'
       }
     ]
-  }, {
+  },
+
+
+  {
     path: '**',
     redirectTo: 'dashboard'
   }

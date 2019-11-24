@@ -4,13 +4,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './back/layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './back/layouts/auth-layout/auth-layout.component';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './back/components/components.module';
 
@@ -24,13 +21,15 @@ import { ComponentsModule } from './back/components/components.module';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    HomeComponent
+    HomeComponent,
+
 
   ],
   providers: [],
