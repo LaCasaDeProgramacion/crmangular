@@ -1,4 +1,3 @@
-
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
 url(assets/img/theme/carBrands.jpg);
 background-size: cover; background-position: center top;">
@@ -7,8 +6,8 @@ background-size: cover; background-position: center top;">
   <!-- Header container -->
   <div class="container-fluid d-flex align-items-center">
     <div class="row">
-      <div class="col-lg-12 col-md-10">
-        <h1 class="display-2 text-white">Vehicles | Car Brands</h1>
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Vehicles</h1>
       </div>
     </div>
   </div>
@@ -19,13 +18,13 @@ background-size: cover; background-position: center top;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Brand</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Delete Vehicle</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Would you like to remove this brand ?
+        Would you like to remove this vehicle ?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -37,7 +36,7 @@ background-size: cover; background-position: center top;">
 <!--  Modal update  -->
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Update Brand</h4>
+    <h4 class="modal-title" id="modal-basic-title">Update Vehicle</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -45,9 +44,30 @@ background-size: cover; background-position: center top;">
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="dateOfBirth">Brand Name</label>
+        <label for="dateOfBirth">Model</label>
+        <div class="input-group">
+            <div class="input-group">
+                <select class="custom-select custom-select-sm">
+                    <option selected>Open this select menu</option>
+                    <option value="1">Ford Figo</option>
+                    <option value="2">Toyota Camry</option>
+                  </select>
+            </div>
+        </div>
+        <label for="dateOfBirth">Color</label>
         <div class="input-group">
           <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+        </div>
+        <label for="dateOfBirth">Registration</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+        </div>
+        <label for="dateOfBirth">Picture</label>
+        <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
         </div>
       </div>
     </form>
@@ -59,7 +79,7 @@ background-size: cover; background-position: center top;">
 <!--  Modal Add  -->
 <ng-template #content1 let-modal1>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal1-basic-title">Add Brand</h4>
+    <h4 class="modal-title" id="modal1-basic-title">Add Vehicle</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -67,18 +87,41 @@ background-size: cover; background-position: center top;">
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="brandName">New Brand Name</label>
+        <label for="dateOfBirth">Model</label>
         <div class="input-group">
-          <input id="brandName" class="form-control" name="dp1" type="text" #dp1>
+            <select class="custom-select custom-select-sm">
+                <option selected>Open this select menu</option>
+                <option value="1">Ford Figo</option>
+                <option value="2">Toyota Camry</option>
+              </select>
+        </div>
+        <label for="dateOfBirth">Color</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+        </div>
+        <label for="dateOfBirth">Registration</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+        </div>
+        <label for="dateOfBirth">Picture</label>
+        <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" #customFile>
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
         </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal1.close('Save click')">Save</button>
+      <button type="button" class="btn btn-outline-dark" (click)="save(customFile.value)">Save</button>
+
+    <button type="button" class="btn btn-outline-dark" (click)="modal1.close('Save click')">Close</button>
+
   </div>
 </ng-template>
 <!-- Page content -->
+
 <div class="container-fluid mt--7">
   <!-- Sub Nav -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-default">
@@ -86,7 +129,7 @@ background-size: cover; background-position: center top;">
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-lg-auto text-right">
           <li class="nav-item">
-            <a  class="nav-link nav-link-icon" (click)="open1(content1)">New Carbrand</a>
+            <a  class="nav-link nav-link-icon" (click)="open1(content1)">New Vehicle</a>
           </li>
           <li class="nav-item">
             <a class="nav-link nav-link-icon" routerLink="/back/vehicles">Vehicles</a>
@@ -106,56 +149,74 @@ background-size: cover; background-position: center top;">
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <div class="row align-items-center">
-            <div class="col-8">
-              <h3 class="mb-0">List of Car Brands</h3>
-            </div>
-
-          </div>
-
+          <h3 class="mb-0">List of Vehicles</h3>
         </div>
-
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Brands</th>
+                <th scope="col">Registration</th>
+                <th scope="col">Car Model</th>
+                <th scope="col">Color</th>
+                <th scope="col">Img</th>
+                <th scope="col">Actions</th>
+                <th scope="col"></th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">166 TN 6605</span>
+                    </div>
+                  </div>
+                </th>
                 <td>
-                  Toyota
+                  Ford Figo
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-warning"></i> Black
+                  </span>
+                </td>
+                <td>
+                  <div class="avatar-group">
+                    <a href="javascript:void(0)" class="avatar avatar-sm" data-toggle="tooltip"
+                      data-original-title="Ryan Tompson">
+                      <img alt="Image placeholder" src="../assets/img/theme/team-1-800x800.jpg" class="rounded-circle">
+                    </a>
+                  </div>
+                </td>
+                <td>
+                    <div class="avatar-group">
+                        <div class="col-4 text-right">
+                            <a href="#!" class="btn btn-sm btn-primary">Reserve</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="avatar-group">
+                        <div class="col-4 text-right">
+                            <a href="#!" class="btn btn-sm btn-primary">Disponibility</a>
+                        </div>
+                    </div>
                 </td>
                 <td class="text-right">
-                  <div ngbDropdown placement="top-right">
+                  <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Delete</a>
                       <a class="dropdown-item" (click)="open(content)">Update</a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Remove</a>
                     </div>
                   </div>
                 </td>
               </tr>
-              <tr>
-                <td>
-                  Ford
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="top-right">
-                    <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Delete</a>
-                      <a class="dropdown-item" (click)="open(content)">Update</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+
+
             </tbody>
           </table>
         </div>
@@ -187,5 +248,7 @@ background-size: cover; background-position: center top;">
       </div>
     </div>
   </div>
+
+
 
 </div>

@@ -1,3 +1,4 @@
+import { TopicsComponent } from './front/forum/topics/topics.component';
 import { HomeComponent } from './front/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -11,8 +12,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './back/components/components.module';
 
-
-
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -22,14 +21,13 @@ import { ComponentsModule } from './back/components/components.module';
     NgbModule,
     RouterModule,
     AppRoutingModule,
-
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
     HomeComponent,
-
+    TopicsComponent
 
   ],
   providers: [],
