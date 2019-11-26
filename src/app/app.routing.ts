@@ -1,3 +1,5 @@
+import { SingleTopicComponent } from './front/forum/single-topic/single-topic.component';
+import { AllTopicsComponent } from './front/forum/all-topics/all-topics.component';
 import { HomeComponent } from './front/home/home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
@@ -17,7 +19,8 @@ const routes: Routes =[
   },
   { path: 'home', component: HomeComponent},
   { path: 'home/topics', component: TopicsComponent},
-
+  { path: 'home/allTopics', component: AllTopicsComponent},
+  { path: 'home/singleTopic', component: SingleTopicComponent},
   {
     path: '',
     component: AdminLayoutComponent,
