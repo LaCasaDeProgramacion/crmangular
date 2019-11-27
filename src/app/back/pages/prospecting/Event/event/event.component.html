@@ -1,0 +1,235 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
+url(assets/img/theme/event.jpg);
+background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Events</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Delete-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Event</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Would you like to remove this Event ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn bg-gradient-danger">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  Modal update  -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update Event</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Name</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Start Date</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">End Date</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Location</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp placeholder="longitude">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp placeholder="latitude">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+<!--  Modal Add  -->
+<ng-template #content1 let-modal1>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal1-basic-title">Add Event</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Name</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Start Date</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">End Date</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Location</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp placeholder="longitude">
+          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp placeholder="latitude">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal1.close('Save click')">Close</button>
+
+  </div>
+</ng-template>
+<!-- Page content -->
+
+<div class="container-fluid mt--7">
+  <!-- Sub Nav -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-default">
+    <div class="container">
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-lg-auto text-right">
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLink="/back/events">Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" (click)="open1(content1)">New Event</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLink="/back/suggest-event">Suggest Event</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">List of Events</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Location</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">Event 1</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">25-11-2019</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">30-11-2019</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">Manar 1</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" routerLink="/back/details-event" >Details</a>
+                      <a class="dropdown-item" (click)="open(content)">Update</a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Remove</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="javascript:void(0)">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
