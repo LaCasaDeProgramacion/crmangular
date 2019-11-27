@@ -1,3 +1,6 @@
+import { ProductsListComponent } from './front/pages/products/products-list/products-list.component';
+import { ProductsComponent } from './front/pages/products/products.component';
+import { StoresListComponent } from './front/pages/stores/stores-list/stores-list.component';
 import { HomeComponent } from './front/home/home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
@@ -15,6 +18,8 @@ const routes: Routes =[
     pathMatch: 'full',
   },
   { path: 'home', component: HomeComponent},
+  { path: 'home/stores', component: StoresListComponent},
+  { path: 'home/products', component: ProductsListComponent},
   {
     path: '',
     component: AdminLayoutComponent,
@@ -36,10 +41,7 @@ const routes: Routes =[
   },
 
 
-  {
-    path: '**',
-    redirectTo: 'dashboard'
-  }
+
 ];
 
 @NgModule({
