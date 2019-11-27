@@ -27,9 +27,15 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/primeicons/primeicons.css",
+"src/assets/css/primeflex.css",
+"node_modules/mapbox-gl/dist/mapbox-gl.css",
+"./node_modules/primeng/resources/themes/nova-light/theme.css",
+"./node_modules/primeng/resources/primeng.min.css",
               "src/frontstyle.css",
 "src/assets/scss/argon.scss",
 "src/assets/front/scss/argon.scss"
+
 
 
 
@@ -43,6 +49,7 @@
               "node_modules/chart.js/dist/Chart.min.js",
 
               "node_modules/clipboard/dist/clipboard.min.js"
+
 
             ]
           },

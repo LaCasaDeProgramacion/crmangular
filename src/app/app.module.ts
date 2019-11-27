@@ -1,3 +1,12 @@
+
+import { ChatComponent } from './front/pages/chat/chat.component';
+import { ProductsListComponent } from './front/pages/products/products-list/products-list.component';
+import { ProductsComponent } from './front/pages/products/products.component';
+import { DataViewModule } from 'primeng/dataview';
+import { SidebarModule, GMapModule } from 'primeng/primeng';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { StoresListComponent } from './front/pages/stores/stores-list/stores-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokenInterceptor } from './services/Token.interceptor';
 import { SingleTopicComponent } from './front/forum/single-topic/single-topic.component';
 import { AllTopicsComponent } from './front/forum/all-topics/all-topics.component';
@@ -16,9 +25,13 @@ import { AuthLayoutComponent } from './back/layouts/auth-layout/auth-layout.comp
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './back/components/components.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { FilterByBrandPipe } from './front/pipes/filterByBrand.pipe';
+
 
 @NgModule({
   imports: [
+    BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
@@ -26,14 +39,22 @@ import { ComponentsModule } from './back/components/components.module';
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    GMapModule,
+    SidebarModule,
+    DataViewModule,
+Ng2SearchPipeModule,
+   ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
     HomeComponent,
+    StoresListComponent,
+    ProductsComponent,
+    ProductsListComponent,
+    FilterByBrandPipe,
+ChatComponent,
 
     /********** new **********/
     TopicsComponent,
@@ -52,6 +73,7 @@ import { ComponentsModule } from './back/components/components.module';
       useClass: TokenInterceptor,
       multi: true
     }
+
   ],
   bootstrap: [AppComponent]
 })

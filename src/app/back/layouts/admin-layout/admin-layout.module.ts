@@ -1,3 +1,8 @@
+
+import { AddStoreComponent } from './../../pages/stores/add-store/add-store.component';
+import { MapStoreComponent } from './../../pages/stores/map-store/map-store.component';
+import { StoresComponent } from './../../pages/stores/stores.component';
+import { AddProductComponent } from './../../pages/products/add-product/add-product.component';
 import { EventDetailsComponent } from './../../pages/prospecting/Event/event-details/event-details.component';
 import { SuggestEventComponent } from './../../pages/prospecting/Event/suggest-event/suggest-event.component';
 import { EventComponent } from './../../pages/prospecting/Event/event/event.component';
@@ -17,6 +22,7 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductsComponent } from '../../pages/products/products.component';
 import { ModelComponent } from '../../pages/prospecting/vehicle/model/model.component';
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -38,14 +44,18 @@ import { ModelComponent } from '../../pages/prospecting/vehicle/model/model.comp
     IconsComponent,
     MapsComponent,
     CarbrandComponent,
+    ProductsComponent,
+AddProductComponent,
+StoresComponent,
+AddStoreComponent,
+MapStoreComponent,
     VehicleComponent,
     ModelComponent,
     AgentComponent,
     DetailsComponent,
     EventComponent,
     SuggestEventComponent,
-    EventDetailsComponent,
-
+    EventDetailsComponent
   ]
 })
 

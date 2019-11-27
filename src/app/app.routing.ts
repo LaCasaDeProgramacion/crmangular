@@ -1,3 +1,7 @@
+
+import { ProductsListComponent } from './front/pages/products/products-list/products-list.component';
+import { ProductsComponent } from './front/pages/products/products.component';
+import { StoresListComponent } from './front/pages/stores/stores-list/stores-list.component';
 import { SingleTopicComponent } from './front/forum/single-topic/single-topic.component';
 import { AllTopicsComponent } from './front/forum/all-topics/all-topics.component';
 import { HomeComponent } from './front/home/home.component';
@@ -18,6 +22,8 @@ const routes: Routes =[
     pathMatch: 'full',
   },
   { path: 'home', component: HomeComponent},
+  { path: 'home/stores', component: StoresListComponent},
+  { path: 'home/products', component: ProductsListComponent},
   { path: 'home/topics', component: TopicsComponent},
   { path: 'home/allTopics', component: AllTopicsComponent},
   { path: 'home/singleTopic', component: SingleTopicComponent},
@@ -41,8 +47,6 @@ const routes: Routes =[
       }
     ]
   },
-
-
   {
     path: '**',
     redirectTo: 'login'

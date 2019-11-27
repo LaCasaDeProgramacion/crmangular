@@ -1,3 +1,7 @@
+
+import { AddStoreComponent } from './../../pages/stores/add-store/add-store.component';
+import { MapStoreComponent } from './../../pages/stores/map-store/map-store.component';
+import { StoresComponent } from './../../pages/stores/stores.component';
 import { AuthUserService } from './../../../services/auth-user.service';
 import { EventDetailsComponent } from './../../pages/prospecting/Event/event-details/event-details.component';
 import { SuggestEventComponent } from './../../pages/prospecting/Event/suggest-event/suggest-event.component';
@@ -12,6 +16,22 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { CarbrandComponent } from '../../pages/prospecting/vehicle/carbrand/carbrand.component';
+import { ProductsComponent } from '../../pages/products/products.component';
+import { AddProductComponent } from '../../pages/products/add-product/add-product.component';
+
+export const AdminLayoutRoutes: Routes = [
+    { path: 'dashboard',      component: DashboardComponent },
+    { path: 'user-profile',   component: UserProfileComponent },
+    { path: 'tables',         component: TablesComponent },
+    { path: 'icons',          component: IconsComponent },
+    { path: 'maps',           component: MapsComponent },
+    { path: 'back/carbrands', component: CarbrandComponent  },
+    { path: 'back/products', component: ProductsComponent},
+     { path: 'back/addproduct', component: AddProductComponent } ,
+    { path: 'back/stores', component: StoresComponent},
+    { path: 'back/mapstores', component: MapStoreComponent},
+    { path: 'back/addstores', component: AddStoreComponent}
+
 import { ModelComponent } from '../../pages/prospecting/vehicle/model/model.component';
 
 export const AdminLayoutRoutes: Routes = [
@@ -30,4 +50,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'back/events', component: EventComponent ,canActivate:[AuthUserService] },
     { path: 'back/suggest-event', component: SuggestEventComponent ,canActivate:[AuthUserService] },
     { path: 'back/details-event', component: EventDetailsComponent ,canActivate:[AuthUserService] }
+
 ];
