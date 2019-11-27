@@ -38,29 +38,64 @@
           <div class="text-center text-muted mb-4">
             <small>Or sign up with credentials</small>
           </div>
-          <form role="form">
+          <form role="form" #userForm="ngForm" (ngSubmit) ="onSubmit()" >
             <div class="form-group">
+
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                 </div>
-                <input class="form-control" placeholder="Name" type="text">
+                <input class="form-control" placeholder="firstName" type="text"
+                name="firstName" [(ngModel)] ="user.firstName" #firstName = "ngModel">
               </div>
-            </div>
-            <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                </div>
-                <input class="form-control" placeholder="Email" type="email">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="lastName" type="text"
+                  name="lastName" [(ngModel)] ="user.lastName" #lastName = "ngModel">
               </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                </div>
-                <input class="form-control" placeholder="Password" type="password">
+              <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="dateBirth" type="date"
+                  name="dateBirth" [(ngModel)] ="user.dateBirth" #lastName = "ngModel">
+              </div>
+              <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="email" type="text"
+                  name="email" [(ngModel)] ="user.email" #email = "ngModel">
+              </div>
+              <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="username" type="text"
+                  name="username" [(ngModel)] ="user.username" #username = "ngModel">
+              </div>
+              <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="password" type="text"
+                  name="password" [(ngModel)] ="user.password" #password = "ngModel">
+              </div>
+              <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="role" type="text"
+                  name="role" [(ngModel)] ="user.role" #role = "ngModel">
+              </div>
+              <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="cin" type="text"
+                  name="cin" [(ngModel)] ="user.cin" #cin = "ngModel">
               </div>
             </div>
             <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>
@@ -69,13 +104,14 @@
                 <div class="custom-control custom-control-alternative custom-checkbox">
                   <input class="custom-control-input" id="customCheckRegister" type="checkbox">
                   <label class="custom-control-label" for="customCheckRegister">
-                    <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
+                    <span class="text-muted">
+                      I agree with the <a href="#!">Privacy Policy</a></span>
                   </label>
                 </div>
               </div>
             </div>
             <div class="text-center">
-              <button type="button" class="btn btn-primary mt-4">Create account</button>
+              <button type="submit" (click)="open1(content1)"  class="btn btn-primary mt-4">Create account</button>
             </div>
           </form>
         </div>
@@ -83,3 +119,27 @@
     </div>
   </div>
 </div>
+
+<!--  Modal Add  -->
+<ng-template #content1 let-modal1>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal1-basic-title">Confirm Password</h4>
+      <button type="button" class="close" aria-label="Close" [disabled]="disablebol" (click)="modal1.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="brandName">code</label>
+          <div class="input-group">
+              <input id="brandName" class="form-control" placeholder="confirm password" type="text"
+              name="confirm" [(ngModel)] ="usercode" #confirm = "ngModel" required>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="codeconfirmemail()" >Confirm Email Code</button>
+    </div>
+  </ng-template>

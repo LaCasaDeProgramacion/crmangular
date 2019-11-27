@@ -27,7 +27,9 @@ import { ModelComponent } from '../../pages/prospecting/vehicle/model/model.comp
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     DashboardComponent,
@@ -42,7 +44,8 @@ import { ModelComponent } from '../../pages/prospecting/vehicle/model/model.comp
     DetailsComponent,
     EventComponent,
     SuggestEventComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+
   ]
 })
 

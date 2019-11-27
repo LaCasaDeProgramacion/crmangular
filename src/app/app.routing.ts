@@ -28,6 +28,7 @@ const routes: Routes =[
       {
         path: '',
         loadChildren: './back/layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+
       }
     ]
   }, {
@@ -44,7 +45,7 @@ const routes: Routes =[
 
   {
     path: '**',
-    redirectTo: 'dashboard'
+    redirectTo: 'login'
   }
 ];
 

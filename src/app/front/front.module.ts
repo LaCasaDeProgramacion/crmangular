@@ -8,9 +8,10 @@ import { FrontNavComponent } from './components/front-nav/front-nav.component';
 import { FrontFooterComponent } from './components/front-footer/front-footer.component';
 import { AllTopicsComponent } from './forum/all-topics/all-topics.component';
 import { SingleTopicComponent } from './forum/single-topic/single-topic.component';
+import { ConfirmPassComponent } from './user/confirm-pass/confirm-pass.component';
 
 @NgModule({
-  declarations: [HomeComponent, TopicsComponent, FrontNavComponent, FrontFooterComponent, AllTopicsComponent, SingleTopicComponent],
+  declarations: [HomeComponent, TopicsComponent, FrontNavComponent, FrontFooterComponent, AllTopicsComponent, SingleTopicComponent, ConfirmPassComponent],
   imports: [
     CommonModule,
     FrontRoutingModule,
@@ -20,7 +21,11 @@ import { SingleTopicComponent } from './forum/single-topic/single-topic.componen
     FrontNavComponent,
     FrontFooterComponent,
     AllTopicsComponent,
-    SingleTopicComponent
+    SingleTopicComponent,
+
+     /******  user *******/
+
+
   ]
 })
 export class FrontModule { }

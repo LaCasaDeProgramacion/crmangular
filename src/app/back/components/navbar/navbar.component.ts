@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
@@ -12,7 +13,9 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location,  private element: ElementRef, private router: Router) {
+  UserName=localStorage.getItem('UserName');
+
+  constructor(location: Location,  private element: ElementRef, private router: Router,private userService:UserService) {
     this.location = location;
   }
 
@@ -31,6 +34,20 @@ export class NavbarComponent implements OnInit {
         }
     }
     return 'Dashboard';
+  }
+  logout()
+  {
+    localStorage.removeItem('iduser');
+    localStorage.removeItem('Token');
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('UserName');
+    this.userService.logout().subscribe(
+      (data) =>
+      {
+        console.log(data['statusrslt'])
+         this.router.navigate(["login"]);
+      }
+    )
   }
 
 }

@@ -1,3 +1,4 @@
+import { TokenInterceptor } from './services/Token.interceptor';
 import { SingleTopicComponent } from './front/forum/single-topic/single-topic.component';
 import { AllTopicsComponent } from './front/forum/all-topics/all-topics.component';
 import { FrontFooterComponent } from './front/components/front-footer/front-footer.component';
@@ -6,8 +7,8 @@ import { TopicsComponent } from './front/forum/topics/topics.component';
 import { HomeComponent } from './front/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './back/layouts/admin-layout/admin-layout.component';
@@ -25,6 +26,8 @@ import { ComponentsModule } from './back/components/components.module';
     NgbModule,
     RouterModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -37,10 +40,19 @@ import { ComponentsModule } from './back/components/components.module';
     FrontNavComponent,
     FrontFooterComponent,
     AllTopicsComponent,
-    SingleTopicComponent
+    SingleTopicComponent,
+
+
+    /******  user *******/
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
