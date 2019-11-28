@@ -6,6 +6,10 @@ import { DataViewModule } from 'primeng/dataview';
 import { SidebarModule, GMapModule } from 'primeng/primeng';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StoresListComponent } from './front/pages/stores/stores-list/stores-list.component';
+import { MatButtonModule, MatDialogModule } from '@angular/material';
+import { TechnicianService } from './services/complaintsManagement/technician.service';
+import { ComplaintTypesService } from './services/complaintsManagement/complaint-types.service';
+import { ComplaintsService } from './services/complaintsManagement/complaints.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokenInterceptor } from './services/Token.interceptor';
 import { SingleTopicComponent } from './front/forum/single-topic/single-topic.component';
@@ -26,6 +30,8 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './back/components/components.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FilterByBrandPipe } from './front/pipes/filterByBrand.pipe';
+import { ComplaintCommentsService } from './services/complaintsManagement/complaint-comments.service';
+import { ComplaintObjectsService } from './services/complaintsManagement/complaint-objects.service';
 
 
 @NgModule({
@@ -42,7 +48,15 @@ import { FilterByBrandPipe } from './front/pipes/filterByBrand.pipe';
     SidebarModule,
     DataViewModule,
 Ng2SearchPipeModule,
-   ReactiveFormsModule
+   ReactiveFormsModule,
+    MatButtonModule,
+     MatDialogModule,
+    
+    
+    ReactiveFormsModule,
+    
+    
+
   ],
   declarations: [
     AppComponent,
@@ -54,6 +68,11 @@ Ng2SearchPipeModule,
     ProductsListComponent,
     FilterByBrandPipe,
 ChatComponent,
+    
+    
+    
+    
+    
 
     /********** new **********/
     TopicsComponent,
@@ -66,14 +85,22 @@ ChatComponent,
     /******  user *******/
 
   ],
+ 
+   
+  
   providers: [
+    ComplaintsService,
+    ComplaintTypesService,
+    ComplaintCommentsService,
+    ComplaintObjectsService,
+    TechnicianService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
     }
-
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

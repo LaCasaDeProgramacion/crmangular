@@ -9,6 +9,13 @@ import { EventComponent } from './../../pages/prospecting/Event/event/event.comp
 import { DetailsComponent } from './../../pages/prospecting/agent/details/details.component';
 import { AgentComponent } from './../../pages/prospecting/agent/agent/agent.component';
 import { VehicleComponent } from './../../pages/prospecting/vehicle/vehicle/vehicle.component';
+import { ObjectComplaintComponent } from './../../pages/Complaints/object-complaint/object-complaint.component';
+import { TypeComplaintComponent } from './../../pages/Complaints/type-complaint/type-complaint.component';
+import { TechnicianComponent } from './../../pages/Complaints/technician/technician.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { ComplaintsComponent } from './../../pages/Complaints/Complaints/complaints.component';
 import { CarbrandComponent } from './../../pages/prospecting/vehicle/carbrand/carbrand.component';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';import { RouterModule } from '@angular/router';
@@ -24,7 +31,9 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsComponent } from '../../pages/products/products.component';
 import { ModelComponent } from '../../pages/prospecting/vehicle/model/model.component';
+import { MatButtonModule, MatDialogModule } from '@angular/material';
 // import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   imports: [
@@ -34,8 +43,10 @@ import { ModelComponent } from '../../pages/prospecting/vehicle/model/model.comp
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    FormsModule,
-    ReactiveFormsModule
+    
+    ReactiveFormsModule,
+    Ng2SearchPipeModule,
+    
   ],
   declarations: [
     DashboardComponent,
@@ -55,7 +66,18 @@ MapStoreComponent,
     DetailsComponent,
     EventComponent,
     SuggestEventComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    ComplaintsComponent,
+    TechnicianComponent,
+    TypeComplaintComponent,
+    ObjectComplaintComponent,
+    
+    
+
+
+  ],
+  exports: [
+    Ng2SearchPipeModule
   ]
 })
 

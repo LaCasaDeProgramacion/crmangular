@@ -20,7 +20,10 @@ export const ROUTES: RouteInfo[] = [
     { path: '/back/stores', title: 'Stores',  icon:'ni-shop text-red', class: ''},
     { path: '/back/vehicles', title: 'Vehicles',  icon:'ni-delivery-fast text-blue', class: ''},
     { path: '/back/agents', title: 'Agents',  icon:'ni-badge text-orange', class: ''},
-    { path: '/back/events', title: 'Events',  icon:'ni-building text-info', class: ''}
+    { path: '/back/events', title: 'Events',  icon:'ni-building text-info', class: ''},
+    { path: '/back/complaints', title: 'Complaints',  icon:'ni ni-collection text-blue', class: ''},
+    { path: '/back/lines', title: 'Lines',  icon:'ni ni-collection text-blue', class: ''},
+    { path: '/back/services', title: 'Services',  icon:'ni ni-collection text-blue', class: ''},
   ];
 
 @Component({

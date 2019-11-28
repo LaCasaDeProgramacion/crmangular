@@ -1,3 +1,7 @@
+import { ObjectComplaintComponent } from './../../pages/Complaints/object-complaint/object-complaint.component';
+import { TypeComplaintComponent } from './../../pages/Complaints/type-complaint/type-complaint.component';
+import { TechnicianComponent } from './../../pages/Complaints/technician/technician.component';
+import { ComplaintsComponent } from './../../pages/Complaints/Complaints/complaints.component';
 
 import { AddStoreComponent } from './../../pages/stores/add-store/add-store.component';
 import { MapStoreComponent } from './../../pages/stores/map-store/map-store.component';
@@ -45,6 +49,11 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'back/agents-details', component: DetailsComponent ,canActivate:[AuthUserService] },
     { path: 'back/events', component: EventComponent ,canActivate:[AuthUserService] },
     { path: 'back/suggest-event', component: SuggestEventComponent ,canActivate:[AuthUserService] },
-    { path: 'back/details-event', component: EventDetailsComponent ,canActivate:[AuthUserService] }
+    { path: 'back/details-event', component: EventDetailsComponent ,canActivate:[AuthUserService] },
 
+    
+    { path: 'back/complaints', component: ComplaintsComponent  },
+    { path: 'back/technician', component: TechnicianComponent  },
+    { path: 'back/Type', component: TypeComplaintComponent  },
+    { path: 'back/Object', component: ObjectComplaintComponent  }
 ];
