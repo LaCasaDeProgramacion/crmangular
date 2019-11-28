@@ -14,7 +14,6 @@ import { FrontFooterComponent } from './front/components/front-footer/front-foot
 import { FrontNavComponent } from './front/components/front-nav/front-nav.component';
 import { TopicsComponent } from './front/forum/topics/topics.component';
 import { HomeComponent } from './front/home/home.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';

@@ -19,18 +19,8 @@ import { CarbrandComponent } from '../../pages/prospecting/vehicle/carbrand/carb
 import { ProductsComponent } from '../../pages/products/products.component';
 import { AddProductComponent } from '../../pages/products/add-product/add-product.component';
 
-export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user-profile',   component: UserProfileComponent },
-    { path: 'tables',         component: TablesComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'back/carbrands', component: CarbrandComponent  },
-    { path: 'back/products', component: ProductsComponent},
-     { path: 'back/addproduct', component: AddProductComponent } ,
-    { path: 'back/stores', component: StoresComponent},
-    { path: 'back/mapstores', component: MapStoreComponent},
-    { path: 'back/addstores', component: AddStoreComponent}
+
+
 
 import { ModelComponent } from '../../pages/prospecting/vehicle/model/model.component';
 
@@ -40,6 +30,12 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'tables',         component: TablesComponent,canActivate:[AuthUserService] },
     { path: 'icons',          component: IconsComponent,canActivate:[AuthUserService] },
     { path: 'maps',           component: MapsComponent,canActivate:[AuthUserService] },
+    /**************  firas routing  **************/
+    { path: 'back/products', component: ProductsComponent},
+    { path: 'back/addproduct', component: AddProductComponent } ,
+   { path: 'back/stores', component: StoresComponent},
+   { path: 'back/mapstores', component: MapStoreComponent},
+   { path: 'back/addstores', component: AddStoreComponent},
 
     /**************  Prospecting routing  **************/
     { path: 'back/carbrands', component: CarbrandComponent,canActivate:[AuthUserService]  },

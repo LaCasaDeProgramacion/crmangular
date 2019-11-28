@@ -52,7 +52,7 @@ import { ChatComponent } from './pages/chat/chat.component';
 ],
 
 
-  ]
+  
 
 })
 export class FrontModule { }
