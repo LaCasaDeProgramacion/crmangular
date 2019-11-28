@@ -47,10 +47,6 @@ private getDismissReason1(reason: any): string {
   }
 }
 
-
-
-
-
   ngOnInit() {
   }
 
