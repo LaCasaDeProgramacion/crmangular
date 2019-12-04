@@ -14,6 +14,7 @@ export class product{
     category_id : number ;
     category_name : string ;
   }
+  waeldisplayattributtest?:boolean;
     constructor(productName , productDescription , productPrice , productImage,productCategory , numberOfViews,productQuantity,productStatus,productDate){
       this.productName = productName ;
       this.productDescription = productDescription ;

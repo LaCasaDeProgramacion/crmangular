@@ -1,0 +1,193 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+  style="min-height: 600px; background-image: url(assets/img/theme/Discount.png); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-4 text-white">Hello {{UserName}}</h1>
+        <p class="text-white mt-0 mb-5">This is your Discount discount management .</p>
+        <a href="javascript:void(0)" class="btn btn-warning mt-4" (click)="open1(content1)">Add new Discount</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <!-- popup add -->
+  <ng-template #content1 let-modal1>
+    <app-add-promotion (closing)="closee($event)" (added)="formulairesubmited($event)"></app-add-promotion>
+  </ng-template>
+  <!-- popup update-->
+  <ng-template #content2 let-modal2>
+    <app-update-promotion [inputpromotiontoupdate]="promotiontoupdate" (closing)="closee($event)"
+      (added)="formulairesubmited($event)"></app-update-promotion>
+  </ng-template>
+ <!--popup delete confirm-->
+ <ng-template #contentdelete let-modaldelete >
+    <div  id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modaldelete-notification" >
+        <div class="modal-danger" role="document">
+          <div class="modal-content bg-gradient-danger">
+            <div class="modal-header">
+              <h6 class="modal-title" id="modaldelete-title-notification">Your attention is required</h6>
+              <button type="button" class="close" aria-label="Close"  (click)="modaldelete.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+              <div class="py-3 text-center">
+                <i class="ni ni-bell-55 ni-3x"></i>
+                <h4 class="heading mt-4">Delete Operation</h4>
+                <p>Are you sure want to Delete this Promotion.</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-white" (click)="deletepack()">Ok, Got it</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</ng-template>
+<!--popup enable confirm-->
+<ng-template #contentenable let-modalenable >
+    <div  id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modalenable-notification" >
+        <div class="modal-danger" role="document">
+          <div class="modal-content bg-gradient-danger">
+            <div class="modal-header">
+              <h6 class="modal-title" id="modalenable-title-notification">Your attention is required</h6>
+              <button type="button" class="close" aria-label="Close"  (click)="modalenable.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+              <div class="py-3 text-center">
+                <i class="ni ni-bell-55 ni-3x"></i>
+                <h4 class="heading mt-4">Enable Operation</h4>
+                <p>Are you sure want to Enable this Promotion.</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-white" (click)="enableconfir()">Ok, Got it</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</ng-template>
+<!--popup disable confirm-->
+<ng-template #contentdisable let-modaldisable >
+    <div  id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modaldisable-notification" >
+        <div class="modal-danger" role="document">
+          <div class="modal-content bg-gradient-danger">
+            <div class="modal-header">
+              <h6 class="modal-title" id="modaldisable-title-notification">Your attention is required</h6>
+              <button type="button" class="close" aria-label="Close"  (click)="modaldisable.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+              <div class="py-3 text-center">
+                <i class="ni ni-bell-55 ni-3x"></i>
+                <h4 class="heading mt-4">Disable Operation</h4>
+                <p>Are you sure want to Disable this Promotion.</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-white" (click)="disableprom()">Ok, Got it</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</ng-template>
+  <div class="card shadow">
+    <div class="card-header border-0">
+      <h3 class="mb-0">Discount List</h3>
+
+    </div>
+
+    <section class="section ">
+
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="row row-grid">
+            <div class="col-lg-3" *ngFor="let prom of promotionlist">
+              <div class="card card-lift--hover shadow border-0">
+
+                <div class="card-body py-5 " [ngStyle]="getstyle(prom.product.productImage)">
+                  <span class="mask bg-gradient-danger opacity-1"></span>
+                  <div class="icon icon-shape icon-shape-warning rounded-circle mb-4">
+                    <i class="text-uppercase ">{{prom.promotionunit}}%</i>
+                  </div>
+                  <div class="text-box-custom">
+                    <h3 class="mb-0 text-uppercase u-black text-center "> {{ prom.product.productName }} </h3>
+                    <h3 class="u-black mt-0 mb-0">{{prom.promotiontype}}</h3>
+                  </div>
+                  <div class="price">
+                    <h3> <s class="u-black">{{prom.product.productPrice}} DT</s> <br><span
+                        class="text-danger">{{prom.productnewvalue}} DT</span></h3>
+                  </div>
+                  <p class="display-4 text-white"> </p>
+                  <a href="javascript:void(0)" class="btn btn-warning mt-4" (click)="open2(content2,prom)">Update </a>
+                  <a href="javascript:void(0)" class="btn btn-warning mt-4" (click)="opendisable(contentdisable,prom)">Disable Discount</a>
+                  <a href="javascript:void(0)" class="btn btn-warning mt-4" (click)="opendelete(contentdelete,prom)">Delete Permanently</a>
+
+                </div>
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="card shadow">
+    <div class="card-header border-0">
+      <h3 class="mb-0">Disabled Discounts</h3>
+
+    </div>
+
+    <section class="section ">
+
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="row row-grid">
+            <div class="col-lg-3" *ngFor="let promo of disabledpromotionlist">
+              <div class="card card-lift--hover shadow border-0">
+
+                <div class="card-body py-5 " [ngStyle]="getstyle(promo.product.productImage)">
+                  <span class="mask bg-gradient-danger opacity-1"></span>
+                  <div class="icon icon-shape icon-shape-warning rounded-circle mb-4">
+                    <i class="text-uppercase ">{{promo.promotionunit}}%</i>
+                  </div>
+                  <div class="text-box-custom">
+                    <h3 class="mb-0 text-uppercase u-black text-center "> {{ promo.product.productName }} </h3>
+                    <h3 class="u-black mt-0 mb-0">{{promo.promotiontype}}</h3>
+                  </div>
+                  <div class="price">
+                    <h3> <s class="u-black">{{promo.product.productPrice}} DT</s> <br><span
+                        class="text-danger">{{promo.productnewvalue}} DT</span></h3>
+                  </div>
+                  <p class="display-4 text-white"> </p>
+                 
+                  <a href="javascript:void(0)" class="btn btn-warning mt-4" (click)="openenable(contentenable,promo)">Enable Discount</a>
+                  <a href="javascript:void(0)" class="btn btn-warning mt-4" (click)="opendelete(contentdelete,promo)">Delete Permanently</a>
+
+                </div>
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+    </div>
+    </div>

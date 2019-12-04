@@ -1,0 +1,77 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal2-basic-title">Update {{Promotion.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #promotionForm="ngForm" (ngSubmit) ="submitAddingPromotion()">
+      <div class="form-group">
+          <h6>Title <span class="icon-danger text-orange">*</span></h6>
+        <div class="input-group">
+          <input class="form-control" type="text" placeholder="Title" name="title" [(ngModel)] ="Promotion.title" #title = "ngModel" value="Promotion.title">
+        </div>
+        <br>
+        <div class="form-group">
+            <h6>Unit <span class="icon-danger text-orange">*</span></h6>
+        <div class=" input-group">
+            <input class=" form-control" placeholder="Unit" type="text" name="unit" [(ngModel)] ="Promotion.promotionunit" #unit = "ngModel" value = "Promotion.promotionunit">
+        
+            <div class=" input-group-append">
+              <span class=" input-group-text"> <i class="fas fa-percent text-orange"></i> </span>
+            </div>
+          </div>
+        </div>
+        <br>
+        <h6>Start Date  <span class="icon-danger text-orange">*</span></h6>
+        <div class=" input-group date" id="datetimepicker" >
+            <input class="form-control" placeholder="Select Date"
+                name="dp" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" [(ngModel)] ="Promotion.validfrom">
+            <div class=" input-group-append">
+              <span class=" input-group-text">
+                <span class=" glyphicon glyphicon-calendar">
+                  <i aria-hidden="true" class=" fa fa-calendar text-orange"> </i>
+                </span>
+              </span>
+            </div>
+          </div>
+          <br>
+          <h6>End Date <span class="icon-danger text-orange">*</span></h6>
+          <div class=" input-group date" id="datetimepicker" >
+              <input class="form-control" placeholder="Select Date"
+                  name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" [(ngModel)] ="Promotion.validuntil">
+              <div class=" input-group-append">
+                <span class=" input-group-text">
+                  <span class=" glyphicon glyphicon-calendar">
+                    <i aria-hidden="true" class=" fa fa-calendar text-orange"> </i>
+                  </span>
+                </span>
+              </div>
+            </div>
+            <br>
+            <div class=" form-group">
+                <label for="exampleFormControlSelect1"><h6>Select Type</h6>  </label>
+                <div class="input-group">
+                <select class=" form-control"  name="promotiontype" [(ngModel)] ="Promotion.promotiontype" #promotiontype ="ngModel" >
+                  <option> Mounthly Discount </option>
+                  <option> Week Discount </option>
+                  <option> Black Friday </option>
+                  <option> Event Discount </option>
+                  <option> Social Discount </option>
+                </select>
+                </div>
+              </div>
+              <br>
+            <h6>Select Product <span class="icon-orange text-orange">*</span></h6>
+            <div class=" form-group" >
+              
+            <app-selectbootstrap  *ngFor=" let x of productotupdate"(produitselected)="produitselectedd($event)" [productforupdatete]="x"></app-selectbootstrap>
+          </div>
+  
+      </div>
+      <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-orange" >Add</button>
+        </div>
+    </form>
+  </div>
+  

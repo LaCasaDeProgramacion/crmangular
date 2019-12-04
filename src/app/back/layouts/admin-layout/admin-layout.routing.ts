@@ -22,11 +22,13 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { CarbrandComponent } from '../../pages/prospecting/vehicle/carbrand/carbrand.component';
 import { ProductsComponent } from '../../pages/products/products.component';
 import { AddProductComponent } from '../../pages/products/add-product/add-product.component';
-
-
-
-
 import { ModelComponent } from '../../pages/prospecting/vehicle/model/model.component';
+import { ListPackComponent } from '../../pages/pack/list-pack/list-pack.component';
+import { AddPackComponent } from '../../pages/pack/add-pack/add-pack.component';
+import { UpdatePackComponent } from '../../pages/pack/update-pack/update-pack.component';
+import { ArchiveListComponent } from '../../pages/pack/archive-list/archive-list.component';
+import { ListPromotionComponent } from '../../pages/promotion/list-promotion/list-promotion.component';
+import { AddPromotionComponent } from '../../pages/promotion/add-promotion/add-promotion.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent,canActivate:[AuthUserService] },
@@ -50,6 +52,20 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'back/events', component: EventComponent ,canActivate:[AuthUserService] },
     { path: 'back/suggest-event', component: SuggestEventComponent ,canActivate:[AuthUserService] },
     { path: 'back/details-event', component: EventDetailsComponent ,canActivate:[AuthUserService] },
+<<<<<<< HEAD
+=======
+    /**************  wael routing  **************/
+    { path: 'back/listpack', component: ListPackComponent ,canActivate:[AuthUserService] },
+    { path: 'back/addpack', component: AddPackComponent ,canActivate:[AuthUserService] },
+    { path: 'back/updatepack', component: UpdatePackComponent ,canActivate:[AuthUserService] },
+    { path: 'back/listarchivepacks', component: ArchiveListComponent  },
+
+    { path: 'back/listpromotion', component: ListPromotionComponent ,canActivate:[AuthUserService] },
+    { path: 'back/addpromotion', component: AddPromotionComponent  ,canActivate:[AuthUserService] },
+    { path: 'back/Updatepromotion', component: UpdatePackComponent  ,canActivate:[AuthUserService] },
+
+    
+>>>>>>> Wael back work with upload image
 
     
     { path: 'back/complaints', component: ComplaintsComponent  },

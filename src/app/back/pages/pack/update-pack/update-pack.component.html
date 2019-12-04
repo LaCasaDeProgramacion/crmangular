@@ -1,0 +1,149 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
+url(assets/img/theme/womenphone1.jpg);
+background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-12 col-md-10">
+        <h1 class="display-2 text-white">PACK | HOME </h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-header bg-transparent">
+              <h3 class="mb-0">Update Pack</h3>
+            </div>
+                        <div class="container">
+                              
+                                <form [formGroup]="packForm">
+                                    <div class="row">
+                                        <div class="col-md-5 col-sm-5">
+                                            <h6>Picture</h6>
+                                           <app-image-upload [imgpacktoupdateinput]="packupdateolditem.picture" ></app-image-upload>
+          
+                                        </div>
+                
+                                        <div class="col-md-7 col-sm-7">
+                                            <div class="form-group">
+                                                <h6>Title <span class="icon-danger">*</span></h6>
+                                                <input type="text" class="form-control border-input"  formControlName="title">
+                                            </div>
+                                            <div class="form-group">
+                                                <h6>Valid From<span class="icon-danger">*</span></h6>
+                                                <input type="date" class="form-control border-input" formControlName="datefrom">
+                                            </div>
+                                            <div class="form-group">
+                                                <h6>Valid Until<span class="icon-danger">*</span></h6>
+                                                <input type="date" class="form-control border-input" formControlName="dateuntil">
+                                            </div>
+                                          
+                                            <div class="form-group">
+                                                <h6>Description</h6>
+                                                <textarea class="form-control textarea-limited"  rows="13" maxlength="150" formControlName="description" ></textarea>
+                                                <h5><small><span id="textarea-limited-message" class="pull-right">150 characters left</span></small></h5>
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                
+                                    <div class="row buttons-row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <button class="btn btn-outline-danger btn-block btn-round" (click)="onclickenvoyer($event)">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                               
+                            </div>
+                      
+
+                              <br><br>
+             </div>
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-header bg-transparent">
+                <div class="row align-items-center">
+                    <div class="col">
+                   <h3 class="mb-0">Update {{ packupdateolditem.title }} Products</h3>
+                    
+                    
+                    <div class="form-check">
+                     <label class="custom-toggle">
+                      <input type="checkbox" [(ngModel)]="theCheckbox"   data-md-icheck (change)="toggleVisibility()">
+                      <span class="custom-toggle-slider rounded-circle"></span>
+                    </label>
+                  </div>
+                    </div>
+                  
+                  
+                  </div>
+            </div>
+                      <!-- List of Products -->
+                      <div class="row" [hidden]="hideproducts">
+          <div class="col-sm-4 mb-2" *ngFor="let product of productList" >
+
+              <div class="item" >
+                <div class="mb-r">
+                  <!--Card-->
+                  <div class="card card-cascade wider">
+                    <!--Card image-->
+                    <a>
+                      <div class="view overlay hm-white-slight">
+                        <img [src]="product.productImage" class="img-fluid"  alt="" width="360px" height="640px">
+                        <a>
+                          <div class="mask waves-effect waves-light" mdbRippleRadius></div>
+                        </a>
+                      </div>
+                    </a>
+                    <!--/.Card image-->
+                    <!--Card content-->
+                    <div class="card-body text-center no-padding">
+                      <!--Category & Title-->
+                      <a class="text-muted">
+                        <h5>{{ product.productCategory }}</h5>
+                      </a>
+                      <p class="card-title">
+                        <strong>
+                          <a >{{ product.productName }}</a>
+                        </strong>
+                      </p>
+                      <!--Description-->
+                      <p class="card-text">{{ product.productDescription }}</p>
+                      <!--Card footer-->
+                      <div class="card-footer">
+                        <span class="left"> {{ product.productPrice }} TND</span>
+                        <span class="right">
+                            <div>
+                                <button class="btn btn-outline-danger btn-block btn-round" [hidden]="product.waeldisplayattributtest"  (click)="clickaddtopack(product)" >Add To Pack</button>
+                                <button class="btn btn-link btn-danger" [hidden]="!product.waeldisplayattributtest" (click)="Removefrompack(product)" ><i class="fa fa-times"></i>Remove From Pack</button>
+                            </div>
+                        </span>
+                      </div>
+  
+                    </div>
+                    <!--/.Card content-->
+  
+                  </div>
+                  <!--/.Card-->
+  
+                </div>
+              </div>
+            </div>
+          </div>   
+
+            </div>
+            </div>
+            </div>
+            
+
+  </div>

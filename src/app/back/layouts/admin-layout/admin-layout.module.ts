@@ -32,6 +32,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsComponent } from '../../pages/products/products.component';
 import { ModelComponent } from '../../pages/prospecting/vehicle/model/model.component';
 import { MatButtonModule, MatDialogModule } from '@angular/material';
+import { ListPackComponent } from '../../pages/pack/list-pack/list-pack.component';
+import { AddPackComponent } from '../../pages/pack/add-pack/add-pack.component';
+import { ImageUploadModule } from 'src/app/SharedComponent/image-upload/image-upload.module';
+import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
+import { ArchiveListComponent } from '../../pages/pack/archive-list/archive-list.component';
+import { UpdatePackComponent } from '../../pages/pack/update-pack/update-pack.component';
+import { AddPromotionComponent } from '../../pages/promotion/add-promotion/add-promotion.component';
+import { ListPromotionComponent } from '../../pages/promotion/list-promotion/list-promotion.component';
+import { SelectbootstrapModule } from 'src/app/SharedComponent/selectbootstrap/selectbootstrap.module';
+import { UpdatePromotionComponent } from '../../pages/promotion/update-promotion/update-promotion.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 
@@ -47,6 +57,11 @@ import { MatButtonModule, MatDialogModule } from '@angular/material';
     ReactiveFormsModule,
     Ng2SearchPipeModule,
     
+   
+   
+    ImageUploadModule,
+    SelectbootstrapModule,
+    JwBootstrapSwitchNg2Module,
   ],
   declarations: [
     DashboardComponent,
@@ -71,13 +86,22 @@ MapStoreComponent,
     TechnicianComponent,
     TypeComplaintComponent,
     ObjectComplaintComponent,
-    
+    ListPackComponent,
+    AddPackComponent,
+    ArchiveListComponent,
+    UpdatePackComponent,
+
+    ListPromotionComponent,
+    AddPromotionComponent,
+    UpdatePromotionComponent,
     
 
 
   ],
   exports: [
     Ng2SearchPipeModule
+    
+   
   ]
 })
 
