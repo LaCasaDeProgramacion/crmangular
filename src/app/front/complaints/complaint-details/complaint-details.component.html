@@ -1,0 +1,67 @@
+<app-front-nav></app-front-nav>
+<section class="section bg-secondary">
+  <div class="container">
+    <div class="row row-grid align-items-center">
+      <div class="col-md-6">
+        <div class="card bg-default shadow border-0">
+          <img src="./assets/img/theme/Complaint.jpg" class="card-img-top">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="pl-md-5">
+          <h3 class="h4 text-default font-weight-bold mb-4">{{complaint.complaintObject.object}}
+          </h3>
+          <p class="lead">{{complaint.complaintBody}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section-components">
+  <div class="container">
+    <!-- comments -->
+                            <h5 *ngIf="complaint.comments.length == '1'"> {{complaint.comments.length}}   &nbsp;Comment &nbsp; <i class="fa fa-comment"></i></h5>
+                            <h5 *ngIf="complaint.comments.length == '0'"> No Comment <i class="fa fa-comment"></i></h5>
+                            <h5 *ngIf="complaint.comments.length != '0' && complaint.comments.length != '1'">{{complaint.comments.length}}   &nbsp;Comments &nbsp;<i class="fa fa-comment"></i></h5>
+
+
+                            <div class="row py-3 align-items-center" *ngFor="let i of complaint.comments">
+                              <div class="col-lg-3">
+                                <!-- <img src="./assets/img/theme/team-2-800x800.jpg" alt="Circle image" class="img-fluid rounded-circle shadow"
+                                  style="width: 150px;"> <br> -->
+                                  <small class="d-block text-uppercase font-weight-bold mb-4">{{i.commentDate}} </small>
+
+                                <small class="d-block text-uppercase font-weight-bold mb-4">{{i.user.username}} </small>
+                              </div>
+                              <div class="col-lg-9">
+                                <p>{{i.comment}}</p>
+                                <hr/>
+                              </div>
+                              
+                            </div>
+                            
+                          </div>
+                          <div class="container">
+                              <h5> Write a comment &nbsp; <i class="fa fa-reply"></i></h5>
+                              <form #lineForm= "ngForm" (ngSubmit)="onSubmit(complaint.id)">
+                                  <textarea class="form-control form-control-alternative" name="comment" [(ngModel)]="comments.comment" #comment="ngModel" rows="4" cols="80"
+                                  placeholder="Response .." required></textarea>
+                                <div *ngIf="comment.invalid && comment.touched">
+                                    <label class="form-control-label" for="input-address">Comment is required</label>
+
+                                </div>
+                                <div class="col-lg-3 ml-lg-auto">
+                                  <button class="btn btn-icon btn-3 btn-success" type="submit"[disabled]="lineForm.invalid">
+                                      <span class="btn-inner--icon"><i class="fa fa-reply"></i></span>
+                                      <span class="btn-inner--text">Send</span>
+                                    </button>
+                                </div>
+                              </form>
+                            </div>
+                          <!-- reply -->
+                          
+                        </section>
+                       
+
+<app-front-footer></app-front-footer>
+

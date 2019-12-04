@@ -1,0 +1,111 @@
+
+<app-front-nav></app-front-nav>
+<!-- Page -->
+<br>
+<br>
+<div class="container">
+    <div class="row" >
+      <div class="col-sm">
+  
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div class="form-group">
+            <div >
+                <small class="text-uppercase font-weight-bold">Filter By Type :</small>
+              </div>          
+              <ejs-combobox  name="type"  #type ="ngModel" [dataSource]='typeList' [(ngModel)]="selctedType" [fields]='fields' placeholder='Select a Type '[allowFiltering]='true' (filtering)='onFiltering($event)'></ejs-combobox>
+              <br>
+        </div>
+        
+        <div class="form-group">
+            <!-- Checkboxes -->
+            <div >
+              <small class="text-uppercase font-weight-bold">Filter By State :</small>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input class="custom-control-input" id="Opened" [(ngModel)]="Opened" type="checkbox" (change)="ChangeState($event)">
+              <label class="custom-control-label" for="Opened">
+                <span>Opened</span>
+              </label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+                <input class="custom-control-input" id="In_Progress" [(ngModel)]="In_Progress"type="checkbox" (change)="ChangeState2($event)">
+                <label class="custom-control-label" for="In_Progress">
+                  <span>In-Progress</span>
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox mb-3">
+                  <input class="custom-control-input" id="Treated" [(ngModel)]="Treated" type="checkbox" (change)="ChangeState1($event)">
+                  <label class="custom-control-label" for="Treated">
+                    <span>Treated</span>
+                  </label>
+                </div>
+                <div class="custom-control custom-checkbox mb-3">
+                    <input class="custom-control-input" id="Closed_without_solution" [(ngModel)]="Closed_without_solution" type="checkbox" (change)="ChangeState3($event)">
+                    <label class="custom-control-label" for="Closed_without_solution">
+                      <span>Closed without solution</span>
+                    </label>
+                  </div>
+            
+          </div>
+      </div>     
+      <div class="col-md-9">
+          <div class="form-group">
+              <div class="input-group input-group-alternative mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+                </div>
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+              </div>
+            </div>
+  
+            <br><br><br>
+        <div class="container">
+                  <!-- <section class="section section-components">
+                    <div class="container">
+                      <div >
+                          <div class="form-group">
+                              <div class="input-group input-group-alternative mb-4">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+                                </div>
+                                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+                              </div>
+                            </div>
+                      </div> -->
+                      <!-- Paragraphs -->
+                      <div class="row py-3 align-items-center" *ngFor="let x of collection.ListComplaints| filterbytype: selctedType | filter:searchText">
+                        <div class="col-sm-3">
+                          <img src="./assets/img/theme/Complaint.jpg" alt="Rounded image" class="img-fluid rounded shadow"
+                            style="width: 150px;">
+                        </div>
+                        <div class="col-sm-9">
+                          <a href="#" class="btn btn-link text-primary">{{x.complaintObject.object}}</a>
+                          <p>{{x.complaintBody}}</p>
+                          <div class="mt-3">
+                            <a [routerLink]="['/home/cdetails/',x.id]" class="btn btn-primary btn-icon-only rounded-circle">
+                              <i class="fa fa-eye"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+
+                    
+
+
+
+<app-front-footer></app-front-footer>

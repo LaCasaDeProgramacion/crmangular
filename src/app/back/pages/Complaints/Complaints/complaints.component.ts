@@ -1,3 +1,4 @@
+import { StatisticsComplaintService } from './../../../../services/complaintsManagement/statistics-complaint.service';
 import { Observable } from 'rxjs';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { complaints } from './../../../../entities/complaintsmanagement/complaints';
@@ -16,25 +17,111 @@ export class ComplaintsComponent implements OnInit {
   SelectedComplaint:complaints;
   idSelected:number;
   searchText;
-  constructor(private complaintscervice:ComplaintsService,private modalService: NgbModal) { }
+  Ttechnical;
+  TFinicial;
+  TRelational;
+  TClosed;
+  TOpened;
+  TInProg;
+  TTreated;
+  collection = { count: null, ListComplaints: [] };
+config:any;
+  constructor(private complaintscervice:ComplaintsService,private statscervice:StatisticsComplaintService,private modalService: NgbModal) { }
   closeResult: string;
   closeResult1: string;
   ngOnInit() {
     this.complaintscervice.get().subscribe(
       (Data) => {
-        this.ListComplaints = Data ; 
-        console.log("Complaints"+Data);
+        this.collection.ListComplaints = Data ; 
+        this.collection.count = Data.length;
+        console.log("tech"+Data);
       }
      )
+     this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.collection.count
+    };
+    
+     this.statscervice.getTClosed().subscribe(
+       
+         (Data)=>{
+          this.TClosed = Data;
+         }
+       
+     )
+     this.statscervice.getTFinancial().subscribe(
+       
+      (Data)=>{
+       this.TFinicial = Data;
+      }
+    
+  )
+  this.statscervice.getTInProgress().subscribe(
+       
+    (Data)=>{
+     this.TInProg = Data;
+    }
+  
+)
+this.statscervice.getTOpened().subscribe(
+       
+  (Data)=>{
+   this.TOpened = Data;
+  }
+
+)
+this.statscervice.getTRelantional().subscribe(
+       
+  (Data)=>{
+   this.TRelational = Data;
+  }
+  
+
+)
+this.statscervice.getTTeated().subscribe(
+       
+  (Data)=>{
+   this.TTreated = Data;
+  }
+  
+
+)
+this.statscervice.getTTechnical().subscribe(
+       
+  (Data)=>{
+   this.Ttechnical = Data;
+  }
+  
+
+)
   }
   loadComplaints()
   {
     this.complaintscervice.get().subscribe(
       (Data) => {
-        this.ListComplaints = Data ; 
-        console.log("Complaints"+Data);
+        this.collection.ListComplaints = Data ; 
+        this.collection.count = Data.length;
+        console.log("tech"+Data);
       }
      )
+     this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.collection.count
+    };
+  }
+  pageChanged(event){
+    this.config.currentPage = event;
+  }
+  AffectTech(id:number){
+    this.complaintscervice.AffectTechnician(id).subscribe(
+      (data) =>{
+        console.log(data);
+        this.modalService.dismissAll();
+        this.loadComplaints();
+      }
+    )
   }
   
    Delete(content)
@@ -44,10 +131,10 @@ export class ComplaintsComponent implements OnInit {
       (data) =>{
         console.log(data);
         this.modalService.dismissAll();
-        
+        this.loadComplaints();
       }
     )
-    this.loadComplaints();
+    
     
   }
   Detail(id:number)

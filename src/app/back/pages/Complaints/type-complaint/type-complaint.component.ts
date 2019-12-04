@@ -20,16 +20,26 @@ export class TypeComplaintComponent implements OnInit {
   closeResult: string;
   closeResult1: string;
   type:complainttype={typeName:""};
+  collection = { count: null, Listtech: [] };
+  config:any;
 
   ngOnInit() {
     this.typeser.get().subscribe(
       (Data) => {
-        this.Listtech = Data ; 
+        this.collection.Listtech = Data ; 
+        this.collection.count = Data.length;
         console.log("Complaints"+Data);
       }
      )
+     this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.collection.count
+    };
   }
-
+  pageChanged(event){
+    this.config.currentPage = event;
+  }
   Delete()
   {
     console.log(this.idSelected);
@@ -47,10 +57,16 @@ export class TypeComplaintComponent implements OnInit {
   {
     this.typeser.get().subscribe(
       (Data) => {
-        this.Listtech = Data ; 
+        this.collection.Listtech = Data ; 
+        this.collection.count = Data.length;
         console.log("Complaints"+Data);
       }
      )
+     this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.collection.count
+    };
   }
   onSubmit()
   {

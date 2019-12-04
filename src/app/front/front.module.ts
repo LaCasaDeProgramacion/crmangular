@@ -27,7 +27,7 @@ import { ChatComponent } from './pages/chat/chat.component';
 
   declarations: [HomeComponent,TopicsComponent, FrontNavComponent, FrontFooterComponent, AllTopicsComponent, 
                  SingleTopicComponent, ConfirmPassComponent, StoresComponent, StoresListComponent, 
-                 FooterComponent, NavbarComponent, ProductsComponent,FilterByBrandPipe, ChatComponent],
+                 FooterComponent, NavbarComponent, ProductsComponent,FilterByBrandPipe, ChatComponent,],
 
   imports: [
     CommonModule,
@@ -49,6 +49,7 @@ import { ChatComponent } from './pages/chat/chat.component';
     FrontFooterComponent,
     AllTopicsComponent,
     SingleTopicComponent,
+    
 ],
 
 

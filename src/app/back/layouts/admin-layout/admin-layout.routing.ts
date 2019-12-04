@@ -1,3 +1,8 @@
+import { ServicelineDetailComponent } from './../../pages/TelLines/serviceline-detail/serviceline-detail.component';
+import { TellinDetailComponent } from './../../pages/TelLines/tellin-detail/tellin-detail.component';
+import { ComplaintDetailComponent } from './../../pages/Complaints/complaint-detail/complaint-detail.component';
+import { ServicesLinesComponent } from './../../pages/TelLines/services-lines/services-lines.component';
+import { TelephonelinesComponent } from './../../pages/TelLines/telephonelines/telephonelines.component';
 import { ObjectComplaintComponent } from './../../pages/Complaints/object-complaint/object-complaint.component';
 import { TypeComplaintComponent } from './../../pages/Complaints/type-complaint/type-complaint.component';
 import { TechnicianComponent } from './../../pages/Complaints/technician/technician.component';
@@ -55,5 +60,11 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'back/complaints', component: ComplaintsComponent  },
     { path: 'back/technician', component: TechnicianComponent  },
     { path: 'back/Type', component: TypeComplaintComponent  },
-    { path: 'back/Object', component: ObjectComplaintComponent  }
+    { path: 'back/Object', component: ObjectComplaintComponent  },
+    { path: 'back/lines', component: TelephonelinesComponent  },
+    { path: 'back/services', component: ServicesLinesComponent  },
+    { path: 'back/complaintDetails/:id', component: ComplaintDetailComponent  },
+    { path: 'back/lineDetails/:id', component: TellinDetailComponent  },
+    { path: 'back/serviceLineDetail/:id', component: ServicelineDetailComponent  },
+
 ];

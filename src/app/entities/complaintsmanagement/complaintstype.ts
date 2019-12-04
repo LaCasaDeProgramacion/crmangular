@@ -1,7 +1,7 @@
 import { complaintobject } from './complaintobject';
 export interface complainttype {
     TypeId ?: number;
-    typeName: string;
+    typeName ?: string;
     objects ?: complaintobject[];
     
 }

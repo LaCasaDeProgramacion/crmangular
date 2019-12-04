@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { User } from './../entities/user';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -18,6 +19,10 @@ export class UserService {
   login(username, password)
   {
     return this.http.get(this.url+"authenticate?username="+ username+"&password="+ password);
+  }
+  getClients() : Observable<User[]>
+  {
+    return this.http.get<User[]>(this.url+"getClient");
   }
   Register(user:User)
   {

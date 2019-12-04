@@ -1,0 +1,104 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+      <div class="row">
+        <div class="col-lg-12 col-md-10">
+          <h1 class="display-2 text-white"> Line Details </h1>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  <!-- Page content -->
+  
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <!--  Event details -->
+      <div class="col-xl-12 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h4 class="mb-0">Line Details</h4>
+              </div>
+              
+            </div>
+          </div>
+          <div class="card-body">
+            <form>
+              <h6 class="heading-small text-muted mb-4">General information</h6>
+              <div class="pl-lg-4">
+                <!-- Name -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-username">Line Number  &nbsp;:</label><br>
+                      <label>{{service.lineNumber}}</label>
+                    </div>
+                  </div>
+                  
+                  <div class="col-lg-2"></div>
+                  <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Code PIN &nbsp;:</label><br>
+                          <label>{{service.codePIN}}</label>
+                      </div>
+                      <div class="form-group">
+                          <label class="form-control-label" for="input-username">Code PUK &nbsp;:</label><br>
+                            <label>{{service.codePUK}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Solde &nbsp;:</label><br>
+                              <label>{{service.solde}}</label>
+                          </div>
+                    </div>
+                </div>
+                <!-- Start + End date -->
+                
+              </div>
+              
+              <!-- Location -->
+              
+              <hr class="my-4" />
+              <!-- Vehicules   -->
+              <h6 class="heading-small text-muted mb-4" *ngIf="service.lineState == '0'">State &nbsp; : &nbsp;Disabled</h6>
+              <h6 class="heading-small text-muted mb-4" *ngIf="service.lineState == '1'">State &nbsp; : &nbsp;Enabled</h6>
+
+              <div class="pl-lg-4">
+                  <!-- Name -->
+                  <div class="row">
+              <div class="col-lg-4">
+                  <div class="form-group">
+                    
+                      <i class="ni ni-calendar-grid-58"> &nbsp;<label class="form-control-label" for="input-address">Creation Date :</label></i> <br>
+                    <label class="form-control-label" for="input-address">{{service.dateCreation}}</label>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                      
+                        <i class="ni ni-calendar-grid-58"> &nbsp;<label class="form-control-label" for="input-address">Validity Date :</label></i> <br>
+                      <label class="form-control-label" for="input-address">{{service.validityDate}}</label>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                
+              
+              <hr class="my-4" />
+              <a [routerLink]="['/back/serviceLineDetail/',service.services.id]"><h6 class="heading-small text-muted mb-4">Service &nbsp; : &nbsp;{{service.services.serviceName}}</h6></a>
+              <hr class="my-4" />
+              <h6 class="heading-small text-muted mb-4">User &nbsp; : &nbsp;{{service.user.username}}</h6>
+              <hr class="my-4" />
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

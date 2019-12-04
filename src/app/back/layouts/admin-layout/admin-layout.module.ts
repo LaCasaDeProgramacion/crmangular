@@ -1,3 +1,9 @@
+import { ServicelineDetailComponent } from './../../pages/TelLines/serviceline-detail/serviceline-detail.component';
+import { TellinDetailComponent } from './../../pages/TelLines/tellin-detail/tellin-detail.component';
+import { ComplaintDetailComponent } from './../../pages/Complaints/complaint-detail/complaint-detail.component';
+import { ComboBoxModule } from '@syncfusion/ej2-angular-dropdowns';
+import { ServicesLinesComponent } from './../../pages/TelLines/services-lines/services-lines.component';
+import { TelephonelinesComponent } from './../../pages/TelLines/telephonelines/telephonelines.component';
 
 import { AddStoreComponent } from './../../pages/stores/add-store/add-store.component';
 import { MapStoreComponent } from './../../pages/stores/map-store/map-store.component';
@@ -32,6 +38,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsComponent } from '../../pages/products/products.component';
 import { ModelComponent } from '../../pages/prospecting/vehicle/model/model.component';
 import { MatButtonModule, MatDialogModule } from '@angular/material';
+import { GridModule } from '@syncfusion/ej2-angular-grids';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 // import { ToastrModule } from 'ngx-toastr';
 
 
@@ -46,6 +55,9 @@ import { MatButtonModule, MatDialogModule } from '@angular/material';
     
     ReactiveFormsModule,
     Ng2SearchPipeModule,
+    ComboBoxModule,
+    GridModule,
+    NgxPaginationModule,
     
   ],
   declarations: [
@@ -71,13 +83,22 @@ MapStoreComponent,
     TechnicianComponent,
     TypeComplaintComponent,
     ObjectComplaintComponent,
+    TelephonelinesComponent,
+    ServicesLinesComponent,
+    ComplaintDetailComponent,
+    TellinDetailComponent,
+    ServicelineDetailComponent,
     
     
 
 
   ],
   exports: [
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    ComboBoxModule,
+    GridModule,
+    NgxPaginationModule,
+    
   ]
 })
 

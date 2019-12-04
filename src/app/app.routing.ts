@@ -1,3 +1,6 @@
+import { AjoutComplaintComponent } from './front/complaints/ajout-complaint/ajout-complaint.component';
+import { MycomplaintsComponent } from './front/complaints/mycomplaints/mycomplaints.component';
+import { AllcomplaintsComponent } from './front/complaints/allcomplaints/allcomplaints.component';
 
 import { ProductsListComponent } from './front/pages/products/products-list/products-list.component';
 import { ProductsComponent } from './front/pages/products/products.component';
@@ -13,6 +16,7 @@ import { AdminLayoutComponent } from './back/layouts/admin-layout/admin-layout.c
 import { AuthLayoutComponent } from './back/layouts/auth-layout/auth-layout.component';
 import { CarbrandComponent } from './back/pages/prospecting/vehicle/carbrand/carbrand.component';
 import { TopicsComponent } from './front/forum/topics/topics.component';
+import { ComplaintDetailsComponent } from './front/complaints/complaint-details/complaint-details.component';
 
 
 const routes: Routes =[
@@ -27,6 +31,12 @@ const routes: Routes =[
   { path: 'home/topics', component: TopicsComponent},
   { path: 'home/allTopics', component: AllTopicsComponent},
   { path: 'home/singleTopic', component: SingleTopicComponent},
+  { path: 'home/allcomplaints', component: AllcomplaintsComponent},
+  { path: 'home/mycomplaints', component: MycomplaintsComponent},
+  { path: 'home/cdetails/:id', component: ComplaintDetailsComponent},
+  { path: 'home/ajoutcomplaint', component: AjoutComplaintComponent},
+
+
   {
     path: '',
     component: AdminLayoutComponent,

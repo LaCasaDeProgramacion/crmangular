@@ -7,88 +7,7 @@
         <!-- Card stats -->
         <div class="row">
           <div class="col-xl-3 col-lg-6">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
-                    <span class="h2 font-weight-bold mb-0">350,897</span>
-                  </div>
-                  <div class="col-auto">
-                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                      <i class="fas fa-chart-bar"></i>
-                    </div>
-                  </div>
-                </div>
-                <p class="mt-3 mb-0 text-muted text-sm">
-                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                  <span class="text-nowrap">Since last month</span>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-6">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
-                  </div>
-                  <div class="col-auto">
-                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                      <i class="fas fa-chart-pie"></i>
-                    </div>
-                  </div>
-                </div>
-                <p class="mt-3 mb-0 text-muted text-sm">
-                  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                  <span class="text-nowrap">Since last week</span>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-6">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                    <span class="h2 font-weight-bold mb-0">924</span>
-                  </div>
-                  <div class="col-auto">
-                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                      <i class="fas fa-users"></i>
-                    </div>
-                  </div>
-                </div>
-                <p class="mt-3 mb-0 text-muted text-sm">
-                  <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                  <span class="text-nowrap">Since yesterday</span>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-6">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                    <span class="h2 font-weight-bold mb-0">49,65%</span>
-                  </div>
-                  <div class="col-auto">
-                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                      <i class="fas fa-percent"></i>
-                    </div>
-                  </div>
-                </div>
-                <p class="mt-3 mb-0 text-muted text-sm">
-                  <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                  <span class="text-nowrap">Since last month</span>
-                </p>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -103,16 +22,18 @@
           <div class="card shadow">
             <div class="card-header border-0">
                 <div class="row align-items-center">
-                    <div class="col-2">
+                    <div class="col-4">
   
-                        <a (click)="Opena(ajout)" class="btn btn-sm btn-primary">
-                            <i class="ni ni-fat-add"></i>
-                            <span>New Object</span>
-                          
-                        </a>
+                        
+                        <button type="button" (click)="Opena(ajout)" placement="top-center" triggers="hover focus click"  class="btn-icon-clipboard" ngxClipboard [cbContent]="'fat-add'">
+                            <div>
+                              <i class="ni ni-fat-add"></i>
+                              <span>New Object</span>
+                            </div>
+                          </button>
                     </div>
                     
-                    <div class="col-2"></div>
+                    <div class="col-4"></div>
                     <div class="col-4">
                         <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
                     </div>
@@ -134,7 +55,7 @@
             </thead>
             <tbody>
   
-              <tr *ngFor="let x of Listtech | filter:searchText">
+              <tr *ngFor="let x of collection.Listtech | filter:searchText| paginate: config">
   
                 <td>
                   {{x.id}}
@@ -162,7 +83,7 @@
   
             </tbody>
           </table>
-          
+
         </div>
         
       </div>
@@ -170,32 +91,15 @@
   </div>
   
   </div>
-  
   <div class="card-footer py-4">
-  <nav aria-label="...">
-    <ul class="pagination justify-content-end mb-0">
-      <li class="page-item disabled">
-        <a class="page-link" href="javascript:void(0)" tabindex="-1">
-          <i class="fas fa-angle-left"></i>
-          <span class="sr-only">Previous</span>
-        </a>
-      </li>
-      <li class="page-item active">
-        <a class="page-link" href="javascript:void(0)">1</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="javascript:void(0)">
-          <i class="fas fa-angle-right"></i>
-          <span class="sr-only">Next</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  </div>
+      <nav aria-label="...">
+        <ul class="pagination justify-content-end mb-0">
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    
+        </ul>
+      </nav>
+      </div>
+ 
   
   <ng-template #content let-modal1>
     <div class="modal-header">
@@ -227,20 +131,25 @@
             </div>
             <form #techForm= "ngForm" (ngSubmit)="onSubmit()">
               <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                  </div>
-                  <input class="form-control" placeholder=" Name" name="object" [(ngModel)]="cObject.object" #object="ngModel" type="text">
+                  <div class="input-group input-group-alternative mb-3">
+                  <input class="form-control" placeholder=" Name" name="object" [(ngModel)]="cObject.object" #object="ngModel" type="text" required >
                 </div>
+              
+              <div class="form-error">
+                  <div *ngIf="object.invalid && object.touched"> 
+                      Object is required
+                  </div>
               </div>
+              </div>
+              
               
               
               <div class="text-center">
-                <button type="submit" class="btn btn-primary mt-4">ADD</button>
+                <button type="submit" class="btn btn-primary mt-4" [disabled]="techForm.invalid">ADD</button>
               </div>
             </form>
-          </div>  </div>
+          </div> 
+         </div>
     
   </ng-template>
 

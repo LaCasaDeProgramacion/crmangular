@@ -12,6 +12,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class TechnicianComponent implements OnInit {
 
   constructor(private techservice:TechnicianService,private modalService: NgbModal) { }
+  collection = { count: null, Listtech: [] };
+
   Listtech=[];
   cancelClicked:boolean=false;
   SelectedComplaint:technician;
@@ -20,15 +22,21 @@ export class TechnicianComponent implements OnInit {
   closeResult: string;
   closeResult1: string;
   technician:technician={technicianFirstName:"",technicianSecondName:"",technicianSpecialty:"",technicianPhoneNumber:""};
-
+config:any;
  
   ngOnInit() {
     this.techservice.get().subscribe(
       (Data) => {
-        this.Listtech = Data ; 
+        this.collection.Listtech = Data ; 
+        this.collection.count = Data.length;
         console.log("tech"+Data);
       }
      )
+     this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.collection.count
+    };
   }
   Delete(content)
   {
@@ -47,10 +55,19 @@ export class TechnicianComponent implements OnInit {
   {
     this.techservice.get().subscribe(
       (Data) => {
-        this.Listtech = Data ; 
-        console.log("Complaints"+Data);
+        this.collection.Listtech = Data ; 
+        this.collection.count = Data.length;
+        console.log("tech"+Data);
       }
      )
+     this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.collection.count
+    };
+  }
+  pageChanged(event){
+    this.config.currentPage = event;
   }
   onSubmit()
   {

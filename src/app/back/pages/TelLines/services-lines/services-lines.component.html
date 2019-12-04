@@ -1,0 +1,315 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <br>
+        <br>
+        <br>
+        <!-- Card stats -->
+        <div class="row">
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
+                    <span class="h2 font-weight-bold mb-0">350,897</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                      <i class="fas fa-chart-bar"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                  <span class="text-nowrap">Since last month</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                      <i class="fas fa-chart-pie"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                  <span class="text-nowrap">Since last week</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                    <span class="h2 font-weight-bold mb-0">924</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                  <span class="text-nowrap">Since yesterday</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+                    <span class="h2 font-weight-bold mb-0">49,65%</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                      <i class="fas fa-percent"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                  <span class="text-nowrap">Since last month</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="container-fluid mt--7">
+      <!-- Table -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-header border-0">
+                <div class="row align-items-center">
+                    <div class="col-4">
+  
+                        
+                        <button type="button" (click)="Opena(ajout)" placement="top-center" triggers="hover focus click"  class="btn-icon-clipboard" ngxClipboard [cbContent]="'fat-add'">
+                            <div>
+                              <i class="ni ni-fat-add"></i>
+                              <span>New Service</span>
+                            </div>
+                          </button>
+                    </div>
+                    
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder="Search">
+                    </div>
+                   
+    
+    
+                  </div>
+    
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+              <tr>
+                  <th scope="col">id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Activation Code</th>
+                <th scope="col">State</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+  
+              <tr *ngFor="let x of collection.Listtel | filter:searchText| paginate: config">
+  
+                <td>
+                  {{x.id}}
+                </td>
+                <td>
+                    {{x.serviceName}}
+                  </td>
+                  <td>
+                      {{x.activationCode}}
+                      
+                    </td>
+                
+                  <td >
+                  
+                      <span class="badge badge-dot mr-4" *ngIf="x.enabled == '0'">
+                          <i class="bg-warning" ></i> Disabled
+                      </span>
+                      <span class="badge badge-dot mr-4" *ngIf="x.enabled == '1'">
+                          <i class="bg-success" ></i> Enabled
+                      </span>
+                    </td>
+  
+  
+                  <td class="text-right">
+                      <div ngbDropdown placement="bottom-right">
+                        <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                          <i class="fas fa-ellipsis-v"></i>
+                        </a>
+                        <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                         <a class="dropdown-item" data-toggle="modal" (click)="OpenUpdate(update,x.id,x.serviceDescription,x.serviceName,x.activationCode)">Update</a>
+                         <a class="dropdown-item" data-toggle="modal" [routerLink]="['/back/serviceLineDetail/',x.id]">Details</a>
+
+                        </div>
+                      </div>
+                    </td>
+                
+                  
+              </tr>
+  
+            </tbody>
+          </table>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  </div>
+  
+  <div class="card-footer py-4">
+      <nav aria-label="...">
+        <ul class="pagination justify-content-end mb-0">
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    
+        </ul>
+      </nav>
+      </div>
+  
+  
+  
+  <ng-template #ajout let-modal1>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal1-basic-title">Add Telephone line</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+        <div class="card-body px-lg-5 py-lg-5">
+            <div class="text-center text-muted mb-4">
+            </div>
+            <form #lineForm= "ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    
+                    <input class="form-control" placeholder="serviceName" name="serviceName" [(ngModel)]="telline.serviceName" #serviceName="ngModel" type="text" required>
+                  </div>
+                  <div class="form-error">
+                      <div *ngIf="serviceName.invalid && serviceName.touched"> 
+                          lineNumber is required
+                      </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    
+                    <textarea class="form-control" placeholder="serviceDescription" name="serviceDescription" [(ngModel)]="telline.serviceDescription" #serviceDescription="ngModel" type="text" required></textarea>
+                  </div>
+                  <div class="form-error">
+                      <div *ngIf="serviceDescription.invalid && serviceDescription.touched"> 
+                          codePIN is required
+                      </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    
+                    <input class="form-control" placeholder="ActivationCode" name="activationCode" [(ngModel)]="telline.activationCode" #activationCode="ngModel" type="text" required>
+                  </div>
+                  <div class="form-error">
+                      <div *ngIf="activationCode.invalid && activationCode.touched"> 
+                          Object is required
+                      </div>
+                  </div>
+                </div>
+              
+               
+              
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary mt-4" [disabled]="lineForm.invalid">ADD</button>
+              </div>
+            </form>
+          </div>  </div>
+    
+  </ng-template>
+  <ng-template #update let-modal1>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal1-basic-title">Update Telephone Line</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+          <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+              </div>
+              <form #lineForm= "ngForm" (ngSubmit)="Update()">
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      
+                      <input class="form-control" placeholder="serviceName" name="serviceName" [(ngModel)]="telline.serviceName" #serviceName="ngModel" type="text" required>
+                    </div>
+                    <div class="form-error">
+                        <div *ngIf="serviceName.invalid && serviceName.touched"> 
+                            lineNumber is required
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      
+                      <textarea class="form-control" placeholder="serviceDescription" name="serviceDescription" [(ngModel)]="telline.serviceDescription" #serviceDescription="ngModel" type="text" required></textarea>
+                    </div>
+                    <div class="form-error">
+                        <div *ngIf="serviceDescription.invalid && serviceDescription.touched"> 
+                            codePIN is required
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      
+                      <input class="form-control" placeholder="ActivationCode" name="activationCode" [(ngModel)]="telline.activationCode" #activationCode="ngModel" type="text" required>
+                    </div>
+                    <div class="form-error">
+                        <div *ngIf="activationCode.invalid && activationCode.touched"> 
+                            Object is required
+                        </div>
+                    </div>
+                  </div>
+                
+                 
+                
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary mt-4" [disabled]="lineForm.invalid">Update</button>
+                </div>
+              </form>
+            </div>  </div>
+      
+    </ng-template>
+  
+  

@@ -1,3 +1,9 @@
+import { AjoutComplaintComponent } from './front/complaints/ajout-complaint/ajout-complaint.component';
+import { filterbystatePipe } from './front/pipes/filterbystate.pipe';
+import { filterbytypePipe } from './front/pipes/filterbytype.pipe';
+import { ComplaintDetailsComponent } from './front/complaints/complaint-details/complaint-details.component';
+import { MycomplaintsComponent } from './front/complaints/mycomplaints/mycomplaints.component';
+import { AllcomplaintsComponent } from './front/complaints/allcomplaints/allcomplaints.component';
 
 import { ChatComponent } from './front/pages/chat/chat.component';
 import { ProductsListComponent } from './front/pages/products/products-list/products-list.component';
@@ -32,6 +38,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FilterByBrandPipe } from './front/pipes/filterByBrand.pipe';
 import { ComplaintCommentsService } from './services/complaintsManagement/complaint-comments.service';
 import { ComplaintObjectsService } from './services/complaintsManagement/complaint-objects.service';
+import { ComboBoxModule } from '@syncfusion/ej2-angular-dropdowns';
 
 
 @NgModule({
@@ -54,6 +61,7 @@ Ng2SearchPipeModule,
     
     
     ReactiveFormsModule,
+    ComboBoxModule,
     
     
 
@@ -67,7 +75,11 @@ Ng2SearchPipeModule,
     ProductsComponent,
     ProductsListComponent,
     FilterByBrandPipe,
-ChatComponent,
+    ChatComponent,
+    AllcomplaintsComponent, MycomplaintsComponent, ComplaintDetailsComponent, AjoutComplaintComponent,
+    filterbytypePipe,
+    filterbystatePipe,
+
     
     
     
@@ -80,6 +92,8 @@ ChatComponent,
     FrontFooterComponent,
     AllTopicsComponent,
     SingleTopicComponent,
+    
+    
 
 
     /******  user *******/
