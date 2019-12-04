@@ -1,5 +1,8 @@
+import { CarbrandService } from './../../../../../services/prospectingManagement/vehicle/carbrand.service';
+import { Carbrand } from './../../../../../entities/carbrand';
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-carbrand',
   templateUrl: './carbrand.component.html',
@@ -7,12 +10,16 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CarbrandComponent implements OnInit {
 
+  carbrands ;
+  carbrand :Carbrand={id:0 , brand:''};
+  brand :Carbrand={ brand:''};
   closeResult: string;
   closeResult1: string;
-  constructor(private modalService: NgbModal
-
-   ) {}
-//update Modal
+  constructor(private modalService: NgbModal,
+    private carbrandService:CarbrandService,
+    private router: Router)
+    {}
+  //update Modal
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -29,25 +36,66 @@ export class CarbrandComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-//update Modal
-open1(content) {
-  this.modalService.open(content, {ariaLabelledBy: 'modal1-basic-title'}).result.then((result) => {
-    this.closeResult = `Closed with: ${result}`;
-  }, (reason) => {
-    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  });
-}
-private getDismissReason1(reason: any): string {
-  if (reason === ModalDismissReasons.ESC) {
-    return 'by pressing ESC';
-  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-    return 'by clicking on a backdrop';
-  } else {
-    return  `with: ${reason}`;
+  //update Modal
+  open1(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal1-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
   }
-}
+  private getDismissReason1(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
 
   ngOnInit() {
+    this.loadCarBrands();
+
+  }
+  loadCarBrands()
+  {
+     this.carbrandService.getBrands().subscribe(
+       data => {
+        this.carbrands =data;
+       }
+     );
+  }
+  deleteBrand(id)
+  {
+    this.carbrandService.DeleteBrand(id).subscribe(
+     response=>
+     {
+      this.loadCarBrands();
+     }
+    );
+  }
+  updateBrand(brand, id)
+  {
+    console.log("************* brand "+brand + "  " + id )
+    this.carbrandService.updateBrand(brand, id).subscribe(data=>
+      this.loadCarBrands()
+      )
+      this.modalService.dismissAll();
+
+  }
+  onSubmit(){
+    console.log("BRAND ",  this.brand.brand)
+    this.carbrandService.addBrand(this.brand.brand).subscribe(
+      response =>
+      {
+        console.log("added")
+        this.carbrandService.getBrands().subscribe(
+          data=> this.loadCarBrands()
+          );
+      }
+    )
+    this.modalService.dismissAll();
   }
 
 }

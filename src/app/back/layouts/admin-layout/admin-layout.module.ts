@@ -4,6 +4,7 @@ import { ComplaintDetailComponent } from './../../pages/Complaints/complaint-det
 import { ComboBoxModule } from '@syncfusion/ej2-angular-dropdowns';
 import { ServicesLinesComponent } from './../../pages/TelLines/services-lines/services-lines.component';
 import { TelephonelinesComponent } from './../../pages/TelLines/telephonelines/telephonelines.component';
+import { ImageComponent } from './../../pages/prospecting/images/image/image.component';
 
 import { AddStoreComponent } from './../../pages/stores/add-store/add-store.component';
 import { MapStoreComponent } from './../../pages/stores/map-store/map-store.component';
@@ -41,6 +42,16 @@ import { MatButtonModule, MatDialogModule } from '@angular/material';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
 import {NgxPaginationModule} from 'ngx-pagination';
 
+import { ListPackComponent } from '../../pages/pack/list-pack/list-pack.component';
+import { AddPackComponent } from '../../pages/pack/add-pack/add-pack.component';
+import { ImageUploadModule } from 'src/app/SharedComponent/image-upload/image-upload.module';
+import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
+import { ArchiveListComponent } from '../../pages/pack/archive-list/archive-list.component';
+import { UpdatePackComponent } from '../../pages/pack/update-pack/update-pack.component';
+import { AddPromotionComponent } from '../../pages/promotion/add-promotion/add-promotion.component';
+import { ListPromotionComponent } from '../../pages/promotion/list-promotion/list-promotion.component';
+import { SelectbootstrapModule } from 'src/app/SharedComponent/selectbootstrap/selectbootstrap.module';
+import { UpdatePromotionComponent } from '../../pages/promotion/update-promotion/update-promotion.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 
@@ -52,13 +63,19 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    
+
     ReactiveFormsModule,
     Ng2SearchPipeModule,
     ComboBoxModule,
     GridModule,
     NgxPaginationModule,
     
+
+
+
+    ImageUploadModule,
+    SelectbootstrapModule,
+    JwBootstrapSwitchNg2Module,
   ],
   declarations: [
     DashboardComponent,
@@ -90,6 +107,18 @@ MapStoreComponent,
     ServicelineDetailComponent,
     
     
+    ListPackComponent,
+    AddPackComponent,
+    ArchiveListComponent,
+    UpdatePackComponent,
+
+    ListPromotionComponent,
+    AddPromotionComponent,
+    UpdatePromotionComponent,
+
+    ImageComponent,
+
+
 
 
   ],

@@ -1,0 +1,223 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
+url(assets/img/theme/womenphone1.jpg);
+background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-12 col-md-10">
+        <h1 class="display-2 text-white">PACK | HOME </h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<!-- show archive action-->
+<ng-template #contenttwo let-modal1 >
+    <div  id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification" >
+        <div class="modal-danger" role="document">
+          <div class="modal-content bg-gradient-danger">
+            <div class="modal-header">
+              <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+              <button type="button" class="close" aria-label="Close"  (click)="modal1.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+              <div class="py-3 text-center">
+                <i class="ni ni-bell-55 ni-3x"></i>
+                <h4 class="heading mt-4">Archive Operation</h4>
+                <p>Are you sure want to Archive this Pack.</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-white" (click)="archivepack()">Ok, Got it</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</ng-template>
+<!-- show product -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{productpopup.productName}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+   
+      
+
+            <div class="item" >
+              <div class="mb-r">
+                <!--Card-->
+                <div class="card card-cascade wider">
+                  <!--Card image-->
+                  <a>
+                    <div class="view overlay hm-white-slight">
+                      <img [src]="productpopup.productImage" class="img-fluid"  alt="" width="360px" height="640px">
+                      <a>
+                        <div class="mask waves-effect waves-light" mdbRippleRadius></div>
+                      </a>
+                    </div>
+                  </a>
+                  <!--/.Card image-->
+                  <!--Card content-->
+                  <div class="card-body text-center no-padding">
+                    <!--Category & Title-->
+                    <a class="text-muted">
+                      <h5> {{productpopup.productCategory }}</h5>
+                    </a>
+                    
+                    <!--Description-->
+                    <p class="card-text">{{ productpopup.productDescription}} </p>
+                    <!--Card footer-->
+                    <div class="card-footer">
+                      <span class="left"> {{productpopup.productPrice}}  TND</span>
+                     
+                    </div>
+
+                  </div>
+                  <!--/.Card content-->
+
+                </div>
+                <!--/.Card-->
+
+              </div>
+            </div>
+    </div>
+    
+  </ng-template>
+  
+<div class="container-fluid mt--7">
+  <!-- Sub Nav -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-default">
+    <div class="container">
+      <div class="collapse navbar-collapse">
+          <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">List Of Available Packs</a>
+        
+        <ul class="navbar-nav ml-lg-auto text-right">
+          <li class="nav-item">
+            <a  class="nav-link nav-link-icon" routerLink="/back/addpack">New Pack</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLink="/back/listarchivepacks">Archived Packs</a>
+          </li>
+         
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--TAble -->
+  <div class="row">
+      <div class="col">
+        <div class="card shadow">
+         
+  
+          <div class="table-responsive">
+            <table class="table align-items-center table-dark table-flush">
+              <thead class="thead-dark">
+                <tr>
+                 
+                    <th scope="col">Title</th>
+                    <th scope="col">createdate</th>
+                    <th scope="col">validfrom</th>
+                    <th scope="col">validuntil</th>
+                    <th scope="col">Products</th>
+                    <th scope="col">description</th>
+                    <th scope="col">integratedprice</th>
+                    <th scope="col">integratedquantity</th>
+                    <th scope="col">Operation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of packData">
+               
+                    <th scope="row">
+                        <div class="media align-items-center">
+                          <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                            <img alt="Image placeholder" src="{{item.picture}}">
+                          </a>
+                          <div class="media-body">
+                            <span class="mb-0 text-sm">{{item.title}}</span>
+                          </div>
+                        </div>
+                      </th>
+                    <td>{{item.createdate |  date:"MM/dd/yyyy 'at' h:mma"}}</td>
+                    <td>{{item.validfrom | date:"MM/dd/yyyy 'at' h:mma"}}</td>
+                    <td>{{item.validuntil |  date:"MM/dd/yyyy 'at' h:mma"}}</td>
+                    <div *ngIf="item.products.length > 0 ; else withoutprod">
+                    <td >
+                      
+                        <div class="avatar-group">
+                          <a *ngFor="let prod of item.products; index as i">
+                          <a href="javascript:void(0)" class="avatar avatar-sm" data-toggle="tooltip" (click)="open(content,prod)" >
+                            <img alt="Image placeholder" src={{prod.productImage}} class="rounded-circle">
+                          </a>
+                        </a>
+                        </div>
+                      </td>
+                    </div>
+                    <ng-template #withoutprod>
+                        <td >
+                        
+                        <button  routerLink="/back/updatepack" type="button" class="btn btn-block btn-warning mb-3" (click)="senditemtoupdate(item)">Assign Products</button>
+                      </td>
+                    </ng-template>
+                    <td>{{item.description}}</td>
+                    <td>{{item.integratedprice}}</td>
+                    <td>{{item.integratedquantity}}</td>
+           
+                   
+                   
+                  <td class="text-right">
+                    <div ngbDropdown placement="top-right">
+                      <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                        <button type="button" class="btn btn-block btn-warning mb-3" data-toggle="modal" (click)="openarchive(contenttwo,item)">Archive</button>
+                        <button type="button" class="btn btn-block btn-warning mb-3"  (click)="UpdatePack(item)">Update</button>
+                        
+                        
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+            
+          <div class="card-footer py-4">
+            <nav aria-label="...">
+              <ul class="pagination justify-content-end mb-0">
+                <li class="page-item disabled">
+                  <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                    <i class="fas fa-angle-left"></i>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="javascript:void(0)">1</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="javascript:void(0)">
+                    <i class="fas fa-angle-right"></i>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>

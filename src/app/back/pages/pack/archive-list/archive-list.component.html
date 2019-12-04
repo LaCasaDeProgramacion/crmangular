@@ -1,0 +1,172 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <br>  <br>  <br>
+        <div class="row">
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Archived</h5>
+                    <span class="h2 font-weight-bold mb-0">350,897</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                      <i class="fas fa-chart-bar"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                  <span class="text-nowrap">Since last month</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                      <i class="fas fa-chart-pie"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                  <span class="text-nowrap">Since last week</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                    <span class="h2 font-weight-bold mb-0">924</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                  <span class="text-nowrap">Since yesterday</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+                    <span class="h2 font-weight-bold mb-0">49,65%</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                      <i class="fas fa-percent"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                  <span class="text-nowrap">Since last month</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #contenttwo let-modal1 >
+      <div  id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification" >
+          <div class="modal-danger" role="document">
+            <div class="modal-content bg-gradient-danger">
+              <div class="modal-header">
+                <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+                <button type="button" class="close" aria-label="Close"  (click)="modal1.dismiss('Cross click')">
+                  <span aria-hidden="true">×</span>
+                 </button>
+              </div>
+              <div class="modal-body">
+                <div class="py-3 text-center">
+                  <i class="ni ni-bell-55 ni-3x"></i>
+                  <h4 class="heading mt-4">Delete Operation</h4>
+                  <p>Are you sure want to Delete this Pack.</p>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-white" (click)="deletepack()">Ok, Got it</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  </ng-template>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Archive Pack List</h3>
+          </div>
+
+         
+            
+            <section class="section ">
+               
+                  <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                      <div class="row row-grid">
+                        <div class="col-lg-3" *ngFor="let pack of archivedpacklist">
+                          <div class="card card-lift--hover shadow border-0" >
+                              
+                            <div class="card-body py-5 "   [ngStyle]="getstyle(pack.picture)">
+                            <span class="mask bg-gradient-danger opacity-3"></span>
+                              <div class="icon icon-shape icon-shape-warning rounded-circle mb-4">
+                                <i class="ni ni-app"></i>
+                              </div>
+                              <h6 class="mb-0 text-uppercase text-white">{{ pack.title }}</h6>
+                              <p class="display-4 text-white">{{ (pack.description.length>6)? (pack.description | slice:0:6)+'..':(pack.description) }}</p>
+                              <div *ngIf="pack.products != null ; else withoutprod">
+                              <div >
+                    
+                              <span *ngFor="let product of pack.products" class="badge badge-pill badge-warning">{{product.productName}}</span>
+                              </div>
+                              </div> 
+                              <ng-template #withoutprod>
+                                  
+                                  <span class="badge badge-pill badge-warning">No Product Associated</span><br><br>
+                              </ng-template>
+                              <a href="javascript:void(0)" class="btn btn-warning mt-4" (click)="dearchivepack(pack.id)">Add to Display</a>
+                              <a href="javascript:void(0)" class="btn btn-warning mt-4"  data-toggle="modal" (click)="openarchive(contenttwo,pack)">Delete</a>
+                            </div>
+                          
+                          
+                          </div>
+                        </div>
+                        
+                      </div>
+                      
+                    </div>
+                </div>
+               
+              </section>
+             
+          </div>
+          </div>
+       
