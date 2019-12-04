@@ -52,8 +52,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'back/events', component: EventComponent ,canActivate:[AuthUserService] },
     { path: 'back/suggest-event', component: SuggestEventComponent ,canActivate:[AuthUserService] },
     { path: 'back/details-event', component: EventDetailsComponent ,canActivate:[AuthUserService] },
-<<<<<<< HEAD
-=======
     /**************  wael routing  **************/
     { path: 'back/listpack', component: ListPackComponent ,canActivate:[AuthUserService] },
     { path: 'back/addpack', component: AddPackComponent ,canActivate:[AuthUserService] },
@@ -65,7 +63,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'back/Updatepromotion', component: UpdatePackComponent  ,canActivate:[AuthUserService] },
 
     
->>>>>>> Wael back work with upload image
 
     
     { path: 'back/complaints', component: ComplaintsComponent  },

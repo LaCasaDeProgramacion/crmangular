@@ -27,11 +27,8 @@
     "@ng-bootstrap/ng-bootstrap": "4.0.1",
     "@sweetalert2/ngx-sweetalert2": "^7.0.1",
     "@types/googlemaps": "^3.38.0",
-<<<<<<< HEAD
     "angular-confirmation-popover": "^4.2.1",
-=======
     "angular2-multiselect-dropdown": "^4.6.3",
->>>>>>> Wael back work with upload image
     "bootstrap": "4.1.3",
     "chart.js": "2.7.3",
     "clipboard": "2.0.4",
