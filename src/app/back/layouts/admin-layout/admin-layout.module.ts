@@ -1,3 +1,4 @@
+import { ImageComponent } from './../../pages/prospecting/images/image/image.component';
 
 import { AddStoreComponent } from './../../pages/stores/add-store/add-store.component';
 import { MapStoreComponent } from './../../pages/stores/map-store/map-store.component';
@@ -53,12 +54,12 @@ import { UpdatePromotionComponent } from '../../pages/promotion/update-promotion
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    
+
     ReactiveFormsModule,
     Ng2SearchPipeModule,
-    
-   
-   
+
+
+
     ImageUploadModule,
     SelectbootstrapModule,
     JwBootstrapSwitchNg2Module,
@@ -94,14 +95,17 @@ MapStoreComponent,
     ListPromotionComponent,
     AddPromotionComponent,
     UpdatePromotionComponent,
-    
+
+    ImageComponent,
+
+
 
 
   ],
   exports: [
     Ng2SearchPipeModule
-    
-   
+
+
   ]
 })
 

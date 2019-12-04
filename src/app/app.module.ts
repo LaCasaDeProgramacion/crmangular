@@ -36,10 +36,7 @@ import { ComplaintObjectsService } from './services/complaintsManagement/complai
 import { AddPackComponent } from './back/pages/pack/add-pack/add-pack.component';
 import { ListPackComponent } from './back/pages/pack/list-pack/list-pack.component';
 import { DatePipe } from '@angular/common';
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireStorageModule } from "@angular/fire/storage";
-import { AngularFireDatabaseModule } from "@angular/fire/database";
-import { environment } from "../environments/environment";
+
 import { ImageUploadModule } from './SharedComponent/image-upload/image-upload.module';
 import { ArchiveListComponent } from './back/pages/pack/archive-list/archive-list.component';
 import { UpdatePackComponent } from './back/pages/pack/update-pack/update-pack.component';
@@ -51,7 +48,13 @@ import { SelectbootstrapModule } from './SharedComponent/selectbootstrap/selectb
 
 
 
+import { ImageComponent } from './back/pages/prospecting/images/image/image.component';
+import { ImagesListComponent } from './back/pages/prospecting/images/images-list/images-list.component';
 
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { environment } from "../environments/environment";
 
 @NgModule({
   imports: [
@@ -66,22 +69,21 @@ import { SelectbootstrapModule } from './SharedComponent/selectbootstrap/selectb
     GMapModule,
     SidebarModule,
     DataViewModule,
-Ng2SearchPipeModule,
-   ReactiveFormsModule,
+    Ng2SearchPipeModule,
     MatButtonModule,
      MatDialogModule,
-    
-    
+
+
     ReactiveFormsModule,
-    
-    
+
+
 
    AngularFireModule.initializeApp(environment.firebaseConfig),
    AngularFireStorageModule,
    AngularFireDatabaseModule,
    ImageUploadModule,
    SelectbootstrapModule,
- 
+
   ],
   declarations: [
     AppComponent,
@@ -93,11 +95,11 @@ Ng2SearchPipeModule,
     ProductsListComponent,
     FilterByBrandPipe,
 ChatComponent,
-    
-    
-    
-    
-    
+
+
+
+
+
 
     /********** new **********/
     TopicsComponent,
@@ -105,29 +107,30 @@ ChatComponent,
     FrontFooterComponent,
     AllTopicsComponent,
     SingleTopicComponent,
- 
-    
-  
 
 
-   
-  
-  
+
+
+
+
+
+
+
 
 
     /******  user *******/
 
   ],
- 
-   
-  
+
+
+
   providers: [
     ComplaintsService,
     ComplaintTypesService,
     ComplaintCommentsService,
     ComplaintObjectsService,
     TechnicianService,
-    
+
     DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
@@ -140,6 +143,6 @@ ChatComponent,
     }
   ],
   bootstrap: [AppComponent],
-  
+
 })
 export class AppModule { }

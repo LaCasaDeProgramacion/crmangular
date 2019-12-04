@@ -51,7 +51,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'back/agents-details', component: DetailsComponent ,canActivate:[AuthUserService] },
     { path: 'back/events', component: EventComponent ,canActivate:[AuthUserService] },
     { path: 'back/suggest-event', component: SuggestEventComponent ,canActivate:[AuthUserService] },
-    { path: 'back/details-event', component: EventDetailsComponent ,canActivate:[AuthUserService] },
+{ path: 'back/details-event/:id', component: EventDetailsComponent ,canActivate:[AuthUserService] },
     /**************  wael routing  **************/
     { path: 'back/listpack', component: ListPackComponent ,canActivate:[AuthUserService] },
     { path: 'back/addpack', component: AddPackComponent ,canActivate:[AuthUserService] },
@@ -62,9 +62,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'back/addpromotion', component: AddPromotionComponent  ,canActivate:[AuthUserService] },
     { path: 'back/Updatepromotion', component: UpdatePackComponent  ,canActivate:[AuthUserService] },
 
-    
 
-    
+
     { path: 'back/complaints', component: ComplaintsComponent  },
     { path: 'back/technician', component: TechnicianComponent  },
     { path: 'back/Type', component: TypeComplaintComponent  },

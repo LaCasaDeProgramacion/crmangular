@@ -1,2 +1,4 @@
-export class Carbrand {
+export interface Carbrand {
+  id ?:number;
+  brand ?:string ;
 }

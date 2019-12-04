@@ -46,13 +46,13 @@ background-size: cover; background-position: center top;">
       <div class="form-group">
         <label for="dateOfBirth">Model</label>
         <div class="input-group">
-            <div class="input-group">
-                <select class="custom-select custom-select-sm">
-                    <option selected>Open this select menu</option>
-                    <option value="1">Ford Figo</option>
-                    <option value="2">Toyota Camry</option>
-                  </select>
-            </div>
+          <div class="input-group">
+            <select class="custom-select custom-select-sm">
+              <option selected>Open this select menu</option>
+              <option value="1">Ford Figo</option>
+              <option value="2">Toyota Camry</option>
+            </select>
+          </div>
         </div>
         <label for="dateOfBirth">Color</label>
         <div class="input-group">
@@ -64,10 +64,10 @@ background-size: cover; background-position: center top;">
         </div>
         <label for="dateOfBirth">Picture</label>
         <div class="input-group">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
-            </div>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
         </div>
       </div>
     </form>
@@ -84,41 +84,40 @@ background-size: cover; background-position: center top;">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-    <form>
+  <form #vehicleForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+
       <div class="form-group">
         <label for="dateOfBirth">Model</label>
         <div class="input-group">
-            <select class="custom-select custom-select-sm">
-                <option selected>Open this select menu</option>
-                <option value="1">Ford Figo</option>
-                <option value="2">Toyota Camry</option>
-              </select>
+          <select class="custom-select custom-select-sm" name="model" [(ngModel)]="vehicle.carmodel.id"
+            #modelId="ngModel" required>
+            <option selected>Choose</option>
+            <ng-container *ngFor="let m of carmodels">
+              <option value="{{m.id}}">{{m.carbrand.brand}} &nbsp; {{m.model}}</option>
+            </ng-container>
+          </select>
         </div>
         <label for="dateOfBirth">Color</label>
         <div class="input-group">
-          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+          <input class="form-control" type="text" name="color" [(ngModel)]="vehicle.color" #colorId="ngModel" required>
         </div>
         <label for="dateOfBirth">Registration</label>
         <div class="input-group">
-          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+          <input class="form-control" type="text" name="registration" [(ngModel)]="vehicle.registration"
+            #registrationId="ngModel" required>
         </div>
-        <label for="dateOfBirth">Picture</label>
         <div class="input-group">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile" #customFile>
-                <label class="custom-file-label" for="customFile">Choose file</label>
-            </div>
+            <app-image ></app-image>
         </div>
       </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="save(customFile.value)">Save</button>
 
-    <button type="button" class="btn btn-outline-dark" (click)="modal1.close('Save click')">Close</button>
-
-  </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Save</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal1.close('Save click')">Close</button>
+    </div>
+  </form>
 </ng-template>
 <!-- Page content -->
 
@@ -129,7 +128,7 @@ background-size: cover; background-position: center top;">
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-lg-auto text-right">
           <li class="nav-item">
-            <a  class="nav-link nav-link-icon" (click)="open1(content1)">New Vehicle</a>
+            <a class="nav-link nav-link-icon" (click)="open1(content1)">New Vehicle</a>
           </li>
           <li class="nav-item">
             <a class="nav-link nav-link-icon" routerLink="/back/vehicles">Vehicles</a>
@@ -190,18 +189,18 @@ background-size: cover; background-position: center top;">
                   </div>
                 </td>
                 <td>
-                    <div class="avatar-group">
-                        <div class="col-4 text-right">
-                            <a href="#!" class="btn btn-sm btn-primary">Reserve</a>
-                        </div>
+                  <div class="avatar-group">
+                    <div class="col-4 text-right">
+                      <a href="#!" class="btn btn-sm btn-primary">Reserve</a>
                     </div>
+                  </div>
                 </td>
                 <td>
-                    <div class="avatar-group">
-                        <div class="col-4 text-right">
-                            <a href="#!" class="btn btn-sm btn-primary">Disponibility</a>
-                        </div>
+                  <div class="avatar-group">
+                    <div class="col-4 text-right">
+                      <a href="#!" class="btn btn-sm btn-primary">Disponibility</a>
                     </div>
+                  </div>
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
