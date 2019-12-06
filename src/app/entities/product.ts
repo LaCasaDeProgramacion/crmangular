@@ -15,6 +15,8 @@ export class product{
     category_name : string ;
   }
   waeldisplayattributtest?:boolean;
+  productnewvalue?:number;
+  producthavepromotion?:boolean;
     constructor(productName , productDescription , productPrice , productImage,productCategory , numberOfViews,productQuantity,productStatus,productDate){
       this.productName = productName ;
       this.productDescription = productDescription ;

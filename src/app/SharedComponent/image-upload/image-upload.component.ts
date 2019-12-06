@@ -62,5 +62,8 @@ export class ImageUploadComponent implements OnInit {
         this.state.imagePreviewUrl = this.image !== undefined ? this.image:(this.isRound ? './assets/img/placeholder.jpg':'./assets/img/image_placeholder.jpg');
        
     }
+    message(){
+        console.log("hhhhhhhh")
+    }
 
 }

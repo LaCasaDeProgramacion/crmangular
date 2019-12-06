@@ -5,6 +5,8 @@ import { ProductsPack } from 'src/app/entities/ProductsPack';
 import { Pack } from 'src/app/entities/Pack';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { StatPack } from 'src/app/entities/StatPack';
+import { StatPackService } from 'src/app/services/statpack/stat-pack.service';
 
 @Component({
   selector: 'app-list-pack',
@@ -12,6 +14,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-pack.component.scss']
 })
 export class ListPackComponent implements OnInit {
+  BestpackforToday:StatPack;
+  mostgainmoneystatpack:StatPack;
+  PackoftheMonth:StatPack;
+  SelledQuantitypacktoday:StatPack;
   packData:any;
   closeResult: string;
   products :ProductsPack[];
@@ -22,10 +28,40 @@ export class ListPackComponent implements OnInit {
    PacktoArchive:Pack;
    //pack to update 
    public Packtoupdate:any;
-  constructor(public packservice: PackService,private modalService: NgbModal,private router:Router) { this.packData=[] }
+  constructor(public packservice: PackService,private modalService: NgbModal,private router:Router,public statservice:StatPackService) { this.packData=[] }
 
   ngOnInit() {
     this.getavalaiblePack();
+    //stat
+    this.getBestpackforToday();
+    this.getmostgainmoneystatpack();
+    this.getPackoftheMonth();
+    this.getSelledQuantitypacktoday();
+  }
+  
+  getSelledQuantitypacktoday(){
+    this.SelledQuantitypacktoday = {};
+    this.statservice.getSelledQuantitypacktoday().subscribe(response => {
+      this.SelledQuantitypacktoday = response;
+  })
+  }
+  getPackoftheMonth(){
+    this.PackoftheMonth = {};
+    this.statservice.getPackoftheMonth().subscribe(response => {
+      this.PackoftheMonth = response;
+  })
+  }
+  getmostgainmoneystatpack(){
+    this.mostgainmoneystatpack = {} ; 
+    this.statservice.getmostgainmoneystatpack().subscribe(response => {
+      this.mostgainmoneystatpack = response;
+  })
+  }
+  getBestpackforToday(){
+    this.BestpackforToday = {};
+    this.statservice.getBestpackforToday().subscribe(response => {
+        this.BestpackforToday = response;
+    })
   }
   getavalaiblePack() {
     //Get saved list of students

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PackService } from 'src/app/services/Pack/pack.service';
 import { Pack } from 'src/app/entities/Pack';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { StatPack } from 'src/app/entities/StatPack';
+import { StatPackService } from 'src/app/services/statpack/stat-pack.service';
 
 @Component({
   selector: 'app-archive-list',
@@ -9,14 +11,47 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./archive-list.component.scss']
 })
 export class ArchiveListComponent implements OnInit {
+  BestpackforToday:StatPack;
+  mostgainmoneystatpack:StatPack;
+  PackoftheMonth:StatPack;
+  SelledQuantitypacktoday:StatPack;
  public archivedpacklist:any;
  closeResult: string;
  public packtodelete:Pack;
-  constructor(public packService:PackService,private modalService: NgbModal) { }
+  constructor(public packService:PackService,private modalService: NgbModal,public statservice:StatPackService) { }
 
   ngOnInit() {
     this.archivedpacklist=[];
     this.getArchiveList();
+     //stat
+     this.getBestpackforToday();
+     this.getmostgainmoneystatpack();
+     this.getPackoftheMonth();
+     this.getSelledQuantitypacktoday();
+  }
+  getSelledQuantitypacktoday(){
+    this.SelledQuantitypacktoday = {};
+    this.statservice.getSelledQuantitypacktoday().subscribe(response => {
+      this.SelledQuantitypacktoday = response;
+  })
+  }
+  getPackoftheMonth(){
+    this.PackoftheMonth = {};
+    this.statservice.getPackoftheMonth().subscribe(response => {
+      this.PackoftheMonth = response;
+  })
+  }
+  getmostgainmoneystatpack(){
+    this.mostgainmoneystatpack = {} ; 
+    this.statservice.getmostgainmoneystatpack().subscribe(response => {
+      this.mostgainmoneystatpack = response;
+  })
+  }
+  getBestpackforToday(){
+    this.BestpackforToday = {};
+    this.statservice.getBestpackforToday().subscribe(response => {
+        this.BestpackforToday = response;
+    })
   }
   getArchiveList(){
 this.packService.getarchivedlist().subscribe(data =>{

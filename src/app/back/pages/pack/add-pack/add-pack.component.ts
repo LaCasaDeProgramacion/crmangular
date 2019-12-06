@@ -9,6 +9,8 @@ import { ImageUploadServicService } from 'src/app/SharedComponent/image-upload/i
 import { stringify } from 'querystring';
 import { product } from 'src/app/entities/product';
 import { ApiService } from 'src/app/services/products/api.service';
+import { StatPack } from 'src/app/entities/StatPack';
+import { StatPackService } from 'src/app/services/statpack/stat-pack.service';
 
 @Component({
   selector: 'app-add-pack',
@@ -32,15 +34,48 @@ export class AddPackComponent implements OnInit {
   state_icon_danger = true;
 public picturemap:string;
 public packtitle:string;
+BestpackforToday:StatPack;
+  mostgainmoneystatpack:StatPack;
+  PackoftheMonth:StatPack;
+  SelledQuantitypacktoday:StatPack;
 
 theCheckbox:boolean=false;
-constructor(public packservice: PackService,public productService:ApiService,private storage: AngularFireStorage,public serviceimage:ImageUploadServicService) { }
+constructor(public packservice: PackService,public productService:ApiService,private storage: AngularFireStorage,public serviceimage:ImageUploadServicService,public statservice:StatPackService) { }
 
 ngOnInit() {
 this.packtitle='Pack';
 this.getlistProducttoassign();
 this.hideproducts=true;
 this.formsubmitted=false;
+   //stat
+   this.getBestpackforToday();
+   this.getmostgainmoneystatpack();
+   this.getPackoftheMonth();
+   this.getSelledQuantitypacktoday();
+}
+getSelledQuantitypacktoday(){
+  this.SelledQuantitypacktoday = {};
+  this.statservice.getSelledQuantitypacktoday().subscribe(response => {
+    this.SelledQuantitypacktoday = response;
+})
+}
+getPackoftheMonth(){
+  this.PackoftheMonth = {};
+  this.statservice.getPackoftheMonth().subscribe(response => {
+    this.PackoftheMonth = response;
+})
+}
+getmostgainmoneystatpack(){
+  this.mostgainmoneystatpack = {} ; 
+  this.statservice.getmostgainmoneystatpack().subscribe(response => {
+    this.mostgainmoneystatpack = response;
+})
+}
+getBestpackforToday(){
+  this.BestpackforToday = {};
+  this.statservice.getBestpackforToday().subscribe(response => {
+      this.BestpackforToday = response;
+  })
 }
 packForm = new FormGroup(
   { 
@@ -67,6 +102,7 @@ packForm = new FormGroup(
     return this.packForm.get('dateuntil');
   }
 onclickenvoyer(e){
+  this.testComponent.message()
   var pictureinfo :any[] =this.testComponent.handleSubmit(e);
   console.log(pictureinfo);
   

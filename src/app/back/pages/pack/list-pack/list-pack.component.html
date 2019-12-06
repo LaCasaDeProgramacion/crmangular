@@ -1,17 +1,128 @@
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
-url(assets/img/theme/womenphone1.jpg);
-background-size: cover; background-position: center top;">
-  <!-- Mask -->
-  <span class="mask bg-gradient-danger opacity-8"></span>
-  <!-- Header container -->
-  <div class="container-fluid d-flex align-items-center">
-    <div class="row">
-      <div class="col-lg-12 col-md-10">
-        <h1 class="display-2 text-white">PACK | HOME </h1>
+
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <br>
+        <br>
+        <br>
+        <!-- Card stats -->
+        <div class="row">
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Today Best Pack</h5>
+                    <span class="h2 font-weight-bold mb-0">{{ BestpackforToday.pack.title }}</span><br>
+                    <span class="h2 font-weight-bold mb-0">{{ BestpackforToday.titleStat }}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                      <i class="fas fa-chart-pie"></i>
+                    </div>
+                  </div>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Most Gain Money Pack</h5>
+                    <span class="h2 font-weight-bold mb-0">{{ mostgainmoneystatpack.pack.title }}</span><br>
+                    <span class="h2 font-weight-bold mb-0">{{ mostgainmoneystatpack.titleStat }}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                      <i class="fas fa-chart-pie"></i>
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Pack Of The Month</h5>
+                 
+                    <span class="h2 font-weight-bold mb-0">{{ PackoftheMonth.pack.title }}</span><br>
+                    <span class="h2 font-weight-bold mb-0">{{ PackoftheMonth.titleStat }}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                      <i class="fas fa-chart-pie"></i>
+                    </div>
+                  </div>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Most Selled Quantity Pack</h5>
+                    
+                    <span class="h2 font-weight-bold mb-0">{{ SelledQuantitypacktoday.pack.title }}</span><br>
+                    <span class="h2 font-weight-bold mb-0">{{ SelledQuantitypacktoday.titleStat }}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                      <i class="fas fa-chart-pie"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+
+  <div class="container-fluid mt--7">
+      <!-- Table -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-header border-0">
+                <div class="row align-items-center">
+                    <div class="col-2">
+                        <a routerLink="/back/addpack" class="btn btn-sm btn-danger">
+                            <i class="ni ni-settings-gear-65"></i>
+                            <span>New Pack</span>
+                       
+                          
+                        </a>
+                    </div>
+                    <div class="col-2">
+
+                        <a routerLink="/back/listarchivepacks" class="btn btn-sm btn-danger">
+                            <i class="ni ni-settings-gear-65"></i>
+                            <span>Archived Packs</span>
+                          
+                        </a>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-4">
+                        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+                    </div>
+                   
+    
+    
+                  </div>
 <!-- Page content -->
 <!-- show archive action-->
 <ng-template #contenttwo let-modal1 >
@@ -91,35 +202,19 @@ background-size: cover; background-position: center top;">
     
   </ng-template>
   
-<div class="container-fluid mt--7">
-  <!-- Sub Nav -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-default">
-    <div class="container">
-      <div class="collapse navbar-collapse">
-          <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">List Of Available Packs</a>
-        
-        <ul class="navbar-nav ml-lg-auto text-right">
-          <li class="nav-item">
-            <a  class="nav-link nav-link-icon" routerLink="/back/addpack">New Pack</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLink="/back/listarchivepacks">Archived Packs</a>
-          </li>
-         
-        </ul>
-      </div>
-    </div>
-  </nav>
 
   <!--TAble -->
+</div>
+</div>
+</div>
+</div>
+         
   <div class="row">
       <div class="col">
         <div class="card shadow">
-         
-  
           <div class="table-responsive">
-            <table class="table align-items-center table-dark table-flush">
-              <thead class="thead-dark">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
                 <tr>
                  
                     <th scope="col">Title</th>
@@ -142,13 +237,13 @@ background-size: cover; background-position: center top;">
                             <img alt="Image placeholder" src="{{item.picture}}">
                           </a>
                           <div class="media-body">
-                            <span class="mb-0 text-sm">{{item.title}}</span>
+                            <span class="mb-5 text-uppercase u-black">{{item.title}}</span>
                           </div>
                         </div>
                       </th>
-                    <td>{{item.createdate |  date:"MM/dd/yyyy 'at' h:mma"}}</td>
-                    <td>{{item.validfrom | date:"MM/dd/yyyy 'at' h:mma"}}</td>
-                    <td>{{item.validuntil |  date:"MM/dd/yyyy 'at' h:mma"}}</td>
+                    <td class="mb-5 text-uppercase u-black">{{item.createdate |  date:"MM/dd/yyyy 'at' h:mma"}}</td>
+                    <td class="mb-5 text-uppercase u-black">{{item.validfrom | date:"MM/dd/yyyy 'at' h:mma"}}</td>
+                    <td class="mb-5 text-uppercase u-black">{{item.validuntil |  date:"MM/dd/yyyy 'at' h:mma"}}</td>
                     <div *ngIf="item.products.length > 0 ; else withoutprod">
                     <td >
                       
@@ -167,9 +262,9 @@ background-size: cover; background-position: center top;">
                         <button  routerLink="/back/updatepack" type="button" class="btn btn-block btn-warning mb-3" (click)="senditemtoupdate(item)">Assign Products</button>
                       </td>
                     </ng-template>
-                    <td>{{item.description}}</td>
-                    <td>{{item.integratedprice}}</td>
-                    <td>{{item.integratedquantity}}</td>
+                    <td class="mb-5 text-uppercase u-black" >{{item.description}}</td>
+                    <td class="mb-5 text-uppercase u-black" >{{item.integratedprice}}</td>
+                    <td class="mb-5 text-uppercase u-black" >{{item.integratedquantity}}</td>
            
                    
                    
@@ -191,33 +286,12 @@ background-size: cover; background-position: center top;">
               </tbody>
             </table>
             
-          <div class="card-footer py-4">
-            <nav aria-label="...">
-              <ul class="pagination justify-content-end mb-0">
-                <li class="page-item disabled">
-                  <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                    <i class="fas fa-angle-left"></i>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="javascript:void(0)">1</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="javascript:void(0)">
-                    <i class="fas fa-angle-right"></i>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+         
           
         </div>
-      </div>
-    </div>
+        </div>
+        </div>
+        </div>
+      
   </div>
+  

@@ -1,19 +1,131 @@
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
-url(assets/img/theme/womenphone1.jpg);
-background-size: cover; background-position: center top;">
-  <!-- Mask -->
-  <span class="mask bg-gradient-danger opacity-8"></span>
-  <!-- Header container -->
-  <div class="container-fluid d-flex align-items-center">
-    <div class="row">
-      <div class="col-lg-12 col-md-10">
-        <h1 class="display-2 text-white">PACK | HOME </h1>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <br>
+        <br>
+        <br>
+        <!-- Card stats -->
+        <div class="row">
+            <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Today Best Pack</h5>
+                        <span class="h2 font-weight-bold mb-0">{{ BestpackforToday.pack.title }}</span><br>
+                        <span class="h2 font-weight-bold mb-0">{{ BestpackforToday.titleStat }}</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                          <i class="fas fa-chart-pie"></i>
+                        </div>
+                      </div>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Most Gain Money Pack</h5>
+                        <span class="h2 font-weight-bold mb-0">{{ mostgainmoneystatpack.pack.title }}</span><br>
+                        <span class="h2 font-weight-bold mb-0">{{ mostgainmoneystatpack.titleStat }}</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                          <i class="fas fa-chart-pie"></i>
+                        </div>
+                      </div>
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Pack Of The Month</h5>
+                     
+                        <span class="h2 font-weight-bold mb-0">{{ PackoftheMonth.pack.title }}</span><br>
+                        <span class="h2 font-weight-bold mb-0">{{ PackoftheMonth.titleStat }}</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                          <i class="fas fa-chart-pie"></i>
+                        </div>
+                      </div>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Most Selled Quantity Pack</h5>
+                        
+                        <span class="h2 font-weight-bold mb-0">{{ SelledQuantitypacktoday.pack.title }}</span><br>
+                        <span class="h2 font-weight-bold mb-0">{{ SelledQuantitypacktoday.titleStat }}</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                          <i class="fas fa-chart-pie"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          
+        
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+
+  <div class="container-fluid mt--7">
+      <!-- Table -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-header border-0">
+                <div class="row align-items-center">
+                   
+                    <div class="col-2">
+
+                        <a routerLink="/back/listpack" class="btn btn-sm btn-danger">
+                            <i class="ni ni-settings-gear-65"></i>
+                            <span>List Packs</span>
+                          
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a routerLink="/back/listarchivepacks" class="btn btn-sm btn-danger">
+                            <i class="ni ni-settings-gear-65"></i>
+                            <span>Archived Packs</span>
+                       
+                          
+                        </a>
+                    </div>
+                    <div class="col-2"></div>
+                    
+                   
+    
+    
+                  </div>
 <!-- Page content -->
-<div class="container-fluid mt--7">
+</div>
+</div>
+</div>
+      </div>
     <div class="row">
         <div class="col">
           <div class="card shadow">

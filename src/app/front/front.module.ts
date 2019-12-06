@@ -20,6 +20,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductsListComponent } from './pages/products/products-list/products-list.component';
 import { ChatComponent } from './pages/chat/chat.component';
+import { ListpackComponent } from './pages/packs/listpack/listpack.component';
+import { OnepackinfoComponent } from './pages/packs/onepackinfo/onepackinfo.component';
 
 
 
@@ -27,7 +29,7 @@ import { ChatComponent } from './pages/chat/chat.component';
 
   declarations: [HomeComponent,TopicsComponent, FrontNavComponent, FrontFooterComponent, AllTopicsComponent, 
                  SingleTopicComponent, ConfirmPassComponent, StoresComponent, StoresListComponent, 
-                 FooterComponent, NavbarComponent, ProductsComponent,FilterByBrandPipe, ChatComponent,],
+                 FooterComponent, NavbarComponent, ProductsComponent,FilterByBrandPipe, ChatComponent, ListpackComponent, OnepackinfoComponent,],
 
   imports: [
     CommonModule,
