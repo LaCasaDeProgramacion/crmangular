@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-
+import { store } from './../../entities/stores';
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +28,10 @@ getRestaurants() {
     });
 
   }
+  getStoredistancebyId(store_id: number){
+    // return this.http.post<store[]>(this.urlStore+"calculatedistancebystoreid/?store_id="+store_id) ;
+     return this.http.post<store>(this.urlStore+"calculatedistancebystoreid/?store_id="+store_id,store);
+
+
+   }
 }

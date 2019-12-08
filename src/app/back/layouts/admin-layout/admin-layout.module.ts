@@ -5,6 +5,10 @@ import { ComboBoxModule } from '@syncfusion/ej2-angular-dropdowns';
 import { ServicesLinesComponent } from './../../pages/TelLines/services-lines/services-lines.component';
 import { TelephonelinesComponent } from './../../pages/TelLines/telephonelines/telephonelines.component';
 import { ImageComponent } from './../../pages/prospecting/images/image/image.component';
+import { ProductChartComponent } from './../../pages/products/product-chart/product-chart.component';
+import { EditStoreComponent } from './../../pages/stores/edit-store/edit-store.component';
+import { ListStoreComponent } from './../../pages/stores/list-store/list-store.component';
+
 
 import { AddStoreComponent } from './../../pages/stores/add-store/add-store.component';
 import { MapStoreComponent } from './../../pages/stores/map-store/map-store.component';
@@ -52,6 +56,10 @@ import { AddPromotionComponent } from '../../pages/promotion/add-promotion/add-p
 import { ListPromotionComponent } from '../../pages/promotion/list-promotion/list-promotion.component';
 import { SelectbootstrapModule } from 'src/app/SharedComponent/selectbootstrap/selectbootstrap.module';
 import { UpdatePromotionComponent } from '../../pages/promotion/update-promotion/update-promotion.component';
+import { FilterPipe } from 'src/app/front/pipes/filter.pipe';
+import { ProductEditComponent } from '../../pages/products/product-edit/product-edit.component';
+import { CategoriesComponent } from '../../pages/categories/categories.component';
+
 // import { ToastrModule } from 'ngx-toastr';
 
 
@@ -69,13 +77,16 @@ import { UpdatePromotionComponent } from '../../pages/promotion/update-promotion
     ComboBoxModule,
     GridModule,
     NgxPaginationModule,
-    
+
 
 
 
     ImageUploadModule,
     SelectbootstrapModule,
     JwBootstrapSwitchNg2Module,
+
+    ReactiveFormsModule,
+
   ],
   declarations: [
     DashboardComponent,
@@ -105,8 +116,8 @@ MapStoreComponent,
     ComplaintDetailComponent,
     TellinDetailComponent,
     ServicelineDetailComponent,
-    
-    
+
+
     ListPackComponent,
     AddPackComponent,
     ArchiveListComponent,
@@ -117,7 +128,12 @@ MapStoreComponent,
     UpdatePromotionComponent,
 
     ImageComponent,
-
+    FilterPipe,
+    ProductEditComponent,
+    ListStoreComponent,
+    EditStoreComponent,
+    CategoriesComponent,
+    ProductChartComponent,
 
 
 
@@ -127,7 +143,8 @@ MapStoreComponent,
     ComboBoxModule,
     GridModule,
     NgxPaginationModule,
-    
+
+
   ]
 })
 

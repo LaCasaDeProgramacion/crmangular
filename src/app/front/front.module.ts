@@ -22,14 +22,21 @@ import { ProductsListComponent } from './pages/products/products-list/products-l
 import { ChatComponent } from './pages/chat/chat.component';
 import { ListpackComponent } from './pages/packs/listpack/listpack.component';
 import { OnepackinfoComponent } from './pages/packs/onepackinfo/onepackinfo.component';
+import { ProductSliderComponent } from './pages/products/product-slider/product-slider.component';
+import { SearchComponent } from './pages/products/search/search.component';
+import { ProductFilterComponent } from './pages/products/product-filter/product-filter.component';
+import { FortuneWheelComponent } from './pages/products/fortune-wheel/fortune-wheel.component';
+import { AutocompletetextComponent } from '../back/pages/stores/autocompletetext/autocompletetext.component';
+import { ProductDetailComponent } from './pages/products/product-detail/product-detail.component';
+
 
 
 
 @NgModule({
 
-  declarations: [HomeComponent,TopicsComponent, FrontNavComponent, FrontFooterComponent, AllTopicsComponent, 
-                 SingleTopicComponent, ConfirmPassComponent, StoresComponent, StoresListComponent, 
-                 FooterComponent, NavbarComponent, ProductsComponent,FilterByBrandPipe, ChatComponent, ListpackComponent, OnepackinfoComponent,],
+  declarations: [HomeComponent,TopicsComponent, FrontNavComponent, FrontFooterComponent, AllTopicsComponent,
+                 SingleTopicComponent, ConfirmPassComponent, StoresComponent, StoresListComponent,
+                 FooterComponent, NavbarComponent, ProductsComponent,FilterByBrandPipe, ChatComponent, ProductSliderComponent, SearchComponent, ProductFilterComponent, FortuneWheelComponent, ProductDetailComponent, ListpackComponent, OnepackinfoComponent,],
 
   imports: [
     CommonModule,
@@ -39,7 +46,8 @@ import { OnepackinfoComponent } from './pages/packs/onepackinfo/onepackinfo.comp
     DataViewModule,
     SidebarModule,
     ProductsListComponent,
-    FormsModule
+    FormsModule,
+    AutocompletetextComponent
 
 
   ],
@@ -51,11 +59,11 @@ import { OnepackinfoComponent } from './pages/packs/onepackinfo/onepackinfo.comp
     FrontFooterComponent,
     AllTopicsComponent,
     SingleTopicComponent,
-    
+
 ],
 
 
-  
+
 
 })
 export class FrontModule { }

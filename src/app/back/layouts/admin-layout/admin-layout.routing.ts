@@ -7,6 +7,10 @@ import { ObjectComplaintComponent } from './../../pages/Complaints/object-compla
 import { TypeComplaintComponent } from './../../pages/Complaints/type-complaint/type-complaint.component';
 import { TechnicianComponent } from './../../pages/Complaints/technician/technician.component';
 import { ComplaintsComponent } from './../../pages/Complaints/Complaints/complaints.component';
+import { ProductChartComponent } from './../../pages/products/product-chart/product-chart.component';
+import { EditStoreComponent } from './../../pages/stores/edit-store/edit-store.component';
+import { ListStoreComponent } from './../../pages/stores/list-store/list-store.component';
+import { ProductEditComponent } from './../../pages/products/product-edit/product-edit.component';
 
 import { AddStoreComponent } from './../../pages/stores/add-store/add-store.component';
 import { MapStoreComponent } from './../../pages/stores/map-store/map-store.component';
@@ -34,6 +38,7 @@ import { UpdatePackComponent } from '../../pages/pack/update-pack/update-pack.co
 import { ArchiveListComponent } from '../../pages/pack/archive-list/archive-list.component';
 import { ListPromotionComponent } from '../../pages/promotion/list-promotion/list-promotion.component';
 import { AddPromotionComponent } from '../../pages/promotion/add-promotion/add-promotion.component';
+import { CategoriesComponent } from '../../pages/categories/categories.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent,canActivate:[AuthUserService] },
@@ -44,10 +49,14 @@ export const AdminLayoutRoutes: Routes = [
     /**************  firas routing  **************/
     { path: 'back/products', component: ProductsComponent},
     { path: 'back/addproduct', component: AddProductComponent } ,
+    { path: 'product-edit/:id', component: ProductEditComponent },
    { path: 'back/stores', component: StoresComponent},
    { path: 'back/mapstores', component: MapStoreComponent},
    { path: 'back/addstores', component: AddStoreComponent},
-
+   { path: 'back/liststores', component: ListStoreComponent},
+   { path: 'back/productstatistics', component: ProductChartComponent},
+   { path: 'back/categories', component: CategoriesComponent},
+   { path: 'store-edit/:store_id', component: EditStoreComponent },
     /**************  Prospecting routing  **************/
     { path: 'back/carbrands', component: CarbrandComponent,canActivate:[AuthUserService]  },
     { path: 'back/vehicles', component: VehicleComponent ,canActivate:[AuthUserService] },

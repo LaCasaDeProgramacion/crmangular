@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  apiKey: 'your_api_key',
   contextUrl: '/',
 mapbox: {
   accessToken: 'pk.eyJ1IjoiZmplcmJpdjIiLCJhIjoiY2szZndnb2t2MDhtczNvcDA4NXowcHp1eCJ9.fD7BQxIHPPQRPOKwyiQ1Zg'

@@ -44,7 +44,7 @@ export class ApiStore {
    }
 //tekhdem ama WS f JEE moch yekhdem, l ezm nchouf alech :D
   deleteStore(store_id){
-    return this.http.delete<store>(this.urlStore+"deleteStore/?id="+store_id, this.httpOptions)
+    return this.http.delete<store>(this.urlStore+"deleteStore/?store_id="+store_id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -70,13 +70,13 @@ export class ApiStore {
      return this.http.post("http://localhost:9080/crmproject-web/rest/products/addProduct",product,{headers: this.headers}) ;
    }
    */
-  addStore(store: store){
-    return this.http.post<store>("http://localhost:9080/crmproject-web/rest/stores/addStore?store_name=", store);
+  addStore(s: store){
+    return this.http.post<store>("http://localhost:9080/crmproject-web/rest/stores/addStore?store_name="+s.store_name, store);
   }
 
   createMarker(store) {
 
-    return this.http.post<store>("http://localhost:9080/crmproject-web/rest/stores/addStore?store_name=", store);
+    return this.http.post<store>("http://localhost:9080/crmproject-web/rest/stores/addStore?store_name=" +store, store);
 
 
   }
@@ -84,5 +84,30 @@ export class ApiStore {
   removeMarker(id: number) {
     return this.ListStoress.remove();
   }
+  getStoredistancebyId(store_id: number){
+   // return this.http.post<store[]>(this.urlStore+"calculatedistancebystoreid/?store_id="+store_id) ;
+    return this.http.post<store>(this.urlStore+"calculatedistancebystoreid/?store_id="+store_id,store);
+
+
+  }
+
+  updateStore(store_id, p): Observable<store> {
+        return this.http.put<store>(this.urlStore +
+      "updateStore/?store_id="+store_id+"&end="+p.end+"&start="+p.start+
+    "&store_city="+p.store_city+"&store_name="+p.store_name,null).pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  public findStorebyId(store_id): Observable<any> {
+    return this.http.get<store>(this.urlStore+"getstoreyId/?store_id="+store_id, this.httpOptions)
+
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
 
 }

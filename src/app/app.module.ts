@@ -4,6 +4,15 @@ import { filterbytypePipe } from './front/pipes/filterbytype.pipe';
 import { ComplaintDetailsComponent } from './front/complaints/complaint-details/complaint-details.component';
 import { MycomplaintsComponent } from './front/complaints/mycomplaints/mycomplaints.component';
 import { AllcomplaintsComponent } from './front/complaints/allcomplaints/allcomplaints.component';
+import { ProductDetailComponent } from './front/pages/products/product-detail/product-detail.component';
+import { CategoryFilterPipe } from './front/pipes/category-filter.pipe';
+import { FortuneWheelComponent } from './front/pages/products/fortune-wheel/fortune-wheel.component';
+import { ProductFilterComponent } from './front/pages/products/product-filter/product-filter.component';
+import { SearchComponent } from './front/pages/products/search/search.component';
+import { ProductSliderComponent } from './front/pages/products/product-slider/product-slider.component';
+import { UiService } from './services/products/ui.service';
+import { SortPipe } from './front/pipes/sort.pipe';
+import { PagerService } from './services/pager/pager.service';
 
 import { ChatComponent } from './front/pages/chat/chat.component';
 import { ProductsListComponent } from './front/pages/products/products-list/products-list.component';
@@ -62,10 +71,21 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { environment } from "../environments/environment";
+import { AutocompletetextComponent } from './back/pages/stores/autocompletetext/autocompletetext.component';
+import { AddStoreMapComponent } from './back/pages/stores/add-store-map/add-store-map.component';
+import { AgmCoreModule } from '@agm/core';
+import { DropdownComponent } from './back/pages/products/dropdown/dropdown.component';
+import { FilterPipe } from './front/pipes/filter.pipe';
+import { ProductEditComponent } from './back/pages/products/product-edit/product-edit.component';
+import { ListStoreComponent } from './back/pages/stores/list-store/list-store.component';
+import { EditStoreComponent } from './back/pages/stores/edit-store/edit-store.component';
+import { CategoriesComponent } from './back/pages/categories/categories.component';
+import { ProductChartComponent } from './back/pages/products/product-chart/product-chart.component';
 
 @NgModule({
   imports: [
     BrowserModule,
+
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
@@ -83,8 +103,8 @@ import { environment } from "../environments/environment";
 
     ReactiveFormsModule,
     ComboBoxModule,
-    
-    
+
+
 
 
 
@@ -109,11 +129,6 @@ import { environment } from "../environments/environment";
     filterbytypePipe,
     filterbystatePipe,
 
-    
-    
-    
-    
-    
 
 
 
@@ -121,20 +136,27 @@ import { environment } from "../environments/environment";
 
 
 
+
+
+
+
+    CategoryFilterPipe,
+
+ChatComponent,
+ProductSliderComponent,
+SearchComponent,
+ProductFilterComponent,
+FortuneWheelComponent,
+ProductDetailComponent,
     /********** new **********/
     TopicsComponent,
     FrontNavComponent,
     FrontFooterComponent,
     AllTopicsComponent,
     SingleTopicComponent,
-    
-    
-
-
-
-
-
-
+    AutocompletetextComponent,
+    AddStoreMapComponent,
+    DropdownComponent,
 
 
 
@@ -154,6 +176,8 @@ import { environment } from "../environments/environment";
     TechnicianService,
 
     DatePipe,
+    PagerService,SortPipe,UiService,FilterByBrandPipe, FilterPipe,
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

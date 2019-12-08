@@ -17,7 +17,7 @@ export class ChatService {
 
   private conversationSubject = new Subject<Message[]>();
   private conversation: Message[] = [];
-  private greetMessage = "Hi! I am Amanda. Prashant's assistant. How may I help you?";
+  private greetMessage = "Hi! It's Lacasa's Chatbot. Lacasa's assistant. How may I help you?";
 
   constructor() {
   }

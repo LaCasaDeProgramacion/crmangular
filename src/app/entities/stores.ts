@@ -3,19 +3,14 @@ export class store{
   store_name : string ;
   store_longitude : any ;
   store_latitude : any ;
+  store_image:string;
   store_city : string;
-  start : number ;
-  end : number ;
+  start : string = new Date().toISOString();
+  end : string = new Date().toISOString();
+distance:number;
 
 
-    constructor(store_name , store_longitude , store_latitude , store_city , start,end){
-      this.store_name = store_name ;
-      this.store_longitude = store_longitude ;
-      this.store_latitude= store_latitude ;
-      this.store_city=store_city ;
-      this.start = start ;
-      this.end = end ;
-
+  constructor(){
 
   }
 

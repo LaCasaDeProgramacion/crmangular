@@ -1,6 +1,8 @@
 import { AjoutComplaintComponent } from './front/complaints/ajout-complaint/ajout-complaint.component';
 import { MycomplaintsComponent } from './front/complaints/mycomplaints/mycomplaints.component';
 import { AllcomplaintsComponent } from './front/complaints/allcomplaints/allcomplaints.component';
+import { ProductDetailComponent } from './front/pages/products/product-detail/product-detail.component';
+import { FortuneWheelComponent } from './front/pages/products/fortune-wheel/fortune-wheel.component';
 
 import { ProductsListComponent } from './front/pages/products/products-list/products-list.component';
 import { ProductsComponent } from './front/pages/products/products.component';
@@ -37,6 +39,11 @@ const routes: Routes =[
   { path: 'home/ajoutcomplaint', component: AjoutComplaintComponent},
 
 
+  { path: 'home/fortune', component: FortuneWheelComponent},
+  {
+    path: 'product/:id',
+    component: ProductDetailComponent
+  },
   {
     path: '',
     component: AdminLayoutComponent,

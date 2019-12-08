@@ -1,122 +1,127 @@
-.section .section-heading {
-  margin-top: 2rem;
-  margin-bottom: 4rem;
-}
-.section-heading {
-  text-align: center;
-}
-.section-description {
-  margin-left: 5%;
-  margin-right: 5%;
-}
-.section-description {
-  color: #757575;
-  margin-bottom: 4rem;
-  margin-left: 15%;
-  margin-right: 15%;
-  text-align: center;
-}
-.section img {
-  max-width: 100%;
-  height: auto;
+@import '../../../../../assets/scss/helpers/variables';
+@import '../../../../../assets/scss/helpers/mixins';
+
+.products-list {
+
+    &.loading {
+        min-height: 200px;
+
+    }
 }
 
-.card.card-cascade.narrower {
-  margin-top: 10px;
-}
-.card.card-cascade {
+.shop-toolbar {
+  display: table;
   width: 100%;
+  > .column {
+    display: table-cell;
+    vertical-align: middle;
+    &:last-child { text-align: right; }
+  }
+  @media (max-width: $screen-sm) {
+    > .column {
+      display: block;
+      width: 100%;
+      text-align: center;
+      &:last-child {
+        padding-top: $grid-vertical-step;
+        text-align: center;
+      }
+    }
+  }
 }
-.card:not([class*="card-outline-"]) {
-  border: 0;
+.shop-sorting {
+  label,
+  .form-control,
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  span { padding: 8px 0; }
+  label {
+    margin: 0;
+    padding: 8px 5px 8px 0;
+    color: $gray;
+    font: {
+      size: $font-size-sm;
+      weight: normal;
+    }
+  }
+  .form-control {
+    width: 100%;
+    max-width: 186px;
+    margin-right: 10px;
+  }
+  @media (max-width: $screen-sm) {
+    label, .form-control {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: {
+        top: 0;
+        right: 0;
+      }
+    }
+  }
 }
-
-.card.card-cascade.narrower .view {
-  margin-left: 4%;
-  margin-right: 4%;
-  margin-top: -20px;
-}
-.card.card-cascade .view {
-  border-radius: 4px;
-}
-.btn-floating:hover,
-.card-overlay,
-.card.card-cascade .view,
-.colorful-select .dropdown-content li a:hover,
-.colorful-select .dropdown-content li span:hover,
-.comments-list img,
-.modal-dialog.cascading-modal.modal-avatar .modal-header img,
-.reply-form img,
-.testimonial-carousel .testimonial .avatar img,
-.z-depth-2 {
-  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.card.card-cascade .card-body {
-  padding-top: 1.8rem;
-}
-.btn .fa,
-.card .card-body {
-  position: relative;
-}
-
-.card .card-body .card-title a{
-  color: var(--navBackground) !important;
-}
-
-
-.card .rating {
-  color: #ffa000;
-}
-.rating {
-  list-style-type: none;
-}
-.no-padding .fa,
-.rating {
-  padding: 0;
-}
-.rating li {
+.shop-view {
   display: inline-block;
-}
-.no-padding .fa,
-.rating {
-  padding: 0;
-}
-
-.card-text {
-  line-height: 20px;
-  height: 60px;
-  overflow: hidden;
-}
-
-.card .card-footer {
-  background-color: transparent;
-}
-
-.card .card-footer .left {
-  float: left;
-}
-
-.card .card-footer .right {
-  float: right;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.card .card-footer .right a.active {
-  color: #d50000;
-}
-.card .card-footer .right a {
-  color: #757575;
-  margin-left: 1rem;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-.card .card-footer .right a .fa-heart {
-  color: var(--navBackground) !important;
+  @include clearfix;
+  > a {
+    display: block;
+    width: $shop-view-size;
+    height: $shop-view-size;
+    margin-left: 10px;
+    padding: 13px;
+    float: left;
+    transition: background-color .35s;
+    border: 1px solid $border-color;
+    border-radius: 50%;
+    background-color: $shop-view-bg-color;
+    span {
+      display: block;
+      position: relative;
+      width: 3px;
+      height: 3px;
+      margin-bottom: 3px;
+      background-color: $shop-view-color;
+      &::before,
+      &::after {
+        display: block;
+        position: absolute;
+        background-color: $shop-view-color;
+      }
+      &:last-child { margin-bottom: 0; }
+    }
+    &:hover { background-color: $shop-view-hover-bg-color; }
+    &.active {
+      border-color: $shop-view-active-bg-color;
+      background-color: $shop-view-active-bg-color;
+      cursor: default;
+      pointer-events: none;
+      span,
+      span::before,
+      span::after { background-color: $white-color; }
+    }
+    &.grid-view span {
+      &::before,
+      &::after {
+        top: 0;
+        width: 3px;
+        height: 3px;
+        content: '';
+      }
+      &::before { left: 6px; }
+      &::after { left: 12px; }
+    }
+    &.list-view span {
+      &::before {
+        top: 1px;
+        left: 6px;
+        width: 9px;
+        height: 1px;
+        content: '';
+      }
+    }
+  }
 }

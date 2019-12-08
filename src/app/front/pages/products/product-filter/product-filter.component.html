@@ -1,0 +1,29 @@
+<!--
+
+<div class="sticky-top">
+  <ul class="list-group" *ngIf="productCategory$ | async as categories">
+    <li class="list-group-item"> <a class="list-group-item list-group-item-action" [class.active]="!selectedCategory" [routerLink]="['/']">All Categories</a></li>
+    <li class="list-group-item">   <a *ngFor="let productCategory of categories" [class.active]="selectedCategory === productCategory.$key " [routerLink]="['/']" [queryParams]="{productCategory:productCategory.$key}"
+      class="list-group-item list-group-item-action">
+      {{productCategory.category_name}}
+    </a></li>
+  </ul>
+</div>
+
+
+-->
+
+<div class="sticky-top / app-product-filter">
+  <div class="list-group">
+      <a class="list-group-item list-group-item-action"
+         routerLink="/"
+         [class.active]="!category" >All Categories</a>
+      <a *ngFor="let c of categories "
+         routerLink="/home/products"
+         [queryParams]="{ category: c.category_name }"
+         [class.active]="category === c.category_name"
+         class="list-group-item list-group-item-action">
+        {{ c.category_name }}
+    </a>
+    </div>
+</div>

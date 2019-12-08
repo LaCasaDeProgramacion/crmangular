@@ -1,7 +1,14 @@
 body .ui-dataview .ui-dataview-header {
   background-color: #2f8ab7 !important;
 }
-
+.time {
+	background-color: #FC5B2D;
+	color: white;
+	width: 25px;
+	height: 20px;
+	display: inline-block;
+	border-radius: 5px;
+}
 .header-content {
   font-family: 'Avenir Next Demi Bold';
   padding: 25px 0px 0px 0px;
@@ -21,7 +28,7 @@ body .ui-dataview .ui-dataview-header {
 .restaurant-items {
   width: 320px !important;
   height: 180px;
-  padding: 0px 0px 0px 16px;
+  padding: 10px 10px 0px 16px;
   display: flex
 }
 
@@ -32,14 +39,14 @@ body .ui-dataview .ui-dataview-header {
 }
 
 .restaurant-name {
-  color: #fff;
+  color: #111;
   font-size: 16px;
   font-family: 'Arial';
   margin-bottom: 6px;
 }
 
 .restaurant-category {
-  color: #fff;
+  color: #111;
   font-size: 12px;
   font-family: 'Avenir Next Regular';
   margin-bottom: 6px;

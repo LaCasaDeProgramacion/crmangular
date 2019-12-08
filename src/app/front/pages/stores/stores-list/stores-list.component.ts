@@ -1,11 +1,12 @@
+import { store } from './../../../../entities/stores';
 import { StoresClientService } from './../../../../services/stores/storesclient.service';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { environment } from 'src/environments/environment';
-
+import * as moment from 'moment';
 import { GMapModule } from 'primeng/components/gmap/gmap';
 import { DataViewModule } from 'primeng/components/dataview/dataview';
 import { SidebarModule } from 'primeng/components/sidebar/sidebar';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, timer } from 'rxjs';
 @Component({
   selector: 'app-stores-list',
   templateUrl: './stores-list.component.html',
@@ -16,11 +17,13 @@ export class StoresListComponent implements OnInit {
 
   restaurants: any[];
   stores: any = [];
-
+  time:any;
   selectedRestaurant: any;
   selectedStore: any;
   display: boolean;
   options: any;
+  store:store;
+  store_id:any;
   overlays: any[];
   map: google.maps.Map;
   icon: string = environment.contextUrl + 'assets/images/icon_map@2x.png';
@@ -28,9 +31,10 @@ export class StoresListComponent implements OnInit {
   currentLong: any;
   marker: any;
 
-  constructor(private restaurantsService: StoresClientService) {
+  constructor(private restaurantsService: StoresClientService,private ref: ChangeDetectorRef) {
     this.display = false;
     this.options = { zoom: 18 };
+
   }
 
   ngOnInit() {
@@ -42,6 +46,9 @@ export class StoresListComponent implements OnInit {
           console.log("stores"+Data);
         }
        )
+
+
+
   }
 
   setMap(event) {
@@ -118,8 +125,31 @@ showTrackingPosition(position) {
           }));
       });
 
+      this.restaurantsService.getStoredistancebyId(store.store_id).subscribe(data => {
+        console.log(data);
+      });
 
   }
 
 
+CalculatedistancebyId(store_id){
+  this.restaurantsService.getStoredistancebyId(store_id).subscribe(data => {
+    console.log(data);
+  });
+
+}
+
+calculatetime() {
+
+ this.time=this.store.distance /25;
+
+console.log(this.time)
+}
+refresh(): void {
+  window.location.reload();
+}
+
+refreshh() {
+  window.location.reload();
+}
 }

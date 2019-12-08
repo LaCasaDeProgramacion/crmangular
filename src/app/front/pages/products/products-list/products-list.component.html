@@ -113,9 +113,17 @@
       </div>
     </div>
 </nav>
+<br><br><br>
+<div class="alert alert-danger" role="alert">
+    <strong>Stop!</strong> Lucky enough ?! try out our Fortune wheel to win prizes
+    <a [routerLink]="['/home/fortune']">Click Here</a>
+</div>
+<br><br><br>
+
+<app-product-slider></app-product-slider>
 
 
-
+<app-search></app-search>
 
 <br>
 <div class="container">
@@ -127,21 +135,37 @@
   <div class="row">
     <div class="col-md-3">
       <div class="form-group">
-        <label for="brand_select">By Brands:</label>
-        <select class="form-control" name="" id="brand_select" [(ngModel)]="selectedBrand">
-          <option *ngFor="let brand of brands" [ngValue]="brand">{{brand}}</option>
-        </select>
+          <app-product-filter [category]="category" ></app-product-filter>
       </div>
-      <ul class="list-group">
-        <li class="list-group-item">Filter By Price
+      <div class="column">
 
+          <div class="shop-view">
+              <a href="" class="grid-view" [ngClass]="{active: (uiService.displayMode$ | async) === 'grid'}" (click)="onDisplayModeChange('grid', $event)">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </a>
+              <a href="" class="list-view" [ngClass]="{active: (uiService.displayMode$ | async) === 'list'}" (click)="onDisplayModeChange('list', $event)">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </a>
+          </div>
+      </div>
 
+      <div class="shop-sorting">
+        <label for="sorting">Sort by:</label>
+        <select class="form-control" id="sorting" #selectSort (change)="onSort(selectSort.value)">
+            <option value="productDate:reverse" [selected]="(uiService.sorting$ | async) === 'productDate:reverse'">Newest Articles</option>
+            <option value="productPrice" [selected]="(uiService.sorting$ | async) === 'productPrice'">Low - High Price</option>
+            <option value="productPrice:reverse" [selected]="(uiService.sorting$ | async) === 'productPrice:reverse'">High - Low Price</option>
+            <option value="productName" [selected]="(uiService.sorting$ | async) === 'productName'">A - Z Order</option>
+            <option value="productName:reverse" [selected]="(uiService.sorting$ | async) === 'productName:reverse'">Z - A Order</option>
+        </select>
+        <span class="text-muted">Showing:&nbsp;</span>
+        <span>1 - 12 items</span>
+      </div>
 
-        </li>
-
-        <li class="list-group-item">Filter By Date</li>
-
-      </ul>
     </div>
     <div class="col-md-9">
         <div class="search-hero">
@@ -152,16 +176,20 @@
       <div class="container" >
 
         <div class="row" *ngIf="!loading">
+            <div class="product-card" [ngClass]="{'product-list': displayMode === 'list'}">
 
+            <div class="products-list" [ngClass]="{'loading' : productsLoading}">
           <!-- List of Products -->
-          <div class="col-sm-4 mb-2" *ngFor="let product of productList | filterByBrand: selectedBrand | filter:searchText; let i = index">
+          <div class="row" *ngIf="(uiService.displayMode$ | async) === 'grid'">
+
+          <div class="col-sm-4 mb-2" *ngFor="let product of filteredProducts  |filter:searchText; let i = index" >
 
             <div class="item">
               <div class=" mb-r">
                 <!--Card-->
                 <div class="card card-cascade wider">
                   <!--Card image-->
-                  <a [routerLink]="['/products/product', product.id]">
+                  <a [routerLink]="['/product', product.id]">
                     <div class="view overlay hm-white-slight">
                       <img [src]="product.productImage" class="img-fluid" alt="" width="360px" height="640px">
                       <a>
@@ -216,10 +244,78 @@
 
                 </div>
                 <!--/.Card-->
-
+</div>
               </div>
             </div>
+            </div>
           </div>
+          </div>
+
+
+
+            <!-- List of Products -->
+            <div class="row" *ngIf="(uiService.displayMode$ | async) === 'list'">
+
+            <div class="col-sm-4 mb-2" *ngFor="let product of productList   |filter:searchText; let i = index"  >
+
+              <div class="item">
+                <div class=" mb-r">
+                  <!--Card-->
+                  <div class="card card-cascade wider">
+                    <!--Card image-->
+                    <a [routerLink]="['/product', product.id]">
+                      <div class="view overlay hm-white-slight">
+                        <img [src]="product.productImage" class="img-fluid" alt="" width="360px" height="640px">
+                        <a>
+                          <div class="mask waves-effect waves-light" mdbRippleRadius></div>
+                        </a>
+                      </div>
+                    </a>
+                    <!--/.Card image-->
+                    <!--Card content-->
+                    <div class="card-body text-center no-padding">
+                      <!--Category & Title-->
+                      <a class="text-muted">
+                        <h5>{{ product.productCategory }}</h5>
+                      </a>
+                      <p class="card-title">
+                        <strong>
+                          <a [routerLink]="['/product', product.id]" routerLinkActive="router-link-active">{{
+                            product.productName }}</a>
+                        </strong>
+                      </p>
+                      <!--Description-->
+                      <p class="card-text">{{ product.productDescription }}
+                      </p>
+                      <!--Card footer-->
+                      <div class="card-footer">
+                        <span class="left"> {{ product.productPrice }} TND</span>
+                        <span class="right">
+                          <a placement="top" mdbTooltip="Add to Wishlist" container="body">
+                            <i class="fa fa-heart"></i>
+                          </a>
+                          <a placement="top" mdbTooltip="Add to Cart" container="body">
+                            <i class="fa fa-shopping-cart"></i>
+                          </a>
+                          <a placement="top" mdbTooltip="Remove Product" container="body"
+                           >
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </span>
+                      </div>
+
+                    </div>
+                    <!--/.Card content-->
+
+                  </div>
+                  <!--/.Card-->
+  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            </div>
+
         </div>
         <!-- Pagination -->
         <div class="text-center mt-3">
@@ -228,6 +324,25 @@
       </div>
       <!--/.Card-->
     </div>
+
+
+ <!-- Pagination-->
+ <nav *ngIf="pager.pages && pager.pages.length && (uiService.displayMode$ | async) ==='grid'"class="pagination">
+  <div class="column text-left hidden-xs-down">
+      <a class="btn btn-outline-secondary btn-sm" [ngClass]="{disabled:pager.currentPage === 1}" (click)="setPage(pager.currentPage - 1)"><i class="icon-arrow-left"></i>&nbsp;Previous
+      </a>
   </div>
-</div>
+  <div class="column text-center">
+      <ul class="pages">
+          <li *ngFor="let page of pager.pages" [ngClass]="{active: pager.currentPage === page}">
+              <a (click)="setPage(page)">{{page}}</a>
+          </li>
+      </ul>
+  </div>
+  <div class="column text-right hidden-xs-down">
+      <a class="btn btn-outline-secondary btn-sm" [ngClass]="{disabled:pager.currentPage === pager.totalPages}" (click)="setPage(pager.currentPage + 1)">Next&nbsp;
+          <i class="icon-arrow-right"></i>
+      </a>
+  </div>
+</nav>
 

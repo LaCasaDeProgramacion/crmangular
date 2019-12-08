@@ -1,4 +1,8 @@
+import { store } from './stores';
+import { category } from "./category";
+
 export class product{
+  $key?: string;
   id : number ;
   productName : string ;
   productDescription : string ;
@@ -8,8 +12,10 @@ export class product{
   productQuantity : number ;
   productStatus : string ;
   productCategory:string;
+  categories: number[];
   productSeller: string;
-  productDate? : Date ;
+productDate:string = new Date().toISOString().split('T')[0];
+//public category : category;
   category : {
     category_id : number ;
     category_name : string ;
@@ -17,6 +23,12 @@ export class product{
   waeldisplayattributtest?:boolean;
   productnewvalue?:number;
   producthavepromotion?:boolean;
+  store:store;
+
+  store_id:number;
+  category_id:number;
+
+/*
     constructor(productName , productDescription , productPrice , productImage,productCategory , numberOfViews,productQuantity,productStatus,productDate){
       this.productName = productName ;
       this.productDescription = productDescription ;
@@ -27,6 +39,10 @@ export class product{
       this.productStatus = productStatus ;
       this.productDate = productDate ;
       this.productCategory= productCategory;
+
+  }*/
+
+  constructor(){
 
   }
 
