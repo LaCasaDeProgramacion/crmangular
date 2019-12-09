@@ -15,7 +15,24 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private userService:UserService,
     private fb:FormBuilder,
     private router:Router,
-    private modalService: NgbModal) {}
+    private modalService: NgbModal) {
+
+      if ((localStorage['Role']=="ADMIN") || (localStorage['Role']=="VENDOR"))
+      {
+        this.router.navigate(['dashboard']);
+
+      }
+      if ((localStorage['Role']=="CLIENT") || (localStorage['Role']=="PROSPECT"))
+      {
+        this.router.navigate(['home']);
+
+      }
+
+     // localStorage.clear();
+     // userService.logout();
+      console.log("avant de se connecter id = ", localStorage['iduser'])
+
+    }
   closeResult: string;
   public user:User={username:'',password:''};
   public userData : User={role:''};
@@ -41,6 +58,9 @@ export class LoginComponent implements OnInit, OnDestroy {
          localStorage.setItem('Token',data['token']);
          localStorage.setItem('loggedIn','true');
          localStorage.setItem('UserName',data['username']);
+         localStorage.setItem('Picture',data['picture']);
+
+         localStorage.setItem('Role',data['role']);
         if (data['role']== 'ADMIN' || data['role']== 'VENDOR' )
        this.router.navigate(["dashboard"]);
         else

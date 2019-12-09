@@ -11,10 +11,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./model.component.scss']
 })
 export class ModelComponent implements OnInit {
+  searchText;
   carbrands ;
   brand :Carbrand={ brand:''};
-  carmodels;
+
+  collection = { count: null, carmodels:null  };
+  config:any;
+
   model : Carmodel ={id:0,  model:'', carbrand:{id:0, brand:''} };
+  Modeltodelete : Carmodel ={id:0,  model:'', carbrand:{id:0, brand:''} };
   carbrand : Carbrand= {id:0, brand:''};
   closeResult: string;
   closeResult1: string;
@@ -23,6 +28,9 @@ export class ModelComponent implements OnInit {
     private carbrandService:CarbrandService,
     private router: Router) {}
 
+    pageChanged(event){
+      this.config.currentPage = event;
+    }
 //update Modal
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -74,22 +82,38 @@ private getDismissReason1(reason: any): string {
   {
      this.carbrandService.getModels().subscribe(
        data => {
-        this.carmodels =data;
+        this.collection.carmodels =data;
        }
      );
+     this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.collection.count
+    };
   }
 
-  deleteModel(id)
+  openarchive(content,id) {
+
+    this.Modeltodelete.id=id;
+       this.modalService.open(content,{ariaLabelledBy: 'modal1-title-notification'}).result.then((result) => {
+         this.closeResult = `Closed with: ${result}`;
+       }, (reason) => {
+         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+       });
+     }
+  deleteModel()
   {
-    this.carbrandService.DeleteModel(id).subscribe(
+    this.carbrandService.DeleteModel(this.Modeltodelete.id).subscribe(
      response=>
      {
       this.loadCarmodels();
      }
     );
+    this.modalService.dismissAll();
   }
   updateModel(model, id)
   {
+
     console.log("************* model "+model + "  " + id )
     this.carbrandService.updateModel(model, id).subscribe(data=>
       this.loadCarmodels()

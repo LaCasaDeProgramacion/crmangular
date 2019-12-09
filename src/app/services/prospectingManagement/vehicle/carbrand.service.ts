@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Carbrand } from 'src/app/entities/carbrand';
+import { Evenement } from 'src/app/entities/Evenement';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class CarbrandService {
   url = '/crmproject-web/rest/brand/';
   urlModel = '/crmproject-web/rest/model/';
   urlVehicle = '/crmproject-web/rest/vehicule/';
-
+  urlEvent = '/crmproject-web/rest/event/';
   constructor(private http:HttpClient, private router:Router) { }
   getBrands()
   {
@@ -80,6 +81,16 @@ updateVehicle (v:Vehicle)
   return this.http.put<Vehicle>(this.urlVehicle+
     "update?registration="+v.registration+"&color="+v.color
     +"&picture="+v.picture+"&idModel="+v.carmodel.id+"&id="+v.id, null);
+}
+affecterVehicule(idEvent, idVehicule)
+{
+  console.log("**** SERVICE ")
+  console.log(this.url + "reserve?idVehicule="+idVehicule+"&idEvent="+idEvent )
+  return this.http.post<Evenement>(this.urlEvent+ "reserve?idVehicule="+idVehicule+"&idEvent="+idEvent , null);
+}
+getVehiclePerId(id)
+{
+  return this.http.get(this.urlVehicle+"getVehiculeId?id="+ id);
 }
 
 }

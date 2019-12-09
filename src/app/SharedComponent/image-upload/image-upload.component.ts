@@ -7,8 +7,8 @@ import { fileURLToPath } from 'url';
   styleUrls: ['./image-upload.component.scss']
 })
 export class ImageUploadComponent implements OnInit {
-  @Input() imgpacktoupdateinput:string;
-  @Input() isRound: boolean = false;
+    @Input() imgpacktoupdateinput:string;
+    @Input() isRound: boolean = false;
     @Input() image: string;
     state: any = {}
     constructor() {
@@ -24,7 +24,7 @@ export class ImageUploadComponent implements OnInit {
             this.state = {
                 file: null,
                 imagePreviewUrl: this.image !== undefined ? this.image:(this.isRound ? this.imgpacktoupdateinput:this.imgpacktoupdateinput)
-            }    
+            }
         }else {
         this.state = {
             file: null,
@@ -44,7 +44,9 @@ export class ImageUploadComponent implements OnInit {
         reader.readAsDataURL(file);
     }
     handleSubmit(e){
-        e.preventDefault();
+      e.preventDefault();
+      console.log("heeeeeeeyy")
+
         // this.state.file is the file/image uploaded
         // in this function you can save the image (this.state.file) on form submit
         // you have to call it yourself
@@ -55,15 +57,18 @@ export class ImageUploadComponent implements OnInit {
         input.type = "file";
         input.onchange = this.handleImageChange;
         input.click();
-        
+
     }
     handleRemove(){
         this.state.file = null;
         this.state.imagePreviewUrl = this.image !== undefined ? this.image:(this.isRound ? './assets/img/placeholder.jpg':'./assets/img/image_placeholder.jpg');
-       
+
     }
-    message(){
-        console.log("hhhhhhhh")
+
+    message()
+    {
+      console.log("hhhhh")
     }
+
 
 }

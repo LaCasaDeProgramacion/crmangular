@@ -13,6 +13,7 @@ export interface User {
  role ?: string  ;
  dateBirth ?: string ;
  usersCoupon ?:  any[] ;
+ picture ?:string ;
 
 
 }

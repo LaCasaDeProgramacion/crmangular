@@ -10,12 +10,13 @@ dialogFlow: {
   accessToken: 'd4e3dba76ea54a66a04a1aa864daac3c'
 },
 firebaseConfig : {
-  apiKey: "AIzaSyCdZuFwH1qJvbSdpxZhq2K6oSi1xDPtct0",
-  authDomain: "imagemap-2eca3.firebaseapp.com",
-  databaseURL: "https://imagemap-2eca3.firebaseio.com",
-  projectId: "imagemap-2eca3",
-  storageBucket: "imagemap-2eca3.appspot.com",
-  messagingSenderId: "371354114002",
-  appId: "1:371354114002:web:63c2ad8e835ffee641da0b"
+  apiKey: "AIzaSyAIvyZ_y1wNO0MXhDGhKoBjYc_VrCBQIhU",
+    authDomain: "angulargalery.firebaseapp.com",
+    databaseURL: "https://angulargalery.firebaseio.com",
+    projectId: "angulargalery",
+    storageBucket: "angulargalery.appspot.com",
+    messagingSenderId: "846145992041",
+    appId: "1:846145992041:web:0715512349afc97a7579f8",
+    measurementId: "G-TBV5YJFQ9G"
 }
 }

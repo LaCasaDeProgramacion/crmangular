@@ -1,0 +1,163 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
+url(assets/img/theme/4.jpg);
+background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-12 col-md-10">
+        <h1 class="display-2 text-white">Agents</h1>
+      </div>
+    </div>
+  </div>
+
+</div>
+<form #agentForm="ngForm">
+  <div class="container-fluid mt--7">
+    <div class=" order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Add Agent</h3>
+            </div>
+            <div class="col-4 text-right">
+
+              <div class=" text-right">
+
+                <a class="btn  btn-default float-right text-white" (click)="onclickenvoyer($event)">Next</a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <h6 class="heading-small text-muted mb-4">Agent information</h6>
+            <div class="pl-lg-4">
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">First name </label> &nbsp;  <span class="icon-danger text-orange">*</span>
+                    <input type="text" class="form-control form-control-alternative" placeholder="First name"
+                      name="firstName" [(ngModel)]="agent.firstName" #firstNameID="ngModel" required>
+                      <div *ngIf="firstNameID.invalid && firstNameID.touched ">
+                          <div *ngIf ="firstNameID?.errors.required">
+                              Required
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Last name</label> &nbsp;  <span class="icon-danger text-orange">*</span>
+                    <input type="text" class="form-control form-control-alternative" placeholder="Last name"
+                      name="lastName" [(ngModel)]="agent.lastName" #lastNameID="ngModel" required>
+                      <div *ngIf="lastNameID.invalid && lastNameID.touched ">
+                          <div *ngIf ="lastNameID?.errors.required">
+                              Required
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Cin</label> &nbsp;  <span class="icon-danger text-orange">*</span>
+                    <input type="text" class="form-control form-control-alternative" placeholder="Cin" name="cin"
+                      [(ngModel)]="agent.cin" #cinID="ngModel" required>
+                      <div *ngIf="cinID.invalid && cinID.touched ">
+                          <div *ngIf ="cinID?.errors.required">
+                              Required
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Date of Birth</label>
+                    <input type="date" class="form-control form-control-alternative" name="dateBirth"
+                      [(ngModel)]="agent.dateBirth" #dateBirthID="ngModel" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Contact information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Email</label> &nbsp;  <span class="icon-danger text-orange">*</span>
+                    <input class="form-control form-control-alternative" placeholder="Email" type="text" name="email"
+                      [(ngModel)]="agent.email" #emailID="ngModel" required
+                      pattern="[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" >
+                      <div *ngIf="emailID.invalid && emailID.touched ">
+                          <div *ngIf ="emailID?.errors.required">
+                              Required
+                          </div>
+                          <div *ngIf ="emailID?.errors.pattern">
+                              Invalid
+                       </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-city">Phone Number</label> &nbsp;  <span class="icon-danger text-orange">*</span>
+                    <input type="text" class="form-control form-control-alternative" placeholder="Number" name="number"
+                      [(ngModel)]="agent.Number" #numberID="ngModel" required minlength="8" maxlength="8">
+                      <div *ngIf="numberID.invalid && numberID.touched ">
+                          <div *ngIf ="numberID?.errors.required">
+                              Required
+                          </div>
+                          <div *ngIf ="numberID?.errors.minlength ||  numberID?.errors.maxlength">
+                              Min Length 8
+                      </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-country">Driven Licence</label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios"
+                        [(ngModel)]="agent.drivenLicence" value="true" #drivenTrue="ngModel" required checked>
+                      <label class="form-check-label" for="exampleRadios1">
+                        No
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios"
+                        [(ngModel)]="agent.drivenLicence" value="false" #drivenFalse="ngModel" required>
+                      <label class="form-check-label" for="exampleRadios2">
+                        Yes
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Description -->
+            <h6 class="heading-small text-muted mb-4">Add Picture</h6>
+            <div class="pl-lg-2 ">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <app-image-upload [isRound]="true"></app-image-upload>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

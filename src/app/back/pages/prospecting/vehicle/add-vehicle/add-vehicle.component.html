@@ -1,0 +1,155 @@
+<ng-template #confirmAdd let-modal1>
+  <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification">
+    <div class="modal-danger" role="document">
+      <div class="modal-content bg-gradient-danger">
+        <div class="modal-header">
+          <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+          <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="py-3 text-center">
+            <i class="ni ni-bell-55 ni-3x"></i>
+            <h4 class="heading mt-4">Confirmation Alert</h4>
+            <p>Your Vehicle is added.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white">Ok, Got it</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
+    url(assets/img/theme/carBrands.jpg);
+    background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Vehicles </h1>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+
+            <div class="col-2">
+              <a routerLink="/back/vehicles" class="btn btn-sm btn-primary text-white">
+                <i class="ni ni-fat-add"></i>
+                <span>New Vehicle</span>
+              </a>
+            </div>
+            <div class="col-2">
+              <a routerLink="/back/vehicles" class="btn btn-sm btn-primary">
+                <i class="ni ni-ungroup"></i>
+                <span>Vehicles</span>
+              </a>
+            </div>
+            <div class="col-2">
+              <a routerLink="/back/carbrands" class="btn btn-sm btn-primary">
+                <i class="ni ni-ungroup"></i>
+                <span>Brands</span>
+              </a>
+            </div>
+            <div class="col-2">
+              <a routerLink="/back/models" class="btn btn-sm btn-primary">
+                <i class="ni ni-ungroup"></i>
+                <span>Models</span>
+              </a>
+            </div>
+            <div class="col-4">
+              <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                placeholder="Search">
+            </div>
+          </div>
+        </div>
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Add Vehicle</h3>
+        </div>
+        <div class="container">
+
+          <form #userForm="ngForm">
+            <div class="row">
+              <div class="col-md-5 col-sm-5">
+                <br>
+                <h6>Picture</h6>
+                <app-image-upload></app-image-upload>
+
+                <!-- <tag-input [(ngModel)]='tagItems' theme='regular-theme' name="tagItems"></tag-input>
+
+                                            <h6>Categories</h6>
+                                            <tag-input [(ngModel)]='categories' name="categories" theme='regular-theme'></tag-input>-->
+              </div>
+
+              <div class="col-md-7 col-sm-7">
+                <div class="form-group">
+                  <br>
+                  <h6>Model <span class="icon-danger text-orange"> &nbsp; *</span></h6>
+                  <select class="custom-select" name="model" [(ngModel)]="vehicle.carmodel.id" #modelId="ngModel"
+                    required>
+                    <option selected>Choose</option>
+                    <ng-container *ngFor="let m of carmodels">
+                      <option value="{{m.id}}">{{m.carbrand.brand}} &nbsp; {{m.model}}</option>
+                    </ng-container>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <h6>Color<span class="icon-danger text-orange">&nbsp; *</span></h6>
+                  <input type="text" class="form-control border-input" placeholder="Color" name="color"
+                    [(ngModel)]="vehicle.color" #colotId="ngModel" required>
+                </div>
+                <ng-container *ngIf="colotId.invalid && colotId.touched " class="input-group">
+                  <ng-container *ngIf="colotId?.errors.required" class="form-control">
+                    <ng-container> Color Required </ng-container>
+                  </ng-container>
+                </ng-container>
+                <div class="form-group">
+                  <h6>Registration<span class="icon-danger text-orange">&nbsp; *</span></h6>
+                  <input type="text" class="form-control border-input" placeholder="Registration" name="Registration"
+                    [(ngModel)]="vehicle.registration" #RegistrationID="ngModel" required
+                    pattern="[0-9]+[a-zA-Z]+[0-9]+$">
+                </div>
+                <ng-container *ngIf="RegistrationID.invalid && RegistrationID.touched " class="input-group">
+                  <ng-container *ngIf="RegistrationID?.errors.required" class="form-control">
+                    <ng-container> Registration Required </ng-container>
+                  </ng-container>
+                  <ng-container *ngIf="RegistrationID?.errors.pattern" class="form-control">
+                    <ng-container> Invalid </ng-container>
+                  </ng-container>
+                </ng-container>
+                <div class="row buttons-row">
+                  <div class="col-md-4 col-sm-4">
+                    <button class="btn btn-outline-danger btn-block btn-round"
+                      (click)="onclickenvoyer($event, confirmAdd)">Add</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+
+
+        <br><br>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

@@ -3,6 +3,8 @@ import { MycomplaintsComponent } from './front/complaints/mycomplaints/mycomplai
 import { AllcomplaintsComponent } from './front/complaints/allcomplaints/allcomplaints.component';
 import { ProductDetailComponent } from './front/pages/products/product-detail/product-detail.component';
 import { FortuneWheelComponent } from './front/pages/products/fortune-wheel/fortune-wheel.component';
+import { EventsFrontComponent } from './front/events-front/events-front.component';
+import { AllForumsComponent } from './front/forum/all-forums/all-forums.component';
 
 import { ProductsListComponent } from './front/pages/products/products-list/products-list.component';
 import { ProductsComponent } from './front/pages/products/products.component';
@@ -24,7 +26,7 @@ import { ComplaintDetailsComponent } from './front/complaints/complaint-details/
 const routes: Routes =[
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   { path: 'home', component: HomeComponent},
@@ -44,6 +46,11 @@ const routes: Routes =[
     path: 'product/:id',
     component: ProductDetailComponent
   },
+  { path: 'home/allTopics/:id', component: AllTopicsComponent},
+  { path: 'home/singleTopic/:id', component: SingleTopicComponent},
+  { path: 'home/allForums', component: AllForumsComponent},
+  { path: 'home/EventsFront', component: EventsFrontComponent},
+
   {
     path: '',
     component: AdminLayoutComponent,

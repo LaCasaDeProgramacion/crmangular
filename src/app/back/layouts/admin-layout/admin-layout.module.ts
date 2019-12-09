@@ -4,11 +4,15 @@ import { ComplaintDetailComponent } from './../../pages/Complaints/complaint-det
 import { ComboBoxModule } from '@syncfusion/ej2-angular-dropdowns';
 import { ServicesLinesComponent } from './../../pages/TelLines/services-lines/services-lines.component';
 import { TelephonelinesComponent } from './../../pages/TelLines/telephonelines/telephonelines.component';
-import { ImageComponent } from './../../pages/prospecting/images/image/image.component';
+
 import { ProductChartComponent } from './../../pages/products/product-chart/product-chart.component';
 import { EditStoreComponent } from './../../pages/stores/edit-store/edit-store.component';
 import { ListStoreComponent } from './../../pages/stores/list-store/list-store.component';
 
+import { UpdateVehicleComponent } from './../../pages/prospecting/vehicle/update-vehicle/update-vehicle.component';
+import { ForumComponent } from './../../pages/prospecting/forum/forum.component';
+import { AddContractComponent } from './../../pages/prospecting/agent/add-contract/add-contract.component';
+import { AddAgentComponent } from './../../pages/prospecting/agent/add-agent/add-agent.component';
 
 import { AddStoreComponent } from './../../pages/stores/add-store/add-store.component';
 import { MapStoreComponent } from './../../pages/stores/map-store/map-store.component';
@@ -60,9 +64,15 @@ import { FilterPipe } from 'src/app/front/pipes/filter.pipe';
 import { ProductEditComponent } from '../../pages/products/product-edit/product-edit.component';
 import { CategoriesComponent } from '../../pages/categories/categories.component';
 
+import { AddVehicleComponent } from '../../pages/prospecting/vehicle/add-vehicle/add-vehicle.component';
+
 // import { ToastrModule } from 'ngx-toastr';
-
-
+import { ScheduleModule, RecurrenceEditorModule , DayService, WeekService,
+         WorkWeekService, MonthService, MonthAgendaService
+          , DragAndDropService, ResizeService} from '@syncfusion/ej2-angular-schedule';
+  import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+  import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { EventCalendarComponent } from '../../pages/prospecting/event-calendar/event-calendar.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -71,7 +81,6 @@ import { CategoriesComponent } from '../../pages/categories/categories.component
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-
     ReactiveFormsModule,
     Ng2SearchPipeModule,
     ComboBoxModule,
@@ -87,6 +96,12 @@ import { CategoriesComponent } from '../../pages/categories/categories.component
 
     ReactiveFormsModule,
 
+    ImageUploadModule,
+    SelectbootstrapModule,
+    JwBootstrapSwitchNg2Module,
+    NgxPaginationModule,
+    ScheduleModule, RecurrenceEditorModule,
+    DropDownListModule, DateTimePickerModule
   ],
   declarations: [
     DashboardComponent,
@@ -122,12 +137,11 @@ MapStoreComponent,
     AddPackComponent,
     ArchiveListComponent,
     UpdatePackComponent,
-
     ListPromotionComponent,
     AddPromotionComponent,
     UpdatePromotionComponent,
 
-    ImageComponent,
+
     FilterPipe,
     ProductEditComponent,
     ListStoreComponent,
@@ -137,15 +151,24 @@ MapStoreComponent,
 
 
 
+
+    AddVehicleComponent,
+    AddAgentComponent,
+    AddContractComponent,
+    ForumComponent,
+    EventCalendarComponent,
+    UpdateVehicleComponent,
   ],
   exports: [
     Ng2SearchPipeModule,
+    NgxPaginationModule,
     ComboBoxModule,
     GridModule,
-    NgxPaginationModule,
-
-
-  ]
+  ],
+  providers: [
+    DayService, WeekService,
+    WorkWeekService, MonthService, MonthAgendaService, DragAndDropService, ResizeService
+  ],
 })
 
 export class AdminLayoutModule {}

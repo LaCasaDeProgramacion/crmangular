@@ -4,16 +4,17 @@
     <div class="row row-grid align-items-center">
       <div class="col-md-6">
         <div class="card bg-default shadow border-0">
-          <img src="../../../assets/front/img/theme/img-1-1200x1000.jpg" class="card-img-top">
+          <img [src]="topic.forum.picture" class="card-img-top">
         </div>
       </div>
       <div class="col-md-6">
         <div class="pl-md-5">
-          <h3 class="h4 text-default font-weight-bold mb-4">Title
-            <small class="d-block"> <i class="fa fa-heart"></i> 10 </small>
+          <h3 class="h4 text-default font-weight-bold mb-4"> {{topic.forum.name}}
+            <small class="d-block">  {{topic.title}} </small>
+            <small class="d-block"> <i class="fa fa-eye"></i> {{topic.nb_seen}} </small>
+
           </h3>
-          <p class="lead">Don't let your uses guess by attaching tooltips and popoves to any element. Just make sure
-            you enable them first via JavaScript.</p>
+          <p class="lead"> {{topic.forum.description}} </p>
         </div>
       </div>
     </div>
@@ -22,54 +23,69 @@
 <section class="section section-components">
   <div class="container">
     <!-- comments -->
-    <h5> 2 comments &nbsp; <i class="fa fa-comment"></i></h5>
-    <div class="row py-3 align-items-center">
-      <div class="col-sm-1">
-        <img src="./assets/img/theme/team-2-800x800.jpg" alt="Circle image" class="img-fluid rounded-circle shadow"
-          style="width: 150px;"> <br>
-        &nbsp; <small class="d-block text-uppercase font-weight-bold mb-4">Dorra </small>
-      </div>
-      <div class="col-sm-9">
-        <p>I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I
-          understand culture. </p>
+    <h5 class="text-primary"> {{nb}} comments &nbsp; <i class="fa fa-comment"></i></h5>
+
+    <div *ngFor="let post of topic.posts">
+      <div class="row py-3 align-items-center">
+        <div class="col-sm-1">
+          <img [src]="post.user.picture" alt="Circle image" class="img-fluid rounded-circle shadow"
+            style="width: 150px;"> <br>
+          &nbsp; <small class="d-block text-uppercase font-weight-bold mb-4">{{post.user.firstName}} </small>
+        </div>
+        <div class="col-sm-9">
+          <p> {{post.text}} </p>
+          <ng-container *ngIf= "idUser== post.user.id">
+              <small class="text-warning" (click)="openarchive(contentConfirm)">delete</small>
+              <ng-template #contentConfirm let-modal>
+                  <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification">
+                    <div class="modal-danger" role="document">
+                      <div class="modal-content bg-gradient-danger">
+                        <div class="modal-header">
+                          <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+                          <button type="button" class="close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="py-3 text-center">
+                            <i class="ni ni-bell-55 ni-3x"></i>
+                            <h4 class="heading mt-4">Confirm Alert</h4>
+                            <p>Would you like to remove your post ? </p>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" (click)="deletePost(post.id)" class="btn btn-white">Confirm</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+          </ng-container>
+        </div>
       </div>
     </div>
-    <div class="row py-3 align-items-center">
-      <div class="col-sm-1">
-        <img src="./assets/img/theme/team-2-800x800.jpg" alt="Circle image" class="img-fluid rounded-circle shadow"
-          style="width: 150px;"> <br>
-        &nbsp; <small class="d-block text-uppercase font-weight-bold mb-4">Dorra </small>
-      </div>
-      <div class="col-sm-9">
-        <p>I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I
-          understand culture. </p>
-      </div>
-    </div>
+
   </div>
 
-  <!-- reply -->
-  <div class="container">
-    <h5> Write a response &nbsp; <i class="fa fa-reply"></i></h5>
-    <div class="row py-3 align-items-center">
-        <textarea class="form-control form-control-alternative" name="name" rows="4" cols="80"
-        placeholder="Type a comment..."></textarea>
-    </div>
-  </div>
 </section>
 <section class="section section-lg pt-0">
     <div class="container">
       <div class="card bg-gradient-warning shadow-lg border-0">
         <div class="p-5">
+        <form>
           <div class="row align-items-center">
             <div class="col-lg-8">
               <h3 class="text-white">Write a response &nbsp; <i class="fa fa-reply"></i></h3>
-              <textarea class="form-control form-control-alternative" name="name" rows="4" cols="80"
-              placeholder="Response .."></textarea>
+
+              <textarea class="form-control form-control-alternative" name="post" #post rows="4" cols="80"
+              placeholder="Response .."  ></textarea>
             </div>
             <div class="col-lg-3 ml-lg-auto">
-              <a class="btn btn-lg btn-block btn-white">Send</a>
+              <button type="button" class="btn btn-lg btn-block btn-white" (click)="addResponse(post.value)">Send</button >
             </div>
           </div>
+        </form>
         </div>
       </div>
     </div>

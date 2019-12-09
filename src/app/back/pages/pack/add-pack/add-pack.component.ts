@@ -78,8 +78,8 @@ getBestpackforToday(){
   })
 }
 packForm = new FormGroup(
-  { 
- 
+  {
+
     'title' : new FormControl(),
     'description' : new FormControl(),
     'image' : new FormControl(),
@@ -105,7 +105,7 @@ onclickenvoyer(e){
   this.testComponent.message()
   var pictureinfo :any[] =this.testComponent.handleSubmit(e);
   console.log(pictureinfo);
-  
+
   var info:Pack={title:'',description:'', picture:'', validfrom:null, validuntil:null};
   info.title=this.gettitle.value;
   info.description=this.getdescription.value;
@@ -134,14 +134,14 @@ onclickenvoyer(e){
       })
     })
   ).subscribe();
-  
+
   console.log(info);
 }
 getlistProducttoassign(){
   this.productService.getProducts().subscribe(
     (Data) => {
       this.productList = Data ;
-      
+
       console.log("products"+Data);
     }
    )
@@ -162,7 +162,7 @@ Removefrompack(product){
     product.waeldisplayattributtest=false;
     console.log(this.productlistToAddtoPack);
     this.lengthlist=this.productlistToAddtoPack.length;
-    
+
 }
 toggleVisibility(){
 this.hideproducts=!this.hideproducts;
@@ -176,12 +176,12 @@ AssignproductstoPack(){
 this.packservice.AssignProductssToPack(this.packidtoaddproduct,this.productids).subscribe(
   (Data) => {
 
-    
+
     console.log(Data);
   });
       }
 
-  } 
+  }
 
 
 }

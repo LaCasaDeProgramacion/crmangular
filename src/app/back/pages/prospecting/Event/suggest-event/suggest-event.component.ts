@@ -2,7 +2,7 @@ import { element } from 'protractor';
 import { Evenement } from 'src/app/entities/Evenement';
 import { EventService } from './../../../../../services/prospectingManagement/event.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Vehicle } from 'src/app/entities/Vehicle';
 import { Agent } from 'src/app/entities/Agent';
 
@@ -20,10 +20,16 @@ export class SuggestEventComponent implements OnInit {
 
   assignementsAgents;
   agent: Agent = {firstName:'', lastName:''};
- agents : {firstName:'', lastName:''}[] = [];
-  constructor(private route: ActivatedRoute, private EventService:EventService) {
+  agents : {firstName:'', lastName:''}[] = [];
+
+  id ;
+  constructor(private route: ActivatedRoute, private EventService:EventService, private router:Router) {
+    this.route.paramMap.subscribe(params => {
+      this.id = params.get("id")
+    });
     this.loadEvent();
     this.loadVehicleAttente();
+    this.loadAgentsAttente();
    }
 
   ngOnInit() {
@@ -31,7 +37,7 @@ export class SuggestEventComponent implements OnInit {
 
   loadEvent()
   {
-    this.EventService.proposition().subscribe(
+    this.EventService.getEventById(this.id).subscribe(
       data => {
         this.event= data ;
       }
@@ -89,18 +95,21 @@ export class SuggestEventComponent implements OnInit {
 
       }
     );
-
-
   }
 
   accepter ()
   {
     this.EventService.accepter( this.event.id)
-    console.log("accepted " + this.event.id )
+      .subscribe(arg => {console.log(arg);
+        this.loadEvent();
+        this.router.navigate(['back/events']);});
   }
   refuser()
   {
-    this.EventService.refuser( this.event.id)
+    this.EventService.refuser( this.event.id).subscribe(arg => {console.log(arg);
+      this.loadEvent();
+      this.router.navigate(['back/events']);
+    });
     console.log("refused" + this.event.id )
   }
 

@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit {
     }
     onSubmitPass(){
       console.log(this.user.username +"   "+ this.NewPassword)
-      this.userService.UpdatePass(this.user.username, this.NewPassword);
+      this.userService.UpdatePass(this.user.username, this.NewPassword).subscribe(data=> console.log(data));
     }
 
     loadUser()
@@ -39,6 +39,7 @@ export class UserProfileComponent implements OnInit {
         this.user.lastName=data['lastName'];
         this.user.role=data['role'];
         this.user.dateBirth=data['dateBirth'];
+        this.user.picture = data['picture'];
       });
     }
 }

@@ -13,6 +13,8 @@ import { ProductSliderComponent } from './front/pages/products/product-slider/pr
 import { UiService } from './services/products/ui.service';
 import { SortPipe } from './front/pipes/sort.pipe';
 import { PagerService } from './services/pager/pager.service';
+import { EventsFrontComponent } from './front/events-front/events-front.component';
+import { AllForumsComponent } from './front/forum/all-forums/all-forums.component';
 
 import { ChatComponent } from './front/pages/chat/chat.component';
 import { ProductsListComponent } from './front/pages/products/products-list/products-list.component';
@@ -52,7 +54,6 @@ import { ComboBoxModule } from '@syncfusion/ej2-angular-dropdowns';
 import { AddPackComponent } from './back/pages/pack/add-pack/add-pack.component';
 import { ListPackComponent } from './back/pages/pack/list-pack/list-pack.component';
 import { DatePipe } from '@angular/common';
-
 import { ImageUploadModule } from './SharedComponent/image-upload/image-upload.module';
 import { ArchiveListComponent } from './back/pages/pack/archive-list/archive-list.component';
 import { UpdatePackComponent } from './back/pages/pack/update-pack/update-pack.component';
@@ -60,13 +61,6 @@ import { AddPromotionComponent } from './back/pages/promotion/add-promotion/add-
 import { ListPromotionComponent } from './back/pages/promotion/list-promotion/list-promotion.component';
 import { SelectbootstrapComponent } from './SharedComponent/selectbootstrap/selectbootstrap.component';
 import { SelectbootstrapModule } from './SharedComponent/selectbootstrap/selectbootstrap.module';
-
-
-
-
-import { ImageComponent } from './back/pages/prospecting/images/image/image.component';
-import { ImagesListComponent } from './back/pages/prospecting/images/images-list/images-list.component';
-
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
@@ -99,8 +93,6 @@ import { ProductChartComponent } from './back/pages/products/product-chart/produ
     Ng2SearchPipeModule,
     MatButtonModule,
      MatDialogModule,
-
-
     ReactiveFormsModule,
     ComboBoxModule,
 
@@ -133,6 +125,14 @@ import { ProductChartComponent } from './back/pages/products/product-chart/produ
 
 
 
+    /********** new **********/
+    TopicsComponent,
+    FrontNavComponent,
+    FrontFooterComponent,
+    AllTopicsComponent,
+    SingleTopicComponent,
+    AllForumsComponent,
+    EventsFrontComponent,
 
 
 

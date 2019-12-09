@@ -1,0 +1,145 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
+url(assets/img/theme/event.jpg);
+background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Events</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="card-header border-0">
+            <div class="row align-items-center">
+              <h3> Events Calendar</h3>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+            <ejs-schedule #scheduleObj width='100%' height='100%' [selectedDate]="selectedDate" [currentView]="'Month'"
+              [eventSettings]="eventSettings" (popupOpen)="onPopupOpen($event)">
+              <!--  Modal Add  -->
+              <ng-template #content1 let-modal1>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal1-basic-title">Add Event</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="dateOfBirth">Name</label>
+                      <div class="input-group">
+                        <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="dateOfBirth">Start Date</label>
+                      <div class="input-group">
+                        <input id="dateOfBirth" class="form-control" name="dp" type="datetime" #dp>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="dateOfBirth">End Date</label>
+                      <div class="input-group">
+                        <input id="dateOfBirth" class="form-control" name="dp" type="datetime" #dp>
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark">Save</button>
+                  <button type="button" class="btn btn-outline-dark" (click)="modal1.close('Save click')">Close</button>
+
+                </div>
+              </ng-template>
+
+
+
+              <!-- Content Template -->
+              <ng-template #editorTemplate let-data>
+                <table class="custom-event-editor" width="100%" cellpadding="5">
+                  <tbody>
+                    <tr>
+                      <td class="e-textlabel">Title</td>
+                      <td colspan="4">
+                        <input id="Subject" class="e-field e-input" type="text" value="" name="Subject"
+                          style="width: 100%" [(ngModel)]="event.name" />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="e-textlabel">From</td>
+                      <td colspan="4">
+                        <input id="StartTime" class="e-field" type="text" name="StartTime" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="e-textlabel">To</td>
+                      <td colspan="4">
+                        <input id="EndTime" class="e-field" type="text" name="EndTime" />
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <ng-container *ngIf="data.id != null">
+                  <nav>
+                    <button (click)="onDeleteClick($event)"> Remove </button>
+                    <button > Update </button>
+
+                  </nav>
+                </ng-container>
+                <ng-container *ngIf="data.id == null">
+                  <nav>
+                    <button (click)="onAddClick($event)"> Save </button>
+                  </nav>
+                </ng-container>
+
+
+              </ng-template>
+
+
+              <!-- Footer Template -->
+              <ng-template #quickInfoTemplatesFooter let-data>
+                <div *ngIf="data.elementType == 'cell'" class="e-cell-footer">
+                  <div class="left-button">
+                    <button class="e-event-details" title="Extra Details" (click)="onDetailsClick($event)">More
+                      Details</button>
+                  </div>
+                  <div class="right-button">
+                    <button class="e-event-create" title="Add" (click)="onAddClick($event)">Add</button>
+                  </div>
+                </div>
+                <div *ngIf="data.elementType == 'event'" class="e-event-footer">
+                  <div class="left-button">
+                    <button class="e-delete" title="Delete" (click)="onDeleteClick($event)">Delete</button>
+                    <button *ngIf="data.RecurrenceRule != undefined && data.RecurrenceRule != ''"
+                      class="e-delete-series" title="Delete" (click)="onDeleteClick($event)">Delete Series</button>
+                  </div>
+                  <div class="right-button">
+                    <button class="e-edit" title="Edit" (click)="onEditClick($event)">Edit</button>
+                    <button *ngIf="data.RecurrenceRule != undefined && data.RecurrenceRule != ''" class="e-edit-series"
+                      title="Edit" (click)="onEditClick($event)">Edit Series</button>
+                  </div>
+                </div>
+              </ng-template>
+            </ejs-schedule>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,12 +1,16 @@
 export interface Agent {
   id ?:number ;
   cin ?:number ;
-  Number ?:number ;
   firstName ?:string ;
   lastName ?:string ;
-  email ?:string ;
-  dateBirth ?:string ;
+  dateBirth ?:Date ;
   role ?:string ;
+
+  Number ?:number ;
+  email ?:string ;
+  drivenLicence  ?:Boolean ;
+
+  picture ?:string ;
+
   accessPerm ?:string ;
-  drivenLicence  ?:string ;
 }

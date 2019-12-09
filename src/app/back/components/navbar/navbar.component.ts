@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   public listTitles: any[];
   public location: Location;
   UserName=localStorage.getItem('UserName');
-
+  picture= localStorage.getItem('Picture');
   constructor(location: Location,  private element: ElementRef, private router: Router,private userService:UserService) {
     this.location = location;
   }
@@ -41,6 +41,8 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('Token');
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('UserName');
+    localStorage.removeItem('Role');
+
     this.userService.logout().subscribe(
       (data) =>
       {

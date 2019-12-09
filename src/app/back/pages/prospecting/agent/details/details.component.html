@@ -1,3 +1,30 @@
+<ng-template #confirmContent let-modal1>
+    <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification">
+      <div class="modal-danger" role="document">
+        <div class="modal-content bg-gradient-danger">
+          <div class="modal-header">
+            <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+            <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="py-3 text-center">
+              <i class="ni ni-bell-55 ni-3x"></i>
+              <h4 class="heading mt-4">Alert Operation</h4>
+              <p>Affected To This Event.</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white">Ok, Got it</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+
+
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
 url(assets/img/theme/4.jpg);
 background-size: cover; background-position: center top;">
@@ -13,6 +40,58 @@ background-size: cover; background-position: center top;">
   </div>
 
 </div>
+
+<!--  Modal Dispo  -->
+<ng-template  #dispoContent let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reserve for</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Events</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let e of events">
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="mb-0 text-sm"> {{e.name}} </span>
+                        </div>
+                      </div>
+                    </th>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                            <a (click)="redirection(e.id)" class="btn btn-sm btn-primary mr-4 text-white ">Details</a>
+                          </div>
+                      </div>
+                    </th>
+                     <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                            <a  class="btn btn-sm btn-info mr-4 text-white" (click)="reserver(e.id, confirmContent)">Reserve</a>
+                        </div>
+                      </div>
+                    </th>
+
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+        </div>
+</ng-template>
+
 <!-- Page content -->
 
 <div class="container-fluid mt--7">
@@ -24,14 +103,14 @@ background-size: cover; background-position: center top;">
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
               <a href="javascript:void(0)">
-                <img src="assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                <img [src]="contract.agent.picture" class="rounded-circle">
               </a>
             </div>
           </div>
         </div>
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="d-flex justify-content-between">
-            <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Reserve</a>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4" (click)="openReser(dispoContent)">Reserve</a>
             <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a>
           </div>
         </div>
@@ -39,16 +118,16 @@ background-size: cover; background-position: center top;">
           <div class="text-center">
             <br> <br>
             <h4>
-              Dorra BA<span class="font-weight-light">, ROLE </span>
+              {{contract.agent.firstName}} &nbsp; {{contract.agent.lastName}}<span class="font-weight-light">, {{contract.agent.role}} </span>
             </h4>
             <div class="h6 font-weight-300">
-              <i class="ni location_pin mr-2"></i> 22 ans
+              <i class="ni location_pin mr-2"></i> {{contract.agent.dateBirth}}
             </div>
             <div class="h6 mt-4">
-              <i class="ni business_briefcase-24 mr-2"></i> Dorra.benabid@esprit.tn
+              <i class="ni business_briefcase-24 mr-2"></i> {{contract.agent.email}}
             </div>
             <div>
-              <i class="ni education_hat mr-2"></i> + 216 50 727 838
+              <i class="ni education_hat mr-2"></i> {{contract.agent.Number}}
             </div>
             <hr class="my-4" />
             <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all
@@ -81,7 +160,7 @@ background-size: cover; background-position: center top;">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">Title : &nbsp;</label>
-                    <label class="form-control-label" for="input-username">Contract 1</label>
+                    <label class="form-control-label" for="input-username">{{contract.title}}</label>
                   </div>
                 </div>
               </div>
@@ -90,13 +169,13 @@ background-size: cover; background-position: center top;">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Start Date : &nbsp;</label>
-                    <label class="form-control-label" for="input-email">25-11-2019</label>
+                    <label class="form-control-label" for="input-email">{{contract.startDate}}</label>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">End Date : &nbsp;</label>
-                    <label class="form-control-label" for="input-email">30-11-2019</label>
+                    <label class="form-control-label" for="input-email">{{contract.endDate}}</label>
                   </div>
                 </div>
               </div>
@@ -108,24 +187,18 @@ background-size: cover; background-position: center top;">
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Salary : &nbsp;</label>
-                    <label class="form-control-label" for="input-address">2000 dt</label>
+                    <label class="form-control-label" for="input-address">{{contract.salary}} dt</label>
                   </div>
                 </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-address">Status : &nbsp;</label>
-                    <label class="form-control-label" for="input-address">Started</label>
-                  </div>
-                </div>
+
               </div>
             </div>
             <hr class="my-4" />
             <!-- Comment -->
             <div class="pl-lg-4">
               <div class="form-group">
-                <h6>Comment</h6> <br>
-                A beautiful Dashboard for Bootstrap 4. <br>
-                It is Free and Open Source.
+                <h6>Description</h6> <br>
+                {{contract.comment}}
               </div>
             </div>
           </form>
@@ -133,4 +206,6 @@ background-size: cover; background-position: center top;">
       </div>
     </div>
   </div>
+
 </div>
+

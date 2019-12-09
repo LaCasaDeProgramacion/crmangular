@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 import { chartOptions, parseOptions, chartExample2, chartExample1 } from '../../variables/charts';
@@ -16,7 +17,13 @@ export class DashboardComponent implements OnInit {
   public clicked: boolean = true;
   public clicked1: boolean = false;
 
-  constructor() { }
+  constructor( private router: Router) {
+      if (localStorage['Role']!= "ADMIN")
+      {
+        this.router.navigate(['login']);
+      }
+
+   }
 
   ngOnInit() {
 

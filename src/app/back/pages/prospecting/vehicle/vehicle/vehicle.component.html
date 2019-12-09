@@ -12,143 +12,149 @@ background-size: cover; background-position: center top;">
     </div>
   </div>
 </div>
-<!-- Modal Delete-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Vehicle</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Would you like to remove this vehicle ?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn bg-gradient-danger">Confirm</button>
+<!-- confirm -->
+<ng-template #confirmModal let-modal1>
+    <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification">
+      <div class="modal-danger" role="document">
+        <div class="modal-content bg-gradient-danger">
+          <div class="modal-header">
+            <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+            <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="py-3 text-center">
+              <i class="ni ni-bell-55 ni-3x"></i>
+              <h4 class="heading mt-4"> Operation</h4>
+              <p>Your Vehicle is Reserved .</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white">Ok</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<!--  Modal update  -->
-<ng-template #content let-modal>
+  </ng-template>
+<!-- Modal Delete-->
+<ng-template #contenttwo let-modal1>
+    <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification">
+      <div class="modal-danger" role="document">
+        <div class="modal-content bg-gradient-danger">
+          <div class="modal-header">
+            <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+            <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="py-3 text-center">
+              <i class="ni ni-bell-55 ni-3x"></i>
+              <h4 class="heading mt-4">Delete Operation</h4>
+              <p>Are you sure want to Delete this Vehicle.</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white" (click)="delete()">Ok, Got it</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+<!--  Modal Dispo  -->
+<ng-template #dispoContent let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Update Vehicle</h4>
+    <h4 class="modal-title" id="modal-basic-title">Reserve for</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <label for="dateOfBirth">Model</label>
-        <div class="input-group">
-          <div class="input-group">
-            <select class="custom-select custom-select-sm">
-              <option selected>Open this select menu</option>
-              <option value="1">Ford Figo</option>
-              <option value="2">Toyota Camry</option>
-            </select>
-          </div>
-        </div>
-        <label for="dateOfBirth">Color</label>
-        <div class="input-group">
-          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
-        </div>
-        <label for="dateOfBirth">Registration</label>
-        <div class="input-group">
-          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
-        </div>
-        <label for="dateOfBirth">Picture</label>
-        <div class="input-group">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile">
-            <label class="custom-file-label" for="customFile">Choose file</label>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-  </div>
-</ng-template>
-<!--  Modal Add  -->
-<ng-template #content1 let-modal1>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal1-basic-title">Add Vehicle</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <form #vehicleForm="ngForm" (ngSubmit)="onSubmit()">
-    <div class="modal-body">
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Events</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let e of events">
+          <tr>
+            <th scope="row">
+              <div class="media align-items-center">
+                <div class="media-body">
+                  <span class="mb-0 text-sm"> {{e.name}} </span>
+                </div>
+              </div>
+            </th>
+            <th scope="row">
+              <div class="media align-items-center">
+                <div class="media-body">
+                  <a href="javascript:void(0)" class="btn btn-sm btn-primary mr-4 text-white"
+                  (click)="redirection(e.id)"   >Details</a>
+                </div>
+              </div>
+            </th>
+            <th scope="row">
+              <div class="media align-items-center">
+                <div class="media-body">
+                  <a (click)="reserver(e.id,confirmModal )" class="btn btn-sm btn-info mr-4 text-white">Reserve</a>
+                </div>
+              </div>
+            </th>
 
-      <div class="form-group">
-        <label for="dateOfBirth">Model</label>
-        <div class="input-group">
-          <select class="custom-select custom-select-sm" name="model" [(ngModel)]="vehicle.carmodel.id"
-            #modelId="ngModel" required>
-            <option selected>Choose</option>
-            <ng-container *ngFor="let m of carmodels">
-              <option value="{{m.id}}">{{m.carbrand.brand}} &nbsp; {{m.model}}</option>
-            </ng-container>
-          </select>
-        </div>
-        <label for="dateOfBirth">Color</label>
-        <div class="input-group">
-          <input class="form-control" type="text" name="color" [(ngModel)]="vehicle.color" #colorId="ngModel" required>
-        </div>
-        <label for="dateOfBirth">Registration</label>
-        <div class="input-group">
-          <input class="form-control" type="text" name="registration" [(ngModel)]="vehicle.registration"
-            #registrationId="ngModel" required>
-        </div>
-        <div class="input-group">
-            <app-image ></app-image>
-        </div>
-      </div>
+          </tr>
 
+
+        </tbody>
+      </table>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Save</button>
-      <button type="button" class="btn btn-outline-dark" (click)="modal1.close('Save click')">Close</button>
-    </div>
-  </form>
+  </div>
 </ng-template>
 <!-- Page content -->
 
 <div class="container-fluid mt--7">
-  <!-- Sub Nav -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-default">
-    <div class="container">
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-lg-auto text-right">
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" (click)="open1(content1)">New Vehicle</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLink="/back/vehicles">Vehicles</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLink="/back/carbrands">Brands</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLink="/back/models">Models</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+
   <!-- Table -->
   <div class="row">
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <h3 class="mb-0">List of Vehicles</h3>
+          <div class="row align-items-center">
+
+              <div class="col-2">
+                  <a routerLink="/back/addVehicle" class="btn btn-sm btn-primary">
+                    <i class="ni ni-fat-add"></i>
+                    <span>Add Vehicle</span>
+                  </a>
+                </div>
+            <div class="col-2">
+              <a routerLink="/back/vehicles" class="btn btn-sm btn-primary">
+                <i class="ni ni-ungroup"></i>
+                <span>Vehicles</span>
+              </a>
+            </div>
+            <div class="col-2">
+              <a routerLink="/back/carbrands" class="btn btn-sm btn-primary">
+                <i class="ni ni-ungroup"></i>
+                <span>Brands</span>
+              </a>
+            </div>
+            <div class="col-2">
+              <a routerLink="/back/models" class="btn btn-sm btn-primary">
+                <i class="ni ni-ungroup"></i>
+                <span>Models</span>
+              </a>
+            </div>
+            <div class="col-4">
+              <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                placeholder="Search">
+            </div>
+          </div>
+
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
@@ -160,56 +166,50 @@ background-size: cover; background-position: center top;">
                 <th scope="col">Img</th>
                 <th scope="col">Actions</th>
                 <th scope="col"></th>
-                <th scope="col"></th>
+
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let v of collection.vehicles | filter:searchText | paginate: config | filter:searchText">
               <tr>
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">166 TN 6605</span>
+                      <span class="mb-0 text-sm"> {{v.registration}} </span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  Ford Figo
+                  {{v.carmodel.model}} &nbsp; {{v.carmodel.carbrand.brand}}
                 </td>
                 <td>
                   <span class="badge badge-dot mr-4">
-                    <i class="bg-warning"></i> Black
+                    {{v.color}}
                   </span>
                 </td>
                 <td>
                   <div class="avatar-group">
                     <a href="javascript:void(0)" class="avatar avatar-sm" data-toggle="tooltip"
                       data-original-title="Ryan Tompson">
-                      <img alt="Image placeholder" src="../assets/img/theme/team-1-800x800.jpg" class="rounded-circle">
+                      <img alt="Image placeholder" [src]="v.picture" class="rounded-circle">
                     </a>
                   </div>
                 </td>
                 <td>
                   <div class="avatar-group">
                     <div class="col-4 text-right">
-                      <a href="#!" class="btn btn-sm btn-primary">Reserve</a>
+                      <a class="btn btn-sm btn-primary text-white" (click)="openReser(dispoContent, v.id)">Reserve</a>
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div class="avatar-group">
-                    <div class="col-4 text-right">
-                      <a href="#!" class="btn btn-sm btn-primary">Disponibility</a>
-                    </div>
-                  </div>
-                </td>
+
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" (click)="open(content)">Update</a>
-                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Remove</a>
+                      <a class="dropdown-item" routerLink="/back/updateVehicle/{{v.id}}">Update</a>
+                      <a class="dropdown-item" (click)="openarchive(contenttwo, v.id)">Remove</a>
                     </div>
                   </div>
                 </td>
@@ -219,30 +219,9 @@ background-size: cover; background-position: center top;">
             </tbody>
           </table>
         </div>
+
         <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
         </div>
       </div>
     </div>

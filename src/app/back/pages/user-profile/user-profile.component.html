@@ -6,10 +6,7 @@
   <div class="container-fluid d-flex align-items-center">
     <div class="row">
       <div class="col-lg-7 col-md-10">
-        <h1 class="display-2 text-white">Hello Jesse</h1>
-        <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work
-          and manage your projects or assigned tasks</p>
-        <a href="#!" class="btn btn-info">Edit profile</a>
+        <h1 class="display-2 text-white">Hello {{user.firstName}} {{user.lastName}} </h1>
       </div>
     </div>
   </div>
@@ -22,37 +19,23 @@
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
               <a href="javascript:void(0)">
-                <img src="assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                <img [src]="user.picture" class="rounded-circle">
               </a>
             </div>
           </div>
         </div>
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="d-flex justify-content-between">
-            <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
-            <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a>
-          </div>
+        </div>
         </div>
         <div class="card-body pt-0 pt-md-4">
           <div class="row">
             <div class="col">
-              <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                <div>
-                  <span class="heading">22</span>
-                  <span class="description">Friends</span>
-                </div>
-                <div>
-                  <span class="heading">10</span>
-                  <span class="description">Photos</span>
-                </div>
-                <div>
-                  <span class="heading">89</span>
-                  <span class="description">Comments</span>
-                </div>
-              </div>
+
             </div>
           </div>
           <div class="text-center">
+            <br> <br>
             <h3>
               {{user.firstName}} &nbsp; {{user.lastName}} <span class="font-weight-light">, {{user.dateBirth}}</span>
             </h3>
@@ -66,10 +49,8 @@
             <div>
               <i class="ni education_hat mr-2"></i>{{user.cin }}
             </div>
-            <hr class="my-4" />
-            <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all
-              of his own music.</p>
-            <a href="javascript:void(0)">Show more</a>
+
+
           </div>
         </div>
       </div>
@@ -118,6 +99,7 @@
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Last Name</label>
                       <input type="text" class="form-control form-control-alternative" placeholder="lastName"
                         value="{{user.lastName}}" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel">
                     </div>
@@ -141,8 +123,7 @@
 
                 </div>
               </div>
-              <hr class="my-4" />
-              <!-- Address -->
+
 
 
             </div>
@@ -154,12 +135,12 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                       <label class="form-control-label" for="input-city">New Password</label>
-                      <input type="text" class="form-control form-control-alternative" placeholder="New Password"
+                      <input type="password" class="form-control form-control-alternative" placeholder="New Password"
                         name="newPass" value="" [(ngModel)]="NewPassword" #newPass="ngModel">
                     </div>
                   </div>
 
-                 <div class="col-4 text-right">
+                 <div class=" text-left">
                     <button (click)="onSubmitPass()" class="btn btn-sm btn-primary">Update</button>
                   </div>
 

@@ -29,6 +29,7 @@ import { FortuneWheelComponent } from './pages/products/fortune-wheel/fortune-wh
 import { AutocompletetextComponent } from '../back/pages/stores/autocompletetext/autocompletetext.component';
 import { ProductDetailComponent } from './pages/products/product-detail/product-detail.component';
 
+import { EventsFrontComponent } from './events-front/events-front.component';
 
 
 
@@ -36,7 +37,7 @@ import { ProductDetailComponent } from './pages/products/product-detail/product-
 
   declarations: [HomeComponent,TopicsComponent, FrontNavComponent, FrontFooterComponent, AllTopicsComponent,
                  SingleTopicComponent, ConfirmPassComponent, StoresComponent, StoresListComponent,
-                 FooterComponent, NavbarComponent, ProductsComponent,FilterByBrandPipe, ChatComponent, ProductSliderComponent, SearchComponent, ProductFilterComponent, FortuneWheelComponent, ProductDetailComponent, ListpackComponent, OnepackinfoComponent,],
+                 FooterComponent, NavbarComponent, ProductsComponent,FilterByBrandPipe, ChatComponent, ProductSliderComponent, SearchComponent, ProductFilterComponent, FortuneWheelComponent, ProductDetailComponent, ListpackComponent, OnepackinfoComponent, EventsFrontComponent,],
 
   imports: [
     CommonModule,
@@ -59,7 +60,7 @@ import { ProductDetailComponent } from './pages/products/product-detail/product-
     FrontFooterComponent,
     AllTopicsComponent,
     SingleTopicComponent,
-
+    EventsFrontComponent,
 ],
 
 

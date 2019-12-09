@@ -13,27 +13,30 @@ background-size: cover; background-position: center top;">
   </div>
 </div>
 <!-- Modal Delete-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Brand</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Would you like to remove this brand ?
-        <input type="text" value=this.inputDelete.value>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn bg-gradient-danger">Confirm</button>
+<ng-template #contenttwo let-modal1>
+  <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification">
+    <div class="modal-danger" role="document">
+      <div class="modal-content bg-gradient-danger">
+        <div class="modal-header">
+          <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+          <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="py-3 text-center">
+            <i class="ni ni-bell-55 ni-3x"></i>
+            <h4 class="heading mt-4">Delete Operation</h4>
+            <p>Are you sure want to Delete this Brand.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" (click)="deleteBrand()">Ok, Got it</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>
 
 <!--  Modal Add  -->
 <ng-template #content1 let-modal1>
@@ -43,57 +46,66 @@ background-size: cover; background-position: center top;">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <form #addForm="ngForm" (ngSubmit) ="onSubmit()" >
-  <div class="modal-body">
+  <form #addForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
       <div class="form-group">
-        <label for="brandName">New Brand Name</label>
+        <h6>New Brand Name <span class="icon-danger text-orange">*</span></h6>
         <div class="input-group">
-          <input id="brandName" class="form-control" name="dp1" type="text" [(ngModel)] ="brand.brand" #dp1="ngModel" required>
+          <input class="form-control" type="text" placeholder="Brand Name" name="dp1" type="text"
+            [(ngModel)]="brand.brand" #dp1="ngModel" required>
         </div>
+        <ng-container *ngIf="dp1.invalid && dp1.touched " class="input-group">
+          <ng-container *ngIf="dp1?.errors.required" class="form-control">
+            <ng-container> Brand Name Required </ng-container>
+          </ng-container>
+        </ng-container>
       </div>
-  </div>
-  <div class="modal-footer">
-    <button type="submit" [disabled]= "addForm.invalid" class="btn btn-outline-dark" (click)="onSubmit()">Save</button>
-  </div>
-</form>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" [disabled]="addForm.invalid" class="btn btn-outline-dark" (click)="onSubmit()">Save</button>
+    </div>
+  </form>
 </ng-template>
 <!-- Page content -->
 <div class="container-fluid mt--7">
-  <!-- Sub Nav -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-default">
-    <div class="container">
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-lg-auto text-right">
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" (click)="open1(content1)">New Carbrand</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLink="/back/vehicles">Vehicles</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLink="/back/carbrands">Brands</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLink="/back/models">Models</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+
   <!-- Table -->
   <div class="row">
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
           <div class="row align-items-center">
-            <div class="col-8">
-              <h3 class="mb-0">List of Car Brands</h3>
+
+            <div class="col-2">
+              <a (click)="open1(content1)" class="btn btn-sm btn-primary text-white">
+                <i class="ni ni-fat-add"></i>
+                <span>New Carbrand</span>
+              </a>
             </div>
-
+            <div class="col-2">
+              <a routerLink="/back/vehicles" class="btn btn-sm btn-primary">
+                <i class="ni ni-ungroup"></i>
+                <span>Vehicles</span>
+              </a>
+            </div>
+            <div class="col-2">
+              <a routerLink="/back/carbrands" class="btn btn-sm btn-primary">
+                <i class="ni ni-ungroup"></i>
+                <span>Brands</span>
+              </a>
+            </div>
+            <div class="col-2">
+              <a routerLink="/back/models" class="btn btn-sm btn-primary">
+                <i class="ni ni-ungroup"></i>
+                <span>Models</span>
+              </a>
+            </div>
+            <div class="col-4">
+              <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                placeholder="Search">
+            </div>
           </div>
-
         </div>
-
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
@@ -102,7 +114,7 @@ background-size: cover; background-position: center top;">
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody *ngFor="let c of carbrands">
+            <tbody *ngFor="let c of collection.carbrands | filter:searchText | paginate: config">
               <tr>
                 <td>
                   {{c.brand}}
@@ -113,7 +125,7 @@ background-size: cover; background-position: center top;">
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Delete</a>
+                      <a class="dropdown-item" data-toggle="modal" (click)="openarchive(contenttwo, c.id)">Delete</a>
                       <a class="dropdown-item" (click)="open(content)">Update</a>
                       <!--  Modal update  -->
                       <ng-template #content let-modal>
@@ -147,29 +159,7 @@ background-size: cover; background-position: center top;">
           </table>
         </div>
         <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
         </div>
       </div>
     </div>

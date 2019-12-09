@@ -1,0 +1,143 @@
+<!-- Modal Delete-->
+<ng-template #contenttwo let-modal1>
+    <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification">
+      <div class="modal-danger" role="document">
+        <div class="modal-content bg-gradient-danger">
+          <div class="modal-header">
+            <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+            <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="py-3 text-center">
+              <i class="ni ni-bell-55 ni-3x"></i>
+              <h4 class="heading mt-4">Delete Operation</h4>
+              <p>Are you sure want to Delete this Forum.</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white" (click)="deleteForum()">Ok, Got it</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+
+
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
+url(assets/img/theme/carBrands.jpg);
+background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Forums </h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white ">
+            <div class="row align-items-center">
+              <h3 class="mb-0">Add Forum</h3>
+            </div>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="form-group">
+                  <input type="text" id="input-username" class="form-control form-control-alternative"
+                    placeholder="Title" name="title" [(ngModel)] ="forum.name"
+                    #titleID = "ngModel" required>
+                  <br>
+                  <textarea type="text" id="input-username" class="form-control form-control-alternative"
+                    placeholder="Description" name="description" [(ngModel)] ="forum.description"
+                    #descriptionID = "ngModel" required> Description .. </textarea>
+                  <br>
+                  <app-image-upload></app-image-upload>
+                </div>
+              </div>
+              <hr class="my-4" />
+              <button class="btn btn-outline-danger btn-block btn-round" (click)="onclickenvoyer($event)">Add</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">All Forums</h3>
+            </div>
+            <div class="col-4 text-right">
+              <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+           <!-- Table -->
+  <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Picture</th>
+                  <th scope="col">Description</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let f of collection.forums | filter:searchText | paginate: config">
+                  <tr>
+                    <td>
+                      {{f.name}}
+                    </td>
+                    <td>
+                        <div class="avatar-group">
+                            <a href="javascript:void(0)" class="avatar avatar-sm" data-toggle="tooltip"
+                              data-original-title="Ryan Tompson">
+                              <img alt="Image placeholder" [src]="f.picture" class="rounded-circle">
+                            </a>
+                          </div>
+                      </td>
+                      <td>
+                          {{f.description}}
+                        </td>
+                    <td class="text-right">
+                      <div ngbDropdown placement="top-right">
+                        <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
+                          <i class="fas fa-ellipsis-v"></i>
+                        </a>
+                        <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                          <a class="dropdown-item" data-toggle="modal" (click)="openarchive(contenttwo, f.id)">Delete</a>
+                          <a class="dropdown-item">Update</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+          <div class="card-footer py-4">
+              <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

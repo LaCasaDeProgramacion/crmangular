@@ -3,6 +3,11 @@ import { TellinDetailComponent } from './../../pages/TelLines/tellin-detail/tell
 import { ComplaintDetailComponent } from './../../pages/Complaints/complaint-detail/complaint-detail.component';
 import { ServicesLinesComponent } from './../../pages/TelLines/services-lines/services-lines.component';
 import { TelephonelinesComponent } from './../../pages/TelLines/telephonelines/telephonelines.component';
+import { UpdateVehicleComponent } from './../../pages/prospecting/vehicle/update-vehicle/update-vehicle.component';
+import { EventCalendarComponent } from './../../pages/prospecting/event-calendar/event-calendar.component';
+import { ForumComponent } from './../../pages/prospecting/forum/forum.component';
+import { AddContractComponent } from './../../pages/prospecting/agent/add-contract/add-contract.component';
+import { AddAgentComponent } from './../../pages/prospecting/agent/add-agent/add-agent.component';
 import { ObjectComplaintComponent } from './../../pages/Complaints/object-complaint/object-complaint.component';
 import { TypeComplaintComponent } from './../../pages/Complaints/type-complaint/type-complaint.component';
 import { TechnicianComponent } from './../../pages/Complaints/technician/technician.component';
@@ -39,6 +44,8 @@ import { ArchiveListComponent } from '../../pages/pack/archive-list/archive-list
 import { ListPromotionComponent } from '../../pages/promotion/list-promotion/list-promotion.component';
 import { AddPromotionComponent } from '../../pages/promotion/add-promotion/add-promotion.component';
 import { CategoriesComponent } from '../../pages/categories/categories.component';
+import { AddVehicleComponent } from '../../pages/prospecting/vehicle/add-vehicle/add-vehicle.component';
+import { CalendarComponent } from '@syncfusion/ej2-angular-calendars';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent,canActivate:[AuthUserService] },
@@ -62,11 +69,18 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'back/vehicles', component: VehicleComponent ,canActivate:[AuthUserService] },
     { path: 'back/models', component: ModelComponent ,canActivate:[AuthUserService] },
     { path: 'back/agents', component: AgentComponent ,canActivate:[AuthUserService] },
-    { path: 'back/agents-details', component: DetailsComponent ,canActivate:[AuthUserService] },
+    { path: 'back/agents-details/:id', component: DetailsComponent ,canActivate:[AuthUserService] },
     { path: 'back/events', component: EventComponent ,canActivate:[AuthUserService] },
-    { path: 'back/suggest-event', component: SuggestEventComponent ,canActivate:[AuthUserService] },
-{ path: 'back/details-event/:id', component: EventDetailsComponent ,canActivate:[AuthUserService] },
-    /**************  wael routing  **************/
+    { path: 'back/suggest-event/:id', component: SuggestEventComponent ,canActivate:[AuthUserService] },
+    { path: 'back/details-event/:id', component: EventDetailsComponent ,canActivate:[AuthUserService] },
+    { path: 'back/addVehicle', component: AddVehicleComponent  },
+    { path: 'back/updateVehicle/:id', component: UpdateVehicleComponent  },
+    { path: 'back/addAgent', component: AddAgentComponent  },
+    { path: 'back/addContract/:id', component: AddContractComponent  },
+    { path: 'back/forums', component: ForumComponent  },
+    { path: 'calendar', component: EventCalendarComponent  },
+
+/**************  wael routing  **************/
     { path: 'back/listpack', component: ListPackComponent ,canActivate:[AuthUserService] },
     { path: 'back/addpack', component: AddPackComponent ,canActivate:[AuthUserService] },
     { path: 'back/updatepack', component: UpdatePackComponent ,canActivate:[AuthUserService] },

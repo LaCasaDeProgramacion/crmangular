@@ -1,10 +1,16 @@
-import { ImageComponent } from './../../images/image/image.component';
+import { EventService } from './../../../../../services/prospectingManagement/event.service';
+import { ImageUploadComponent } from 'src/app/SharedComponent/image-upload/image-upload.component';
 import { Carmodel } from './../../../../../entities/carmodel';
 import { Component, OnInit , HostListener, ViewChild} from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Vehicle } from 'src/app/entities/Vehicle';
 import { CarbrandService } from 'src/app/services/prospectingManagement/vehicle/carbrand.service';
 import { Router } from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { ImageUploadServicService } from 'src/app/SharedComponent/image-upload/image-upload-servic.service';
+import { finalize } from 'rxjs/operators';
+import { FormGroup, FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-vehicle',
   templateUrl: './vehicle.component.html',
@@ -13,19 +19,49 @@ import { Router } from '@angular/router';
 
 export class VehicleComponent implements OnInit {
 
+  searchText;
+  idToDelete;
+  closeResult: string;
+  closeResult1: string;
+  @ViewChild(ImageUploadComponent)
+  private testComponent : ImageUploadComponent;
+
+  public formsubmitted:boolean;
+  public picturemap:string;
+
   model : Carmodel ={id:0,  model:'', carbrand:{id:0, brand:''} };
   vehicle: Vehicle ={id:0, registration:'', color:'', picture:'', carmodel:{id:0,model:''} };
 
   carmodels;
-  vehicles;
 
-  url='';
 
-  closeResult: string;
-  closeResult1: string;
+  collection = { count: null, vehicles:null  };
+  config:any;
+  events ;
+  idVehicule;
+
+
   constructor(private modalService: NgbModal, private vehicleService:CarbrandService,
-    private router: Router ) {}
+    private eventService:EventService,
+    private router: Router, private storage: AngularFireStorage,public serviceimage:ImageUploadServicService ) {}
 
+
+    vehicleForm = new FormGroup(
+      {
+        'model' : new FormControl(),
+        'color' : new FormControl(),
+        'registration' : new FormControl(),
+      });
+
+      get getModel(){
+        return this.vehicleForm.get('model');
+      }
+      get getColor(){
+        return this.vehicleForm.get('color');
+      }
+      get getRegistration(){
+        return this.vehicleForm.get('registration');
+      }
 //update Vehicle
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -43,23 +79,7 @@ export class VehicleComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-//Add Vehicle
-open1(content) {
-  this.modalService.open(content, {ariaLabelledBy: 'modal1-basic-title'}).result.then((result) => {
-    this.closeResult = `Closed with: ${result}`;
-  }, (reason) => {
-    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  });
-}
-private getDismissReason1(reason: any): string {
-  if (reason === ModalDismissReasons.ESC) {
-    return 'by pressing ESC';
-  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-    return 'by clicking on a backdrop';
-  } else {
-    return  `with: ${reason}`;
-  }
-}
+
 save(value)
 {
   console.log(value)
@@ -88,14 +108,22 @@ loadVehicles()
 
    this.vehicleService.getVehicles().subscribe(
      data => {
-      this.vehicles =data;
+      this.collection.vehicles =data;
      }
    );
+   this.config = {
+    itemsPerPage: 5,
+    currentPage: 1,
+    totalItems: this.collection.count
+  };
+}
+pageChanged(event){
+  this.config.currentPage = event;
 }
 
-delete(id)
+delete()
 {
-  this.vehicleService.DeleteVehicle(id).subscribe(
+  this.vehicleService.DeleteVehicle(this.idToDelete).subscribe(
    response=>
    {
     this.loadVehicles();
@@ -109,28 +137,94 @@ update(v:Vehicle )
     this.loadVehicles()
     )
     this.loadVehicles();
-    this.modalService.dismissAll();
+
  }
 
+  onclickenvoyer(e){
+  console.log(e)
+  this.testComponent.message();
+  var pictureinfo :any[] =this.testComponent.handleSubmit(e);
+  console.log(pictureinfo);
+  var info: Vehicle ={ registration:'', color:'', picture:'', carmodel:{id:0,model:''} };
 
-onSubmit(){
+  info.registration=this.getRegistration.value;
+  info.color=this.getColor.value;
+  info.carmodel.model = this.getModel.value;
 
- // this.getValue();
- /* this.vehicle.picture = this.url;
-  this.vehicleService.addVehicle(this.vehicle).subscribe(
-    response =>
-    {
-       console.log("added")
-       this.loadVehicles();
-    }
-  )*/
-  this.modalService.dismissAll();
+  var filePath = `${pictureinfo['name'].split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+  const fileRef = this.storage.ref(filePath);
+  this.storage.upload(filePath, pictureinfo).snapshotChanges().pipe(
+    finalize(() => {
+      fileRef.getDownloadURL().subscribe((url) => {
+        console.log(url);
+     this.picturemap=url;
+        console.log(this.picturemap);
+        info.picture=this.picturemap;
+  this.vehicleService.addVehicle(info).subscribe(response => {
+    console.log(response);
+
+    this.formsubmitted=true;
+
+
+  });
+      })
+    })
+  ).subscribe();
+
+  console.log(info);
 }
-
 ngOnInit(){
-
+  this.formsubmitted=false;
  this.loadCarmodels();
  this.loadVehicles();
+
+}
+openarchive(content,id) {
+
+  this.idToDelete=id;
+     this.modalService.open(content,{ariaLabelledBy: 'modal1-title-notification'}).result.then((result) => {
+       this.closeResult = `Closed with: ${result}`;
+     }, (reason) => {
+       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+     });
+   }
+
+
+LoadEventsForVeh(idVehicle)
+{
+  this.eventService.EventsForVeh(idVehicle).subscribe(
+    data=> {
+      this.events= data ;
+    }
+  )
+}
+openReser(content, id) {
+  this.idVehicule = id ;
+  this.LoadEventsForVeh(this.idVehicule);
+
+  console.log( "id++++++++", this.idVehicule)
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+
+redirection(id)
+{
+  this.modalService.dismissAll();
+  this.router.navigate(['back/details-event/'+id]);
+}
+
+reserver (idEvent, content )
+{
+
+  console.log("ID EVENT " + idEvent + "  ID Vehicule "+ this.idVehicule)
+  this.vehicleService.affecterVehicule(idEvent, this.idVehicule).subscribe(data =>
+    {console.log(data)});
+  this.LoadEventsForVeh(this.idVehicule);
+  this.modalService.dismissAll();
+  this.open(content);
 
 }
 

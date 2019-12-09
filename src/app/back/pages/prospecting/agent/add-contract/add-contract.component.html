@@ -1,0 +1,120 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
+url(assets/img/theme/4.jpg);
+background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-12 col-md-10">
+        <h1 class="display-2 text-white">Agents | Contract</h1>
+      </div>
+    </div>
+  </div>
+
+</div>
+<form  #ContractForm="ngForm">
+    <div class="container-fluid mt--7">
+        <div class=" order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Affect Contract To {{agent.firstName}} &nbsp; {{agent.lastName}}  </h3>
+                </div>
+                <div class="col-4 text-right">
+
+                  <div class="row justify-content-center">
+                    <div class="col-lg-3 order-lg-2">
+                      <div class="card-profile-image">
+                        <a href="javascript:void(0)">
+                          <img [src]="agent.picture" class="rounded-circle">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class=" text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                    <div class="d-flex justify-content-between">
+                      <a  class="btn btn-info float-right text-white" (click)="addContract()" >Confirm</a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                        <div class="row">
+                            <div class="col-md-7 col-sm-7">
+                                <div class="form-group">
+                                    <h6>Title &nbsp;  <span class="icon-danger text-orange">*</span></h6>
+                                    <input type="text" class="form-control border-input" placeholder="Title"
+                                    name="title" [(ngModel)] ="contract.title" #titleId = "ngModel" required>
+                                    <div *ngIf="titleId.invalid && titleId.touched ">
+                                        <div *ngIf ="titleId?.errors.required">
+                                            Required
+                                        </div>
+
+                                    </div>
+
+                                  </div>
+                                <div class="form-group">
+                                    <h6>Start Date&nbsp;  <span class="icon-danger text-orange">*</span></h6>
+                                    <input type="date" class="form-control border-input"
+                                    name="date" [(ngModel)] ="contract.startDate" #startDateId = "ngModel" required>
+                                    <div *ngIf="startDateId.invalid && startDateId.touched ">
+                                        <div *ngIf ="startDateId?.errors.required">
+                                            Required
+                                        </div>
+
+                                    </div>
+
+                                  </div>
+                                <div class="form-group">
+                                    <h6>End Date&nbsp;  <span class="icon-danger text-orange">*</span></h6>
+                                    <input type="date" class="form-control border-input"
+                                    name="date" [(ngModel)] ="contract.endDate" #endDateId = "ngModel" required>
+
+                                    <div *ngIf="endDateId.invalid && endDateId.touched ">
+                                        <div *ngIf ="endDateId?.errors.required">
+                                            Required
+                                        </div>
+
+                                    </div>
+
+                                  </div>
+                                <div class="form-group">
+                                    <h6>Salary &nbsp;  <span class="icon-danger text-orange">*</span></h6>
+                                    <input class="form-control textarea-limited" placeholder="Salary."
+                                    name="salary" [(ngModel)] ="contract.salary" #salaryId = "ngModel" required>
+
+                                    <div *ngIf="salaryId.invalid && salaryId.touched ">
+                                        <div *ngIf ="salaryId?.errors.required">
+                                            Required
+                                        </div>
+
+                                    </div>
+
+                                  </div>
+                                <div class="form-group">
+                                    <h6>Description</h6>
+                                    <textarea class="form-control textarea-limited" placeholder="This is a textarea limited to 150 characters." rows="13" maxlength="150"
+                                    name="comment" [(ngModel)] ="contract.comment" #commentId = "ngModel" >
+                                    </textarea>
+                                    <h5><small><span id="textarea-limited-message" class="pull-right">150 characters left</span></small></h5>
+
+
+                                  </div>
+                            </div>
+                        </div>
+
+
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
+
+
+

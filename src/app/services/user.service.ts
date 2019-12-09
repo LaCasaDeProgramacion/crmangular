@@ -53,7 +53,7 @@ export class UserService {
   UpdatePass(username,newpass )
   {
     console.log("haaaaaaaaaaaaaniiii")
-    return this.http.put<User>(this.url+ "updatePass?username=lahbibFiras&newpass=123", this.httpOptions);
+    return this.http.put<User>(this.url+ "updatePass?username="+username+"&newpass="+newpass, this.httpOptions);
   }
 
   updateCompte(user:User)

@@ -1,6 +1,6 @@
 import { CarbrandService } from './../../../../../services/prospectingManagement/vehicle/carbrand.service';
 import { Carbrand } from './../../../../../entities/carbrand';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 @Component({
@@ -9,16 +9,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./carbrand.component.scss']
 })
 export class CarbrandComponent implements OnInit {
-
-  carbrands ;
-  carbrand :Carbrand={id:0 , brand:''};
-  brand :Carbrand={ brand:''};
-  closeResult: string;
-  closeResult1: string;
   constructor(private modalService: NgbModal,
     private carbrandService:CarbrandService,
     private router: Router)
     {}
+  searchText;
+  //carbrands ;
+  carbrand :Carbrand={id:0 , brand:''};
+  brand :Carbrand={ brand:''};
+  closeResult: string;
+  closeResult1: string;
+  brandtodelete:Carbrand={id:0 , brand:''};
+
+  collection = { count: null, carbrands:null  };
+  config:any;
   //update Modal
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -62,18 +66,35 @@ export class CarbrandComponent implements OnInit {
   {
      this.carbrandService.getBrands().subscribe(
        data => {
-        this.carbrands =data;
+        this.collection.carbrands = data ;
        }
      );
+     this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.collection.count
+    };
   }
-  deleteBrand(id)
+  openarchive(content,id) {
+
+    this.brandtodelete.id=id;
+    console.log("+++++++++++++++"+ this.brandtodelete.id)
+       this.modalService.open(content,{ariaLabelledBy: 'modal1-title-notification'}).result.then((result) => {
+         this.closeResult = `Closed with: ${result}`;
+       }, (reason) => {
+         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+       });
+     }
+  deleteBrand()
   {
-    this.carbrandService.DeleteBrand(id).subscribe(
+    console.log("**************"+this.brandtodelete.id)
+    this.carbrandService.DeleteBrand(this.brandtodelete.id).subscribe(
      response=>
      {
       this.loadCarBrands();
      }
     );
+    this.modalService.dismissAll();
   }
   updateBrand(brand, id)
   {
@@ -96,6 +117,9 @@ export class CarbrandComponent implements OnInit {
       }
     )
     this.modalService.dismissAll();
+  }
+  pageChanged(event){
+    this.config.currentPage = event;
   }
 
 }

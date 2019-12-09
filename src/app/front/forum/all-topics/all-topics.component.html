@@ -1,59 +1,33 @@
 <app-front-nav></app-front-nav>
 <!-- Page -->
 <section class="section section-components">
-  <div class="container">
-    <!-- Paragraphs -->
-    <div class="row py-3 align-items-center">
-      <div class="col-sm-3">
-        <img src="./assets/img/theme/team-1-800x800.jpg" alt="Rounded image" class="img-fluid rounded shadow"
-          style="width: 150px;">
-      </div>
-      <div class="col-sm-9">
-        <a href="#" class="btn btn-link text-primary">Titre</a>
-        <p>I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I
-          understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to
-          show people, this is the level that things could be at.</p>
-        <div class="mt-3">
-          <a href="javascript:void(0)" class="btn btn-primary btn-icon-only rounded-circle">
-            <i class="fa fa-reply"></i>
-          </a>
-          <a href="javascript:void(0)" class="btn btn-primary btn-icon-only rounded-circle">
-            <i class="fa fa-heart"></i>
-          </a>
-          <a routerLink="/home/singleTopic" class="btn btn-primary btn-icon-only rounded-circle">
-            <i class="fa fa-eye"></i>
-          </a>
+
+
+
+      <div class="container">
+          <h4 class="text-primary"> Forum {{title}}  </h4>
+          <div *ngFor="let t of topics">
+          <!-- Paragraphs -->
+          <div class="row py-3 align-items-center">
+            <div class="col-sm-3">
+              <img [src]="t.user.picture" alt="Rounded image" class="img-fluid rounded shadow"
+                style="width: 150px;">
+            </div>
+            <div class="col-sm-9">
+              <h6 class=" text-default">{{t.title}}</h6>
+              <p>{{t.creation_date  |  date:"MM/dd/yyyy 'at' h:mma"}}</p>
+              <div class="mt-3">
+                <a routerLink="/home/singleTopic/{{t.id}}" class="btn btn-primary btn-icon-only rounded-circle">
+                  <i class="fa fa-eye"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
   </div>
 
-  <div class="container">
-    <!-- Paragraphs -->
-    <div class="row py-3 align-items-center">
-      <div class="col-sm-3">
-        <img src="./assets/img/theme/team-1-800x800.jpg" alt="Rounded image" class="img-fluid rounded shadow"
-          style="width: 150px;">
-      </div>
-      <div class="col-sm-9">
-        <a href="#" class="btn btn-link text-primary">Titre</a>
-        <p>I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I
-          understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to
-          show people, this is the level that things could be at.</p>
-        <div class="mt-3">
-          <a href="javascript:void(0)" class="btn btn-primary btn-icon-only rounded-circle">
-            <i class="fa fa-reply"></i>
-          </a>
-          <a href="javascript:void(0)" class="btn btn-primary btn-icon-only rounded-circle">
-            <i class="fa fa-heart"></i>
-          </a>
-          <a routerLink="/home/singleTopic" class="btn btn-primary btn-icon-only rounded-circle">
-            <i class="fa fa-eye"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
 </section>
 
 <app-front-footer></app-front-footer>

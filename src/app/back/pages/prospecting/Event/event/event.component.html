@@ -1,3 +1,30 @@
+<!-- Modal Delete-->
+<ng-template #contenttwo let-modal1>
+    <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification">
+      <div class="modal-danger" role="document">
+        <div class="modal-content bg-gradient-danger">
+          <div class="modal-header">
+            <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+            <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="py-3 text-center">
+              <i class="ni ni-bell-55 ni-3x"></i>
+              <h4 class="heading mt-4">Delete Operation</h4>
+              <p>Are you sure want to Delete this Event.</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white" (click)="delete()">Ok, Got it</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
 url(assets/img/theme/event.jpg);
 background-size: cover; background-position: center top;">
@@ -12,27 +39,59 @@ background-size: cover; background-position: center top;">
     </div>
   </div>
 </div>
-<!-- Modal Delete-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Event</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+
+<!-- Modal Suggestion-->
+<ng-template #contentSugg let-modal1>
+    <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification">
+      <div class="modal-danger" role="document">
+        <div class="modal-content bg-gradient-danger">
+          <div class="modal-header">
+            <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+            <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="py-3 text-center">
+              <i class="ni ni-bell-55 ni-3x"></i>
+              <h4 class="heading mt-4">Alert</h4>
+              <p>Please answer the previous request of event!</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white" (click)="close()">Ok, Got it</button>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        Would you like to remove this Event ?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn bg-gradient-danger">Confirm</button>
+    </div>
+  </ng-template>
+
+<!-- Modal Suggestion-->
+<ng-template #contentResSugg let-modal1>
+  <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification">
+    <div class="modal-danger" role="document">
+      <div class="modal-content bg-gradient-danger">
+        <div class="modal-header">
+          <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+          <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="py-3 text-center">
+            <i class="ni ni-bell-55 ni-3x"></i>
+            <h4 class="heading mt-4">Alert</h4>
+            <p>No recent Suggestion!</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" (click)="close()">Ok, Got it</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>
+
 <!--  Modal update  -->
 <ng-template #content let-modal>
   <div class="modal-header">
@@ -93,13 +152,14 @@ background-size: cover; background-position: center top;">
       <div class="form-group">
         <label for="dateOfBirth">Start Date</label>
         <div class="input-group">
-          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+
+          <input id="dateOfBirth" class="form-control" name="dp" type="date" #dp>
         </div>
       </div>
       <div class="form-group">
         <label for="dateOfBirth">End Date</label>
         <div class="input-group">
-          <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+          <input id="dateOfBirth" class="form-control" name="dp" type="date" #dp>
         </div>
       </div>
       <div class="form-group">
@@ -112,7 +172,7 @@ background-size: cover; background-position: center top;">
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark">Save</button>
+    <button type="button" class="btn btn-outline-dark" >Save</button>
     <button type="button" class="btn btn-outline-dark" (click)="modal1.close('Save click')">Close</button>
 
   </div>
@@ -120,31 +180,44 @@ background-size: cover; background-position: center top;">
 <!-- Page content -->
 
 <div class="container-fluid mt--7">
-  <!-- Sub Nav -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-default">
-    <div class="container">
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-lg-auto text-right">
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLink="/back/events">Events</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" (click)="open1(content1)">New Event</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLink="/back/suggest-event">Suggest Event</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+
   <!-- Table -->
   <div class="row">
     <div class="col">
       <div class="card shadow">
-        <div class="card-header border-0">
-          <h3 class="mb-0">List of Events</h3>
-        </div>
+          <div class="card-header border-0">
+              <div class="row align-items-center">
+
+                <div class="col-2">
+                  <a (click)="open1(content1)"  class="btn btn-sm btn-primary text-white">
+                    <i class="ni ni-fat-add"></i>
+                    <span>New Event</span>
+                  </a>
+                </div>
+                <div class="col-2">
+                  <a routerLink="/back/events" class="btn btn-sm btn-primary">
+                    <i class="ni ni-ungroup"></i>
+                    <span>Events</span>
+                  </a>
+                </div>
+                <div class="col-2">
+                  <a (click)="suggestEvent(contentSugg)" class="btn btn-sm btn-primary text-white">
+                    <i class="ni ni-ungroup"></i>
+                    <span>Suggestion</span>
+                  </a>
+                </div>
+                <div class="col-2">
+                  <a (click)= "recentSuggestion(contentResSugg)" class="btn btn-sm btn-primary text-white">
+                    <i class="ni ni-ungroup"></i>
+                    <span>Recent Suggestion</span>
+                  </a>
+                </div>
+                <div class="col-4">
+                  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                    placeholder="Search">
+                </div>
+              </div>
+            </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
@@ -156,7 +229,7 @@ background-size: cover; background-position: center top;">
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody *ngFor="let e of events">
+            <tbody *ngFor="let e of collection.events | filter:searchText | paginate: config | filter:searchText">
               <tr>
                 <th scope="row">
                   <div class="media align-items-center">
@@ -193,8 +266,8 @@ background-size: cover; background-position: center top;">
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" routerLink="/back/details-event/{{e.id}}" >Details</a>
-                      <a class="dropdown-item" (click)="open(content)">Update</a>
-                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Remove</a>
+                      <a class="dropdown-item" >Update</a>
+                      <a class="dropdown-item" (click)="openarchive(contenttwo, e.id)">Remove</a>
                     </div>
                   </div>
                 </td>
@@ -203,29 +276,7 @@ background-size: cover; background-position: center top;">
           </table>
         </div>
         <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
         </div>
       </div>
     </div>

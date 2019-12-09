@@ -19,6 +19,7 @@ export class FrontNavComponent implements OnInit {
     localStorage.removeItem('Token');
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('UserName');
+    localStorage.removeItem('Role');
     this.userService.logout().subscribe(
       (data) =>
       {

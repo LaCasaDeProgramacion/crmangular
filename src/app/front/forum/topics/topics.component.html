@@ -1,4 +1,5 @@
 <app-front-nav></app-front-nav>
+
 <section class="section section-lg">
   <div class="container">
     <div class="row row-grid justify-content-center">
@@ -8,15 +9,85 @@
           amet adipiscing sem neque sed ipsum.</p>
         <div class="btn-wrapper">
           <div class="btn-wrapper">
-            <a class="btn btn-primary text-white">Ask a question</a>
-            <a class="btn btn-default mt-3 mt-md-0 text-white" routerLink="/home/allTopics">View all Topics</a>
+            <a class="btn btn-primary text-white" (click)="openarchive(contenttwo)">Ask a question</a>
+            <!-- MODAL DE QUESTION   -->
+            <ng-template #contenttwo let-modal1>
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h6 class="modal-title" id="modal-title-default">Type your question here </h6>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <h6>Forum<span class="icon-danger text-orange">*</span></h6>
+                        <div class="input-group ">
+                          <select class="form-control" name="forum" #forumId>
+                            <ng-container *ngFor="let b of forums">
+                              <option value="{{b.id}}"> {{b.name}} </option>
+                            </ng-container>
+                          </select>
+
+                        </div>
+
+                      </div>
+                      <div class="form-group">
+                        <h6>Question<span class="icon-danger text-orange">*</span></h6>
+                        <div class="input-group">
+                          <input class="form-control" type="text" placeholder="Model" name="message" #titleId>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </form>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" (click)="add(forumId.value,titleId.value , contentDelete )"
+                    class="btn btn-primary">Save
+                    changes</button>
+                  <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </ng-template>
+            <!-- Modal confirm-->
+            <ng-template #contentDelete let-modal1>
+              <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification">
+                <div class="modal-danger" role="document">
+                  <div class="modal-content bg-gradient-danger">
+                    <div class="modal-header">
+                      <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+                      <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="py-3 text-center">
+                        <i class="ni ni-bell-55 ni-3x"></i>
+                        <h4 class="heading mt-4">Confirm Alert</h4>
+                        <p>Your Question is Added</p>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-white">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+
+            <a class="btn btn-default mt-3 mt-md-0 text-white" routerLink="/home/allForums">View all Forums</a>
           </div>
           <br>
-
-          <h4 class="display-4 mb-5 mt-5">Popular Topics</h4>
+          <h4 class="display-4 mb-5 mt-5">Popular Forums</h4>
         </div>
         <div class="text-center">
-          <h4 class="display-4 mb-5 mt-5">Popular Topics</h4>
+          <h4 class="display-4 mb-5 mt-5">Popular Forums</h4>
           <div class="row justify-content-center">
             <div class="col-lg-2 col-4">
 
@@ -47,53 +118,53 @@
     <div class="row justify-content-center">
       <div class="col-lg-12">
         <div class="row row-grid">
+          <!-- Forum Top 1 -->
           <div class="col-lg-4">
             <div class="card card-lift--hover shadow border-0">
               <div class="card bg-default shadow border-0">
-                <img src="../../../assets/front/img/theme/img-1-1200x1000.jpg" class="card-img-top">
+                <img [src]="forum1.picture" class="card-img-top" routerLink="/home/allTopics/{{forum2.id}}">
                 <blockquote class="card-blockquote">
                   <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95"
                     class="svg-bg">
                     <polygon points="0,52 583,95 0,95" class="fill-default" />
                     <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
                   </svg>
-                  <h4 class="display-3 font-weight-bold text-white">Design System</h4>
-                  <p class="lead text-italic text-white">The Arctic Ocean freezes every winter and much of the sea-ice
-                    then thaws every summer, and that process will continue whatever happens.</p>
+                  <h4 class="display-3 font-weight-bold text-white">{{forum1.name}}</h4>
+                  <p class="lead text-italic text-white">{{forum1.description}}</p>
                 </blockquote>
               </div>
             </div>
           </div>
+          <!-- Forum Top 2 -->
           <div class="col-lg-4">
             <div class="card card-lift--hover shadow border-0">
               <div class="card bg-default shadow border-0">
-                <img src="../../../assets/front/img/theme/img-1-1200x1000.jpg" class="card-img-top">
+                <img [src]="forum2.picture" class="card-img-top" routerLink="/home/allTopics/{{forum2.id}}">
                 <blockquote class="card-blockquote">
                   <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95"
                     class="svg-bg">
                     <polygon points="0,52 583,95 0,95" class="fill-default" />
                     <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
                   </svg>
-                  <h4 class="display-3 font-weight-bold text-white">Design System</h4>
-                  <p class="lead text-italic text-white">The Arctic Ocean freezes every winter and much of the sea-ice
-                    then thaws every summer, and that process will continue whatever happens.</p>
+                  <h4 class="display-3 font-weight-bold text-white">{{forum2.name}}</h4>
+                  <p class="lead text-italic text-white">{{forum2.description}}</p>
                 </blockquote>
               </div>
             </div>
           </div>
+          <!-- Forum Top 3 -->
           <div class="col-lg-4">
             <div class="card card-lift--hover shadow border-0">
               <div class="card bg-default shadow border-0">
-                <img src="../../../assets/front/img/theme/img-1-1200x1000.jpg" class="card-img-top">
+                <img [src]="forum3.picture" class="card-img-top" routerLink="/home/allTopics/{{forum3.id}}">
                 <blockquote class="card-blockquote">
                   <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95"
                     class="svg-bg">
                     <polygon points="0,52 583,95 0,95" class="fill-default" />
                     <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
                   </svg>
-                  <h4 class="display-3 font-weight-bold text-white">Design System</h4>
-                  <p class="lead text-italic text-white">The Arctic Ocean freezes every winter and much of the sea-ice
-                    then thaws every summer, and that process will continue whatever happens.</p>
+                  <h4 class="display-3 font-weight-bold text-white">{{forum3.name}}</h4>
+                  <p class="lead text-italic text-white">{{forum3.description}}</p>
                 </blockquote>
               </div>
             </div>
@@ -130,26 +201,46 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-user-run"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Your name" type="text" (focus)="focus=true"
+                    <input class="form-control" placeholder="Object" #object type="text" (focus)="focus=true"
                       (blur)="focus=false">
                   </div>
                 </div>
-                <div class="form-group" [ngClass]="{'focused':focus1===true}">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Email address" type="email" (focus)="focus1=true"
-                      (blur)="focus1=false">
-                  </div>
-                </div>
+
                 <div class="form-group mb-4">
                   <textarea class="form-control form-control-alternative" name="name" rows="4" cols="80"
-                    placeholder="Type a message..."></textarea>
+                    placeholder="Type a message..." #message></textarea>
                 </div>
                 <div>
-                  <button type="button" class="btn btn-default btn-round btn-block btn-lg">Send Message</button>
+                  <button type="button" class="btn btn-default btn-round btn-block btn-lg"
+                    (click)="sendEmail(object.value, message.value, contentConfirm)">Send Message</button>
+                  <!-- Modal confirm 2-->
+                  <ng-template #contentConfirm let-modal>
+                    <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification">
+                      <div class="modal-danger" role="document">
+                        <div class="modal-content bg-gradient-danger">
+                          <div class="modal-header">
+                            <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+                            <button type="button" class="close" aria-label="Close"
+                              (click)="modal.dismiss('Cross click')">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="py-3 text-center">
+                              <i class="ni ni-bell-55 ni-3x"></i>
+                              <h4 class="heading mt-4">Confirm Alert</h4>
+                              <p>your message has been sent successfully </p>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-white">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
                 </div>
+
               </div>
             </div>
           </div>
