@@ -35,7 +35,13 @@
               "src/frontstyle.css",
               "src/assets/scss/argon.scss",
               "src/assets/front/scss/argon.scss",
-              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css",
+
+"src/assets/front/scss/navbar.scss"
+
+
+
+
             ],
             "scripts": [
               "src/assets/front/vendor/jquery/jquery.min.js",

@@ -13,19 +13,24 @@ import { UiService } from 'src/app/services/products/ui.service';
 })
 export class ProductsComponent implements OnInit {
   searchText;
-
+  isChecked: any;
+  checkedValue:boolean;
   constructor(private productService : ApiService, private sortPipe: SortPipe,  public uiService: UiService,  private pagerService: PagerService) { }
-
+  ListInactiveProducts: any = [];
   ListProducts: any = [];
   detailsProduct : product ;
   productsPaged: product[];
   pro: product;
   pager: any = {};
+  checkedValueInactive:boolean;
 check: any;
+checkbox:any;
   ngOnInit() {
 
    this.populateproduct();
-
+this.populateInactiveProducts();
+this.checkedValueInactive= false;
+this.checkedValue= true ;
   }
 
   getDetails(d )
@@ -49,6 +54,14 @@ check: any;
     }
 }
 
+setToActive(id) {
+  if (window.confirm('Are you sure, you want to Update?')){
+    this.productService.SetToActive(id).subscribe(data => {
+      this.loadEmployees()
+    })
+  }
+
+}
 
 checkproduct(){
   if (this.pro.productStatus=="active") {
@@ -67,4 +80,19 @@ populateproduct()
     }
    )
 }
+
+populateInactiveProducts()
+{
+  this.productService.getInactiveProducts().subscribe(
+    (Data) => {
+      this.ListInactiveProducts = Data ;
+      console.log("products"+Data);
+    }
+   )
+}
+changed(evt){
+  this.isChecked = evt.target.checked;
+}
+
+
 }

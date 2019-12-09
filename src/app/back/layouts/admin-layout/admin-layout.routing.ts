@@ -1,3 +1,5 @@
+import { EditCategoryComponent } from './../../pages/categories/edit-category/edit-category.component';
+import { AddCategoryComponent } from './../../pages/categories/add-category/add-category.component';
 import { ServicelineDetailComponent } from './../../pages/TelLines/serviceline-detail/serviceline-detail.component';
 import { TellinDetailComponent } from './../../pages/TelLines/tellin-detail/tellin-detail.component';
 import { ComplaintDetailComponent } from './../../pages/Complaints/complaint-detail/complaint-detail.component';
@@ -61,9 +63,11 @@ export const AdminLayoutRoutes: Routes = [
    { path: 'back/mapstores', component: MapStoreComponent},
    { path: 'back/addstores', component: AddStoreComponent},
    { path: 'back/liststores', component: ListStoreComponent},
+   { path: 'back/addcategories', component: AddCategoryComponent},
    { path: 'back/productstatistics', component: ProductChartComponent},
    { path: 'back/categories', component: CategoriesComponent},
    { path: 'store-edit/:store_id', component: EditStoreComponent },
+   { path: 'category-edit/:category_id', component: EditCategoryComponent },
     /**************  Prospecting routing  **************/
     { path: 'back/carbrands', component: CarbrandComponent,canActivate:[AuthUserService]  },
     { path: 'back/vehicles', component: VehicleComponent ,canActivate:[AuthUserService] },

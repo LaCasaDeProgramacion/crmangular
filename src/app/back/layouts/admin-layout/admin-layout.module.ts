@@ -1,7 +1,9 @@
+import { EditCategoryComponent } from './../../pages/categories/edit-category/edit-category.component';
+import { AddCategoryComponent } from './../../pages/categories/add-category/add-category.component';
 import { ServicelineDetailComponent } from './../../pages/TelLines/serviceline-detail/serviceline-detail.component';
 import { TellinDetailComponent } from './../../pages/TelLines/tellin-detail/tellin-detail.component';
 import { ComplaintDetailComponent } from './../../pages/Complaints/complaint-detail/complaint-detail.component';
-import { ComboBoxModule } from '@syncfusion/ej2-angular-dropdowns';
+import { ComboBoxModule,DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { ServicesLinesComponent } from './../../pages/TelLines/services-lines/services-lines.component';
 import { TelephonelinesComponent } from './../../pages/TelLines/telephonelines/telephonelines.component';
 
@@ -70,7 +72,7 @@ import { AddVehicleComponent } from '../../pages/prospecting/vehicle/add-vehicle
 import { ScheduleModule, RecurrenceEditorModule , DayService, WeekService,
          WorkWeekService, MonthService, MonthAgendaService
           , DragAndDropService, ResizeService} from '@syncfusion/ej2-angular-schedule';
-  import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+
   import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { EventCalendarComponent } from '../../pages/prospecting/event-calendar/event-calendar.component';
 @NgModule({
@@ -148,7 +150,8 @@ MapStoreComponent,
     EditStoreComponent,
     CategoriesComponent,
     ProductChartComponent,
-
+AddCategoryComponent,
+EditCategoryComponent,
 
 
 

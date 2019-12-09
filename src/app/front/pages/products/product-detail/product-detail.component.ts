@@ -18,8 +18,9 @@ export class ProductDetailComponent implements OnInit {
     this.sub = this.route.params.subscribe((params) => {
 			const id = params['id'];
       this.getProductDetail(id);
-     // this.NumberOfViews(id);
+
     });
+    //this.updateNbViews();
 
   }
   getProductDetail(id: string) {
@@ -35,7 +36,13 @@ export class ProductDetailComponent implements OnInit {
      )
   }
 
+updateNbViews(){
+  this.sub = this.route.params.subscribe((params) => {
+    const id = params['id'];
+        this.NumberOfViews(id);
 
+  });
+}
   NumberOfViews(id:number) {
     return this.productService.numberOfViews(id).subscribe(
       (Data) => {

@@ -115,7 +115,7 @@
       <td> Nom </td>
 
         <input type="text"  class="form-control"  name="productName" [(ngModel)] ="produit.productName"
-         #productName_id = "ngModel">
+         #productName_id = "ngModel" (input)="reduce()">
 
 
 

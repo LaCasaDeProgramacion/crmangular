@@ -1,5 +1,5 @@
 body .ui-dataview .ui-dataview-header {
-  background-color: #2f8ab7 !important;
+  background-color: #FB6340 !important;
 }
 .time {
 	background-color: #FC5B2D;
@@ -14,7 +14,7 @@ body .ui-dataview .ui-dataview-header {
   padding: 25px 0px 0px 0px;
   color: #fff;
   font-size: 17px;
-  background-color: #2f8ab7;
+  background-color: #FB6340;
   height: 80px;
   text-align: center;
   display: inline-flex;
@@ -53,7 +53,7 @@ body .ui-dataview .ui-dataview-header {
 }
 
 .details-header {
-  background-color: #2f8ab7;
+  background-color: #FB6340;
   height: 60px;
   padding: 0px 0px 0px 12px;
   width: 100%

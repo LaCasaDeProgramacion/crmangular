@@ -1,3 +1,6 @@
+
+
+
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
@@ -100,59 +103,43 @@
       <div class="card shadow">
         <div class="card-header border-0">
           <h3 class="mb-0">Products List</h3>
-
-
         </div>
         <div class="table-responsive">
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">Category Name</th>
-                <th scope="col">Actions</th>
-              </tr>
+
+<h1> Add New Category</h1>
+
+<form #addForm="ngForm">
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <td> Nom </td>
+
+        <input type="text"  class="form-control"  name="category_name" [(ngModel)] ="category.category_name"
+         #categoryName_id = "ngModel">
 
 
 
 
-            </thead>
-            <tbody>
-              <tr *ngFor="let catego of ListCategories ; let i = index " >
-                <th scope="row" >
-                  <div class="media align-items-center">
-                    <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                      <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
-                    </a>
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">{{catego.category_name}}</span>
-                    </div>
-                  </div>
-                </th>
 
 
 
 
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" routerLink="/category-edit/{{catego.category_id}}">Update Category</a>
-                      <a class="dropdown-item"  href="javascript:void(0)">Delete Product</a>
-                      <a class="dropdown-item" routerLink="back/addcategories">Add New Category</a>
-                    </div>
-                  </div>
-                </td>
 
 
-              </tr>
 
-            </tbody>
-          </table>
+
+
+
+
+  <button type="submit" class="btn btn-primary" (click)= "onSubmit()"> Submit</button>
+          </div>
+        </div>
+</form>
+
+
         </div>
 
 
-        <a href="back/addcategories"> <button type="button"  class="btn btn-success">Add New Category</button></a>
 
         <div class="card-footer py-4">
           <nav aria-label="...">
@@ -182,8 +169,7 @@
       </div>
     </div>
   </div>
-
-
+  <!-- Dark table -->
 
 </div>
 <router-outlet></router-outlet>

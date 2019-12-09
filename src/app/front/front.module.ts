@@ -16,7 +16,7 @@ import { GMapModule } from 'primeng/components/gmap/gmap';
 import { DataViewModule } from 'primeng/components/dataview/dataview';
 import { SidebarModule } from 'primeng/components/sidebar/sidebar';
 import { FooterComponent } from './components/footer/footer.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductsListComponent } from './pages/products/products-list/products-list.component';
 import { ChatComponent } from './pages/chat/chat.component';
@@ -37,7 +37,7 @@ import { EventsFrontComponent } from './events-front/events-front.component';
 
   declarations: [HomeComponent,TopicsComponent, FrontNavComponent, FrontFooterComponent, AllTopicsComponent,
                  SingleTopicComponent, ConfirmPassComponent, StoresComponent, StoresListComponent,
-                 FooterComponent, NavbarComponent, ProductsComponent,FilterByBrandPipe, ChatComponent, ProductSliderComponent, SearchComponent, ProductFilterComponent, FortuneWheelComponent, ProductDetailComponent, ListpackComponent, OnepackinfoComponent, EventsFrontComponent,],
+                 FooterComponent, ProductsComponent,FilterByBrandPipe, ChatComponent, ProductSliderComponent, SearchComponent, ProductFilterComponent, FortuneWheelComponent, ProductDetailComponent, ListpackComponent, OnepackinfoComponent, EventsFrontComponent,],
 
   imports: [
     CommonModule,
@@ -51,9 +51,10 @@ import { EventsFrontComponent } from './events-front/events-front.component';
     AutocompletetextComponent
 
 
+
   ],
   exports: [
-    NavbarComponent,
+
   FooterComponent,
      TopicsComponent,
     FrontNavComponent,

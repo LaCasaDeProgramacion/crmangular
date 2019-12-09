@@ -1,3 +1,4 @@
+import { NavbarComponent } from './back/components/navbar/navbar.component';
 import { AjoutComplaintComponent } from './front/complaints/ajout-complaint/ajout-complaint.component';
 import { filterbystatePipe } from './front/pipes/filterbystate.pipe';
 import { filterbytypePipe } from './front/pipes/filterbytype.pipe';
@@ -32,7 +33,7 @@ import { TokenInterceptor } from './services/Token.interceptor';
 import { SingleTopicComponent } from './front/forum/single-topic/single-topic.component';
 import { AllTopicsComponent } from './front/forum/all-topics/all-topics.component';
 import { FrontFooterComponent } from './front/components/front-footer/front-footer.component';
-import { FrontNavComponent } from './front/components/front-nav/front-nav.component';
+
 import { TopicsComponent } from './front/forum/topics/topics.component';
 import { HomeComponent } from './front/home/home.component';
 import { NgModule } from '@angular/core';
@@ -75,6 +76,10 @@ import { ListStoreComponent } from './back/pages/stores/list-store/list-store.co
 import { EditStoreComponent } from './back/pages/stores/edit-store/edit-store.component';
 import { CategoriesComponent } from './back/pages/categories/categories.component';
 import { ProductChartComponent } from './back/pages/products/product-chart/product-chart.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FrontNavComponent } from './front/components/front-nav/front-nav.component';
+
+
 
 @NgModule({
   imports: [
@@ -95,9 +100,7 @@ import { ProductChartComponent } from './back/pages/products/product-chart/produ
      MatDialogModule,
     ReactiveFormsModule,
     ComboBoxModule,
-
-
-
+NgxPaginationModule,
 
 
    AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -150,7 +153,7 @@ FortuneWheelComponent,
 ProductDetailComponent,
     /********** new **********/
     TopicsComponent,
-    FrontNavComponent,
+
     FrontFooterComponent,
     AllTopicsComponent,
     SingleTopicComponent,
@@ -159,7 +162,7 @@ ProductDetailComponent,
     DropdownComponent,
 
 
-
+    FrontNavComponent,
 
 
     /******  user *******/

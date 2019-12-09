@@ -41,6 +41,8 @@ products: product[];
   categories: category[];
   unsubscribe$ = new Subject();
   page = 1;
+  p: number = 1;
+  collection: any[] = [];
   produit: product;
   @Input() public displayMode: string;
   currentPagingPage: number;

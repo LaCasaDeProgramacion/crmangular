@@ -31,6 +31,10 @@ product:product [];
   getProducts()  {
     return this.http.get<product[]>(this.urlProduct+"allproducts") ;
    }
+
+   getInactiveProducts()  {
+    return this.http.get<product[]>(this.urlProduct+"allinactiveproducts") ;
+   }
    getTopViewedProducts()  {
     return this.http.get<product[]>(this.urlProduct+"TopviewedProducts") ;
    }
@@ -81,6 +85,15 @@ product:product [];
    public getCategories(){
 return this.http.get<category[]>(this.urlCategory+"allcategories") ;
   }
+
+  public addCategory(c: category){
+    return this.http.post<category>(this.urlCategory+"addCategory/?category_name="+c.category_name,null).pipe(
+
+      retry(1),
+    catchError(this.handleError)
+
+  );
+      }
    getRandomProduct() {
     return this.http.get<product[]>(this.urlProduct+"getrandompro") ;
    }
@@ -95,7 +108,14 @@ return this.http.get<category[]>(this.urlCategory+"allcategories") ;
       catchError(this.handleError)
     )
   }
+  public findCategorybyId(category_id): Observable<any> {
+    return this.http.get<category>(this.urlCategory+"getcategorybyId/?category_id="+category_id, this.httpOptions)
 
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
   AssignProductssToPack(){
     console.log("heeereeeee");
 
@@ -115,7 +135,13 @@ updatePro(id, p): Observable<product> {
     catchError(this.handleError)
   )
 }
-
+updateCategory(category_id, c): Observable<category> {
+  return this.http.put<category>(this.urlCategory +
+    "updateCategory?category_id="+category_id+"&category_name="+c.category_name,null).pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+}
 numberOfViews(id): Observable<product> {
   return this.http.post<product>(this.urlProduct +"numberofViews?id="+id,null).pipe(
     retry(1),
@@ -126,4 +152,13 @@ numberOfViews(id): Observable<product> {
 getTopSellingProducts(): Promise<product[]> {
   return Promise.resolve(this.product);
 }
+
+SetToActive(id): Observable<product> {
+  return this.http.post<product>(this.urlProduct +"setToActive?id="+id,null).pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
+}
+
+
 }

@@ -13,7 +13,7 @@ import { Subject, BehaviorSubject } from 'rxjs';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-
+  ListProducts: any = [];
   searchText;
   selectedstore;
   constructor( private userService: ApiService, private storeservice: ApiStore) {
@@ -28,16 +28,24 @@ export class AddProductComponent implements OnInit {
 
  produit: product= new product();
  ngOnInit() {
-
+  this.populateproduct();
   this.storeservice.getStores()
   .subscribe(stores => this.stores$ = stores)
 
 this.storeselected=1;
 }
 
-
+populateproduct()
+{
+  this.userService.getProducts().subscribe(
+    (Data) => {
+      this.ListProducts = Data ;
+      console.log(Data);
+    }
+   )
+}
  onSubmit() {
-   this.produit.productName="test";
+
 
 
      this.produit.store_id = this.storeselected;
@@ -48,5 +56,32 @@ this.storeselected=1;
       console.log(this.produit)
      });
  }
+  hasDuplicateDesc(ListProducts) {
+  var groups = ListProducts.reduce((acc, cur) => {
+    acc[cur.productName] = (acc[cur.productName] || 0) + 1;
+    return acc;
+  }, {});
+
+  return Object.values(groups).some(num => num > 1);
+}
+verify(){
+  if (this.hasDuplicateDesc(this.ListProducts)) {
+    return console.log("duplicated Name")
+  }
+}
+
+ reduce(){
+
+  let res=[];
+  this.ListProducts.map(function(item){
+    var existItem = res.find(x=>x.productName===item.productName);
+    if(existItem)
+     console.log("Product Already exists");
+    else
+     res.push(item);
+  });
+  console.log(res);
+
+}
 
 }

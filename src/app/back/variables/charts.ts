@@ -307,6 +307,27 @@ export const chartExample1 = {
   }
 }
 
+// export const chartComplaint = {
+//   options: {
+//     scales: {
+//       yAxes: [{
+//         gridLines: {
+//           color: colors.gray[900],
+//           zeroLineColor: colors.gray[900]
+//         },
+//         ticks: {
+//           callback: function(value) {
+//             if (!(value % 10)) {
+//               return value ;
+//             }
+//           }
+//         }
+//       }]
+//     }
+//   }
+
+// }
+
 export const chartExample2 = {
   options: {
     scales: {
@@ -347,4 +368,37 @@ export const chartExample2 = {
       }
     ]
   }
+}
+export const chartComplaint = {
+  options: {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            callback: function(value) {
+              if (!(value % 10)) {
+                //return '$' + value + 'k'
+                return value;
+              }
+            }
+          }
+        }
+      ]
+    },
+    tooltips: {
+      callbacks: {
+        label: function(item, data) {
+          var label = data.datasets[item.datasetIndex].label || "";
+          var yLabel = item.yLabel;
+          var content = "";
+          if (data.datasets.length > 1) {
+            content += label;
+          }
+          content += yLabel;
+          return content;
+        }
+      }
+    }
+  },
+
 }
