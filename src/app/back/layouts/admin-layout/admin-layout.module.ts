@@ -65,6 +65,9 @@ import { UpdatePromotionComponent } from '../../pages/promotion/update-promotion
 import { FilterPipe } from 'src/app/front/pipes/filter.pipe';
 import { ProductEditComponent } from '../../pages/products/product-edit/product-edit.component';
 import { CategoriesComponent } from '../../pages/categories/categories.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
+// import { ToastrModule } from 'ngx-toastr';
 
 import { AddVehicleComponent } from '../../pages/prospecting/vehicle/add-vehicle/add-vehicle.component';
 
@@ -88,7 +91,9 @@ import { EventCalendarComponent } from '../../pages/prospecting/event-calendar/e
     ComboBoxModule,
     GridModule,
     NgxPaginationModule,
-
+    
+    
+    
 
 
 
@@ -170,7 +175,8 @@ EditCategoryComponent,
   ],
   providers: [
     DayService, WeekService,
-    WorkWeekService, MonthService, MonthAgendaService, DragAndDropService, ResizeService
+    WorkWeekService, MonthService, MonthAgendaService, DragAndDropService, ResizeService,NgxPaginationModule,
+    
   ],
 })
 

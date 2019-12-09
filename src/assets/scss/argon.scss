@@ -68,6 +68,7 @@
 
 @import "custom/vendors";
 
+
 // Angular Differences
 @import "angular-differences/angular-differences";
 @import '../../../node_modules/@syncfusion/ej2-base/styles/material.css';
@@ -80,3 +81,6 @@
 @import '../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';  
 @import '../../../node_modules/@syncfusion/ej2-angular-grids/styles/material.css';
 @import '../../../node_modules/@syncfusion/ej2-layouts/styles/material.css';  
+@import '../../../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css';
+//cards 
+@import '~ngx-toastr/toastr.css';

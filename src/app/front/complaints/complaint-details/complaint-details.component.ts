@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ComplaintsService } from './../../../services/complaintsManagement/complaints.service';
 import { complaintcomment } from './../../../entities/complaintsmanagement/complaintcomment';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-complaint-details',
@@ -11,11 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComplaintDetailsComponent implements OnInit {
 
-  constructor(private service:ComplaintsService,private route: ActivatedRoute,private commentS:ComplaintCommentsService) { }
+  constructor(private service:ComplaintsService,private route: ActivatedRoute,private commentS:ComplaintCommentsService,private toastr: ToastrService) { }
   id;
   complaint:any;
   comments:complaintcomment={comment:""};
   listComments:complaintcomment[];
+  user=localStorage.getItem('UserName');
+
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       
@@ -28,6 +31,28 @@ export class ComplaintDetailsComponent implements OnInit {
       }
     )
     
+  }
+  deleteComment(id)
+  {
+    this.commentS.delete(id).subscribe(
+      (data)=>
+      {
+        this.load();
+        this.toastr.error('Delete comment', 'Comment deleted with success!',
+        {timeOut: 2000});
+        console.log(data);
+      }
+    )
+  }
+  Likecomment(id)
+  {
+    this.commentS.Like(id).subscribe(
+      (data)=>
+      {
+        this.load();
+      console.log(data)
+    }
+    );
   }
   onSubmit(id:number)
   {

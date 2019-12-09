@@ -325,7 +325,7 @@ export const chartExample1 = {
 //       }]
 //     }
 //   }
-
+  
 // }
 
 export const chartExample2 = {
@@ -400,5 +400,5 @@ export const chartComplaint = {
       }
     }
   },
-
+  
 }

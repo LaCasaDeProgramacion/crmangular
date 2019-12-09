@@ -1,3 +1,4 @@
+import { notificationComplaint } from './../../entities/complaintsmanagement/notificationComplaint';
 import { complaints } from './../../entities/complaintsmanagement/complaints';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -66,6 +67,19 @@ export class ComplaintsService {
   AffectTechnician(id:number) 
   {
     return this.http.put("/crmproject-web/rest/complaints/affectTechnician/"+id,null,this.headers);
+  }
+
+  getNotif() : Observable<notificationComplaint[]>
+  {
+    return this.http.get<notificationComplaint[]>("/crmproject-web/rest/notification/all/");
+  }
+  MarknotifAsread(id:number) 
+  {
+    return this.http.put("/crmproject-web/rest/notification/MarkNotifAsRead/"+id,null,this.headers);
+  }
+  MarkAllAsRead() 
+  {
+    return this.http.put("/crmproject-web/rest/notification/MarkAllAsRead/",null,this.headers);
   }
 
   

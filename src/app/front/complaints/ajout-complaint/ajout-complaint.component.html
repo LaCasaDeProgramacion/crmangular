@@ -1,0 +1,20 @@
+
+<form #lineForm= "ngForm" (ngSubmit)="onSubmit()">
+    
+        
+        <ejs-combobox  name="complaintObject" #complaintObject="ngModel" [dataSource]='ObjectList' [(ngModel)]="complaint.complaintObject" [fields]='fields' placeholder='Select a type '[allowFiltering]='true' (filtering)='onFiltering($event)'></ejs-combobox>
+      
+    <div class="form-group">
+      <div class="input-group input-group-alternative mb-3">
+         <textarea   name="complaintBody" #complaintBody="ngModel" [(ngModel)]="complaint.complaintBody"></textarea> 
+
+      </div>
+      <div class="form-error">
+          
+      </div>
+    </div>
+    
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary mt-4" [disabled]="lineForm.invalid">ADD</button>
+  </div>
+</form>

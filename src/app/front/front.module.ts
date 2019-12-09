@@ -33,6 +33,7 @@ import { EventsFrontComponent } from './events-front/events-front.component';
 
 
 
+
 @NgModule({
 
   declarations: [HomeComponent,TopicsComponent, FrontNavComponent, FrontFooterComponent, AllTopicsComponent,
@@ -48,7 +49,7 @@ import { EventsFrontComponent } from './events-front/events-front.component';
     SidebarModule,
     ProductsListComponent,
     FormsModule,
-    AutocompletetextComponent
+    AutocompletetextComponent,
 
 
 

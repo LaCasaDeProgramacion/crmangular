@@ -1,9 +1,12 @@
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
-      <br>
-      <br>
-      <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br><br><br><br><br><br>
       <!-- Card stats -->
         
         
@@ -63,7 +66,7 @@
                   {{x.lineNumber}}
                 </td>
                 <td>
-                    {{x.dateCreation}}
+                    {{x.dateCreation | date}}
                     
                   </td>
               <td>
@@ -119,36 +122,52 @@
     </div>
 
 <ng-template #content let-modal1>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal1-basic-title">Delete Telephone line</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <span>Are you sure you want to delete this line?</span>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal1.close('Save click')">Close</button>
-    <button type="button" class="btn bg-gradient-danger" (click)="Delete(content)">Confirm</button>
-
-  </div>
+    <div  id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification" >
+        <div class="modal-danger" role="document">
+          <div class="modal-content bg-gradient-danger">
+            <div class="modal-header">
+              <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+              <button type="button" class="close" aria-label="Close"  (click)="modal1.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+              <div class="py-3 text-center">
+                <i class="ni ni-bell-55 ni-3x"></i>
+                <h4 class="heading mt-4">Delete line</h4>
+                <p>Are you sure want to delete this line.</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-white" (click)="Delete()">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </ng-template>
 <ng-template #contentDisable let-modal1>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal1-basic-title">Disable Telephone line</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <span>Are you sure you want to disable this line?</span>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal1.close('Save click')">Close</button>
-    <button type="button" class="btn bg-gradient-danger" (click)="Disable(content)">Confirm</button>
-
-  </div>
+    <div  id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification" >
+        <div class="modal-danger" role="document">
+          <div class="modal-content bg-gradient-danger">
+            <div class="modal-header">
+              <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+              <button type="button" class="close" aria-label="Close"  (click)="modal1.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+               </button>
+            </div>
+            <div class="modal-body">
+              <div class="py-3 text-center">
+                <i class="ni ni-bell-55 ni-3x"></i>
+                <h4 class="heading mt-4">Disable line</h4>
+                <p>Are you sure want to disable this line.</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-white" (click)="Disable()">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </ng-template>
 <ng-template #ajout let-modal1>
   <div class="modal-header">
@@ -166,35 +185,27 @@
               <div class="form-group">
                 <div class="input-group input-group-alternative mb-3">
                   
-                  <input class="form-control" placeholder="Line number" name="lineNumber" [(ngModel)]="telline.lineNumber" #lineNumber="ngModel" type="text" required>
+                  <input class="form-control" placeholder="Line number *" name="lineNumber" [(ngModel)]="telline.lineNumber" #lineNumber="ngModel" type="text" required>
                 </div>
-                <div class="form-error">
-                    <div *ngIf="lineNumber.invalid && lineNumber.touched"> 
-                        lineNumber is required
-                    </div>
-                </div>
+                <div *ngIf="lineNumber.invalid && lineNumber.touched && !lineNumber.dirty" class="alert alert-danger">
+                    Number  is required  </div>
               </div>
               <div class="form-group">
                 <div class="input-group input-group-alternative mb-3">
                   
-                  <input class="form-control" placeholder="Code PIN" name="codePIN" [(ngModel)]="telline.codePIN" #codePIN="ngModel" type="text" required>
+                  <input class="form-control" placeholder="Code PIN *" name="codePIN" [(ngModel)]="telline.codePIN" #codePIN="ngModel" type="text" required>
                 </div>
-                <div class="form-error">
-                    <div *ngIf="codePIN.invalid && codePIN.touched"> 
-                        codePIN is required
-                    </div>
-                </div>
+                <div *ngIf="codePIN.invalid && codePIN.touched && !codePIN.dirty" class="alert alert-danger">
+                    codePIN  is required  </div>
               </div>
+              
               <div class="form-group">
                 <div class="input-group input-group-alternative">
                   
-                  <input class="form-control" placeholder="Code PUK" name="codePUK" [(ngModel)]="telline.codePUK" #codePUK="ngModel" type="text" required>
+                  <input class="form-control" placeholder="Code PUK *" name="codePUK" [(ngModel)]="telline.codePUK" #codePUK="ngModel" type="text" required>
                 </div>
-                <div class="form-error">
-                    <div *ngIf="codePUK.invalid && codePUK.touched"> 
-                        Object is required
-                    </div>
-                </div>
+                <div *ngIf="codePUK.invalid && codePUK.touched && !codePUK.dirty" class="alert alert-danger">
+                    codePUK  is required  </div>
               </div>
             
               <!-- <div class="form-group">
@@ -231,28 +242,31 @@
             <div class="text-center text-muted mb-4">
             </div>
             <form #lineForm= "ngForm" (ngSubmit)="Update()">
-              <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                  
-                  <input class="form-control" placeholder="Line number" name="lineNumber" [(ngModel)]="telline.lineNumber" #lineNumber="ngModel" type="text" required>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    
+                    <input class="form-control" placeholder="Line number *" name="lineNumber" [(ngModel)]="telline.lineNumber" #lineNumber="ngModel" type="text" required>
+                  </div>
+                  <div *ngIf="lineNumber.invalid && lineNumber.touched && !lineNumber.dirty" class="alert alert-danger">
+                      Number  is required  </div>
                 </div>
-                <div class="form-error">
-                    <div *ngIf="lineNumber.invalid && lineNumber.touched"> 
-                        lineNumber is required
-                    </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    
+                    <input class="form-control" placeholder="Code PIN *" name="codePIN" [(ngModel)]="telline.codePIN" #codePIN="ngModel" type="text" required>
+                  </div>
+                  <div *ngIf="codePIN.invalid && codePIN.touched && !codePIN.dirty" class="alert alert-danger">
+                      codePIN  is required  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                  
-                  <input class="form-control" placeholder="Code PIN" name="codePIN" [(ngModel)]="telline.codePIN" #codePIN="ngModel" type="text" required>
+                
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    
+                    <input class="form-control" placeholder="Code PUK *" name="codePUK" [(ngModel)]="telline.codePUK" #codePUK="ngModel" type="text" required>
+                  </div>
+                  <div *ngIf="codePUK.invalid && codePUK.touched && !codePUK.dirty" class="alert alert-danger">
+                      codePUK  is required  </div>
                 </div>
-                <div class="form-error">
-                    <div *ngIf="codePIN.invalid && codePIN.touched"> 
-                        codePIN is required
-                    </div>
-                </div>
-              </div>
               <div class="form-group">
                 <div class="input-group input-group-alternative">
                   
@@ -260,7 +274,7 @@
                 </div>
                 <div class="form-error">
                     <div *ngIf="codePUK.invalid && codePUK.touched"> 
-                        Object is required
+                        Code Puk is required
                     </div>
                 </div>
               </div>

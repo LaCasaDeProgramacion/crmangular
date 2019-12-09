@@ -1,3 +1,4 @@
+import { complaintstatistics } from './../../entities/complaintsmanagement/complaintstatistics';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -28,5 +29,11 @@ export class StatisticsComplaintService {
   }
   getTTeated() : Observable<number>{
     return this.http.get<number>("/crmproject-web/rest/statistics/totalTreated") ;
+  }
+  getALL() : Observable<complaintstatistics[]>{
+    return this.http.get<complaintstatistics[]>("/crmproject-web/rest/statistics/GetAllStatComplaint") ;
+  }
+  getByDate(d) : Observable<complaintstatistics>{
+    return this.http.get<complaintstatistics>("/crmproject-web/rest/statistics/GetStatComplaint/"+d) ;
   }
 }

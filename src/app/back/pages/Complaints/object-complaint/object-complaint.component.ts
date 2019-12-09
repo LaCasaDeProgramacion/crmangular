@@ -2,6 +2,7 @@ import { ComplaintObjectsService } from './../../../../services/complaintsManage
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { complaintobject } from 'src/app/entities/complaintsmanagement/complaintobject';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-object-complaint',
@@ -10,7 +11,7 @@ import { complaintobject } from 'src/app/entities/complaintsmanagement/complaint
 })
 export class ObjectComplaintComponent implements OnInit {
 
-  constructor(private obejctser:ComplaintObjectsService,private modalService: NgbModal) { }
+  constructor(private obejctser:ComplaintObjectsService,private modalService: NgbModal,private toastr: ToastrService) { }
   Listtech=[];
   cancelClicked:boolean=false;
   SelectedComplaint:complaintobject;
@@ -45,6 +46,8 @@ config:any;
       (data) =>{
         console.log(data);
         this.modalService.dismissAll();
+        this.toastr.error('Delete Object', 'Object deleted with success!',
+        {timeOut: 2000});
         this.loadComplaints();
 
       }
@@ -73,6 +76,8 @@ config:any;
       (data) => {
         console.log(data);
         this.modalService.dismissAll();
+        this.toastr.success('Add object', 'Object added with success!',
+        {timeOut: 2000});
         this.loadComplaints();
 
       }
@@ -82,7 +87,7 @@ config:any;
   
   Open(content,id) {
     this.idSelected=id;
-   this.modalService.open(content, {ariaLabelledBy: 'modal1-basic-title'}).result.then((result) => {
+   this.modalService.open(content, {ariaLabelledBy: 'modal1-title-notification'}).result.then((result) => {
      this.closeResult = `Closed with: ${result}`;
    }, (reason) => {
      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

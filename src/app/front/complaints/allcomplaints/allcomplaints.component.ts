@@ -1,9 +1,12 @@
+import { complaints } from './../../../entities/complaintsmanagement/complaints';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 import { EmitType } from '@syncfusion/ej2-base';
 import { ComplaintTypesService } from './../../../services/complaintsManagement/complaint-types.service';
 import { ComplaintsService } from './../../../services/complaintsManagement/complaints.service';
 import { Component, OnInit } from '@angular/core';
 import { Query } from '@syncfusion/ej2-data';
+import { ComplaintObjectsService } from 'src/app/services/complaintsManagement/complaint-objects.service';
 
 @Component({
   selector: 'app-allcomplaints',
@@ -12,7 +15,7 @@ import { Query } from '@syncfusion/ej2-data';
 })
 export class AllcomplaintsComponent implements OnInit {
 
-  constructor(private typeser:ComplaintTypesService,private complaintscervice:ComplaintsService) { }
+  constructor(private typeser:ComplaintTypesService,private complaintscervice:ComplaintsService,private modalService: NgbModal,private OService:ComplaintObjectsService) { }
   ListComplaints=[];
   typeList=[];
   collection = { count: null, ListComplaints: [] };
@@ -23,6 +26,10 @@ export class AllcomplaintsComponent implements OnInit {
   Treated =false;
 config:any;
 searchText;
+closeResult:string;
+complaint:complaints={complaintBody:"",complaintObject:null};
+ObjectList=[];
+public fields1: Object = { text: 'object', value: 'id' };
   ngOnInit() {
     this.complaintscervice.get().subscribe(
       (Data) => {
@@ -32,7 +39,7 @@ searchText;
       }
      )
      this.config = {
-      itemsPerPage: 5,
+      itemsPerPage: 6,
       currentPage: 1,
       totalItems: this.collection.count
     };
@@ -40,6 +47,12 @@ searchText;
       (Data) => {
         this.typeList = Data ; 
         console.log("tech"+Data);
+      }
+     )
+     this.OService.get().subscribe(
+      (Data) => {
+        this.ObjectList = Data ; 
+        console.log("Complaints"+Data);
       }
      )
   }
@@ -53,7 +66,7 @@ searchText;
       }
      )
      this.config = {
-      itemsPerPage: 5,
+      itemsPerPage: 6,
       currentPage: 1,
       totalItems: this.collection.count
     };
@@ -83,7 +96,7 @@ searchText;
         }
        )
        this.config = {
-        itemsPerPage: 5,
+        itemsPerPage: 6,
         currentPage: 1,
         totalItems: this.collection.count
       };
@@ -98,7 +111,7 @@ searchText;
         }
        )
        this.config = {
-        itemsPerPage: 5,
+        itemsPerPage: 6,
         currentPage: 1,
         totalItems: this.collection.count
       };
@@ -116,7 +129,7 @@ searchText;
         }
        )
        this.config = {
-        itemsPerPage: 5,
+        itemsPerPage: 6,
         currentPage: 1,
         totalItems: this.collection.count
       };
@@ -131,7 +144,7 @@ searchText;
         }
        )
        this.config = {
-        itemsPerPage: 5,
+        itemsPerPage: 6,
         currentPage: 1,
         totalItems: this.collection.count
       };
@@ -149,7 +162,7 @@ searchText;
         }
        )
        this.config = {
-        itemsPerPage: 5,
+        itemsPerPage: 6,
         currentPage: 1,
         totalItems: this.collection.count
       };
@@ -164,7 +177,7 @@ searchText;
         }
        )
        this.config = {
-        itemsPerPage: 5,
+        itemsPerPage: 6,
         currentPage: 1,
         totalItems: this.collection.count
       };
@@ -182,7 +195,7 @@ searchText;
         }
        )
        this.config = {
-        itemsPerPage: 5,
+        itemsPerPage: 6,
         currentPage: 1,
         totalItems: this.collection.count
       };
@@ -197,11 +210,49 @@ searchText;
         }
        )
        this.config = {
-        itemsPerPage: 5,
+        itemsPerPage: 6,
         currentPage: 1,
         totalItems: this.collection.count
       };
     }
+  }
+
+  Opena(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal1-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+   }
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return  `with: ${reason}`;
+      }
+    }
+   
+ 
+  
+  public onFiltering1: EmitType<any> =  (e: FilteringEventArgs) => {
+    let query = new Query();
+    //frame the query based on search string with filter type.
+    query = (e.text != "") ? query.where("object", "startswith", e.text, true) : query;
+    //pass the filter data source, filter query to updateData method.
+    e.updateData(this.ObjectList, query);
+  };
+  onSubmit()
+  {
+    this.complaintscervice.add(this.complaint).subscribe(
+      (data)=>
+      {
+        this.modalService.dismissAll();
+        this.loadComplaints();
+        console.log(data);
+      }
+    )
   }
 
 }

@@ -7,7 +7,12 @@
         <!-- Card stats -->
         <div class="row">
           <div class="col-xl-3 col-lg-6">
-            
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br><br><br><br>
           </div>
         </div>
       </div>
@@ -102,20 +107,28 @@
  
   
   <ng-template #content let-modal1>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal1-basic-title">Delete Object</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <span>Are you sure you want to delete this Object?</span>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal1.close('Save click')">Close</button>
-      <button type="button" class="btn bg-gradient-danger" (click)="Delete(content)">Confirm</button>
-  
-    </div>
+      <div  id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification" >
+          <div class="modal-danger" role="document">
+            <div class="modal-content bg-gradient-danger">
+              <div class="modal-header">
+                <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+                <button type="button" class="close" aria-label="Close"  (click)="modal1.dismiss('Cross click')">
+                  <span aria-hidden="true">×</span>
+                 </button>
+              </div>
+              <div class="modal-body">
+                <div class="py-3 text-center">
+                  <i class="ni ni-bell-55 ni-3x"></i>
+                  <h4 class="heading mt-4">Delete Object</h4>
+                  <p>Are you sure want to delete this Object.</p>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-white" (click)="Delete()">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
   </ng-template>
   <ng-template #ajout let-modal1>
     <div class="modal-header">
@@ -132,14 +145,13 @@
             <form #techForm= "ngForm" (ngSubmit)="onSubmit()">
               <div class="form-group">
                   <div class="input-group input-group-alternative mb-3">
-                  <input class="form-control" placeholder=" Name" name="object" [(ngModel)]="cObject.object" #object="ngModel" type="text" required >
+                  <input class="form-control" placeholder=" Name *" name="object" [(ngModel)]="cObject.object" #object="ngModel" type="text" required >
                 </div>
               
-              <div class="form-error">
-                  <div *ngIf="object.invalid && object.touched"> 
+                <div *ngIf="object.invalid && object.touched && !object.dirty" class="alert alert-danger">
+
                       Object is required
                   </div>
-              </div>
               </div>
               
               

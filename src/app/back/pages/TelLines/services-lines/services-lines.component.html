@@ -215,35 +215,26 @@
                 <div class="form-group">
                   <div class="input-group input-group-alternative mb-3">
                     
-                    <input class="form-control" placeholder="serviceName" name="serviceName" [(ngModel)]="telline.serviceName" #serviceName="ngModel" type="text" required>
+                    <input class="form-control" placeholder="serviceName" name="serviceName *" [(ngModel)]="telline.serviceName" #serviceName="ngModel" type="text" required>
                   </div>
-                  <div class="form-error">
-                      <div *ngIf="serviceName.invalid && serviceName.touched"> 
-                          lineNumber is required
-                      </div>
-                  </div>
+                  <div *ngIf="serviceName.invalid && serviceName.touched && !serviceName.dirty" class="alert alert-danger">
+                      Name is required  </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative mb-3">
                     
-                    <textarea class="form-control" placeholder="serviceDescription" name="serviceDescription" [(ngModel)]="telline.serviceDescription" #serviceDescription="ngModel" type="text" required></textarea>
+                    <textarea class="form-control" placeholder="serviceDescription *" name="serviceDescription" [(ngModel)]="telline.serviceDescription" #serviceDescription="ngModel" type="text" required></textarea>
                   </div>
-                  <div class="form-error">
-                      <div *ngIf="serviceDescription.invalid && serviceDescription.touched"> 
-                          codePIN is required
-                      </div>
-                  </div>
+                  <div *ngIf="serviceDescription.invalid && serviceDescription.touched && !serviceDescription.dirty" class="alert alert-danger">
+                      Description is required  </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     
-                    <input class="form-control" placeholder="ActivationCode" name="activationCode" [(ngModel)]="telline.activationCode" #activationCode="ngModel" type="text" required>
+                    <input class="form-control" placeholder="ActivationCode *" name="activationCode" [(ngModel)]="telline.activationCode" #activationCode="ngModel" type="text" required>
                   </div>
-                  <div class="form-error">
-                      <div *ngIf="activationCode.invalid && activationCode.touched"> 
-                          Object is required
-                      </div>
-                  </div>
+                  <div *ngIf="activationCode.invalid && activationCode.touched && !activationCode.dirty" class="alert alert-danger">
+                      Activation Code  is required  </div>
                 </div>
               
                
@@ -271,41 +262,32 @@
                   <div class="form-group">
                     <div class="input-group input-group-alternative mb-3">
                       
-                      <input class="form-control" placeholder="serviceName" name="serviceName" [(ngModel)]="telline.serviceName" #serviceName="ngModel" type="text" required>
+                      <input class="form-control" placeholder="serviceName" name="serviceName *" [(ngModel)]="telline.serviceName" #serviceName="ngModel" type="text" required>
                     </div>
-                    <div class="form-error">
-                        <div *ngIf="serviceName.invalid && serviceName.touched"> 
-                            lineNumber is required
-                        </div>
-                    </div>
+                    <div *ngIf="serviceName.invalid && serviceName.touched && !serviceName.dirty" class="alert alert-danger">
+                        Name is required  </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group input-group-alternative mb-3">
                       
-                      <textarea class="form-control" placeholder="serviceDescription" name="serviceDescription" [(ngModel)]="telline.serviceDescription" #serviceDescription="ngModel" type="text" required></textarea>
+                      <textarea class="form-control" placeholder="serviceDescription *" name="serviceDescription" [(ngModel)]="telline.serviceDescription" #serviceDescription="ngModel" type="text" required></textarea>
                     </div>
-                    <div class="form-error">
-                        <div *ngIf="serviceDescription.invalid && serviceDescription.touched"> 
-                            codePIN is required
-                        </div>
-                    </div>
+                    <div *ngIf="serviceDescription.invalid && serviceDescription.touched && !serviceDescription.dirty" class="alert alert-danger">
+                        Description is required  </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group input-group-alternative">
                       
-                      <input class="form-control" placeholder="ActivationCode" name="activationCode" [(ngModel)]="telline.activationCode" #activationCode="ngModel" type="text" required>
+                      <input class="form-control" placeholder="ActivationCode *" name="activationCode" [(ngModel)]="telline.activationCode" #activationCode="ngModel" type="text" required>
                     </div>
-                    <div class="form-error">
-                        <div *ngIf="activationCode.invalid && activationCode.touched"> 
-                            Object is required
-                        </div>
-                    </div>
+                    <div *ngIf="activationCode.invalid && activationCode.touched && !activationCode.dirty" class="alert alert-danger">
+                        Activation Code  is required  </div>
                   </div>
                 
                  
                 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary mt-4" [disabled]="lineForm.invalid">Update</button>
+                  <button type="submit" class="btn btn-primary mt-4" [disabled]="lineForm.invalid">ADD</button>
                 </div>
               </form>
             </div>  </div>

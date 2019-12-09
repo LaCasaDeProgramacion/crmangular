@@ -1,3 +1,9 @@
+import { AuthUserService } from './services/auth-user.service';
+import { MycomplaintDetailsComponent } from './front/complaints/mycomplaint-details/mycomplaint-details.component';
+import { ServiceDetailsComponent } from './front/Services/service-details/service-details.component';
+import { AllServicesComponent } from './front/Services/all-services/all-services.component';
+import { MyTelLineDetailsComponent } from './front/TelLines/my-tel-line-details/my-tel-line-details.component';
+import { MyTelLinesComponent } from './front/TelLines/my-tel-lines/my-tel-lines.component';
 import { AjoutComplaintComponent } from './front/complaints/ajout-complaint/ajout-complaint.component';
 import { MycomplaintsComponent } from './front/complaints/mycomplaints/mycomplaints.component';
 import { AllcomplaintsComponent } from './front/complaints/allcomplaints/allcomplaints.component';
@@ -21,6 +27,7 @@ import { AuthLayoutComponent } from './back/layouts/auth-layout/auth-layout.comp
 import { CarbrandComponent } from './back/pages/prospecting/vehicle/carbrand/carbrand.component';
 import { TopicsComponent } from './front/forum/topics/topics.component';
 import { ComplaintDetailsComponent } from './front/complaints/complaint-details/complaint-details.component';
+import { MyServicesComponent } from './front/Services/my-services/my-services.component';
 
 
 const routes: Routes =[
@@ -35,10 +42,17 @@ const routes: Routes =[
   { path: 'home/topics', component: TopicsComponent},
   { path: 'home/allTopics', component: AllTopicsComponent},
   { path: 'home/singleTopic', component: SingleTopicComponent},
-  { path: 'home/allcomplaints', component: AllcomplaintsComponent},
-  { path: 'home/mycomplaints', component: MycomplaintsComponent},
-  { path: 'home/cdetails/:id', component: ComplaintDetailsComponent},
-  { path: 'home/ajoutcomplaint', component: AjoutComplaintComponent},
+  { path: 'home/allcomplaints', component: AllcomplaintsComponent,canActivate:[AuthUserService]},
+  { path: 'home/mycomplaints', component: MycomplaintsComponent,canActivate:[AuthUserService]},
+  { path: 'home/mycomplaintsdetails/:id', component: MycomplaintDetailsComponent,canActivate:[AuthUserService]},
+
+  { path: 'home/cdetails/:id', component: ComplaintDetailsComponent,canActivate:[AuthUserService]},
+  { path: 'home/ajoutcomplaint', component: AjoutComplaintComponent,canActivate:[AuthUserService]},
+  { path: 'home/MyLines', component: MyTelLinesComponent,canActivate:[AuthUserService]},
+  { path: 'home/MyLineDetails/:id', component: MyTelLineDetailsComponent,canActivate:[AuthUserService]},
+  { path: 'home/AllServices', component: AllServicesComponent,canActivate:[AuthUserService]},
+  { path: 'home/ServiceDetails/:id', component: ServiceDetailsComponent,canActivate:[AuthUserService]},
+  { path: 'home/MyServices', component: MyServicesComponent,canActivate:[AuthUserService]},
 
 
   { path: 'home/fortune', component: FortuneWheelComponent},

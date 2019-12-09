@@ -1,4 +1,9 @@
 import { NavbarComponent } from './back/components/navbar/navbar.component';
+import { MycomplaintDetailsComponent } from './front/complaints/mycomplaint-details/mycomplaint-details.component';
+import { ServiceDetailsComponent } from './front/Services/service-details/service-details.component';
+import { AllServicesComponent } from './front/Services/all-services/all-services.component';
+import { MyTelLineDetailsComponent } from './front/TelLines/my-tel-line-details/my-tel-line-details.component';
+import { MyTelLinesComponent } from './front/TelLines/my-tel-lines/my-tel-lines.component';
 import { AjoutComplaintComponent } from './front/complaints/ajout-complaint/ajout-complaint.component';
 import { filterbystatePipe } from './front/pipes/filterbystate.pipe';
 import { filterbytypePipe } from './front/pipes/filterbytype.pipe';
@@ -24,7 +29,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { SidebarModule, GMapModule } from 'primeng/primeng';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StoresListComponent } from './front/pages/stores/stores-list/stores-list.component';
-import { MatButtonModule, MatDialogModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatIconModule, MatInputModule, MatFormFieldModule, MatMenuModule, MatToolbarModule, MatCardModule, MatSelectModule, MatListModule, MatSidenavModule, MatGridListModule, MatCheckboxModule } from '@angular/material';
 import { TechnicianService } from './services/complaintsManagement/technician.service';
 import { ComplaintTypesService } from './services/complaintsManagement/complaint-types.service';
 import { ComplaintsService } from './services/complaintsManagement/complaints.service';
@@ -80,6 +85,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FrontNavComponent } from './front/components/front-nav/front-nav.component';
 
 
+import { MyServicesComponent } from './front/Services/my-services/my-services.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -98,9 +105,27 @@ import { FrontNavComponent } from './front/components/front-nav/front-nav.compon
     Ng2SearchPipeModule,
     MatButtonModule,
      MatDialogModule,
+     MatIconModule,
+     MatInputModule,
+  MatFormFieldModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatCardModule,
+  MatSelectModule,
+  MatListModule,
+  MatSidenavModule,
+  MatGridListModule,
+  MatCheckboxModule,
+
+
     ReactiveFormsModule,
     ComboBoxModule,
-NgxPaginationModule,
+    NgxPaginationModule,
+    
+    
+    
+    
+
 
 
    AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -108,6 +133,7 @@ NgxPaginationModule,
    AngularFireDatabaseModule,
    ImageUploadModule,
    SelectbootstrapModule,
+   ToastrModule.forRoot(),
 
   ],
   declarations: [
@@ -123,6 +149,15 @@ NgxPaginationModule,
     AllcomplaintsComponent, MycomplaintsComponent, ComplaintDetailsComponent, AjoutComplaintComponent,
     filterbytypePipe,
     filterbystatePipe,
+    MyTelLinesComponent, MyTelLineDetailsComponent, AllServicesComponent, ServiceDetailsComponent, MyServicesComponent,
+    MycomplaintDetailsComponent,
+    
+    
+    
+    
+    
+
+
 
 
 

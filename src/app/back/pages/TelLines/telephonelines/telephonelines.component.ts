@@ -8,6 +8,7 @@ import { EmitType } from '@syncfusion/ej2-base';
 import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Query } from '@syncfusion/ej2-data';
 import { GroupSettingsModel } from '@syncfusion/ej2-grids';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-telephonelines',
@@ -16,7 +17,7 @@ import { GroupSettingsModel } from '@syncfusion/ej2-grids';
 })
 export class TelephonelinesComponent implements OnInit {
 
-  constructor(private techservice:TellineService,private lineSer:ServiceLineService,private userser:UserService,private modalService: NgbModal) { }
+  constructor(private techservice:TellineService,private lineSer:ServiceLineService,private userser:UserService,private modalService: NgbModal,private toastr: ToastrService) { }
   Listtel=[];
   cancelClicked:boolean=false;
   Selectedtel:TelephoneLines;
@@ -46,6 +47,8 @@ export class TelephonelinesComponent implements OnInit {
       (data) =>{
         console.log(data);
         this.modalService.dismissAll();
+        this.toastr.error('Delete line', 'Line deleted with success!',
+        {timeOut: 2000});
         this.loadComplaints();
 
       }
@@ -59,6 +62,8 @@ export class TelephonelinesComponent implements OnInit {
       (data) =>{
         console.log(data);
         this.modalService.dismissAll();
+        this.toastr.error('Disable line', 'Line disabled with success!',
+        {timeOut: 2000});
         this.loadComplaints();
 
       }
@@ -88,6 +93,8 @@ export class TelephonelinesComponent implements OnInit {
     this.telline={lineNumber:"",codePIN:null,codePUK:null,services:null,user:null};
 
          this.modalService.dismissAll();
+         this.toastr.success('Add line', 'Line added with success!',
+        {timeOut: 2000});
          this.loadComplaints();
 
        }
@@ -101,6 +108,8 @@ export class TelephonelinesComponent implements OnInit {
         this.telline={lineNumber:"",codePIN:null,codePUK:null,services:null,user:null};
 
         this.modalService.dismissAll();
+        this.toastr.success('Update line', 'line updated with success!',
+        {timeOut: 2000});
         this.loadComplaints();
 
       }
@@ -125,7 +134,7 @@ export class TelephonelinesComponent implements OnInit {
   }
   Open(content,id) {
     this.idSelected=id;
-   this.modalService.open(content, {ariaLabelledBy: 'modal1-basic-title'}).result.then((result) => {
+   this.modalService.open(content, {ariaLabelledBy: 'modal1-title-notification'}).result.then((result) => {
      this.closeResult = `Closed with: ${result}`;
    }, (reason) => {
      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -152,7 +161,7 @@ export class TelephonelinesComponent implements OnInit {
 }
 OpenDisable(content,id:number) {
   this.idSelected=id;
-  this.modalService.open(content, {ariaLabelledBy: 'modal1-basic-title'}).result.then((result) => {
+  this.modalService.open(content, {ariaLabelledBy: 'modal1-title-notification'}).result.then((result) => {
     this.closeResult = `Closed with: ${result}`;
   }, (reason) => {
     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

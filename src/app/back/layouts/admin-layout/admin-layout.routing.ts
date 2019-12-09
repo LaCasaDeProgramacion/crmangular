@@ -96,14 +96,14 @@ export const AdminLayoutRoutes: Routes = [
 
 
 
-    { path: 'back/complaints', component: ComplaintsComponent  },
-    { path: 'back/technician', component: TechnicianComponent  },
-    { path: 'back/Type', component: TypeComplaintComponent  },
-    { path: 'back/Object', component: ObjectComplaintComponent  },
-    { path: 'back/lines', component: TelephonelinesComponent  },
-    { path: 'back/services', component: ServicesLinesComponent  },
-    { path: 'back/complaintDetails/:id', component: ComplaintDetailComponent  },
-    { path: 'back/lineDetails/:id', component: TellinDetailComponent  },
-    { path: 'back/serviceLineDetail/:id', component: ServicelineDetailComponent  },
+    { path: 'back/complaints', component: ComplaintsComponent,canActivate:[AuthUserService]  },
+    { path: 'back/technician', component: TechnicianComponent,canActivate:[AuthUserService]  },
+    { path: 'back/Type', component: TypeComplaintComponent,canActivate:[AuthUserService]  },
+    { path: 'back/Object', component: ObjectComplaintComponent,canActivate:[AuthUserService]  },
+    { path: 'back/lines', component: TelephonelinesComponent,canActivate:[AuthUserService]  },
+    { path: 'back/services', component: ServicesLinesComponent,canActivate:[AuthUserService]  },
+    { path: 'back/complaintDetails/:id', component: ComplaintDetailComponent,canActivate:[AuthUserService]  },
+    { path: 'back/lineDetails/:id', component: TellinDetailComponent,canActivate:[AuthUserService]  },
+    { path: 'back/serviceLineDetail/:id', component: ServicelineDetailComponent,canActivate:[AuthUserService]  },
 
 ];

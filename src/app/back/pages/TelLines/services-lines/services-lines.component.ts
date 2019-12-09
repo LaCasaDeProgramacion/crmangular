@@ -2,6 +2,7 @@ import { ServicesLines } from './../../../../entities/tellinemanagement/Services
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceLineService } from './../../../../services/TelLineManagament/service-line.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-services-lines',
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicesLinesComponent implements OnInit {
 
-  constructor(private techservice:ServiceLineService,private modalService: NgbModal) { }
+  constructor(private techservice:ServiceLineService,private modalService: NgbModal,private toastr: ToastrService) { }
   Listtel=[];
   cancelClicked:boolean=false;
   Selectedtel:ServicesLines;
@@ -63,6 +64,8 @@ export class ServicesLinesComponent implements OnInit {
     this.telline={serviceDescription:"",serviceName:"",activationCode:""};
 
          this.modalService.dismissAll();
+         this.toastr.success('Add Service', 'Service added with success!',
+        {timeOut: 2000});
          this.loadComplaints();
 
        }
@@ -76,6 +79,8 @@ export class ServicesLinesComponent implements OnInit {
         this.telline={serviceDescription:"",serviceName:"",activationCode:""};
 
         this.modalService.dismissAll();
+        this.toastr.success('Update service', 'Service updated with success!',
+        {timeOut: 2000});
         this.loadComplaints();
 
       }

@@ -4,6 +4,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { complaints } from './../../../../entities/complaintsmanagement/complaints';
 import { ComplaintsService } from './../../../../services/complaintsManagement/complaints.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class ComplaintsComponent implements OnInit {
   TTreated;
   collection = { count: null, ListComplaints: [] };
 config:any;
-  constructor(private complaintscervice:ComplaintsService,private statscervice:StatisticsComplaintService,private modalService: NgbModal) { }
+  constructor(private complaintscervice:ComplaintsService,private statscervice:StatisticsComplaintService,private modalService: NgbModal,private toastr: ToastrService) { }
   closeResult: string;
   closeResult1: string;
   ngOnInit() {
@@ -119,6 +120,8 @@ this.statscervice.getTTechnical().subscribe(
       (data) =>{
         console.log(data);
         this.modalService.dismissAll();
+        this.toastr.success('Affect Technician ', 'Technician affect with success!',
+        {timeOut: 2000});
         this.loadComplaints();
       }
     )
@@ -131,6 +134,8 @@ this.statscervice.getTTechnical().subscribe(
       (data) =>{
         console.log(data);
         this.modalService.dismissAll();
+        this.toastr.error('Delete Complaint', 'Complaint deleted with success!',
+        {timeOut: 2000});
         this.loadComplaints();
       }
     )
@@ -149,7 +154,7 @@ this.statscervice.getTTechnical().subscribe(
 
  Open(content,id) {
    this.idSelected=id;
-  this.modalService.open(content, {ariaLabelledBy: 'modal1-basic-title'}).result.then((result) => {
+  this.modalService.open(content, {ariaLabelledBy: 'modal1-title-notification'}).result.then((result) => {
     this.closeResult = `Closed with: ${result}`;
   }, (reason) => {
     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

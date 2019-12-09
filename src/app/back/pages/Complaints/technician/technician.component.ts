@@ -3,6 +3,7 @@ import { technician } from './../../../../entities/complaintsmanagement/technici
 import { TechnicianService } from './../../../../services/complaintsManagement/technician.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-technician',
@@ -11,7 +12,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class TechnicianComponent implements OnInit {
 
-  constructor(private techservice:TechnicianService,private modalService: NgbModal) { }
+  constructor(private techservice:TechnicianService,private modalService: NgbModal,private toastr: ToastrService) { }
   collection = { count: null, Listtech: [] };
 
   Listtech=[];
@@ -45,6 +46,8 @@ config:any;
       (data) =>{
         console.log(data);
         this.modalService.dismissAll();
+        this.toastr.error('Delete technician', 'Technician deleted with success!',
+        {timeOut: 2000});
         this.loadComplaints();
 
       }
@@ -75,6 +78,8 @@ config:any;
       (data) => {
         console.log(data);
         this.modalService.dismissAll();
+        this.toastr.success('Add technician', 'Technician added with success!',
+        {timeOut: 2000});
         this.loadComplaints();
 
       }
@@ -86,6 +91,8 @@ config:any;
       (data) => {
         console.log(data);
         this.modalService.dismissAll();
+        this.toastr.success('Update technician', 'Technician updated with success!',
+        {timeOut: 2000});
         this.loadComplaints();
 
       }
@@ -104,7 +111,7 @@ config:any;
   }
   Open(content,id) {
     this.idSelected=id;
-   this.modalService.open(content, {ariaLabelledBy: 'modal1-basic-title'}).result.then((result) => {
+   this.modalService.open(content, {ariaLabelledBy: 'modal1-title-notification'}).result.then((result) => {
      this.closeResult = `Closed with: ${result}`;
    }, (reason) => {
      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
