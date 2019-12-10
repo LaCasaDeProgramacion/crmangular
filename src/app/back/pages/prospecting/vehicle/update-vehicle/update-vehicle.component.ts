@@ -19,11 +19,12 @@ export class UpdateVehicleComponent implements OnInit {
   @ViewChild(ImageUploadComponent)
   private testComponent : ImageUploadComponent;
   public picturemap:string;
+  img="https://firebasestorage.googleapis.com/v0/b/angulargalery.appspot.com/o/50661278_10213288267907039_1772620925334716416_n_1576010878749?alt=media";
 
   closeResult: string;
   closeResult1: string;
 
-  vehicle : Vehicle;
+  vehicle: Vehicle ={id:0, registration:'', color:'', picture:'', carmodel:{id:0,model:''} };
   id;
   carmodels;
 

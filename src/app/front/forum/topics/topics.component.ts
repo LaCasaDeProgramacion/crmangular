@@ -20,16 +20,18 @@ export class TopicsComponent implements OnInit {
   nbForums = 3;
   nb = 0;
   topic   ;
+  connected ;
 
   closeResult: string;
   closeResult1: string;
   constructor(private forumService:ForumService, private modalService: NgbModal, private router: Router) {
         this.LoadForums();
         console.log("USER"+ localStorage['Role'])
-       /* if (localStorage['iduser']==null)
+        if (localStorage['iduser']==null)
         {
-          this.router.navigate(['login']);
-        }*/
+          this.connected=false;
+        }
+        else this.connected=true ;
    }
    private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

@@ -19,39 +19,54 @@
                     <span aria-hidden="true">×</span>
                   </button>
                 </div>
-                <div class="modal-body">
-                  <form>
-                    <div class="modal-body">
-                      <div class="form-group">
-                        <h6>Forum<span class="icon-danger text-orange">*</span></h6>
-                        <div class="input-group ">
-                          <select class="form-control" name="forum" #forumId>
-                            <ng-container *ngFor="let b of forums">
-                              <option value="{{b.id}}"> {{b.name}} </option>
-                            </ng-container>
-                          </select>
+                <ng-container *ngIf="connected">
+                  <div class="modal-body">
+                    <form>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <h6>Forum<span class="icon-danger text-orange">*</span></h6>
+                          <div class="input-group ">
+                            <select class="form-control" name="forum" #forumId>
+                              <ng-container *ngFor="let b of forums">
+                                <option value="{{b.id}}"> {{b.name}} </option>
+                              </ng-container>
+                            </select>
+
+                          </div>
+
+                        </div>
+                        <div class="form-group">
+                          <h6>Question<span class="icon-danger text-orange">*</span></h6>
+                          <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Model" name="message" #titleId>
+                          </div>
 
                         </div>
 
                       </div>
-                      <div class="form-group">
-                        <h6>Question<span class="icon-danger text-orange">*</span></h6>
-                        <div class="input-group">
-                          <input class="form-control" type="text" placeholder="Model" name="message" #titleId>
-                        </div>
+                    </form>
 
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" (click)="add(forumId.value,titleId.value , contentDelete )"
+                      class="btn btn-primary">Send
+                      </button>
+                    <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="!connected">
+                  <div class="modal-body">
+                    <form>
+                      <div class="modal-body">
+                            <h6 class="text-primary" type="text" routerLink="/login" > You should login in first  </h6>
                       </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+                  </div>
+                </ng-container>
 
-                    </div>
-                  </form>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" (click)="add(forumId.value,titleId.value , contentDelete )"
-                    class="btn btn-primary">Save
-                    changes</button>
-                  <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
-                </div>
               </div>
 
             </ng-template>

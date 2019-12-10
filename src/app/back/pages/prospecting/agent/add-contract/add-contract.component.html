@@ -79,7 +79,9 @@ background-size: cover; background-position: center top;">
                                         <div *ngIf ="endDateId?.errors.required">
                                             Required
                                         </div>
-
+                                        <div *ngIf ="endDateId < startDateId">
+                                            endDateId < startDateId
+                                        </div>
                                     </div>
 
                                   </div>

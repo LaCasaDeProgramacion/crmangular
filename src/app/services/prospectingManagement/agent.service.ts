@@ -23,22 +23,28 @@ export class AgentService {
     return this.http.get<Agent>(this.url + "getById/?id="+id);
   }
   add( a: Agent) {
-    return this.http.post<Agent>(this.url+ "add?cin="+a.cin+"&number="+a.Number
+    return this.http.post<Agent>(this.url+ "add?cin="+a.cin+"&number="+a.number
     +"&firstName="+a.firstName+"&lastName="+a.lastName+
     "&email="+a.email+"&datebirth="+this.convertdate(a.dateBirth)+"&role="+a.role
     +"&accessPerm=true"+"&drivenLicence="+a.drivenLicence+"&picture="+a.picture, null);
   }
  Delete(id){
 
-   return this.http.delete<Agent>(this.url + 'delete?id=' + id , null );
+   return this.http.delete(this.url + 'delete?id=' + id  );
  }
- update (a: Agent, id)
+ update (a: Agent, id, picture)
  {
-   return this.http.put<Agent>(this.url+ "update?id="+id+"&cin="+a.cin
-   +"&number="+a.Number
-   +"&firstName="+a.firstName+"&lastName="+a.lastName+
-   "&email="+a.email+"&datebirth="+this.convertdate(a.dateBirth)+"&role="+a.role
-   +"&accessPerm=true"+"&drivenLicence="+a.drivenLicence+"&picture="+a.picture , null)
+   return this.http.put<Agent>(this.url+ "update?id="+id+
+   "&cin="+a.cin
+   +"&number="+a.number
+   +"&firstName="+a.firstName+
+   "&lastName="+a.lastName+
+   "&email="+a.email+
+   "&datebirth="+a.dateBirth+
+   "&role="+a.role
+   +"&accessPerm=true"+
+   "&drivenLicence=true"+
+   "&picture="+picture , null)
  }
 
  convertdate(date:Date){

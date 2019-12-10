@@ -17,7 +17,7 @@ export class DetailsComponent implements OnInit {
   contract:Contract={
     id:0, startDate:null, endDate:null, salary:0, comment:'',
     agent :{
-              id:0, cin:0, Number:0 , firstName:'', lastName:'',
+              id:0, cin:0, number:0 , firstName:'', lastName:'',
               email:'', dateBirth:null, role:'',
               drivenLicence:null, picture:''}
   }

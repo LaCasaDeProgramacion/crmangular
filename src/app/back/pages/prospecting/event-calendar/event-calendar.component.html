@@ -40,7 +40,7 @@ background-size: cover; background-position: center top;">
                     <div class="form-group">
                       <label for="dateOfBirth">Name</label>
                       <div class="input-group">
-                        <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp>
+                        <input id="dateOfBirth" class="form-control" name="dp" type="text" #dp >
                       </div>
                     </div>
                     <div class="form-group">
@@ -75,20 +75,20 @@ background-size: cover; background-position: center top;">
                       <td class="e-textlabel">Title</td>
                       <td colspan="4">
                         <input id="Subject" class="e-field e-input" type="text" value="" name="Subject"
-                          style="width: 100%" [(ngModel)]="event.name" />
+                          style="width: 100%" [(ngModel)]="name" />
                       </td>
                     </tr>
 
                     <tr>
                       <td class="e-textlabel">From</td>
                       <td colspan="4">
-                        <input id="StartTime" class="e-field" type="text" name="StartTime" />
+                        <input id="EndDate" class="e-field" type="text" name="StartDate" [(ngModel)]="startDate" />
                       </td>
                     </tr>
                     <tr>
                       <td class="e-textlabel">To</td>
                       <td colspan="4">
-                        <input id="EndTime" class="e-field" type="text" name="EndTime" />
+                        <input id="StartDate" class="e-field" type="text" name="EndDate" [(ngModel)]="endDate" />
                       </td>
                     </tr>
 
@@ -115,8 +115,6 @@ background-size: cover; background-position: center top;">
               <ng-template #quickInfoTemplatesFooter let-data>
                 <div *ngIf="data.elementType == 'cell'" class="e-cell-footer">
                   <div class="left-button">
-                    <button class="e-event-details" title="Extra Details" (click)="onDetailsClick($event)">More
-                      Details</button>
                   </div>
                   <div class="right-button">
                     <button class="e-event-create" title="Add" (click)="onAddClick($event)">Add</button>

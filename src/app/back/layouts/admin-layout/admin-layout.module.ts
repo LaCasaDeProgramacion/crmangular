@@ -73,6 +73,7 @@ import { ScheduleModule, RecurrenceEditorModule , DayService, WeekService,
   import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
   import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { EventCalendarComponent } from '../../pages/prospecting/event-calendar/event-calendar.component';
+import { UpdateAgentComponent } from '../../pages/prospecting/agent/update-agent/update-agent.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -158,6 +159,7 @@ MapStoreComponent,
     ForumComponent,
     EventCalendarComponent,
     UpdateVehicleComponent,
+    UpdateAgentComponent,
   ],
   exports: [
     Ng2SearchPipeModule,

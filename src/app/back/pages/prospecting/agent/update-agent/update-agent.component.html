@@ -1,3 +1,30 @@
+<ng-template #confirmContent let-modal1>
+  <div id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification">
+    <div class="modal-danger" role="document">
+      <div class="modal-content bg-gradient-danger">
+        <div class="modal-header">
+          <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+          <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="py-3 text-center">
+            <i class="ni ni-bell-55 ni-3x"></i>
+            <h4 class="heading mt-4">Alert Operation</h4>
+            <p>Agent Updated.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" (click)="redirect()">Ok, Got it</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 450px; background-image:
 url(assets/img/theme/4.jpg);
 background-size: cover; background-position: center top;">
@@ -20,13 +47,13 @@ background-size: cover; background-position: center top;">
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
             <div class="col-8">
-              <h3 class="mb-0">Add Agent</h3>
+              <h3 class="mb-0">Update Agent</h3>
             </div>
             <div class="col-4 text-right">
 
               <div class=" text-right">
 
-                <a class="btn  btn-default float-right text-white" (click)="onclickenvoyer($event)">Next</a>
+                <a class="btn  btn-default float-right text-white" (click)="onclickenvoyer($event , confirmContent)">Update</a>
 
               </div>
             </div>
@@ -42,7 +69,7 @@ background-size: cover; background-position: center top;">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">First name </label> &nbsp;  <span class="icon-danger text-orange">*</span>
                     <input type="text" class="form-control form-control-alternative" placeholder="First name"
-                      name="firstName" [(ngModel)]="agent.firstName" #firstNameID="ngModel" required>
+                      name="nameagent" [(ngModel)]="agent.firstName" #firstNameID="ngModel" required>
                       <div *ngIf="firstNameID.invalid && firstNameID.touched ">
                           <div *ngIf ="firstNameID?.errors.required">
                               Required
@@ -151,7 +178,7 @@ background-size: cover; background-position: center top;">
             <div class="pl-lg-2 ">
               <div class="col-lg-4">
                 <div class="form-group">
-                  <app-image-upload [isRound]="true"></app-image-upload>
+                  <app-image-upload [isRound]="true" [imgpacktoupdateinput]="picture"  ></app-image-upload>
                 </div>
               </div>
             </div>

@@ -23,7 +23,7 @@ export class ForumService {
   }
  DeleteForum(id){
 
-   return this.http.delete<Forum>(this.urlForum + 'delete?id=' + id , null );
+   return this.http.delete<Forum>(this.urlForum + 'delete?id=' + id  );
  }
  updateForum (f: Forum, id)
  {
