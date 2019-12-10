@@ -21,7 +21,9 @@ export class AddAgentComponent implements OnInit {
   public formsubmitted:boolean;
   public picturemap:string;
 
-  agent : Agent={id:0, cin:0, Number:0 , firstName:'', lastName:'',
+
+
+  agent : Agent={id:0, cin:0, number:0 , firstName:'', lastName:'',
                  email:'', dateBirth:null, role:'',
                  drivenLicence:null, picture:''}
   id ;

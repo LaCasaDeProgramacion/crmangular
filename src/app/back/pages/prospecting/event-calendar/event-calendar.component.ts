@@ -1,6 +1,7 @@
-import { Router } from '@angular/router';
+import { retry } from 'rxjs/operators';
+import { Router, NavigationEnd } from '@angular/router';
 import { EventService } from './../../../../services/prospectingManagement/event.service';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy, Pipe } from '@angular/core';
 import { isNullOrUndefined } from '@syncfusion/ej2-base';
 import {EventSettingsModel, ScheduleComponent,  PopupOpenEventArgs, CurrentAction
 } from '@syncfusion/ej2-angular-schedule';
@@ -26,32 +27,30 @@ L10n.load({
   templateUrl: './event-calendar.component.html',
   styleUrls: ['./event-calendar.component.scss']
 })
-export class EventCalendarComponent implements OnInit {
+export class EventCalendarComponent implements OnInit , OnDestroy {
   title = 'crud4';
+
+  mySubscription: any;
+
   liste:{id:0, name:'', startDate:null, endDate:null}[]=[];
   event : Evenement={id:0, name:'', startDate:null, endDate:null};
   E:Evenement={id:0, name:'', startDate:null, endDate:null};
+
   name;
   startDate;
   endDate;
   eventsDB;
+
   closeResult: string;
   closeResult1: string;
+
   EventToRemove;
 
-  constructor(private evenementService:EventService, private modalService: NgbModal, private router: Router) {
-    console.log("CONSTRUCTEUR ")
-    this.loadEvents();
-  }
-  ngOnInit()
-   {
-    console.log("INIIIT ")
-    this.loadEvents();
-   }
   @ViewChild('scheduleObj')
   public scheduleObj: ScheduleComponent;
+
   public eventSettings: EventSettingsModel = {
-      dataSource: this.liste,
+      dataSource: null,
       fields:{
         subject:{name:'name'},
         startTime:{name:'startDate'},
@@ -59,20 +58,51 @@ export class EventCalendarComponent implements OnInit {
       }
 
   };
+  constructor(private evenementService:EventService,
+    private modalService: NgbModal, private router: Router,
+    ) {
+      this.eventSettings.dataSource= this.loadEvents();
+      console.log("DATA SOURCE" , this.eventSettings.dataSource)
+      console.log("constructeur")
+       // this.loadEvents();
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+              return false;
+            };
+        this.mySubscription = this.router.events.subscribe((event) => {
+              if (event instanceof NavigationEnd) {
+                     this.router.navigated = false;
+                 }
+            });
+  }
+  ngOnInit()
+  {
+
+
+  }
+
+ngOnDestroy() {
+  if (this.mySubscription) {
+    this.mySubscription.unsubscribe();
+  }
+}
+
   public selectedDate: Date = new Date(2019, 0, 1);
   private selectionTarget: Element;
 
   public onPopupOpen(args: PopupOpenEventArgs): void {
-    this.selectionTarget = null;
-    this.selectionTarget = args.target;
-   console.log("DATA ", args.data  )
-   console.log("ID ****", args.data['id'])
+    this.loadEvents();
+      const eventData: { [key: string]: Object } = this.scheduleObj.eventWindow.getObjectFromFormData('e-quick-popup-wrapper');
+      this.scheduleObj.eventWindow.convertToEventData(args.data as { [key: string]: Object }, eventData);
+
+      this.selectionTarget = null;
+      this.selectionTarget = args.target;
+      console.log("Event data ")
     if (args.type === 'Editor') {
-      let startElement: HTMLInputElement = args.element.querySelector('#StartTime') as HTMLInputElement;
+      let startElement: HTMLInputElement = args.element.querySelector('#StartDate') as HTMLInputElement;
       if (!startElement.classList.contains('e-datetimepicker')) {
           new DatePicker({ value: new Date(startElement.value) || new Date() }, startElement);
       }
-      let endElement: HTMLInputElement = args.element.querySelector('#EndTime') as HTMLInputElement;
+      let endElement: HTMLInputElement = args.element.querySelector('#EndDate') as HTMLInputElement;
       if (!endElement.classList.contains('e-datetimepicker')) {
           new DatePicker({ value: new Date(endElement.value) || new Date() }, endElement);
       }
@@ -80,32 +110,34 @@ export class EventCalendarComponent implements OnInit {
 
     }
    public onDetailsClick(): void {
+     console.log("DETAILS")
         this.onCloseClick();
         const data: Object = this.scheduleObj.getCellDetails(this.scheduleObj.getSelectedElements()) as Object;
+
         this.scheduleObj.openEditor(data, 'Add');
     }
   public convert(str)  {
-    var date = new Date(str),
+      var date = new Date(str),
       mnth = ("0" + (date.getMonth() + 1)).slice(-2),
       day = ("0" + date.getDate()).slice(-2);
     return [date.getFullYear(), mnth, day].join("-");
   }
   public onAddClick(): void {
+
     console.log("adding")
       this.onCloseClick();
       const data: Object = this.scheduleObj.getCellDetails(this.scheduleObj.getSelectedElements()) as Object;
       const eventData: { [key: string]: Object } = this.scheduleObj.eventWindow.getObjectFromFormData('e-quick-popup-wrapper');
       this.scheduleObj.eventWindow.convertToEventData(data as { [key: string]: Object }, eventData);
-      eventData.Id = this.scheduleObj.eventBase.getEventMaxID() as number + 1;
 
+      eventData.Id = this.scheduleObj.eventBase.getEventMaxID() as number + 1;
+      this.scheduleObj.addEvent(eventData);
 
       let name= eventData.name.toString();
       let newDate1 = this.convert(eventData.startDate.toString()) ;
       let newDate2 = this.convert(eventData.endDate.toString()) ;
       this.evenementService.addCalendar(name, newDate1, newDate2).subscribe(data=>
        console.log(data));
-       this.scheduleObj.addEvent(eventData);
-
 
   }
   public onUpdateClick(data)
@@ -136,89 +168,47 @@ export class EventCalendarComponent implements OnInit {
   }
 }
 
-  public onDeleteClick(args){
+  public onDeleteClick(args: any): void {
     this.onCloseClick();
-    this.scheduleObj.eventSettings.allowDeleting = true;
     if (this.selectionTarget) {
     const eventData: { [key: string]: Object } = this.scheduleObj.getEventDetails(this.selectionTarget) as { [key: string]: Object };
-    let currentAction: CurrentAction;
-
-    if (!isNullOrUndefined(eventData.RecurrenceRule) && eventData.RecurrenceRule !== '') {
-        currentAction = args.target.classList.contains('e-delete-series') ? 'DeleteSeries' : 'DeleteOccurrence';
-    }
-    console.log("ID +++" , eventData.id)
-    console.log("ARGS" , args)
     let id= eventData.id.toString();
-    this.evenementService.Delete(id).subscribe(data=>{
-   /*   let index = this.liste.findIndex( record => record.id === eventData.id );
-console.log(index)
-console.log(this.liste)
-
-      this.liste.splice(index,1);
-console.log(this.liste)  */
-
-      console.log(data);
-      this.loadEvents();
-
-
-    //  //this.scheduleObj.deleteEvent(eventData, currentAction);
-    /* this.scheduleObj.eventSettings={
-     dataSource: this.liste,
-       fields:{
-        subject:{name:'name'},
-        startTime:{name:'startDate'},
-         endTime:{name:'endDate'}
-       }}; */
-      //this.loadEvents();
-    });
-    // this.loadEvents();
-    // this.scheduleObj.deleteEvent(eventData, currentAction);
-    // this.loadEvents();
-
+    this.scheduleObj.deleteEvent(eventData);
+    this.evenementService.Delete(id).subscribe(
+        data=> {
+         // this.scheduleObj.deleteEvent(id);
+          this.loadEvents();
+          console.log("after  ****** " , this.eventSettings.dataSource)
+        }
+    );
+    this.scheduleObj.deleteEvent(eventData);
 
     }
+    this.router.navigate(['calendar']);
+  }
 
-
-
-}
-  public onCloseClick() {
+  public onCloseClick(): void {
       this.scheduleObj.closeEditor();
   }
 
 
   loadEvents()
   {
-    console.log("LOADING ..")
-      this.evenementService.get().subscribe(data=> {
+    let liste:{id:0, name:'', startDate:null, endDate:null}[]=[];
+    this.evenementService.get().subscribe(data=> {
         this.eventsDB=data;
         this.eventsDB.forEach(element => {
-         this.liste.push({id:element.id, name:element.name,
+         liste.push({id:element.id, name:element.name,
           startDate:element.startDate, endDate:element.endDate});
-          this.scheduleObj.eventSettings.dataSource=this.liste;
-
         });
       });
+      this.eventSettings.dataSource= liste ;
+      return this.eventSettings.dataSource;
+      console.log("load datasource 69 ", this.eventSettings.dataSource)
+
    }
-      //Add Event
-    open1(content) {
-      this.onCloseClick();
-      this.modalService.open(content, {ariaLabelledBy: 'modal1-basic-title'}).result.then((result) => {
-        this.closeResult = `Closed with: ${result}`;
-      }, (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
-    }
 
-    openarchive(e, content, id) {
-      this.EventToRemove = id ;
-      this.onCloseClick();
 
-         this.modalService.open(content,{ariaLabelledBy: 'modal1-title-notification'}).result.then((result) => {
-           this.closeResult = `Closed with: ${result}`;
-         }, (reason) => {
-           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-         });
-       }
     private getDismissReason(reason: any): string {
       if (reason === ModalDismissReasons.ESC) {
         return 'by pressing ESC';

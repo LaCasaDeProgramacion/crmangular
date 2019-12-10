@@ -6,11 +6,14 @@ export interface Agent {
   dateBirth ?:Date ;
   role ?:string ;
 
-  Number ?:number ;
+  number ?:number ;
   email ?:string ;
   drivenLicence  ?:Boolean ;
 
   picture ?:string ;
 
   accessPerm ?:string ;
+
+
+
 }

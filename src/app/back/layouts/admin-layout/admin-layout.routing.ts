@@ -48,6 +48,7 @@ import { AddPromotionComponent } from '../../pages/promotion/add-promotion/add-p
 import { CategoriesComponent } from '../../pages/categories/categories.component';
 import { AddVehicleComponent } from '../../pages/prospecting/vehicle/add-vehicle/add-vehicle.component';
 import { CalendarComponent } from '@syncfusion/ej2-angular-calendars';
+import { UpdateAgentComponent } from '../../pages/prospecting/agent/update-agent/update-agent.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent,canActivate:[AuthUserService] },
@@ -83,6 +84,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'back/addContract/:id', component: AddContractComponent  },
     { path: 'back/forums', component: ForumComponent  },
     { path: 'calendar', component: EventCalendarComponent  },
+    { path: 'back/updateAgent/:id', component: UpdateAgentComponent  },
 
 /**************  wael routing  **************/
     { path: 'back/listpack', component: ListPackComponent ,canActivate:[AuthUserService] },

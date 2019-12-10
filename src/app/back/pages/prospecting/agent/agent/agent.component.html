@@ -124,7 +124,7 @@ background-size: cover; background-position: center top;">
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" (click)= "viewDetails($event, c.id)">Details</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Update</a>
+                      <a class="dropdown-item" routerLink="/back/updateAgent/{{c.id}}">Update</a>
                       <a class="dropdown-item" (click)="openarchive(contenttwo, c.id)">Delete</a>
                     </div>
                   </div>

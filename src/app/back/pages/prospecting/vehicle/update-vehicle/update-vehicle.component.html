@@ -85,7 +85,7 @@
                 <div class="col-md-5 col-sm-5">
                   <br>
                   <h6>Picture</h6>
-                  <app-image-upload></app-image-upload>
+                  <app-image-upload [imgpacktoupdateinput]="img"></app-image-upload>
 
                   <!-- <tag-input [(ngModel)]='tagItems' theme='regular-theme' name="tagItems"></tag-input>
 
@@ -132,7 +132,7 @@
                   <div class="row buttons-row">
                     <div class="col-md-4 col-sm-4">
                       <button class="btn btn-outline-danger btn-block btn-round"
-                        (click)="onclickenvoyer($event, confirmAdd)">Add</button>
+                        (click)="onclickenvoyer($event, confirmAdd)">Update</button>
                     </div>
                   </div>
                 </div>

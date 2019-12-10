@@ -20,6 +20,7 @@ export class SingleTopicComponent implements OnInit {
   idUser ;
   closeResult: string;
   closeResult1: string;
+  connected;
   constructor(private route: ActivatedRoute, private service : ForumService,
     private router: Router , private modalService: NgbModal) {
     this.route.paramMap.subscribe(params => {
@@ -29,7 +30,11 @@ export class SingleTopicComponent implements OnInit {
       this.updateNbSeen();
     });
       this.loadNb();
-
+      if (localStorage['iduser']==null)
+      {
+        this.connected=false;
+      }
+      else this.connected=true ;
    }
 
    loadTopic()

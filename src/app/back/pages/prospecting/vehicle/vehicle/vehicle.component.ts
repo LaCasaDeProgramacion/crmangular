@@ -129,6 +129,7 @@ delete()
     this.loadVehicles();
    }
   );
+  this.modalService.dismissAll();
 }
 update(v:Vehicle )
 {
@@ -162,14 +163,16 @@ update(v:Vehicle )
         info.picture=this.picturemap;
   this.vehicleService.addVehicle(info).subscribe(response => {
     console.log(response);
-
+    this.loadVehicles();
     this.formsubmitted=true;
 
 
   });
+  this.loadVehicles();
       })
     })
   ).subscribe();
+  this.loadVehicles();
 
   console.log(info);
 }

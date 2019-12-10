@@ -17,7 +17,7 @@ export class AgentComponent implements OnInit {
     searchText;
     idContract;
     agent: Agent={
-      id:0, cin:0, Number:0 , firstName:'', lastName:'',
+      id:0, cin:0, number:0 , firstName:'', lastName:'',
       email:'', dateBirth:null, role:'',
       drivenLicence:null, picture:''};
 
@@ -25,7 +25,7 @@ export class AgentComponent implements OnInit {
       closeResult: string;
       closeResult1: string;
       agenttodelete:Agent={
-                          id:0, cin:0, Number:0 , firstName:'', lastName:'',
+                          id:0, cin:0, number:0 , firstName:'', lastName:'',
                           email:'', dateBirth:null, role:'',
                           drivenLicence:null, picture:''
                         };
@@ -79,8 +79,9 @@ export class AgentComponent implements OnInit {
     }
   }
   openarchive(content,id) {
+    console.log("agent archive "+ id )
 
-    this.agenttodelete.id=id;
+    this.agenttodelete=id;
        this.modalService.open(content,{ariaLabelledBy: 'modal1-title-notification'}).result.then((result) => {
          this.closeResult = `Closed with: ${result}`;
        }, (reason) => {
@@ -89,7 +90,8 @@ export class AgentComponent implements OnInit {
      }
   delete()
   {
-    this.service.Delete(this.agenttodelete.id).subscribe(
+    console.log("agent to delete " + this.agenttodelete)
+    this.service.Delete(this.agenttodelete).subscribe(
      response=>
      {
       this.loadAgents();
