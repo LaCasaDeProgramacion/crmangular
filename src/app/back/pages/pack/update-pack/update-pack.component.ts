@@ -48,6 +48,7 @@ ngOnInit() {
   this.productlistToAddtoPack=[];
   this.productList=[];
   this.packtoupdate=localStorage.getItem('packtoupdate');
+  console.log(this.packtoupdate.picture)
 this.packupdateolditem= JSON.parse(this.packtoupdate);
 
 this.packForm.controls['title'].setValue(this.packupdateolditem.title);

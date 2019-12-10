@@ -1,0 +1,56 @@
+.thead {
+	color: #337AB7;
+}
+
+.material-card {
+    width: 350px;
+    margin: 4px;
+  }
+  
+.card-header-image {
+	background-image: url('http://placehold.it/320x150');
+	background-size: cover;
+}
+
+.flex-fill-remaining-space { flex: 1 1 auto; }
+
+.search-form-field {
+	width: 80%
+}
+.image{
+	height: 150px; /* adjust as needed */
+	object-fit: contain;
+  }
+  .flex-fill-remaining-space { flex: 1 1 auto; }
+  .rating { 
+	border: none;
+	float: left;
+  }
+  
+  .rating > input { display: none; } 
+  .rating > label:before { 
+	margin: 5px;
+	font-size: 1.25em;
+	font-family: FontAwesome;
+	display: inline-block;
+	content: "\f005";
+  }
+  
+  .rating > .half:before { 
+	content: "\f089";
+	position: absolute;
+  }
+  
+  .rating > label { 
+	color: #ddd; 
+   float: right; 
+  }
+  
+  .rating > input:checked ~ label,
+  .rating:not(:checked) > label:hover, 
+  .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } 
+  
+  .rating > input:checked + label:hover, 
+  .rating > input:checked ~ label:hover,
+  .rating > label:hover ~ input:checked ~ label,  selection 
+  .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }

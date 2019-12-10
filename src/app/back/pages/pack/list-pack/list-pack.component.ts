@@ -7,6 +7,13 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { StatPack } from 'src/app/entities/StatPack';
 import { StatPackService } from 'src/app/services/statpack/stat-pack.service';
+import Chart from 'chart.js';
+import {
+  chartOptions,
+  parseOptions,
+  chartExample1,
+  chartExample2
+} from "../../../variables/charts";
 
 @Component({
   selector: 'app-list-pack',
@@ -14,10 +21,21 @@ import { StatPackService } from 'src/app/services/statpack/stat-pack.service';
   styleUrls: ['./list-pack.component.scss']
 })
 export class ListPackComponent implements OnInit {
+   //statt
+   public clicked: boolean = true;
+   public clicked1: boolean = false;
+   public salesChart;
+   public datasets: any;
+   public data: any;
+
   BestpackforToday:StatPack;
   mostgainmoneystatpack:StatPack;
   PackoftheMonth:StatPack;
   SelledQuantitypacktoday:StatPack;
+  SelledQuantitypacktodayTITLE:string;
+  PackoftheMonthTITLE:string;
+  mostgainmoneystatpackTITLE:string;
+  BestpackforTodayTITLE:string;
   packData:any;
   closeResult: string;
   products :ProductsPack[];
@@ -37,30 +55,63 @@ export class ListPackComponent implements OnInit {
     this.getmostgainmoneystatpack();
     this.getPackoftheMonth();
     this.getSelledQuantitypacktoday();
+
+    this.datasets = [
+      [0, 20, 10, 30, 15, 40, 20, 60, 60],
+      [0, 20, 5, 25, 10, 30, 15, 40, 40]
+    ];
+    this.data = this.datasets[0];
+
+    var chartSales = document.getElementById('chart-sales');
+
+    var chartSales = document.getElementById('chart-sales');
+
+    this.salesChart = new Chart(chartSales, {
+			type: 'line',
+			options: chartExample1.options,
+			data: chartExample1.data
+    });
+    
+
+
+    
+  }
+
+
+
+
+
+  public updateOptions() {
+    this.salesChart.data.datasets[0].data = this.data;
+    this.salesChart.update();
   }
   
   getSelledQuantitypacktoday(){
     this.SelledQuantitypacktoday = {};
     this.statservice.getSelledQuantitypacktoday().subscribe(response => {
       this.SelledQuantitypacktoday = response;
+      this.SelledQuantitypacktodayTITLE = response.pack.title;
   })
   }
   getPackoftheMonth(){
     this.PackoftheMonth = {};
     this.statservice.getPackoftheMonth().subscribe(response => {
       this.PackoftheMonth = response;
+      this.PackoftheMonthTITLE = response.pack.title;
   })
   }
   getmostgainmoneystatpack(){
     this.mostgainmoneystatpack = {} ; 
     this.statservice.getmostgainmoneystatpack().subscribe(response => {
       this.mostgainmoneystatpack = response;
+      this.mostgainmoneystatpackTITLE = response.pack.title;
   })
   }
   getBestpackforToday(){
     this.BestpackforToday = {};
     this.statservice.getBestpackforToday().subscribe(response => {
         this.BestpackforToday = response;
+        this.BestpackforTodayTITLE = response.pack.title;
     })
   }
   getavalaiblePack() {

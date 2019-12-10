@@ -38,7 +38,10 @@ BestpackforToday:StatPack;
   mostgainmoneystatpack:StatPack;
   PackoftheMonth:StatPack;
   SelledQuantitypacktoday:StatPack;
-
+  SelledQuantitypacktodayTITLE:string;
+  PackoftheMonthTITLE:string;
+  mostgainmoneystatpackTITLE:string;
+  BestpackforTodayTITLE:string;
 theCheckbox:boolean=false;
 constructor(public packservice: PackService,public productService:ApiService,private storage: AngularFireStorage,public serviceimage:ImageUploadServicService,public statservice:StatPackService) { }
 
@@ -57,24 +60,28 @@ getSelledQuantitypacktoday(){
   this.SelledQuantitypacktoday = {};
   this.statservice.getSelledQuantitypacktoday().subscribe(response => {
     this.SelledQuantitypacktoday = response;
+    this.SelledQuantitypacktodayTITLE = response.pack.title;
 })
 }
 getPackoftheMonth(){
   this.PackoftheMonth = {};
   this.statservice.getPackoftheMonth().subscribe(response => {
     this.PackoftheMonth = response;
+    this.PackoftheMonthTITLE = response.pack.title;
 })
 }
 getmostgainmoneystatpack(){
   this.mostgainmoneystatpack = {} ; 
   this.statservice.getmostgainmoneystatpack().subscribe(response => {
     this.mostgainmoneystatpack = response;
+    this.mostgainmoneystatpackTITLE = response.pack.title;
 })
 }
 getBestpackforToday(){
   this.BestpackforToday = {};
   this.statservice.getBestpackforToday().subscribe(response => {
       this.BestpackforToday = response;
+      this.BestpackforTodayTITLE = response.pack.title;
   })
 }
 packForm = new FormGroup(

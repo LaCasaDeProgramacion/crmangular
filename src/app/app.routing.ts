@@ -28,6 +28,8 @@ import { CarbrandComponent } from './back/pages/prospecting/vehicle/carbrand/car
 import { TopicsComponent } from './front/forum/topics/topics.component';
 import { ComplaintDetailsComponent } from './front/complaints/complaint-details/complaint-details.component';
 import { MyServicesComponent } from './front/Services/my-services/my-services.component';
+import { ListpackComponent } from './front/pages/packs/listpack/listpack.component';
+import { OnepackinfoComponent } from './front/pages/packs/onepackinfo/onepackinfo.component';
 
 
 const routes: Routes =[
@@ -42,9 +44,13 @@ const routes: Routes =[
   { path: 'home/topics', component: TopicsComponent},
   { path: 'home/allTopics', component: AllTopicsComponent},
   { path: 'home/singleTopic', component: SingleTopicComponent},
-  { path: 'home/allcomplaints', component: AllcomplaintsComponent,canActivate:[AuthUserService]},
+{ path: 'home/allcomplaints', component: AllcomplaintsComponent,canActivate:[AuthUserService]},
   { path: 'home/mycomplaints', component: MycomplaintsComponent,canActivate:[AuthUserService]},
   { path: 'home/mycomplaintsdetails/:id', component: MycomplaintDetailsComponent,canActivate:[AuthUserService]},
+  { path: 'home/cdetails/:id', component: ComplaintDetailsComponent},
+  { path: 'home/ajoutcomplaint', component: AjoutComplaintComponent},
+  { path: 'home/listpack', component: ListpackComponent},
+  { path: 'home/pack/:id', component: OnepackinfoComponent},
 
   { path: 'home/cdetails/:id', component: ComplaintDetailsComponent,canActivate:[AuthUserService]},
   { path: 'home/ajoutcomplaint', component: AjoutComplaintComponent,canActivate:[AuthUserService]},

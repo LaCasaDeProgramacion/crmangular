@@ -14,4 +14,5 @@ export interface Pack{
     validuntil?:Date;
     productsPack?:ProductsPack[];
     products?:product[];
+    avgRatingpack?:any;
 }

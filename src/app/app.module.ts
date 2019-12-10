@@ -67,9 +67,15 @@ import { AddPromotionComponent } from './back/pages/promotion/add-promotion/add-
 import { ListPromotionComponent } from './back/pages/promotion/list-promotion/list-promotion.component';
 import { SelectbootstrapComponent } from './SharedComponent/selectbootstrap/selectbootstrap.component';
 import { SelectbootstrapModule } from './SharedComponent/selectbootstrap/selectbootstrap.module';
+
+
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { environment } from "../environments/environment";
 import { AutocompletetextComponent } from './back/pages/stores/autocompletetext/autocompletetext.component';
 import { AddStoreMapComponent } from './back/pages/stores/add-store-map/add-store-map.component';
@@ -87,6 +93,10 @@ import { FrontNavComponent } from './front/components/front-nav/front-nav.compon
 
 import { MyServicesComponent } from './front/Services/my-services/my-services.component';
 import { ToastrModule } from 'ngx-toastr';
+import { MaterialModule } from './material/material.module';
+import { ListpackComponent } from './front/pages/packs/listpack/listpack.component';
+import { OnepackinfoComponent } from './front/pages/packs/onepackinfo/onepackinfo.component';
+
 
 @NgModule({
   imports: [
@@ -105,32 +115,25 @@ import { ToastrModule } from 'ngx-toastr';
     Ng2SearchPipeModule,
     MatButtonModule,
      MatDialogModule,
-     MatIconModule,
-     MatInputModule,
-  MatFormFieldModule,
-  MatMenuModule,
-  MatToolbarModule,
-  MatCardModule,
-  MatSelectModule,
-  MatListModule,
-  MatSidenavModule,
-  MatGridListModule,
-  MatCheckboxModule,
+     
 
 
     ReactiveFormsModule,
     ComboBoxModule,
+    MaterialModule,
+    FlexLayoutModule,
     NgxPaginationModule,
-    
-    
     
     
 
 
 
    AngularFireModule.initializeApp(environment.firebaseConfig),
-   AngularFireStorageModule,
-   AngularFireDatabaseModule,
+   AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+   
+
    ImageUploadModule,
    SelectbootstrapModule,
    ToastrModule.forRoot(),
@@ -151,6 +154,8 @@ import { ToastrModule } from 'ngx-toastr';
     filterbystatePipe,
     MyTelLinesComponent, MyTelLineDetailsComponent, AllServicesComponent, ServiceDetailsComponent, MyServicesComponent,
     MycomplaintDetailsComponent,
+    ListpackComponent,OnepackinfoComponent,
+
     
     
     
@@ -212,10 +217,11 @@ ProductDetailComponent,
     ComplaintCommentsService,
     ComplaintObjectsService,
     TechnicianService,
-
+   
     DatePipe,
     PagerService,SortPipe,UiService,FilterByBrandPipe, FilterPipe,
 
+    AngularFirestore,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

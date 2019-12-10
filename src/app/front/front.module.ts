@@ -63,6 +63,9 @@ import { EventsFrontComponent } from './events-front/events-front.component';
     AllTopicsComponent,
     SingleTopicComponent,
     EventsFrontComponent,
+    ListpackComponent,
+    OnepackinfoComponent,
+    
 ],
 
 

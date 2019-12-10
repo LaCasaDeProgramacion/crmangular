@@ -68,8 +68,29 @@ import { CategoriesComponent } from '../../pages/categories/categories.component
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
 // import { ToastrModule } from 'ngx-toastr';
+import { FusionChartsModule, FusionChartsComponent } from "angular-fusioncharts";
 
 import { AddVehicleComponent } from '../../pages/prospecting/vehicle/add-vehicle/add-vehicle.component';
+ 
+// Import FusionCharts library and chart modules
+import * as FusionCharts from 'fusioncharts';
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+ 
+// For Powercharts , Widgets, and Maps
+import * as PowerCharts from 'fusioncharts/fusioncharts.powercharts';
+ import * as Widgets from 'fusioncharts/fusioncharts.widgets';
+// import * as Maps from 'fusioncharts/fusioncharts.maps';
+// To know more about suites,
+// read this https://www.fusioncharts.com/dev/getting-started/plain-javascript/install-using-plain-javascript
+ 
+// For Map definition files
+import * as World from 'fusioncharts/maps/fusioncharts.world';
+ 
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
+// Pass the fusioncharts library and chart modules
+FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme,PowerCharts,Widgets,World);
 
 // import { ToastrModule } from 'ngx-toastr';
 import { ScheduleModule, RecurrenceEditorModule , DayService, WeekService,
@@ -108,7 +129,8 @@ import { EventCalendarComponent } from '../../pages/prospecting/event-calendar/e
     JwBootstrapSwitchNg2Module,
     NgxPaginationModule,
     ScheduleModule, RecurrenceEditorModule,
-    DropDownListModule, DateTimePickerModule
+    DropDownListModule, DateTimePickerModule,
+    FusionChartsModule,
   ],
   declarations: [
     DashboardComponent,

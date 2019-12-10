@@ -79,6 +79,15 @@ export class StatPackService {
         catchError(this.handleError)
       )
   }
+  getjsonStatPackByTitle(title) : Observable<StatPack> {
+    
+    return this.http
+    .get<StatPack>(this.base_path+"/jsonStatPackByTitle?TitleStat="+title)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
 
 
 }

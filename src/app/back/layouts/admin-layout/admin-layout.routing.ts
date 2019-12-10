@@ -88,7 +88,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'back/listpack', component: ListPackComponent ,canActivate:[AuthUserService] },
     { path: 'back/addpack', component: AddPackComponent ,canActivate:[AuthUserService] },
     { path: 'back/updatepack', component: UpdatePackComponent ,canActivate:[AuthUserService] },
-    { path: 'back/listarchivepacks', component: ArchiveListComponent  },
+    { path: 'back/listarchivepacks', component: ArchiveListComponent,canActivate:[AuthUserService] },
 
     { path: 'back/listpromotion', component: ListPromotionComponent ,canActivate:[AuthUserService] },
     { path: 'back/addpromotion', component: AddPromotionComponent  ,canActivate:[AuthUserService] },

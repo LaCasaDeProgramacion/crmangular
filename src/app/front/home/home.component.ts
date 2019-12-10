@@ -18,7 +18,7 @@ productList: product[];
   Event4 ;
   nb=0;
   constructor(private eventService:EventService,private productService: ApiService) {
-    this.loadEvents();
+   // this.loadEvents();
    }
    src= "https://firebasestorage.googleapis.com/v0/b/angulargalery.appspot.com/o/DSC_2317_1575812352817?alt=media&token=c4b0bf4f-4fd6-4257-8682-e1381d1b1fa2";
    loadEvents ()
@@ -51,7 +51,7 @@ productList: product[];
 
    }
   ngOnInit() {
-    this.TopViewedProducts();
+   // this.TopViewedProducts();
    // this.slides = this.chunk(this.productList, 3);
   }
 

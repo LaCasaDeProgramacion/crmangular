@@ -15,6 +15,10 @@ export class ArchiveListComponent implements OnInit {
   mostgainmoneystatpack:StatPack;
   PackoftheMonth:StatPack;
   SelledQuantitypacktoday:StatPack;
+  SelledQuantitypacktodayTITLE:string;
+  PackoftheMonthTITLE:string;
+  mostgainmoneystatpackTITLE:string;
+  BestpackforTodayTITLE:string;
  public archivedpacklist:any;
  closeResult: string;
  public packtodelete:Pack;
@@ -33,24 +37,28 @@ export class ArchiveListComponent implements OnInit {
     this.SelledQuantitypacktoday = {};
     this.statservice.getSelledQuantitypacktoday().subscribe(response => {
       this.SelledQuantitypacktoday = response;
+      this.SelledQuantitypacktodayTITLE = response.pack.title;
   })
   }
   getPackoftheMonth(){
     this.PackoftheMonth = {};
     this.statservice.getPackoftheMonth().subscribe(response => {
       this.PackoftheMonth = response;
+      this.PackoftheMonthTITLE = response.pack.title;
   })
   }
   getmostgainmoneystatpack(){
     this.mostgainmoneystatpack = {} ; 
     this.statservice.getmostgainmoneystatpack().subscribe(response => {
       this.mostgainmoneystatpack = response;
+      this.mostgainmoneystatpackTITLE = response.pack.title;
   })
   }
   getBestpackforToday(){
     this.BestpackforToday = {};
     this.statservice.getBestpackforToday().subscribe(response => {
         this.BestpackforToday = response;
+        this.BestpackforTodayTITLE = response.pack.title;
     })
   }
   getArchiveList(){
