@@ -24,6 +24,13 @@ product:product [];
       'Content-Type': 'application/json'
     })
   }
+  httpOptionss = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+
+    })
+  }
   private headers = new HttpHeaders().set('content-type', 'application/json');
   ngOnInit() {
   }
@@ -127,10 +134,26 @@ return this.http.get<category[]>(this.urlCategory+"allcategories") ;
     console.log("heeereeeee");
 
 
-  return this.http.put(this.base_path+'/assigncoupontopromotion', null).pipe(
+  return this.http.put(this.base_path+'/assigncoupontopromotion', null,this.httpOptionss).pipe(
     retry(2),
     catchError(this.handleError)
   );
+}
+getCouponByuser(){
+  return this.http.get(this.base_path+"/getCouponByUser", this.httpOptionss)
+
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+}
+gettimeCouponavailable(){
+  return this.http.get(this.base_path+"/HourMinuteSecondLeftToUseCoupon", this.httpOptionss)
+
+  .pipe(
+    retry(1),
+    catchError(this.handleError)
+  )
 }
 
 updatePro(id, p): Observable<product> {

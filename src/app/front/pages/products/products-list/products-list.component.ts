@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import {switchMap, takeUntil, catchError} from 'rxjs/operators';
 import { category } from 'src/app/entities/category';
+import { StatPack } from 'src/app/entities/StatPack';
+import { StatPackService } from 'src/app/services/statpack/stat-pack.service';
 
 @Component({
   selector: 'app-products-list-front',
@@ -44,6 +46,7 @@ products: product[];
   p: number = 1;
   collection: any[] = [];
   produit: product;
+ 
   @Input() public displayMode: string;
   currentPagingPage: number;
   constructor(private productService : ApiService,private sortPipe: SortPipe,    private route: ActivatedRoute,  public uiService: UiService,  private pagerService: PagerService,private promotionService : PromotionServiceService) { }
@@ -61,6 +64,7 @@ products: product[];
 
 
   }
+ 
 populateCategories() {
   this.productService.getCategories().subscribe(
     (Data) => {

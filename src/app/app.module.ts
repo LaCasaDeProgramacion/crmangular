@@ -97,6 +97,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material/material.module';
 import { ListpackComponent } from './front/pages/packs/listpack/listpack.component';
 import { OnepackinfoComponent } from './front/pages/packs/onepackinfo/onepackinfo.component';
+import { YouCouponComponent } from './front/pages/you-coupon/you-coupon.component';
 
 
 @NgModule({
@@ -157,7 +158,7 @@ NgxImageZoomModule.forRoot(),
     filterbystatePipe,
     MyTelLinesComponent, MyTelLineDetailsComponent, AllServicesComponent, ServiceDetailsComponent, MyServicesComponent,
     MycomplaintDetailsComponent,
-    ListpackComponent,OnepackinfoComponent,
+    ListpackComponent,OnepackinfoComponent,YouCouponComponent,
 
 
 

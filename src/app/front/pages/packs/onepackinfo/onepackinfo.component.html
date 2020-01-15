@@ -1,122 +1,30 @@
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-default">
+<app-front-nav></app-front-nav>
+<section class="section pb-0 bg-gradient-warning">
+    <div class="container">
+      <div class="row row-grid justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="display-3 text-white">PACK DETAILS</h2>
   
-        <a class="navbar-brand mr-lg-5" href="../index.html">
-  
-          <img src="../assets/img/brand/white.png" alt="brand">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse" id="navbar_global">
-          <div class="navbar-collapse-header">
-            <div class="row">
-              <div class="col-6 collapse-brand">
-                <a routerLink=" " routerLinkActive="active" class="media d-flex align-items-center">
-                  <img src="../assets/img/brand/blue.png" alt="brand">
-                </a>
-              </div>
-              <div class="col-6 collapse-close">
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-                  <span></span>
-                  <span></span>
-                </button>
-              </div>
+          <div class="btn-wrapper">
+            <div class="btn-wrapper">
+             
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
             </div>
           </div>
-          <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link" data-toggle="dropdown" role="button">
-                <i class="ni ni-ui-04 d-lg-none"></i>
-                <span class="nav-link-inner--text">Products and stores</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-xl">
-                <div class="dropdown-menu-inner">
-  
-                  <a routerLink="stores" routerLinkActive="active" class="media d-flex align-items-center">
-                    <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
-                      <i class="ni ni-spaceship"></i>
-                    </div>
-                    <div class="media-body ml-3">
-                      <h6 class="heading text-primary mb-md-1">Check our stores</h6>
-                      <p class="description d-none d-md-inline-block mb-0">Check our stores with google maps technology, no need for taping on google ;) .</p>
-                    </div>
-                  </a>
-                  <a routerLink="products" routerLinkActive="active" class="media d-flex align-items-center">
-                    <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
-                      <i class="ni ni-palette"></i>
-                    </div>
-                    <div class="media-body ml-3">
-                      <h6 class="heading text-primary mb-md-1">Check our products</h6>
-                      <p class="description d-none d-md-inline-block mb-0">Wanna discover our latest technologies ? you are so welcome to visit this section ;)</p>
-                    </div>
-                  </a>
-                  <a href="https://demos.creative-tim.com/argon-design-system/docs/components/alerts.html" class="media d-flex align-items-center">
-                    <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
-                      <i class="ni ni-ui-04"></i>
-                    </div>
-                    <div class="media-body ml-3">
-                      <h5 class="heading text-warning mb-md-1">Components</h5>
-                      <p class="description d-none d-md-inline-block mb-0">Browse our 50 beautiful handcrafted components offered in the Free version.</p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link" data-toggle="dropdown" role="button">
-                <i class="ni ni-collection d-lg-none"></i>
-                <span class="nav-link-inner--text">Examples</span>
-              </a>
-              <div class="dropdown-menu">
-                <a href="../examples/landing.html" class="dropdown-item">Landing</a>
-                <a href="../examples/profile.html" class="dropdown-item">Profile</a>
-                <a href="../examples/login.html" class="dropdown-item">Login</a>
-                <a href="../examples/register.html" class="dropdown-item">Register</a>
-              </div>
-            </li>
-          </ul>
-          <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://www.facebook.com/creativetim" target="_blank" data-toggle="tooltip" title="Like us on Facebook">
-                <i class="fa fa-facebook-square"></i>
-                <span class="nav-link-inner--text d-lg-none">Facebook</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://www.instagram.com/creativetimofficial" target="_blank" data-toggle="tooltip" title="Follow us on Instagram">
-                <i class="fa fa-instagram"></i>
-                <span class="nav-link-inner--text d-lg-none">Instagram</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://twitter.com/creativetim" target="_blank" data-toggle="tooltip" title="Follow us on Twitter">
-                <i class="fa fa-twitter-square"></i>
-                <span class="nav-link-inner--text d-lg-none">Twitter</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://github.com/creativetimofficial/argon-design-system" target="_blank" data-toggle="tooltip" title="Star us on Github">
-                <i class="fa fa-github"></i>
-                <span class="nav-link-inner--text d-lg-none">Github</span>
-              </a>
-            </li>
-            <li class="nav-item d-none d-lg-block ml-lg-4">
-              <a href="https://www.creative-tim.com/product/argon-design-system" target="_blank" class="btn btn-neutral btn-icon">
-                <span class="btn-inner--icon">
-                  <i class="fa fa-cloud-download mr-2"></i>
-                </span>
-                <span class="nav-link-inner--text">Download</span>
-              </a>
-            </li>
-          </ul>
         </div>
- 
-  </nav>
-  
-  
-  
-  
+      </div>
+    </div>
+    <div class="separator separator-bottom separator-skew zindex-100">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </section>
   <br>
   <div fxLayout="row" fxLayoutAlign="space-around center">
       <div fxFlex="2%"></div>
@@ -128,7 +36,7 @@
           <div fxFlex="80%">
               <!-- Image & Desc. -->
               <div fxLayout="column " class="material-card card card-lift--hover shadow border-0" >
-                  <img src="{{Pack.picture}}" alt="">
+                  <img src="{{Pack.picture}}" style="height: 800px;font-weight: 604px;">
                   <!-- Desc. -->
                   <div fxLayout="row" layout-wrap>
                       <div fxFlex="100%">
@@ -143,22 +51,22 @@
           </div>
           <!-- Summary -->
           <mat-list fxFlex fxFlexAlign="start" fxFlexOffset="5%">
-              <h4>
+              <h4 class="text-warning" >
                   <mat-icon>info</mat-icon>
                   Pack Highlight
               </h4>           
-              <mat-divider></mat-divider>
+              <mat-divider class="text-warning"></mat-divider>
              
               <mat-list-item>
-                  <h4 mat-line>Quantity</h4>
+                  <h4 class="text-warning" mat-line>Quantity</h4>
                   <p mat-line>{{Pack.integratedquantity}}</p>
               </mat-list-item>
               <mat-list-item>
-                      <h4 mat-line>Price</h4>
-                      <p mat-line>{{Pack.integratedprice}}</p>
+                      <h4 class="text-warning"  mat-line>Price</h4>
+                      <p  mat-line>{{Pack.integratedprice}} TND</p>
                   </mat-list-item>
               <mat-list-item>
-                  <h4 mat-line>Released</h4>
+                  <h4 class="text-warning" mat-line>Released</h4>
                   <p mat-line>{{Pack.createdate |  date:"MM/dd/yyyy 'at' h:mma"}}</p>
               </mat-list-item>
              
@@ -166,7 +74,7 @@
               
          
               <mat-list>
-                  <h4>
+                  <h4 class="text-warning" >
                       <mat-icon>info</mat-icon>
                       Pack Rating
                   </h4>           
@@ -212,11 +120,11 @@
                 </h4>
             </mat-list-item>
             <mat-list>
-                <h4>
+                <h4 class="text-warning" >
                     <mat-icon>people</mat-icon>
                     Reviews
                 </h4>
-                <mat-divider></mat-divider>
+                <mat-divider class="text-warning" ></mat-divider>
               <mat-list   >
                <mat-list-item *ngFor="let star of stars | async">
                 {{ star.userId }} gave {{ Pack.Title }} {{ star.value }} stars
@@ -231,7 +139,7 @@
       <br>
       <br>
       <div >
-          <h4>
+          <h4 class="text-warning" >
               <mat-icon>people</mat-icon>
               Pack Products
           </h4>
@@ -250,8 +158,8 @@
                             <i class="text-uppercase ">P</i>
                           </div>
                           <div class="text-box-custom">
-                            <h3 class="mb-0 text-uppercase u-black text-center "> {{ product.productName }} </h3>
-                            <h3 class="u-black mt-0 mb-0">prom.promotiontype</h3>
+                            <h3 class="mb-0 text-uppercase u-black text-center  "> {{ product.productName }} </h3>
+                            
                           </div>
                           <div >
                               <div class="price" *ngIf ="product.producthavepromotion == true; else withoutpromotion">

@@ -4,6 +4,8 @@ import { Pack } from 'src/app/entities/Pack';
 import { PackService } from 'src/app/services/Pack/pack.service';
 import { StarService } from 'src/app/services/star.service';
 import { map } from 'rxjs/operators';
+import { StatPackService } from 'src/app/services/statpack/stat-pack.service';
+import { StatPack } from 'src/app/entities/StatPack';
 
 @Component({
   selector: 'app-listpack',
@@ -18,13 +20,53 @@ export class ListpackComponent implements OnInit {
   public movieId;
   stars: Observable<any>;
   avgRating: Observable<any>;
-  constructor(public packservice:PackService,private starService: StarService) { }
+  BestpackforToday:Pack;
+  mostgainmoneystatpack:Pack;
+  PackoftheMonth:Pack;
+  SelledQuantitypacktoday:Pack;
+  SelledQuantitypacktodayTITLE:string;
+  PackoftheMonthTITLE:string;
+  mostgainmoneystatpackTITLE:string;
+  BestpackforTodayTITLE:string;
+  constructor(public packservice:PackService,private starService: StarService,public statservice:StatPackService) { }
 
   ngOnInit() {
     this.getavalaiblePack();
     
     this.userId = 2;
    //  this.getreviewsavg();
+   this.getSelledQuantitypacktoday();
+   this.getPackoftheMonth();
+this.getmostgainmoneystatpack();
+this.getBestpackforToday();
+  }
+  getSelledQuantitypacktoday(){
+    this.SelledQuantitypacktoday = {};
+    this.statservice.getSelledQuantitypacktoday().subscribe(response => {
+      this.SelledQuantitypacktoday = response.pack;
+      this.SelledQuantitypacktodayTITLE = response.pack.title;
+  })
+  }
+  getPackoftheMonth(){
+    this.PackoftheMonth = {};
+    this.statservice.getPackoftheMonth().subscribe(response => {
+      this.PackoftheMonth = response.pack;
+      this.PackoftheMonthTITLE = response.pack.title;
+  })
+  }
+  getmostgainmoneystatpack(){
+    this.mostgainmoneystatpack = {} ; 
+    this.statservice.getmostgainmoneystatpack().subscribe(response => {
+      this.mostgainmoneystatpack = response.pack;
+      this.mostgainmoneystatpackTITLE = response.pack.title;
+  })
+  }
+  getBestpackforToday(){
+    this.BestpackforToday = {};
+    this.statservice.getBestpackforToday().subscribe(response => {
+        this.BestpackforToday = response.pack;
+        this.BestpackforTodayTITLE = response.pack.title;
+    })
   }
   getreviewsavg (){
     for(let pack of this.packData){

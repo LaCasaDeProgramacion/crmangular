@@ -31,6 +31,7 @@ import { AutocompletetextComponent } from '../back/pages/stores/autocompletetext
 import { ProductDetailComponent } from './pages/products/product-detail/product-detail.component';
 
 import { EventsFrontComponent } from './events-front/events-front.component';
+import { YouCouponComponent } from './pages/you-coupon/you-coupon.component';
 
 
 
@@ -39,7 +40,7 @@ import { EventsFrontComponent } from './events-front/events-front.component';
 
   declarations: [HomeComponent,TopicsComponent, FrontNavComponent, FrontFooterComponent, AllTopicsComponent,
                  SingleTopicComponent, ConfirmPassComponent, StoresComponent, StoresListComponent,
-                 FooterComponent, ProductsComponent,FilterByBrandPipe, ChatComponent, ProductSliderComponent, SearchComponent, ProductFilterComponent, FortuneWheelComponent, ProductDetailComponent, ListpackComponent, OnepackinfoComponent, EventsFrontComponent,],
+                 FooterComponent, ProductsComponent,FilterByBrandPipe, ChatComponent, ProductSliderComponent, SearchComponent, ProductFilterComponent, FortuneWheelComponent, ProductDetailComponent, ListpackComponent, OnepackinfoComponent, EventsFrontComponent, YouCouponComponent,],
 
   imports: [
     CommonModule,

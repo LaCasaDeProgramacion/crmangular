@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ImageUploadComponent } from 'src/app/SharedComponent/image-upload/image-upload.component';
 import { Pack } from 'src/app/entities/Pack';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PackService } from 'src/app/services/Pack/pack.service';
 import { finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -18,6 +18,7 @@ import { StatPackService } from 'src/app/services/statpack/stat-pack.service';
   styleUrls: ['./add-pack.component.scss']
 })
 export class AddPackComponent implements OnInit {
+  hideerror:boolean=false;
   @ViewChild(ImageUploadComponent)
   private testComponent : ImageUploadComponent;
   //product list to assign
@@ -87,11 +88,11 @@ getBestpackforToday(){
 packForm = new FormGroup(
   {
 
-    'title' : new FormControl(),
+    'title' : new FormControl('', [Validators.required, Validators.minLength(3)]),
     'description' : new FormControl(),
     'image' : new FormControl(),
-    'datefrom' : new FormControl(),
-    'dateuntil' : new FormControl()
+    'datefrom' : new FormControl('', [Validators.required]),
+    'dateuntil' : new FormControl('', [Validators.required])
   });
   get gettitle(){
     return this.packForm.get('title');
@@ -108,6 +109,16 @@ packForm = new FormGroup(
   get getdateuntil(){
     return this.packForm.get('dateuntil');
   }
+  error:any={isError:false,errorMessage:''};
+
+compareTwoDates(){
+   if(new Date(this.packForm.controls['dateuntil'].value)<new Date(this.packForm.controls['datefrom'].value)){
+      this.error={isError:true,errorMessage:'Until Date cant Before From Date'};
+     this.packForm.hasError;
+   }
+}
+
+
 onclickenvoyer(e){
   this.testComponent.message()
   var pictureinfo :any[] =this.testComponent.handleSubmit(e);

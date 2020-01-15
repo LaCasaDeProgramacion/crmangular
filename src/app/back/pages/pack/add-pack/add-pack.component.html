@@ -151,28 +151,72 @@
                                                 <h6>Title <span class="icon-danger">*</span></h6>
                                                 <input type="text" class="form-control border-input" placeholder="enter the pack title here..." formControlName="title">
                                             </div>
+                                            <div *ngIf="gettitle.touched && gettitle.invalid">
+   
+                                                <div  class="alert alert-danger" *ngIf="gettitle.errors.required">
+                                                  Title Is Required
+                                              </div>
+                                              <div  class="alert alert-danger" *ngIf="gettitle.errors.minlength">
+                                                Min Length of title Is
+                                                {{gettitle.errors.minlength.requiredLength}} But Lenght is 
+                                                {{gettitle.errors.minlength.actualLength}}
+                                              </div>
+                                            </div>
                                             <div class="form-group">
                                                 <h6>Valid From<span class="icon-danger">*</span></h6>
                                                 <input type="date" class="form-control border-input" formControlName="datefrom">
                                             </div>
+                                          
+                                             
+            
+                                                <div *ngIf="getdatefrom.invalid && getdatefrom.touched ">
+                                                    <div class="alert alert-danger" *ngIf ="getdatefrom?.errors.required">
+                                                         Date From is Required
+                                                    </div>
+            
+                                                </div>
+                                            
                                             <div class="form-group">
                                                 <h6>Valid Until<span class="icon-danger">*</span></h6>
-                                                <input type="date" class="form-control border-input" formControlName="dateuntil">
+                                                <input type="date" class="form-control border-input" formControlName="dateuntil" (blur)="compareTwoDates()">
+                                                
                                             </div>
+                                            <div *ngIf="getdateuntil.invalid && getdateuntil.touched ">
+                                                <div class="alert alert-danger" *ngIf ="getdateuntil?.errors.required">
+                                                    Date Until Is Required
+                                                </div> 
+                                               
+                                            </div>
+                                            <div *ngIf="error.isError" class="alert alert-danger"  >
+                                                {{ error.errorMessage }}
+                                             </div>
+                                           
+                                         
                                           
                                             <div class="form-group">
                                                 <h6>Description</h6>
-                                                <textarea class="form-control textarea-limited" placeholder="This is a textarea limited to 150 characters." rows="13" maxlength="150" formControlName="description" ></textarea>
+                                                <textarea class="form-control textarea-limited" placeholder="This is a Description Area limited to 150 characters." rows="13"  formControlName="description" ></textarea>
                                                 <h5><small><span id="textarea-limited-message" class="pull-right">150 characters left</span></small></h5>
                                             
                                             </div>
+                                           <!-- <div *ngIf="description.touched && description.invalid">
+   
+                                                <div *ngIf="description.errors.required">
+                                                  Description Is Required
+                                              </div>
+                                              <div *ngIf="description.errors.minlength">
+                                                Min Length of Description Is
+                                                {{description.errors.minlength.requiredLength}} But Actual Lenght is 
+                                                {{description.errors.minlength.actualLength}}
+                                              </div>
+                                            </div>-->
                                         </div>
                                     </div>
                                     
                 
                                     <div class="row buttons-row">
                                         <div class="col-md-4 col-sm-4">
-                                            <button class="btn btn-outline-danger btn-block btn-round" (click)="onclickenvoyer($event)">Add</button>
+                                            <button class="btn btn-outline-danger btn-block btn-round" [disabled]="packForm.invalid" (click)="onclickenvoyer($event)">Add</button>
                                         </div>
                                     </div>
                                 </form>

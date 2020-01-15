@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/services/products/api.service';
 import { product } from 'src/app/entities/product';
 import * as d3 from 'd3-3';
 import { CodeHighlighter } from 'primeng/primeng';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-fortune-wheel',
   templateUrl: './fortune-wheel.component.html',
@@ -13,9 +14,10 @@ import { CodeHighlighter } from 'primeng/primeng';
 export class FortuneWheelComponent implements OnInit {
   afficheresultat:boolean=true;
   productList: product[] =[];
+  coupon:any;
   testbool:boolean=false;
  public pro: product;
-  constructor(private productService : ApiService) { }
+  constructor(private productService : ApiService,private router: Router) { }
 
   ngOnInit() {
    // this.test();
@@ -51,9 +53,10 @@ export class FortuneWheelComponent implements OnInit {
           console.log(Response);
           if(!Response["statusrslt"]){
           this.pro= Response["promotion"].product;
-
+        this.coupon = Response;
         }else {
           this.testbool = true;
+          this.router.navigate(["home/yourCoupon"]);
         }
         console.log("tessst booool")
         console.log(this.testbool)
@@ -61,13 +64,13 @@ export class FortuneWheelComponent implements OnInit {
           if(this.testbool === false){
             console.log(this.productList)
             console.log(this.testbool)
-          this.showPage(this.productList,this.pro)
+          this.showPage(this.productList,this.pro,this.coupon)
          }
         }
        )
 
     }
-  showPage(productlist:product[],producttoget:product) {
+  showPage(productlist:product[],producttoget:product,coupon:any) {
     document.getElementById("off").style.display = "none";
     document.getElementById("show").style.display = "block";
     var padding = { top: 20, right: 40, bottom: 0, left: 0 },
@@ -121,7 +124,7 @@ export class FortuneWheelComponent implements OnInit {
     })
       .attr("text-anchor", "end")
       .text(function (d, i) {
-        return data[i].productName;
+        return data[i].productName ;
       });
 
     container.on("click", spin);
@@ -166,9 +169,17 @@ export class FortuneWheelComponent implements OnInit {
           d3.select(".slice:nth-child(" + (picked + 1) + ") path")
             .attr("fill", "#111");
           //populate question
-        d3.select("#question h1")
+        d3.select("#producttitle")
             .text(data[picked].productName)   ;
+        d3.select("#productimg")    
+            
+            .attr("src",producttoget.productImage )
+           
+            .attr("height", 200)
+            .attr("width", 200);
 
+            d3.select("#coupondetail")
+               .text("You Won a Coupon Promotion with Coupon Code "+coupon.codecoupon+" With Promotion Unit  "+coupon['promotion'].promotionunit+"%");
           oldrotation = rotation;
 
           container.on("click", spin);
@@ -195,7 +206,7 @@ export class FortuneWheelComponent implements OnInit {
       .attr("x", 0)
       .attr("y", 15)
       .attr("text-anchor", "middle")
-      .text("Button")
+      .text("SPIN")
       .style({ "font-weight": "bold", "font-size": "30px" });
       this.playAudio();
 

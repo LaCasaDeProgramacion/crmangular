@@ -2,10 +2,13 @@ import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 import { EmitType } from '@syncfusion/ej2-base';
 import { chartproduct } from './../../variables/charts';
 import { ApiService } from 'src/app/services/products/api.service';
+
+
+import { chartComplaint, chartwaeltest, chartwaelll } from './../../variables/charts';
 import { Router } from '@angular/router';
 import { ComplaintsService } from './../../../services/complaintsManagement/complaints.service';
 import { DatePipe } from '@angular/common';
-import { chartComplaint, chartwaeltest, chartwaelll } from './../../variables/charts';
+
 import { StatisticsComplaintService } from './../../../services/complaintsManagement/statistics-complaint.service';
 import { complaintstatistics } from './../../../entities/complaintsmanagement/complaintstatistics';
 import { Component, OnInit } from '@angular/core';
@@ -36,6 +39,9 @@ export class DashboardComponent implements OnInit {
 
 
 
+  
+ 
+ 
   public datasets: any;
   public data:complaintstatistics;
   public data1;
@@ -78,6 +84,7 @@ export class DashboardComponent implements OnInit {
       }
      )
 
+      
     this.Sservice.getByDate(this.value).subscribe(
       (d) =>
       {
@@ -105,6 +112,7 @@ export class DashboardComponent implements OnInit {
   }
     );
 
+    
     this.salesChart1 = new Chart(chartSales1, {
 			type: 'bar',
       options: chartComplaint.options,
@@ -231,6 +239,8 @@ export class DashboardComponent implements OnInit {
 
 
 
+   
+    
         this.salesChart.data.datasets[0].data = [d['0']["nbOpenedComplaint"], d['0']["nbTreatedComplaint"], d['0']["nbinprogressComplaint"], d['0']["nbClosedComplaint"]];
         this.salesChart1.data.datasets[0].data = [d['0']["nbTechnicalComplaint"], d['0']["nbfinancialComplaint"], d['0']["nbrelationalComplaint"]];
 
@@ -243,5 +253,6 @@ export class DashboardComponent implements OnInit {
   };
 
 
+  
 
 }

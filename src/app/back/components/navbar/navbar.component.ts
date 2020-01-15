@@ -72,7 +72,7 @@ picture= localStorage.getItem('Picture');
       }
     )
   }
-  Details(id)
+ /* Details(id)
   {
     this.complaintS.MarknotifAsread(id).subscribe(
       data =>
@@ -81,7 +81,7 @@ picture= localStorage.getItem('Picture');
         console.log(data);
       }
     )
-  }
+  } 
   MarkAllAsread()
   {
     this.complaintS.MarkAllAsRead().subscribe(
@@ -94,6 +94,6 @@ picture= localStorage.getItem('Picture');
 
       }
     )
-  }
+  }   */
 
 }
