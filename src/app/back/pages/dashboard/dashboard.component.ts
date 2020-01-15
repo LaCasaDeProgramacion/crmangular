@@ -1,12 +1,16 @@
+import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
+import { EmitType } from '@syncfusion/ej2-base';
 import { Router } from '@angular/router';
 import { ComplaintsService } from './../../../services/complaintsManagement/complaints.service';
 import { DatePipe } from '@angular/common';
-import { chartComplaint } from './../../variables/charts';
+import { chartComplaint, chartwaeltest, chartwaelll } from './../../variables/charts';
 import { StatisticsComplaintService } from './../../../services/complaintsManagement/statistics-complaint.service';
 import { complaintstatistics } from './../../../entities/complaintsmanagement/complaintstatistics';
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 import { chartOptions, parseOptions, chartExample2, chartExample1 } from '../../variables/charts';
+import { Query } from '@syncfusion/ej2-data';
+import { ChangeEventArgs } from '@syncfusion/ej2-buttons';
 
 const data = {
   chart: {
@@ -27,14 +31,19 @@ const data = {
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+  
+ 
+ 
   public datasets: any;
   public data:complaintstatistics;
+  public data1;
   public salesChart;
   public salesChart1;
-
+  public packchart;
   public clicked: boolean = true;
   public clicked1: boolean = false;
+  public clicked2: boolean = false;
+  public clicked3: boolean = false;
   width = 600;
   height = 400;
   type = "column2d";
@@ -42,23 +51,32 @@ export class DashboardComponent implements OnInit {
   date:Date;
   dataSource:complaintstatistics;
   nbcomplaint;
-  constructor(private Sservice:StatisticsComplaintService,private complaintscervice:ComplaintsService,private router: Router){
+  public dateList: string[] = ['2019-01-31', '2019-02-28', '2019-03-31', '2019-04-30', '2019-05-31', '2019-06-30','2019-07-31','2019-08-31','2019-09-30','2019-10-31','2019-11-30','2019-12-31'];
+  value;
+
+  constructor(private Sservice:StatisticsComplaintService,private complaintscervice:ComplaintsService,private router: Router){ 
     if (localStorage['Role']!= "ADMIN")
       {
         this.router.navigate(['home']);
       }
   }
-
-  ngOnInit() {/*
-
+  public onFiltering: EmitType<any> =  (e: FilteringEventArgs) => {
+    let query = new Query();
+    //frame the query based on search string with filter type.
+    query = (e.text != "") ? query.where("serviceName", "startswith", e.text, true) : query;
+    //pass the filter data source, filter query to updateData method.
+    e.updateData(this.dateList, query);
+  };
+  ngOnInit() {
+    this.value='2019-01-31';
     this.complaintscervice.get().subscribe(
       (Data) => {
         this.nbcomplaint=Data.length;
         console.log("tech"+Data);
       }
      )
-
-    this.Sservice.getByDate('2019-12-05').subscribe(
+      
+    this.Sservice.getByDate(this.value).subscribe(
       (d) =>
       {
         console.log(d['0']['nbClosedComplaint']);
@@ -84,6 +102,7 @@ export class DashboardComponent implements OnInit {
     }
   }
     );
+    
     this.salesChart1 = new Chart(chartSales1, {
 			type: 'bar',
       options: chartComplaint.options,
@@ -128,7 +147,22 @@ export class DashboardComponent implements OnInit {
       data: chartExample2.data
     });
 
-*/
+    this.datasets = [
+     [0, 2, 2, 2, 2, 2],
+      [0, 1, 1, 1, 1, 1],
+      [0, 1, 1, 1, 1, 1],
+      [0, 1, 1, 1, 1, 1],
+    ];
+    this.data1 = this.datasets[0];
+    var packchartt = document.getElementById('chart-sales3');
+
+
+
+    this.packchart = new Chart(packchartt, {
+      type: 'bar',
+      options: chartwaelll.options,
+      data: chartwaelll.data
+    });
   }
 
 
@@ -136,10 +170,32 @@ export class DashboardComponent implements OnInit {
 
 
   public updateOptions() {
-    this.salesChart.data.datasets[0].data = this.data;
-    this.salesChart.update();
+    this.packchart.data.datasets[0].data = this.data1;
+    this.packchart.update();
   }
 
+  public onChange: EmitType<any> = (e: ChangeEventArgs) => {
+    console.log(this.value)
+    this.Sservice.getByDate(this.value).subscribe(
+      (d) =>
+      {
+        console.log(d['0']['nbClosedComplaint']);
+        //var chartSales = document.getElementById('chart-sales');
+        //var chartSales1 = document.getElementById('chart-sales1');
 
+   
+    
+        this.salesChart.data.datasets[0].data = [d['0']["nbOpenedComplaint"], d['0']["nbTreatedComplaint"], d['0']["nbinprogressComplaint"], d['0']["nbClosedComplaint"]];
+        this.salesChart1.data.datasets[0].data = [d['0']["nbTechnicalComplaint"], d['0']["nbfinancialComplaint"], d['0']["nbrelationalComplaint"]];
+
+        this.salesChart.update();
+        this.salesChart1.update();
+        console.log(d);
+
+      }
+    );
+  };
+
+  
 
 }

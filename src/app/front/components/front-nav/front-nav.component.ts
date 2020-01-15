@@ -22,8 +22,10 @@ export class FrontNavComponent implements OnInit {
     else this.connected=false;
    }
 
+  
   ngOnInit() {
 
+    
   }
   logout()
   {

@@ -144,11 +144,20 @@
             <div class="col">
               <h6 class="text-uppercase text-muted ls-1 mb-1">Complaints Statistics By Type</h6>
             </div>
+            <div class="col">
+                <ul class="nav nav-pills justify-content-end">
+                  <li>
+                  <ejs-combobox   [dataSource]='dateList' [(value)]='value'   placeholder='Select a date '[allowFiltering]='true' (filtering)='onFiltering($event)' (change)='onChange($event)'></ejs-combobox>
+
+                  </li>
+                  </ul>
+                  </div>
           </div>
         </div>
         <div class="card-body">
           <!-- Chart -->
           <div class="chart">
+            
               <canvas id="chart-sales1" class="chart-canvas"></canvas>
             </div>
         </div>
@@ -165,6 +174,9 @@
             <div class="col">
               <h6 class="text-uppercase text-muted ls-1 mb-1">Packs Statistics</h6>
             </div>
+            
+            <!-- <ejs-combobox  name="date" #date="ngModel" [dataSource]='dateList' [(ngModel)]="date"  placeholder='Select a date '[allowFiltering]='true' (filtering)='onFiltering($event)'></ejs-combobox> -->
+
           </div>
           <div class="card-body">
             <!-- Chart -->
@@ -173,12 +185,7 @@
               </div>
           </div>
         </div>
-        <div class="card-body">
-          <!-- Chart -->
-          <div class="chart">
-              <canvas id="chart-sales2" class="chart-canvas"></canvas>
-            </div>
-        </div>
+        
       </div>
     </div>
     <div class="col-xl-8 mb-5 mb-xl-0">
@@ -191,7 +198,36 @@
                 </div>
 
               </div>
+              <div class="col">
+                  <ul class="nav nav-pills justify-content-end">
+                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales3"  (click)="data=datasets[0];updateOptions()">
+                      <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false;clicked2=false;clicked3=false">
+                        <span class="d-none d-md-block">Disappointment</span>
+                        <span class="d-md-none">D</span>
+                      </a>
+                    </li>
+                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales3"  (click)="data=datasets[1];updateOptions()">
+                      <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}" data-toggle="tab" (click)="clicked=false;clicked1=true;clicked2=false;clicked3=false">
+                        <span class="d-none d-md-block">StarterPack</span>
+                        <span class="d-md-none">S</span>
+                      </a>
+                    </li>
+                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales3"  (click)="data=datasets[2];updateOptions()">
+                        <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked2===true}" data-toggle="tab" (click)="clicked=false;clicked1=false;clicked2=true;clicked3=false">
+                          <span class="d-none d-md-block">Rising</span>
+                          <span class="d-md-none">R</span>
+                        </a>
+                      </li>
+                      <li class="nav-item" data-toggle="chart" data-target="#chart-sales3"  (click)="data=datasets[3];updateOptions()">
+                          <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked3===true}" data-toggle="tab" (click)="clicked=false;clicked1=false;clicked2=false;clicked3=true">
+                            <span class="d-none d-md-block">Trending</span>
+                            <span class="d-md-none">T</span>
+                          </a>
+                        </li>
+                  </ul>
+                </div>
             </div>
+
             <div class="card-body">
               <!-- Chart -->
               <div class="chart">
