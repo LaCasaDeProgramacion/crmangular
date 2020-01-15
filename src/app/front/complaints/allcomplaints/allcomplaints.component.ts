@@ -7,6 +7,7 @@ import { ComplaintsService } from './../../../services/complaintsManagement/comp
 import { Component, OnInit } from '@angular/core';
 import { Query } from '@syncfusion/ej2-data';
 import { ComplaintObjectsService } from 'src/app/services/complaintsManagement/complaint-objects.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-allcomplaints',
@@ -15,7 +16,7 @@ import { ComplaintObjectsService } from 'src/app/services/complaintsManagement/c
 })
 export class AllcomplaintsComponent implements OnInit {
 
-  constructor(private typeser:ComplaintTypesService,private complaintscervice:ComplaintsService,private modalService: NgbModal,private OService:ComplaintObjectsService) { }
+  constructor(private typeser:ComplaintTypesService,private complaintscervice:ComplaintsService,private modalService: NgbModal,private OService:ComplaintObjectsService,private toastr: ToastrService) { }
   ListComplaints=[];
   typeList=[];
   collection = { count: null, ListComplaints: [] };
@@ -29,6 +30,7 @@ searchText;
 closeResult:string;
 complaint:complaints={complaintBody:"",complaintObject:null};
 ObjectList=[];
+role=localStorage['Role'];
 public fields1: Object = { text: 'object', value: 'id' };
   ngOnInit() {
     this.complaintscervice.get().subscribe(
@@ -248,8 +250,11 @@ public fields1: Object = { text: 'object', value: 'id' };
     this.complaintscervice.add(this.complaint).subscribe(
       (data)=>
       {
-        this.modalService.dismissAll();
+        this.toastr.success('Add complaint', 'Complaint added with success!',
+        {timeOut: 2000});
         this.loadComplaints();
+        this.complaint={complaintBody:"",complaintObject:null};
+
         console.log(data);
       }
     )

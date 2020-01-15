@@ -181,17 +181,26 @@
           <form #techForm= "ngForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               
-                <input class="form-control" placeholder="First Name *" name="TechnicianFirstName" [(ngModel)]="technician.technicianFirstName" #Technicianusername="ngModel" type="text" required>
+                <input class="form-control" placeholder="First Name *" name="TechnicianFirstName" [(ngModel)]="technician.technicianFirstName" #Technicianusername="ngModel" type="text" required pattern="[a-zA-Z]*$">
                 <div *ngIf="Technicianusername.invalid && Technicianusername.touched && !Technicianusername.dirty" class="alert alert-danger">
-                  First Name is required
+                    <div *ngIf ="Technicianusername?.errors.required">
+                        First Name is required
+                      </div>
+                 <div *ngIf ="Technicianusername?.errors.pattern">
+                        First Name not much !
+                </div>  
 </div>
             </div>
             <div class="form-group">
               
-                <input class="form-control" placeholder="Second Name *" name="TechnicianSecondName" [(ngModel)]="technician.technicianSecondName" #TechnicianSecondName="ngModel" type="text" required>
+                <input class="form-control" placeholder="Second Name *" name="TechnicianSecondName" [(ngModel)]="technician.technicianSecondName" #TechnicianSecondName="ngModel" type="text" required pattern="[a-zA-Z]*$">
                 <div *ngIf="TechnicianSecondName.invalid && TechnicianSecondName.touched && !TechnicianSecondName.dirty" class="alert alert-danger">
+                   <div *ngIf ="TechnicianSecondName?.errors.required">
                     Second Name is required
-  </div>
+                  </div>
+             <div *ngIf ="TechnicianSecondName?.errors.pattern">
+                    Seconf Name not much !
+            </div>    </div>
             </div>
             <div class="form-group">
               
@@ -202,9 +211,14 @@
             </div>
             <div class="form-group">
                
-                  <input class="form-control" placeholder="Phone number *" name="TechnicianPhoneNumber" [(ngModel)]="technician.technicianPhoneNumber" #TechnicianPhoneNumber="ngModel" type="text" required>
-                  <div *ngIf="TechnicianPhoneNumber.invalid && TechnicianPhoneNumber.touched && !TechnicianPhoneNumber.dirty" class="alert alert-danger">
-                      phone number is required
+                  <input class="form-control" placeholder="Phone number *" name="TechnicianPhoneNumber" [(ngModel)]="technician.technicianPhoneNumber" #TechnicianPhoneNumber="ngModel" type="text" required minlength="8" maxlength="8">
+                  <div *ngIf="TechnicianPhoneNumber.invalid && TechnicianPhoneNumber.touched && !TechnicianPhoneNumber.dirty" class="alert alert-danger" >
+                      <div *ngIf ="TechnicianPhoneNumber?.errors.required">
+                          phone number is required
+                        </div>
+                   <div *ngIf ="TechnicianPhoneNumber?.errors.minlength ||  TechnicianPhoneNumber?.errors.maxlength">
+                          Longueur 8 !
+                  </div>  
     </div>
               </div>
               

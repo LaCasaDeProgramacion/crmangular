@@ -217,11 +217,15 @@
                   </select>
                 </div>
               </div> -->
-              <ejs-combobox  name="service" #service="ngModel" [dataSource]='Servicelist' [(ngModel)]="telline.services" [fields]='fields' placeholder='Select a service '[allowFiltering]='true' (filtering)='onFiltering($event)'></ejs-combobox>
+              <ejs-combobox  name="service" #service="ngModel" [dataSource]='Servicelist' [(ngModel)]="telline.services" [fields]='fields' placeholder='Select a service '[allowFiltering]='true' (filtering)='onFiltering($event)' required></ejs-combobox>
+              <div *ngIf="service.invalid && service.touched && !service.dirty" class="alert alert-danger">
+                  Service  is required  </div>
               <br>
              
-              <ejs-combobox  name="user" #user="ngModel" [dataSource]='Userlist' [(ngModel)]="telline.user" [fields]='fields1' placeholder='Select a Client '[allowFiltering]='true' (filtering)='onFiltering1($event)'></ejs-combobox>
-
+              <ejs-combobox  name="user" #user="ngModel" [dataSource]='Userlist' [(ngModel)]="telline.user" [fields]='fields1' placeholder='Select a Client '[allowFiltering]='true' (filtering)='onFiltering1($event)' required></ejs-combobox>
+              <div *ngIf="user.invalid && user.touched && !user.dirty" class="alert alert-danger">
+                  User  is required  </div>
+              <br>
             <div class="text-center">
               <button type="submit" class="btn btn-primary mt-4" [disabled]="lineForm.invalid">ADD</button>
             </div>

@@ -11,6 +11,9 @@ export class ServiceDetailsComponent implements OnInit {
 
   constructor(private serviceS:ServiceLineService,private route: ActivatedRoute) { }
   id;
+  collection = { count: null, ListComplaints: [] };
+  
+config:any;
   service:any;
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -23,6 +26,18 @@ export class ServiceDetailsComponent implements OnInit {
         this.service= data;
       }
     )
+    this.serviceS.getEnabled().subscribe(
+      (Data) => {
+        this.collection.ListComplaints = Data ; 
+        this.collection.count = Data.length;
+        console.log("tech"+Data);
+      }
+     )
+     this.config = {
+      itemsPerPage: 3,
+      currentPage: 1,
+      totalItems: this.collection.count
+    };
     
   }
 

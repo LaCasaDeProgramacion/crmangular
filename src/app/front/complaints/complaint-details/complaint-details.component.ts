@@ -1,3 +1,5 @@
+import { complainttype } from './../../../entities/complaintsmanagement/complaintstype';
+import { complaints } from './../../../entities/complaintsmanagement/complaints';
 import { ComplaintCommentsService } from './../../../services/complaintsManagement/complaint-comments.service';
 import { ActivatedRoute } from '@angular/router';
 import { ComplaintsService } from './../../../services/complaintsManagement/complaints.service';
@@ -18,7 +20,10 @@ export class ComplaintDetailsComponent implements OnInit {
   comments:complaintcomment={comment:""};
   listComments:complaintcomment[];
   user=localStorage.getItem('UserName');
-
+  type;
+  collection = { count: null, ListComplaints: [] };
+  
+config:any;
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       
@@ -27,9 +32,22 @@ export class ComplaintDetailsComponent implements OnInit {
     });
     this.service.getById(this.id).subscribe(
       (data)=>{
+        console.log(data)
         this.complaint= data;
+        this.type=data["typeComplaint"]["id"];
+        this.service.getByType(this.type).subscribe(
+          (data)=>{
+            this.collection.ListComplaints=data;
+          }
+        )
       }
     )
+    this.config = {
+      itemsPerPage: 3,
+      currentPage: 1,
+      totalItems: this.collection.count
+    };
+    
     
   }
   deleteComment(id)

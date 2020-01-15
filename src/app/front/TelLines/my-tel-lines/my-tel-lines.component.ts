@@ -3,6 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from './../../../services/user.service';
 import { TellineService } from './../../../services/TelLineManagament/telline.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-my-tel-lines',
@@ -11,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyTelLinesComponent implements OnInit {
 
-  constructor(private techservice:TellineService,private userser:UserService,private modalService: NgbModal) { }
+  constructor(private techservice:TellineService,private userser:UserService,private modalService: NgbModal,private toastr: ToastrService) { }
   Listtel=[];
   cancelClicked:boolean=false;
   Selectedtel:TelephoneLines;
@@ -35,6 +36,8 @@ export class MyTelLinesComponent implements OnInit {
     this.techservice.delete(this.idSelected).subscribe(
       (data) =>{
         console.log(data);
+        this.toastr.error('Delete line', 'Line deleted with success!',
+        {timeOut: 2000});
         this.modalService.dismissAll();
         this.loadComplaints();
 
@@ -75,7 +78,7 @@ export class MyTelLinesComponent implements OnInit {
   
   Open(content,id) {
     this.idSelected=id;
-   this.modalService.open(content, {ariaLabelledBy: 'modal1-basic-title'}).result.then((result) => {
+   this.modalService.open(content, {ariaLabelledBy: 'modal1-title-notification'}).result.then((result) => {
      this.closeResult = `Closed with: ${result}`;
    }, (reason) => {
      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

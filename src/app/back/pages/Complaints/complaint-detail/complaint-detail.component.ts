@@ -24,6 +24,7 @@ export class ComplaintDetailComponent implements OnInit {
   comments:complaintcomment={comment:""};
   listComments:complaintcomment[];
   user=localStorage.getItem('UserName');
+  picture= localStorage.getItem('Picture');
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       

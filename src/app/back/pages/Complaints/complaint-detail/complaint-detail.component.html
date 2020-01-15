@@ -106,11 +106,37 @@
                   <div class="col-lg-4">
                     <div class="form-group">
                       <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                        <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
+                        <img alt="Image placeholder" [src]="complaint.user.picture">
                       </a>
                       <br>
-                      <label class="form-control-label" for="input-address">Dorra Ben Abid &nbsp;</label> <br>
-                      <a href="javascript:void(0)">Details</a>                    </div>
+                      <label class="form-control-label" for="input-address">{{complaint.user.username}}&nbsp;</label> <br>
+                      </div>
+                  </div>
+                  <div class="col-lg-4">
+                  </div>
+
+                  <div class="col-lg-4">
+                      <h6 class="heading-small text-muted mb-4">Technician Information</h6>
+
+                      <div class="form-group" *ngIf="complaint.technician != null">
+                          
+                          <label class="form-control-label" for="input-username">Technician Second Name &nbsp;:</label><br>
+                            <label>{{complaint.technician.technicianSecondName}}</label>
+                        </div>
+                        <div class="form-group" *ngIf="complaint.technician != null">
+                          
+                            <label class="form-control-label" for="input-username">Technician First Name &nbsp;:</label><br>
+                              <label>{{complaint.technician.technicianFirstName}}</label>
+                          </div>
+                          <div class="form-group" *ngIf="complaint.technician != null">
+                          
+                              <label class="form-control-label" for="input-username">Technician Number &nbsp;:</label><br>
+                                <label>{{complaint.technician.technicianPhoneNumber}}</label>
+                            </div>
+                            <div class="form-group" *ngIf="complaint.technician === null">
+                          
+                                <label class="form-control-label" for="input-username">technician not affected  &nbsp;</label><br>
+                              </div>
                   </div>
 
                 </div>
@@ -132,7 +158,7 @@
                             <div class="media" *ngFor="let i of complaint.comments">
                               <a class="pull-left" href="javascript:void(0)">
                                <div class="avatar">
-                                    <img class="media-object" src="assets/img/theme/team-3-800x800.jpg" alt="..."/>
+                                    <img class="media-object" [src]="i.user.picture" alt="..."/>
                                </div>
                               </a>
                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

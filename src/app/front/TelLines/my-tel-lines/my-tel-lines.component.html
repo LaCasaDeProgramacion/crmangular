@@ -1,207 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-default">
+<app-front-nav></app-front-nav>
+
+<section class="section pb-0 bg-gradient-warning">
     <div class="container">
-        <a class="navbar-brand mr-lg-5" href="../index.html">
-          <img src="../assets/img/brand/white.png" alt="brand">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse" id="navbar_global">
-          <div class="navbar-collapse-header">
-            <div class="row">
-              <div class="col-6 collapse-brand">
-                <a href="../index.html">
-                  <img src="../assets/img/brand/blue.png" alt="brand">
-                </a>
-              </div>
-              <div class="col-6 collapse-close">
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-                  <span></span>
-                  <span></span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link" data-toggle="dropdown" role="button">
-                <i class="ni ni-ui-04 d-lg-none"></i>
-                <span class="nav-link-inner--text">Products and stores</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-xl">
-                <div class="dropdown-menu-inner">
-
-                  <a routerLink="stores" routerLinkActive="active" class="media d-flex align-items-center">
-                    <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
-                      <i class="ni ni-spaceship"></i>
-                    </div>
-                    <div class="media-body ml-3">
-                      <h6 class="heading text-primary mb-md-1">Check our stores</h6>
-                      <p class="description d-none d-md-inline-block mb-0">Check our stores with google maps technology, no need for taping on google ;) .</p>
-                    </div>
-                  </a>
-                  <a routerLink="products" routerLinkActive="active" class="media d-flex align-items-center">
-                    <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
-                      <i class="ni ni-palette"></i>
-                    </div>
-                    <div class="media-body ml-3">
-                      <h6 class="heading text-primary mb-md-1">Check our products</h6>
-                      <p class="description d-none d-md-inline-block mb-0">Wanna discover our latest technologies ? you are so welcome to visit this section ;)</p>
-                    </div>
-                  </a>
-                  <a href="https://demos.creative-tim.com/argon-design-system/docs/components/alerts.html" class="media d-flex align-items-center">
-                    <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
-                      <i class="ni ni-ui-04"></i>
-                    </div>
-                    <div class="media-body ml-3">
-                      <h5 class="heading text-warning mb-md-1">Components</h5>
-                      <p class="description d-none d-md-inline-block mb-0">Browse our 50 beautiful handcrafted components offered in the Free version.</p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link" data-toggle="dropdown" role="button">
-                <i class="ni ni-collection d-lg-none"></i>
-                <span class="nav-link-inner--text">Examples</span>
-              </a>
-              <div class="dropdown-menu">
-                <a href="../examples/landing.html" class="dropdown-item">Landing</a>
-                <a href="../examples/profile.html" class="dropdown-item">Profile</a>
-                <a href="../examples/login.html" class="dropdown-item">Login</a>
-                <a href="../examples/register.html" class="dropdown-item">Register</a>
-              </div>
-            </li>
-          </ul>
-          <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link" data-toggle="dropdown" role="button">
-                <i class="ni ni-ui-04 d-lg-none"></i>
-                <span class="nav-link-inner--text">Complaints</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-xl">
-                <div class="dropdown-menu-inner">
-
-                  <a [routerLink]="['/home/allcomplaints']" routerLinkActive="active" class="media d-flex align-items-center">
-                    <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
-                      <i class="ni ni-spaceship"></i>
-                    </div>
-                    <div class="media-body ml-3">
-                      <h6 class="heading text-primary mb-md-1">All Complaints</h6>
-                    </div>
-                  </a>
-                  <a [routerLink]="['/home/mycomplaints']" routerLinkActive="active" class="media d-flex align-items-center">
-                    <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
-                      <i class="ni ni-palette"></i>
-                    </div>
-                    <div class="media-body ml-3">
-                      <h6 class="heading text-primary mb-md-1">My Complaints</h6>
-                    </div>
-                  </a>
-                 
-                </div>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link" data-toggle="dropdown" role="button">
-                <i class="ni ni-collection d-lg-none"></i>
-                <span class="nav-link-inner--text">Examples</span>
-              </a>
-              <div class="dropdown-menu">
-                <a href="../examples/landing.html" class="dropdown-item">Landing</a>
-                <a href="../examples/profile.html" class="dropdown-item">Profile</a>
-                <a href="../examples/login.html" class="dropdown-item">Login</a>
-                <a href="../examples/register.html" class="dropdown-item">Register</a>
-              </div>
-            </li>
-          </ul>
-          <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-              <li class="nav-item dropdown">
-                <a href="#" class="nav-link" data-toggle="dropdown" role="button">
-                  <i class="ni ni-ui-04 d-lg-none"></i>
-                  <span class="nav-link-inner--text">Services</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-xl">
-                  <div class="dropdown-menu-inner">
-  
-                    <a [routerLink]="['/home/AllServices']" routerLinkActive="active" class="media d-flex align-items-center">
-                      <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
-                        <i class="ni ni-spaceship"></i>
-                      </div>
-                      <div class="media-body ml-3">
-                        <h6 class="heading text-primary mb-md-1">All Services</h6>
-                      </div>
-                    </a>
-                    
-                   
-                  </div>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a href="#" class="nav-link" data-toggle="dropdown" role="button">
-                  <i class="ni ni-collection d-lg-none"></i>
-                  <span class="nav-link-inner--text">Examples</span>
-                </a>
-                <div class="dropdown-menu">
-                  <a href="../examples/landing.html" class="dropdown-item">Landing</a>
-                  <a href="../examples/profile.html" class="dropdown-item">Profile</a>
-                  <a href="../examples/login.html" class="dropdown-item">Login</a>
-                  <a href="../examples/register.html" class="dropdown-item">Register</a>
-                </div>
-              </li>
-            </ul>
-          <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://www.facebook.com/creativetim" target="_blank" data-toggle="tooltip" title="Like us on Facebook">
-                <i class="fa fa-facebook-square"></i>
-                <span class="nav-link-inner--text d-lg-none">Facebook</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://www.instagram.com/creativetimofficial" target="_blank" data-toggle="tooltip" title="Follow us on Instagram">
-                <i class="fa fa-instagram"></i>
-                <span class="nav-link-inner--text d-lg-none">Instagram</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://twitter.com/creativetim" target="_blank" data-toggle="tooltip" title="Follow us on Twitter">
-                <i class="fa fa-twitter-square"></i>
-                <span class="nav-link-inner--text d-lg-none">Twitter</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://github.com/creativetimofficial/argon-design-system" target="_blank" data-toggle="tooltip" title="Star us on Github">
-                <i class="fa fa-github"></i>
-                <span class="nav-link-inner--text d-lg-none">Github</span>
-              </a>
-            </li>
-            <li class="nav-item d-none d-lg-block ml-lg-4">
-              <a href="https://www.creative-tim.com/product/argon-design-system" target="_blank" class="btn btn-neutral btn-icon">
-                <span class="btn-inner--icon">
-                  <i class="fa fa-cloud-download mr-2"></i>
-                </span>
-                <span class="nav-link-inner--text">Download</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-  </nav>
-  <section class="section section-lg">
-      <div class="container">
         <div class="row row-grid justify-content-center">
-          <div class="col-lg-8 text-center">
-            <h2 class="display-3">My Lines</h2>
-            
-            <div class="btn-wrapper">
+            <div class="col-lg-8 text-center">
+              <h2 class="display-3 text-white">CHECK YOUR LINES</h2>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
               <div class="btn-wrapper">
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                </section>
+                <div class="btn-wrapper">
+
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+        </div>
+        <div class="separator separator-bottom separator-skew zindex-100">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+          </div>
+        </section>
     <section class="section bg-secondary">
         <div class="container">
            
@@ -214,12 +37,12 @@
                 <th scope="col">Date Validity</th>
                 <th scope="col">Service Name</th>
                 <th scope="col">Solde</th>
-                <th scope="col"></th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
   
-              <tr *ngFor="let x of collection.Listtel | filter:searchText">
+              <tr *ngFor="let x of collection.Listtel | filter:searchText | paginate: config">
   
                 
                 <td>
@@ -237,8 +60,16 @@
                       {{x.solde}} DT
                     </td>
   
-  
-                  <td class="text-right">
+                    <td class="td-actions text-right">
+                        <button type="button" ngbTooltip="Details" class="btn btn-info btn-link btn-sm" [routerLink]="['/home/MyLineDetails/',x.id]">
+                            <i class="ni ni-book-bookmark"></i>
+                        </button>
+                        
+                        <button type="button" ngbTooltip="Remove" class="btn btn-danger btn-link btn-sm" (click)="Open(content,x.id)">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </td>
+                  <!-- <td class="text-right">
                       <div ngbDropdown placement="bottom-right">
                         <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
                           <i class="fas fa-ellipsis-v"></i>
@@ -246,10 +77,10 @@
                         <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                             <a class="dropdown-item" data-toggle="modal" [routerLink]="['/home/MyLineDetails/',x.id]">Details</a>
   
-                         <a class="dropdown-item" data-toggle="modal" (click)="Open(content)">Delete</a>
+                         <a class="dropdown-item" data-toggle="modal" (click)="Open(content,x.id)">Delete</a>
                         </div>
                       </div>
-                    </td>
+                    </td> -->
                 
                   
               </tr>
@@ -260,21 +91,36 @@
         </div>
       </div>
   </div>
+  <br>
+  <nav aria-label="...">
+      <ul class="pagination justify-content-end mb-0">
+          <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+  
+      </ul>
+    </nav>
     </section>
     <ng-template #content let-modal1>
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal1-basic-title">Delete Telephone line</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <span>Are you sure you want to delete this line?</span>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="modal1.close('Save click')">Close</button>
-          <button type="button" class="btn bg-gradient-danger" (click)="Delete(content)">Confirm</button>
-      
-        </div>
+        <div  id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal1-notification" >
+            <div class="modal-danger" role="document">
+              <div class="modal-content bg-gradient-danger">
+                <div class="modal-header">
+                  <h6 class="modal-title" id="modal1-title-notification">Your attention is required</h6>
+                  <button type="button" class="close" aria-label="Close"  (click)="modal1.dismiss('Cross click')">
+                    <span aria-hidden="true">×</span>
+                   </button>
+                </div>
+                <div class="modal-body">
+                  <div class="py-3 text-center">
+                    <i class="ni ni-bell-55 ni-3x"></i>
+                    <h4 class="heading mt-4">Delete line</h4>
+                    <p>Are you sure want to delete this line.</p>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-white" (click)="Delete(content)">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
       </ng-template>
   <app-front-footer></app-front-footer>

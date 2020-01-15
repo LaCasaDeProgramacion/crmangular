@@ -71,6 +71,8 @@ export class MycomplaintDetailsComponent implements OnInit {
       (data) =>{
         console.log(data);
         this.modalService.dismissAll();
+        this.toastr.error('Delete complaint', 'Your complaint deleted with success!',
+        {timeOut: 2000});
         this.router.navigate(["home/mycomplaints"]);
       }
     )
@@ -82,9 +84,10 @@ export class MycomplaintDetailsComponent implements OnInit {
     this.commentS.delete(id).subscribe(
       (data)=>
       {
-        this.load();
         this.toastr.error('Delete comment', 'Comment deleted with success!',
         {timeOut: 2000});
+        this.load();
+
         console.log(data);
       }
     )

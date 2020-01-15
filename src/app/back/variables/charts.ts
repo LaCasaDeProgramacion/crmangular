@@ -376,7 +376,7 @@ export const chartComplaint = {
         {
           ticks: {
             callback: function(value) {
-              if (!(value % 10)) {
+              if (!(value % 2)) {
                 //return '$' + value + 'k'
                 return value;
               }
@@ -402,3 +402,93 @@ export const chartComplaint = {
   },
   
 }
+
+export const chartwaelll = {
+  options: {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            callback: function(value) {
+              if (!(value % 10)) {
+                //return '$' + value + 'k'
+                return value;
+              }
+            }
+          }
+        }
+      ]
+    },
+    tooltips: {
+      callbacks: {
+        label: function(item, data) {
+          var label = data.datasets[item.datasetIndex].label || "";
+          var yLabel = item.yLabel;
+          var content = "";
+          if (data.datasets.length > 1) {
+            content += label;
+          }
+          content += yLabel;
+          return content;
+        }
+      }
+    }
+  },data: {
+    labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    datasets: [
+      {
+        label: "Sales",
+        data: [0, 2, 2, 2, 2, 2]
+      }
+    ]
+  }
+}
+
+
+export const chartwaeltest = {
+  options: {
+    scales: {
+      yAxes: [
+        {         gridLines: {
+        color: colors.gray[900],
+        zeroLineColor: colors.gray[900]
+         },
+          ticks: {
+            callback: function(value) {
+              if (!(value % 10)) {
+                //return '$' + value + 'k'
+                return value;
+              }
+            }
+          }
+        }
+      ]
+    },
+    tooltips: {
+      callbacks: {
+        label: function(item, data) {
+          var label = data.datasets[item.datasetIndex].label || "";
+          var yLabel = item.yLabel;
+          var content = "";
+          if (data.datasets.length > 1) {
+            content += label;
+          }
+          content += yLabel;
+          return content;
+        }
+      }
+    }
+  },
+  data: {
+    labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    datasets: [
+      {
+        label: "Sales",
+        data: [0, 2, 2, 2, 2, 2]
+      }
+    ]
+  }
+}
+
+
+

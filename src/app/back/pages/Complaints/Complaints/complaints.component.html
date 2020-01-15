@@ -227,7 +227,7 @@
                         </a>
                         <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                          <a class="dropdown-item" data-toggle="modal" [routerLink]="['/back/complaintDetails/',x.id]">Details</a>
-                         <a class="dropdown-item" data-toggle="modal" (click)="AffectTech(x.id)" *ngIf="x.complaintState == 'Opened'">Affect Technician</a>
+                         <a class="dropdown-item" data-toggle="modal" (click)="AffectTech(x.id)" *ngIf="(x.typeComplaint.typeName =='Technical Branch' && x.complaintState == 'Opened') || (x.typeComplaint.typeName =='Technical Branch' && x.complaintState == 'In_progress')">Affect Technician</a>
                          <a class="dropdown-item" data-toggle="modal" (click)="Open(content,x.id)">Delete</a>
                         </div>
                       </div>
