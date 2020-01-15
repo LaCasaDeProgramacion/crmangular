@@ -18,7 +18,7 @@ const data = {
     theme: "fusion"
   }
 };
-  
+
 
 
 @Component({
@@ -42,22 +42,22 @@ export class DashboardComponent implements OnInit {
   date:Date;
   dataSource:complaintstatistics;
   nbcomplaint;
-  constructor(private Sservice:StatisticsComplaintService,private complaintscervice:ComplaintsService,private router: Router){ 
+  constructor(private Sservice:StatisticsComplaintService,private complaintscervice:ComplaintsService,private router: Router){
     if (localStorage['Role']!= "ADMIN")
       {
-        this.router.navigate(['login']);
+        this.router.navigate(['home']);
       }
   }
 
-  ngOnInit() {
-    
+  ngOnInit() {/*
+
     this.complaintscervice.get().subscribe(
       (Data) => {
         this.nbcomplaint=Data.length;
         console.log("tech"+Data);
       }
      )
-      
+
     this.Sservice.getByDate('2019-12-05').subscribe(
       (d) =>
       {
@@ -68,8 +68,8 @@ export class DashboardComponent implements OnInit {
     this.salesChart = new Chart(chartSales, {
 			type: 'bar',
       options: chartComplaint.options,
-      
-      data: 
+
+      data:
       {
         labels : ['Opened', 'Treated', 'In-progress', 'Closed'],
         datasets: [
@@ -80,15 +80,15 @@ export class DashboardComponent implements OnInit {
 
           }
         ]
-      
+
     }
   }
     );
     this.salesChart1 = new Chart(chartSales1, {
 			type: 'bar',
       options: chartComplaint.options,
-      
-      data: 
+
+      data:
       {
         labels : ['Technical', 'Financial', 'Relational'],
         datasets: [
@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit {
 
           }
         ]
-      
+
     }
   }
     );
@@ -108,7 +108,7 @@ export class DashboardComponent implements OnInit {
 
       }
     );
-    
+
 
     // this.datasets = [
     //   [0, 20, 10, 30, 15, 40, 20, 60, 60],
@@ -128,7 +128,7 @@ export class DashboardComponent implements OnInit {
       data: chartExample2.data
     });
 
-    
+*/
   }
 
 
@@ -140,6 +140,6 @@ export class DashboardComponent implements OnInit {
     this.salesChart.update();
   }
 
-  
+
 
 }

@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { Evenement } from './../../../../../entities/Evenement';
 import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from './../../../../../services/prospectingManagement/event.service';
 import { Agent } from 'src/app/entities/Agent';
 
@@ -26,7 +26,7 @@ agent: Agent = {firstName:'', lastName:''};
 agents : {firstName:'', lastName:''}[] = [];
 
 
-  constructor(private route: ActivatedRoute, private EventService:EventService) {
+  constructor(private route: ActivatedRoute, private router:Router,  private EventService:EventService) {
     //recuerer id
     this.route.paramMap.subscribe(params => {
       this.id = params.get("id")
@@ -34,6 +34,11 @@ agents : {firstName:'', lastName:''}[] = [];
    this.loadEvents();
    this.loadAffectationVehicles();
    this.loadAffectationAgents()
+   if (localStorage['Role']!="ADMIN")
+      {
+        this.router.navigate(['/home']);
+
+      }
 
   }
   ngOnInit() {

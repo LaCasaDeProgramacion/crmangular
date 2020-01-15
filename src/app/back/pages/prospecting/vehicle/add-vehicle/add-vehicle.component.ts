@@ -28,7 +28,14 @@ export class AddVehicleComponent implements OnInit {
   closeResult1: string;
 
   constructor( private vehicleService:CarbrandService,private modalService: NgbModal,
-    private router: Router, private storage: AngularFireStorage,public serviceimage:ImageUploadServicService ) {}
+    private router: Router, private storage: AngularFireStorage,public serviceimage:ImageUploadServicService ) {
+      if (localStorage['Role']!="ADMIN")
+      {
+        this.router.navigate(['/home']);
+
+      }
+
+    }
 
 
 

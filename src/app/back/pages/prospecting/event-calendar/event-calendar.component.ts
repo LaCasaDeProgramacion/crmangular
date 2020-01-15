@@ -73,6 +73,13 @@ export class EventCalendarComponent implements OnInit , OnDestroy {
                      this.router.navigated = false;
                  }
             });
+
+            if (localStorage['Role']!="ADMIN")
+            {
+              this.router.navigate(['/home']);
+
+            }
+
   }
   ngOnInit()
   {
@@ -86,7 +93,8 @@ ngOnDestroy() {
   }
 }
 
-  public selectedDate: Date = new Date(2019, 0, 1);
+
+  public selectedDate: Date = new Date(2019, 11, 1);
   private selectionTarget: Element;
 
   public onPopupOpen(args: PopupOpenEventArgs): void {

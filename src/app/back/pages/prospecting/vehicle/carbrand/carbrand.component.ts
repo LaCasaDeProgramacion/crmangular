@@ -12,7 +12,14 @@ export class CarbrandComponent implements OnInit {
   constructor(private modalService: NgbModal,
     private carbrandService:CarbrandService,
     private router: Router)
-    {}
+    {
+      if (localStorage['Role']!="ADMIN")
+      {
+        this.router.navigate(['/home']);
+
+      }
+
+    }
   searchText;
   //carbrands ;
   carbrand :Carbrand={id:0 , brand:''};

@@ -26,7 +26,7 @@ export class UpdateAgentComponent implements OnInit {
 
 agent2;
   id ;
-picture;
+url="https://firebasestorage.googleapis.com/v0/b/angulargalery.appspot.com/o/50661278_10213288267907039_1772620925334716416_n_1575642344414?alt=media";
   agent : Agent={id:0, cin:0, number:0 , firstName:'', lastName:'',
                  email:'', dateBirth:null, role:'',
                  drivenLicence:null, picture:''}
@@ -38,6 +38,11 @@ picture;
 
     });
      this.loadAgent();
+     if (localStorage['Role']!="ADMIN")
+     {
+       this.router.navigate(['/home']);
+
+     }
 
    }
   ngOnInit() {
@@ -49,8 +54,7 @@ picture;
     this.service.getById(this.id).subscribe(data=>
       {
          this.agent=data;
-         this.picture = data.picture;
-        this.picture = this.agent.picture;
+
       }
       );
 

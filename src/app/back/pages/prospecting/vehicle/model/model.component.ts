@@ -30,6 +30,12 @@ export class ModelComponent implements OnInit {
 
     pageChanged(event){
       this.config.currentPage = event;
+      if (localStorage['Role']!="ADMIN")
+      {
+        this.router.navigate(['/home']);
+
+      }
+
     }
 //update Modal
   open(content) {

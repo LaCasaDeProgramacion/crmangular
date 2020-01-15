@@ -3,6 +3,7 @@ import { AgentService } from './../../../../../services/prospectingManagement/ag
 import { Component, OnInit } from '@angular/core';
 import { Agent } from 'src/app/entities/Agent';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-add-contract',
@@ -12,18 +13,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AddContractComponent implements OnInit {
 
   id ;
+  date = "2019-12-11"
+  dateComp;
   agent : Agent={id:0, cin:0, number:0 , firstName:'', lastName:'',
                  email:'', dateBirth:null, role:'',
                  drivenLicence:null, picture:''};
 
   contract: Contract={id:0, title:'', startDate:null, endDate:null, comment:'', salary:0,  idAgent:0};
 
-  constructor(private route: ActivatedRoute, private service : AgentService, private router: Router) {
+  constructor(private route: ActivatedRoute,   private service : AgentService, private router: Router) {
     this.route.paramMap.subscribe(params => {
       this.id = params.get("id")
     });
     this.loadAgent();
+    console.log("DATE = " , this.date)
+
+    if (localStorage['Role']!="ADMIN")
+    {
+      this.router.navigate(['/home']);
+
+    }
+
    }
+
    loadAgent()
    {
      this.service.getById(this.id).subscribe(

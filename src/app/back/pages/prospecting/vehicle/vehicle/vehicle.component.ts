@@ -5,7 +5,7 @@ import { Component, OnInit , HostListener, ViewChild} from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Vehicle } from 'src/app/entities/Vehicle';
 import { CarbrandService } from 'src/app/services/prospectingManagement/vehicle/carbrand.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ImageUploadServicService } from 'src/app/SharedComponent/image-upload/image-upload-servic.service';
 import { finalize } from 'rxjs/operators';
@@ -18,6 +18,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 
 export class VehicleComponent implements OnInit {
+
+  mySubscription: any;
 
   searchText;
   idToDelete;
@@ -43,8 +45,31 @@ export class VehicleComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private vehicleService:CarbrandService,
     private eventService:EventService,
-    private router: Router, private storage: AngularFireStorage,public serviceimage:ImageUploadServicService ) {}
+    private router: Router, private storage: AngularFireStorage,public serviceimage:ImageUploadServicService ) {
 
+      this.router.routeReuseStrategy.shouldReuseRoute = function () {
+        return false;
+      };
+      this.mySubscription = this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+               this.router.navigated = false;
+           }
+      });
+
+      this.loadCarmodels();
+      this.loadVehicles();
+      if (localStorage['Role']!="ADMIN")
+      {
+        this.router.navigate(['/home']);
+
+      }
+
+    }
+    ngOnDestroy() {
+      if (this.mySubscription) {
+        this.mySubscription.unsubscribe();
+      }
+    }
 
     vehicleForm = new FormGroup(
       {
@@ -224,7 +249,9 @@ reserver (idEvent, content )
 
   console.log("ID EVENT " + idEvent + "  ID Vehicule "+ this.idVehicule)
   this.vehicleService.affecterVehicule(idEvent, this.idVehicule).subscribe(data =>
-    {console.log(data)});
+    {console.log(data),
+      this.LoadEventsForVeh(this.idVehicule);
+    });
   this.LoadEventsForVeh(this.idVehicule);
   this.modalService.dismissAll();
   this.open(content);

@@ -6,7 +6,7 @@
 
     <!-- User -->
     <ul class="navbar-nav align-items-center d-none d-md-flex">
-        <li class="dropdown notifications-menu">
+     <!--<li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="ni ni-notification-70 text-white"></i>
               <span class="icon-danger text-dark" >{{notiflist.length}}</span>
@@ -14,19 +14,18 @@
             <ul class="dropdown-menu">
               <li class="header">You have {{notiflist.length}} notifications</li>
               <li>
-                <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li *ngFor="let n of notiflist" class="dropdown-item">
                     <a (click)="Details(n.id)" [routerLink]="['/back/complaintDetails/',n.complaint.id]" >
                       <i class="fa fa-users text-aqua" ></i> {{n.message}}
                     </a>
                   </li>
-                  
+
                 </ul>
               </li>
               <li class="dropdown-item" *ngIf="notiflist.length != 0"><a (click)="MarkAllAsread()">Mark All As read</a></li>
             </ul>
-          </li>
+          </li> -->
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link pr-0" role="button" ngbDropdownToggle>
           <div class="media align-items-center">

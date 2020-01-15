@@ -30,6 +30,13 @@ export class SuggestEventComponent implements OnInit {
     this.loadEvent();
     this.loadVehicleAttente();
     this.loadAgentsAttente();
+
+    if (localStorage['Role']!="ADMIN")
+    {
+      this.router.navigate(['/home']);
+
+    }
+
    }
 
   ngOnInit() {

@@ -19,7 +19,7 @@ export class UpdateVehicleComponent implements OnInit {
   @ViewChild(ImageUploadComponent)
   private testComponent : ImageUploadComponent;
   public picturemap:string;
-  img="https://firebasestorage.googleapis.com/v0/b/angulargalery.appspot.com/o/50661278_10213288267907039_1772620925334716416_n_1576010878749?alt=media";
+  img="https://www.autoscout24.fr/assets/auto/images/model-finder/mercedes-benz/mercedes-benz-a-klasse-xs.jpg";
 
   closeResult: string;
   closeResult1: string;
@@ -38,6 +38,12 @@ export class UpdateVehicleComponent implements OnInit {
 
       this.loadCarmodels();
       this.loadVehicle(this.id);
+      if (localStorage['Role']!="ADMIN")
+      {
+        this.router.navigate(['/home']);
+
+      }
+
     }
 
   ngOnInit() {

@@ -34,7 +34,6 @@ export class DetailsComponent implements OnInit {
               });
 
               this.loadContract();
-
    }
 
    loadContract()
@@ -81,7 +80,11 @@ export class DetailsComponent implements OnInit {
   reserver(idEvent , content )
   {
     this.eventService.affecterAgent(idEvent, this.contract.agent.id).subscribe(data=>
-      console.log(data));
+      {
+        console.log(data),
+        this.LoadEventsForAgent(this.contract.agent.id)
+      }
+        );
     this.LoadEventsForAgent(this.contract.agent.id);
     this.modalService.dismissAll();
     this.open(content)

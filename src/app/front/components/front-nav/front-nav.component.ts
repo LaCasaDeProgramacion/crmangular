@@ -9,9 +9,21 @@ import { Router } from '@angular/router';
 })
 export class FrontNavComponent implements OnInit {
 
-  constructor(private userService:UserService, private router: Router) { }
+  picture ;
+  UserName;
+  connected ;
+  constructor(private userService:UserService, private router: Router) {
+    this.UserName=localStorage.getItem('UserName');
+    this.picture= localStorage.getItem('Picture');
+    if (localStorage['iduser']!=null)
+    {
+      this.connected= true ;
+    }
+    else this.connected=false;
+   }
 
   ngOnInit() {
+
   }
   logout()
   {
@@ -20,6 +32,10 @@ export class FrontNavComponent implements OnInit {
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('UserName');
     localStorage.removeItem('Role');
+    localStorage.removeItem('Picture');
+
+
+
     this.userService.logout().subscribe(
       (data) =>
       {

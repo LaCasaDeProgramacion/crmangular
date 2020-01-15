@@ -2,7 +2,7 @@ import { Agent } from 'src/app/entities/Agent';
 import { AgentService } from './../../../../../services/prospectingManagement/agent.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-agent',
@@ -13,9 +13,33 @@ export class AgentComponent implements OnInit {
 
   constructor(private modalService: NgbModal,
     private service:AgentService,
-    private router: Router) { }
+    private router: Router) {
+
+      this.router.routeReuseStrategy.shouldReuseRoute = function () {
+        return false;
+      };
+        this.mySubscription = this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+               this.router.navigated = false;
+           }
+      });
+      if (localStorage['Role']!="ADMIN")
+      {
+        this.router.navigate(['/home']);
+
+      }
+      this.loadAgents();
+
+    }
+    ngOnDestroy() {
+      if (this.mySubscription) {
+        this.mySubscription.unsubscribe();
+      }
+    }
     searchText;
     idContract;
+    mySubscription: any;
+
     agent: Agent={
       id:0, cin:0, number:0 , firstName:'', lastName:'',
       email:'', dateBirth:null, role:'',

@@ -24,12 +24,12 @@ picture= localStorage.getItem('Picture');
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
-    this.complaintS.getNotif().subscribe(
+  /*  this.complaintS.getNotif().subscribe(
       (data)=>
       {
         this.notiflist =data;
       }
-    )
+    )*/
   }
   load()
   {
@@ -40,7 +40,7 @@ picture= localStorage.getItem('Picture');
       }
     )
   }
-  
+
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if(titlee.charAt(0) === '#'){
@@ -61,6 +61,8 @@ picture= localStorage.getItem('Picture');
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('UserName');
     localStorage.removeItem('Role');
+    localStorage.removeItem('Picture');
+
 
     this.userService.logout().subscribe(
       (data) =>

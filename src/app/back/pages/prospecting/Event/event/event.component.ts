@@ -21,7 +21,14 @@ export class EventComponent implements OnInit {
 
   constructor(private modalService: NgbModal,
     private EventService:EventService,
-    private router: Router) {}
+    private router: Router) {
+      if (localStorage['Role']!="ADMIN")
+      {
+        this.router.navigate(['/home']);
+
+      }
+
+    }
 
 
 //update Vehicle

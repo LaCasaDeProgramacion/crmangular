@@ -28,7 +28,16 @@ export class AddAgentComponent implements OnInit {
                  drivenLicence:null, picture:''}
   id ;
   constructor( private service:AgentService,private storage: AngularFireStorage,public serviceimage:ImageUploadServicService,
-    private router: Router) { }
+    private router: Router) {
+
+      if (localStorage['Role']!="ADMIN")
+      {
+        this.router.navigate(['/home']);
+
+      }
+
+
+     }
 
   ngOnInit() {
   }
