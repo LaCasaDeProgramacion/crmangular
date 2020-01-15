@@ -19,7 +19,7 @@ productList: product[];
   Event4 ;
   nb=0;
   constructor(private eventService:EventService,private productService: ApiService,private router: Router) {
-    
+
     //this.loadEvents();
    }
    src= "https://firebasestorage.googleapis.com/v0/b/angulargalery.appspot.com/o/DSC_2317_1575812352817?alt=media&token=c4b0bf4f-4fd6-4257-8682-e1381d1b1fa2";
@@ -53,7 +53,7 @@ productList: product[];
 
    }
   ngOnInit() {
-    //this.TopViewedProducts();
+    this.TopViewedProducts();
    // this.slides = this.chunk(this.productList, 3);
   }
 
@@ -66,16 +66,16 @@ productList: product[];
     }
     return R;
   }  */
-  // TopViewedProducts(){
-  //   this.productService.getTopViewedProducts().subscribe(
-  //     (Data) => {
-  //       this.productList = Data ;
-  //       console.log(Data);
+   TopViewedProducts(){
+     this.productService.getTopViewedProducts().subscribe(
+     (Data) => {
+        this.productList = Data ;
+        console.log(Data);
 
 
-  //     })
+      })
 
-  // }
+  }
 
 //d3
 
@@ -210,7 +210,7 @@ ngAfterContentInit(){
                  .on( 'click', function (d) {
                      d3.select("h1").html(d.hero);
                      d3.select("#identityd3").html(d.name);
-                     d3.select("#linker").html ("Take me to " + "<a href='" + d.link + "' >"  + d.hero + " web page ⇢"+ "</a>" );
+                     d3.select("#linker").html ("Take me to " + "<a href='" + d.link + "' >"  + d.hero + " web page ?"+ "</a>" );
                   })
 
                  .on( 'mouseenter', function() {

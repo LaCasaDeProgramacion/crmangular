@@ -89,6 +89,7 @@ import { CategoriesComponent } from './back/pages/categories/categories.componen
 import { ProductChartComponent } from './back/pages/products/product-chart/product-chart.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FrontNavComponent } from './front/components/front-nav/front-nav.component';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 
 import { MyServicesComponent } from './front/Services/my-services/my-services.component';
@@ -115,7 +116,7 @@ import { OnepackinfoComponent } from './front/pages/packs/onepackinfo/onepackinf
     Ng2SearchPipeModule,
     MatButtonModule,
      MatDialogModule,
-     
+
 
 
     ReactiveFormsModule,
@@ -123,16 +124,18 @@ import { OnepackinfoComponent } from './front/pages/packs/onepackinfo/onepackinf
     MaterialModule,
     FlexLayoutModule,
     NgxPaginationModule,
-    
-    
 
 
+
+
+
+NgxImageZoomModule.forRoot(),
 
    AngularFireModule.initializeApp(environment.firebaseConfig),
    AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-   
+
 
    ImageUploadModule,
    SelectbootstrapModule,
@@ -156,11 +159,11 @@ import { OnepackinfoComponent } from './front/pages/packs/onepackinfo/onepackinf
     MycomplaintDetailsComponent,
     ListpackComponent,OnepackinfoComponent,
 
-    
-    
-    
-    
-    
+
+
+
+
+
 
 
 
@@ -217,7 +220,7 @@ ProductDetailComponent,
     ComplaintCommentsService,
     ComplaintObjectsService,
     TechnicianService,
-   
+
     DatePipe,
     PagerService,SortPipe,UiService,FilterByBrandPipe, FilterPipe,
 

@@ -8,25 +8,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./front-nav.component.scss']
 })
 export class FrontNavComponent implements OnInit {
-
-  picture ;
-  UserName;
-  connected ;
+picture;
+UserName;
+connected;
   constructor(private userService:UserService, private router: Router) {
-    this.UserName=localStorage.getItem('UserName');
+    this.UserName= localStorage.getItem('UserName');
     this.picture= localStorage.getItem('Picture');
-    if (localStorage['iduser']!=null)
-    {
-      this.connected= true ;
+
+    if(localStorage['iduser']!=null) {
+      this.connected= true;
+    }else{
+      this.connected=false;
     }
-    else this.connected=false;
+
    }
 
-  
+
   ngOnInit() {
 
-    
+
   }
+
   logout()
   {
     localStorage.removeItem('iduser');

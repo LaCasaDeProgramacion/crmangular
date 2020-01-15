@@ -118,7 +118,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let product of ListProducts | paginate: { itemsPerPage: 3, currentPage: p }" >
+              <tr *ngFor="let product of ListProducts | paginate: { itemsPerPage: 5, currentPage: p }" >
                 <th scope="row" >
                   <div class="media align-items-center">
                     <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
@@ -157,7 +157,7 @@
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" routerLink="/product-edit/{{product.id}}">Update Product</a>
                       <a class="dropdown-item" (click)="deleteProduct(product.id)" href="javascript:void(0)">Delete Product</a>
-                      <a class="dropdown-item" href="back/addproduct">Add Product</a>
+                      <a class="dropdown-item" routerLink="/back/addproduct">Add Product</a>
                     </div>
                   </div>
                 </td>
@@ -176,7 +176,7 @@
         </div>
 
 
-        <a href="back/addproduct"> <button type="button"  class="btn btn-success">Add New Product</button></a>
+        <a routerLink="/back/addproduct"> <button type="button"  class="btn btn-success">Add New Product</button></a>
 
         <div class="card-footer py-4">
           <nav aria-label="...">

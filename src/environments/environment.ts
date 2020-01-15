@@ -17,5 +17,6 @@ firebaseConfig : {
   storageBucket: "imagemap-2eca3.appspot.com",
   messagingSenderId: "371354114002",
   appId: "1:371354114002:web:63c2ad8e835ffee641da0b",
+
 }
 }

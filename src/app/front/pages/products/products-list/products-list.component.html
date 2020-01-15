@@ -69,7 +69,7 @@
           <!-- List of Products -->
           <div class="row" *ngIf="(uiService.displayMode$ | async) === 'grid'">
 
-          <div class="col-sm-4 mb-2" *ngFor="let product of filteredProducts  | paginate: { itemsPerPage: 3, currentPage: p } |filter:searchText; let i = index" >
+          <div class="col-sm-4 mb-2" *ngFor="let product of filteredProducts  | paginate: { itemsPerPage: 6, currentPage: p } |filter:searchText; let i = index" >
 
             <div class="item">
               <div class=" mb-r">

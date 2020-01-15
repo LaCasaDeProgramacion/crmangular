@@ -1,5 +1,7 @@
 import { FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 import { EmitType } from '@syncfusion/ej2-base';
+import { chartproduct } from './../../variables/charts';
+import { ApiService } from 'src/app/services/products/api.service';
 import { Router } from '@angular/router';
 import { ComplaintsService } from './../../../services/complaintsManagement/complaints.service';
 import { DatePipe } from '@angular/common';
@@ -31,9 +33,9 @@ const data = {
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  
- 
- 
+
+
+
   public datasets: any;
   public data:complaintstatistics;
   public data1;
@@ -54,7 +56,7 @@ export class DashboardComponent implements OnInit {
   public dateList: string[] = ['2019-01-31', '2019-02-28', '2019-03-31', '2019-04-30', '2019-05-31', '2019-06-30','2019-07-31','2019-08-31','2019-09-30','2019-10-31','2019-11-30','2019-12-31'];
   value;
 
-  constructor(private Sservice:StatisticsComplaintService,private complaintscervice:ComplaintsService,private router: Router){ 
+  constructor(private Sservice:StatisticsComplaintService,private complaintscervice:ComplaintsService,private router: Router, private productService:ApiService){
     if (localStorage['Role']!= "ADMIN")
       {
         this.router.navigate(['home']);
@@ -75,7 +77,7 @@ export class DashboardComponent implements OnInit {
         console.log("tech"+Data);
       }
      )
-      
+
     this.Sservice.getByDate(this.value).subscribe(
       (d) =>
       {
@@ -102,7 +104,7 @@ export class DashboardComponent implements OnInit {
     }
   }
     );
-    
+
     this.salesChart1 = new Chart(chartSales1, {
 			type: 'bar',
       options: chartComplaint.options,
@@ -134,6 +136,50 @@ export class DashboardComponent implements OnInit {
     //   [0, 20, 5, 25, 10, 30, 15, 40, 40]
     // ];
     // this.data = this.datasets[0];
+
+    this.productService.getProducts().subscribe(
+      (d) =>
+      {
+        let labels:any=[];
+        let nbvue:any=[];
+        console.log(d)
+        console.log(d['0']['productName'])
+        var chartSales = document.getElementById('chart-sales7');
+        for(let i in d )
+          {
+            labels.push(d[i]['productName']);
+            nbvue.push(d[i]['numberOfViews']);
+          }
+          console.log(labels)
+          console.log(nbvue)
+
+
+        //var chartSales1 = document.getElementById('chart-sales1');
+    this.salesChart = new Chart(chartSales, {
+			type: 'bar',
+      options: chartproduct.options,
+
+      data:
+      {
+
+          labels : labels,
+          datasets: [
+            {
+              label: "Statistics",
+              data :nbvue
+              // data :[40,50, 60, 70]
+
+            }
+          ]
+        }
+
+
+      });
+
+  });
+
+
+
 
 
     var chartOrders = document.getElementById('chart-orders');
@@ -183,8 +229,8 @@ export class DashboardComponent implements OnInit {
         //var chartSales = document.getElementById('chart-sales');
         //var chartSales1 = document.getElementById('chart-sales1');
 
-   
-    
+
+
         this.salesChart.data.datasets[0].data = [d['0']["nbOpenedComplaint"], d['0']["nbTreatedComplaint"], d['0']["nbinprogressComplaint"], d['0']["nbClosedComplaint"]];
         this.salesChart1.data.datasets[0].data = [d['0']["nbTechnicalComplaint"], d['0']["nbfinancialComplaint"], d['0']["nbrelationalComplaint"]];
 
@@ -196,6 +242,6 @@ export class DashboardComponent implements OnInit {
     );
   };
 
-  
+
 
 }

@@ -30,5 +30,11 @@ export class CategoriesComponent implements OnInit {
     }
    )
 }
-
+deleteCateg(category_id) {
+  if (window.confirm('Are you sure, you want to delete?')){
+    this.productService.deleteCategory(category_id).subscribe(data => {
+      this.loadEmployees()
+    })
+  }
+}
 }

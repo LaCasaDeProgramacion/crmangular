@@ -30,8 +30,8 @@ export class StoresListComponent implements OnInit {
   currentLat: any;
   currentLong: any;
   marker: any;
-
-  constructor(private restaurantsService: StoresClientService,private ref: ChangeDetectorRef) {
+  searchText;
+  constructor(private storesService: StoresClientService,private ref: ChangeDetectorRef) {
     this.display = false;
     this.options = { zoom: 18 };
 
@@ -40,7 +40,7 @@ export class StoresListComponent implements OnInit {
   ngOnInit() {
 
 
-      this.restaurantsService.getRestaurants().subscribe(
+      this.storesService.getRestaurants().subscribe(
         (Data) => {
           this.stores = Data ;
           console.log("stores"+Data);
@@ -56,7 +56,7 @@ export class StoresListComponent implements OnInit {
   }
 showresult()
 {
-  this.restaurantsService.getPosition().then(pos=>
+  this.storesService.getPosition().then(pos=>
     {
        console.log(`Positon: ${pos.lng} ${pos.lat}`);
     });
@@ -110,7 +110,7 @@ showTrackingPosition(position) {
 }
 
 
-  showRestaurantDetails(store) {
+  showStoreDetails(store) {
     this.selectedStore = store;
     this.display = !this.display;
 
@@ -125,7 +125,7 @@ showTrackingPosition(position) {
           }));
       });
 
-      this.restaurantsService.getStoredistancebyId(store.store_id).subscribe(data => {
+      this.storesService.getStoredistancebyId(store.store_id).subscribe(data => {
         console.log(data);
       });
 
@@ -133,7 +133,7 @@ showTrackingPosition(position) {
 
 
 CalculatedistancebyId(store_id){
-  this.restaurantsService.getStoredistancebyId(store_id).subscribe(data => {
+  this.storesService.getStoredistancebyId(store_id).subscribe(data => {
     console.log(data);
   });
 

@@ -1,3 +1,4 @@
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { FormsModule } from '@angular/forms';
 import { FilterByBrandPipe } from './pipes/filterByBrand.pipe';
 import { StoresComponent } from './../back/pages/stores/stores.component';
@@ -50,7 +51,7 @@ import { EventsFrontComponent } from './events-front/events-front.component';
     ProductsListComponent,
     FormsModule,
     AutocompletetextComponent,
-
+    NgxImageZoomModule.forRoot(),
 
 
   ],
@@ -65,7 +66,7 @@ import { EventsFrontComponent } from './events-front/events-front.component';
     EventsFrontComponent,
     ListpackComponent,
     OnepackinfoComponent,
-    
+
 ],
 
 

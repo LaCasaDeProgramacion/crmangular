@@ -10,7 +10,7 @@ body .ui-dataview .ui-dataview-header {
 	border-radius: 5px;
 }
 .header-content {
-  font-family: 'Avenir Next Demi Bold';
+  font-family: 'Arial';
   padding: 25px 0px 0px 0px;
   color: #fff;
   font-size: 17px;
@@ -39,14 +39,14 @@ body .ui-dataview .ui-dataview-header {
 }
 
 .restaurant-name {
-  color: #111;
+  color: white;
   font-size: 16px;
   font-family: 'Arial';
   margin-bottom: 6px;
 }
 
 .restaurant-category {
-  color: #111;
+  color:white;
   font-size: 12px;
   font-family: 'Avenir Next Regular';
   margin-bottom: 6px;

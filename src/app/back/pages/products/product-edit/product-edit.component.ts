@@ -22,7 +22,7 @@ export class ProductEditComponent implements OnInit {
   updateEmployee() {
     if(window.confirm('Are you sure, you want to update?')){
       this.restApi.updatePro(this.id, this.productata).subscribe(data => {
-        this.router.navigate(['/home'])
+        this.router.navigate(['/back/products'])
       })
     }
   }

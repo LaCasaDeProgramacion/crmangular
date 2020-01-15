@@ -138,7 +138,7 @@
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" routerLink="/category-edit/{{catego.category_id}}">Update Category</a>
-                      <a class="dropdown-item"  href="javascript:void(0)">Delete Product</a>
+                      <a class="dropdown-item" (click)="deleteCateg(catego.category_id)"  href="javascript:void(0)">Delete Product</a>
                       <a class="dropdown-item" routerLink="back/addcategories">Add New Category</a>
                     </div>
                   </div>
@@ -152,7 +152,7 @@
         </div>
 
 
-        <a href="back/addcategories"> <button type="button"  class="btn btn-success">Add New Category</button></a>
+        <a routerLink="/back/addcategories" > <button type="button"  class="btn btn-success">Add New Category</button></a>
 
         <div class="card-footer py-4">
           <nav aria-label="...">

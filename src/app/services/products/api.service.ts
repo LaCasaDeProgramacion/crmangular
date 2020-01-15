@@ -45,6 +45,13 @@ product:product [];
       catchError(this.handleError)
     )
   }
+  deleteCategory(category_id){
+    return this.http.delete<category>(this.urlCategory+"deleteCategory/?category_id="+category_id, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
   public findProducts(productName): Observable<any> {
     return this.http.get<product>(this.urlProduct+"search/?productName="+productName, this.httpOptions)
 
@@ -73,7 +80,7 @@ product:product [];
    }
    */
   addProduct(p: product): Observable<product>{
-    return this.http.post<product>(this.urlProduct+"addProduct/?productName="+p.productName+"&productDescription="+p.productDescription+"&productQuantity=22&productPrice="+p.productPrice+"&productStatus=active&category_id=1&store_id="+p.store_id,null).pipe(
+    return this.http.post<product>(this.urlProduct+"addProduct/?productName="+p.productName+"&productImage="+p.productImage+"&productDescription="+p.productDescription+"&productQuantity=22&productPrice="+p.productPrice+"&productStatus=active&category_id="+p.category_id+"&store_id="+p.store_id,null).pipe(
 
       retry(1),
     catchError(this.handleError)

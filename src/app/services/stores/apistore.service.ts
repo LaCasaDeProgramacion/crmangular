@@ -71,7 +71,7 @@ export class ApiStore {
    }
    */
   addStore(s: store){
-    return this.http.post<store>("http://localhost:9080/crmproject-web/rest/stores/addStore?store_name="+s.store_name, store);
+    return this.http.post<store>("http://localhost:9080/crmproject-web/rest/stores/addStore?store_name="+s.store_name+"&store_image="+s.store_image, store);
   }
 
   createMarker(store) {
@@ -93,8 +93,8 @@ export class ApiStore {
 
   updateStore(store_id, p): Observable<store> {
         return this.http.put<store>(this.urlStore +
-      "updateStore/?store_id="+store_id+"&end="+p.end+"&start="+p.start+
-    "&store_city="+p.store_city+"&store_name="+p.store_name,null).pipe(
+      "updateStore/?store_id="+store_id+"&store_city="
+      +p.store_city+"&store_name="+p.store_name,null).pipe(
       retry(1),
       catchError(this.handleError)
     )

@@ -1,19 +1,47 @@
 <div class="container custom-container">
     <div class="col-md-12">
 <br><br><br><br><br><br><br>
-      <h3 class="mb-3 text-center">Update Employee</h3>
+      <h3 class="mb-3 text-center">Update Product</h3>
 
       <div class="form-group">
-        <input type="text" [(ngModel)]="productata.productName" class="form-control" placeholder="Name">
+        <input type="text" id ="productName" [(ngModel)]="productata.productName" #productName="ngModel" name="productN" class="form-control" placeholder="Name" required minlength="3">
+        <div *ngIf="productName.invalid && productName.touched ">
+            <div *ngIf ="productName.errors.required"  class="alert alert-warning" role="alert">
+                Name is required
+            </div>
+            <div *ngIf ="productName.errors.minlength"  class="alert alert-warning" role="alert">
+                   Minimum length is 3
+            </div>
+        </div>
       </div>
 
       <div class="form-group">
-        <input type="text" [(ngModel)]="productata.productDescription" class="form-control" placeholder="Email">
+        <input type="textarea" id ="productDescription" [(ngModel)]="productata.productDescription"  #productDescription="ngModel" class="form-control" placeholder="Description"  required minlength="100">
+
+        <div *ngIf="productDescription.invalid && productDescription.touched ">
+            <div *ngIf ="productDescription.errors.required"  class="alert alert-warning" role="alert">
+              Description is required
+            </div>
+            <div *ngIf ="productDescription.errors.minlength"  class="alert alert-warning" role="alert">
+                Minimum length is  100 !
+            </div>
+        </div>
       </div>
 
       <div class="form-group">
-        <input type="text" [(ngModel)]="productata.productPrice" class="form-control" placeholder="Phone">
+        <input type="number" [(ngModel)]="productata.productPrice" class="form-control" placeholder="Price">
       </div>
+
+      <div class="form-group">
+          <input type="number" [(ngModel)]="productata.productQuantity" class="form-control" placeholder="Quantity">
+        </div>
+
+        <select class="custom-select" [(ngModel)]="productata.productStatus" >
+            <option selected   >{{productata.productStatus}}</option>
+            <option value="active">active</option>
+            <option value="inactive">inactive</option>
+
+          </select>
 
       <div class="form-group">
         <button class="btn btn-primary btn-lg btn-block" (click)="updateEmployee()">Update </button>
