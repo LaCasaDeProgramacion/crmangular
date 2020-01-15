@@ -24,22 +24,22 @@ picture= localStorage.getItem('Picture');
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
-    this.complaintS.getNotif().subscribe(
+  /*  this.complaintS.getNotif().subscribe(
       (data)=>
       {
         this.notiflist =data;
       }
     )
-  }
-  load()
+  } */
+  /*load()
   {
     this.complaintS.getNotif().subscribe(
       (data)=>
       {
         this.notiflist =data;
       }
-    )
-  }
+    )  */
+  }    
   
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -70,7 +70,7 @@ picture= localStorage.getItem('Picture');
       }
     )
   }
-  Details(id)
+ /* Details(id)
   {
     this.complaintS.MarknotifAsread(id).subscribe(
       data =>
@@ -79,7 +79,7 @@ picture= localStorage.getItem('Picture');
         console.log(data);
       }
     )
-  }
+  } 
   MarkAllAsread()
   {
     this.complaintS.MarkAllAsRead().subscribe(
@@ -92,6 +92,6 @@ picture= localStorage.getItem('Picture');
 
       }
     )
-  }
+  }   */
 
 }

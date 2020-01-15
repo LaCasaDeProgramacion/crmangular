@@ -30,6 +30,7 @@ import { ComplaintDetailsComponent } from './front/complaints/complaint-details/
 import { MyServicesComponent } from './front/Services/my-services/my-services.component';
 import { ListpackComponent } from './front/pages/packs/listpack/listpack.component';
 import { OnepackinfoComponent } from './front/pages/packs/onepackinfo/onepackinfo.component';
+import { YouCouponComponent } from './front/pages/you-coupon/you-coupon.component';
 
 
 const routes: Routes =[
@@ -70,6 +71,7 @@ const routes: Routes =[
   { path: 'home/singleTopic/:id', component: SingleTopicComponent},
   { path: 'home/allForums', component: AllForumsComponent},
   { path: 'home/EventsFront', component: EventsFrontComponent},
+  {path: 'home/yourCoupon', component: YouCouponComponent},
 
   {
     path: '',

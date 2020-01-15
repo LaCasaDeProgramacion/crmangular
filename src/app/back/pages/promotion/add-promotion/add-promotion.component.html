@@ -9,24 +9,41 @@
     <div class="form-group">
         <h6>Title <span class="icon-danger text-orange">*</span></h6>
       <div class="input-group">
-        <input class="form-control" type="text" placeholder="Title" name="title" [(ngModel)] ="Promotion.title" #title = "ngModel">
+        <input class="form-control" type="text" placeholder="Title" name="title" [(ngModel)] ="Promotion.title" #title = "ngModel" required minlength="3">
+      </div>
+      <div class="alert alert-danger" *ngIf="title.invalid && title.touched ">
+          <div *ngIf ="title?.errors.required">
+              Title Is Required
+          </div>
+          <div *ngIf ="title?.errors.minlength">
+                  Title minimum Three Letters
+          </div>
       </div>
       <br>
       <div class="form-group">
           <h6>Unit <span class="icon-danger text-orange">*</span></h6>
       <div class=" input-group">
-          <input class=" form-control" placeholder="Unit" type="text" name="unit" [(ngModel)] ="Promotion.promotionunit" #unit = "ngModel">
+          <input class=" form-control" placeholder="Unit" type="text" name="unit" [(ngModel)] ="Promotion.promotionunit" #unit = "ngModel" required maxlength="3" >
       
           <div class=" input-group-append">
             <span class=" input-group-text"> <i class="fas fa-percent text-orange"></i> </span>
           </div>
+
+        </div>
+        <div class="alert alert-danger" *ngIf="unit.invalid && unit.touched ">
+            <div *ngIf ="unit?.errors.required">
+                Promotion Unit Is Required
+            </div>
+            <div *ngIf ="unit?.errors.maxlength">
+                    Promotion Value Between  1-99 %
+            </div> 
         </div>
       </div>
       <br>
       <h6>Start Date  <span class="icon-danger text-orange">*</span></h6>
       <div class=" input-group date" id="datetimepicker" >
           <input class="form-control" placeholder="Select Date"
-              name="dp" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" [(ngModel)] ="Promotion.validfrom">
+              name="dp" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" [(ngModel)] ="Promotion.validfrom"  required > 
           <div class=" input-group-append">
             <span class=" input-group-text">
               <span class=" glyphicon glyphicon-calendar">
@@ -35,11 +52,20 @@
             </span>
           </div>
         </div>
+
+    
+            <div class="alert alert-danger" *ngIf="d1.invalid && d1.touched ">
+                <div *ngIf ="d1?.errors.required">
+                    Start Date Is Required
+                </div>
+            </div>
+           
+      
         <br>
         <h6>End Date <span class="icon-danger text-orange">*</span></h6>
         <div class=" input-group date" id="datetimepicker" >
             <input class="form-control" placeholder="Select Date"
-                name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" [(ngModel)] ="Promotion.validuntil">
+                name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" [(ngModel)] ="Promotion.validuntil" required>
             <div class=" input-group-append">
               <span class=" input-group-text">
                 <span class=" glyphicon glyphicon-calendar">
@@ -48,11 +74,14 @@
               </span>
             </div>
           </div>
+          <ng-container class="alert alert-danger" *ngIf =" d.value < d1.value">
+              end Date < start Date
+          </ng-container>
           <br>
           <div class=" form-group">
               <label for="exampleFormControlSelect1"><h6>Select Type</h6>  </label>
               <div class="input-group">
-              <select class=" form-control"  name="promotiontype" [(ngModel)] ="Promotion.promotiontype" #promotiontype ="ngModel" >
+              <select class=" form-control"  name="promotiontype" [(ngModel)] ="Promotion.promotiontype" #promotiontype ="ngModel" required>
                 <option> Mounthly Discount </option>
                 <option> Week Discount </option>
                 <option> Black Friday </option>
@@ -60,6 +89,12 @@
                 <option> Social Discount </option>
               </select>
               </div>
+            </div>
+            
+            <div class="alert alert-danger"  *ngIf="promotiontype.invalid && promotiontype.touched ">
+                <div *ngIf ="promotiontype?.errors.required">
+                    Promotion Type Is Required
+                </div>
             </div>
             <br>
           <h6>Select Product <span class="icon-orange text-orange">*</span></h6>
@@ -70,7 +105,7 @@
 
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-outline-orange" >Add</button>
+        <button type="submit" class="btn btn-outline-orange" [disabled]="promotionForm.invalid" >Add</button>
       </div>
   </form>
 </div>

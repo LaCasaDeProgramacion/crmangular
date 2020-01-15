@@ -8,10 +8,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./front-nav.component.scss']
 })
 export class FrontNavComponent implements OnInit {
-
+loginistrue:boolean;
+picture:string;
   constructor(private userService:UserService, private router: Router) { }
 
   ngOnInit() {
+   if (localStorage.getItem("loggedIn")){
+    this.loginistrue = true;
+   }else {
+    this.loginistrue = false;
+   }
+   this.picture =localStorage.getItem('Picture')
   }
   logout()
   {

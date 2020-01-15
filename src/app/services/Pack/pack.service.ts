@@ -18,7 +18,8 @@ export class PackService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     })
   }
   handleError(error: HttpErrorResponse) {
@@ -38,7 +39,7 @@ export class PackService {
   };
   getListavailablepacks(): Observable<Pack> {
     return this.http
-      .get<Pack>(this.base_path+"/availablepacks")
+      .get<Pack>(this.base_path+"/availablepacks",this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -78,7 +79,15 @@ console.log(params);
 
 
   }
-
+  getstatbytitle(title){
+    
+    return this.http
+    .get<product>(this.base_path+"/jsonStatPackByTitle?TitleStat="+title)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
   getprodbyid(id){
     return this.http
       .get<product>(this.base_path+"/getprodbyid?id="+id)

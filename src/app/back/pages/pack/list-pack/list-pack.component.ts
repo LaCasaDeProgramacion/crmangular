@@ -56,21 +56,7 @@ export class ListPackComponent implements OnInit {
     this.getPackoftheMonth();
     this.getSelledQuantitypacktoday();
 
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40]
-    ];
-    this.data = this.datasets[0];
-
-    var chartSales = document.getElementById('chart-sales');
-
-    var chartSales = document.getElementById('chart-sales');
-
-    this.salesChart = new Chart(chartSales, {
-			type: 'line',
-			options: chartExample1.options,
-			data: chartExample1.data
-    });
+    
     
 
 
@@ -81,11 +67,6 @@ export class ListPackComponent implements OnInit {
 
 
 
-  public updateOptions() {
-    this.salesChart.data.datasets[0].data = this.data;
-    this.salesChart.update();
-  }
-  
   getSelledQuantitypacktoday(){
     this.SelledQuantitypacktoday = {};
     this.statservice.getSelledQuantitypacktoday().subscribe(response => {

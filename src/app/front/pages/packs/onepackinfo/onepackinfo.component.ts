@@ -24,7 +24,9 @@ export class OnepackinfoComponent implements OnInit {
   constructor(private route: ActivatedRoute,public servicepack:PackService,public promotionService:PromotionServiceService,private starService: StarService) { }
 
   ngOnInit() {
-    this.userId = 1; // a changé avec nom user 
+    
+ 
+    this.userId = localStorage.getItem('UserName'); 
     this.getPackfromRoute();
     console.log("---------------------------")
     console.log(this.Pack)

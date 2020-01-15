@@ -1,0 +1,104 @@
+<app-front-nav></app-front-nav>
+<section class="section pb-0 bg-gradient-warning">
+    <div class="container">
+      <div class="row row-grid justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="display-3 text-white">YOUR COUPON</h2>
+  
+          <div class="btn-wrapper">
+            <div class="btn-wrapper">
+                <div class="alert alert-warning" role="alert">
+                    <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+                    <span class="alert-inner--text"><strong>Time Left!</strong> This Coupon Promotion Will End In <strong>{{timeleft}} </strong> !</span>
+                </div>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="separator separator-bottom separator-skew zindex-100">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </section>
+<br>
+
+<div fxLayout="row" fxLayoutAlign="space-around center">
+    <div fxFlex="2%"></div>
+    <div fxFlex>
+        <br/>
+<div fxLayout="column" >
+    <!-- Image, Desc. & Summary -->
+    <div fxLayout="row" fxLayoutAlign="space-around start">
+        <div fxFlex="80%">
+            <!-- Image & Desc. -->
+            <div fxLayout="column " class="material-card card card-lift--hover shadow border-0" >
+                <img src="{{ product.productImage}}" alt="">
+                <!-- Desc. -->
+                <div fxLayout="row " layout-wrap>
+                    <div    fxFlex="50%">
+                        <h4>{{product.productName}}</h4>
+                    </div>
+                    
+                    <div   fxFlex="100%">
+                        <h4>{{product.productDescription}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Summary -->
+        <mat-list fxFlex fxFlexAlign="start" fxFlexOffset="5%">
+            <h4 class="text-warning" >
+                <mat-icon>info</mat-icon>
+                Product Highlight
+            </h4>           
+            <mat-divider class="text-warning" ></mat-divider>
+           
+          
+            <mat-list-item>
+                <h4 class="text-warning" mat-line>Coupon Code</h4>
+       
+                <p mat-line>{{Coupon.codecoupon}}</p>
+                <h5 class="text-warning" mat-line>Add to Cart With Coupon promotion</h5>
+                <button class="btn btn-warning" mat-line>ADD</button>
+            </mat-list-item>
+            <mat-list-item>
+                    <h4 class="text-warning" mat-line>Coupon Price</h4>
+                    <s class="u-black" mat-line>{{product.productPrice}} TND</s>
+                    <p class="text-danger"  mat-line>- {{promotion.promotionvalue}} TND</p> 
+                    <p class="text-red"  mat-line>{{promotion.productnewvalue}} TND</p>
+                </mat-list-item>
+            <mat-list-item>
+                <h4 class="text-warning" mat-line>Promotion Unit</h4>
+                <p mat-line>{{promotion.promotionunit}} %</p>
+            </mat-list-item>
+           <mat-list-item>
+              <h4 class="text-warning" mat-line>{{promotion.promotiontype}}</h4>
+              <p mat-line>{{promotion.title}}</p>
+            
+             
+              
+           </mat-list-item>
+            
+            
+       
+           
+      </mat-list>
+    </div>
+    <br>
+    <br>
+   <br>
+   
+   
+</div>
+<br/>
+</div>
+<div fxFlex="2%"></div>
+</div>

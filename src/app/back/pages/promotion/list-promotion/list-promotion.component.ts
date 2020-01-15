@@ -138,6 +138,7 @@ disableprom(){
 formulairesubmited(t:boolean){
   if(t == true) {
     this.getAssignedPromotionList();
+    this.getDisabledAssignedPromotionList();
   }
 }
 
